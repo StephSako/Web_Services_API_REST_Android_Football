@@ -68,4 +68,12 @@ public class Player {
     public void setShirtNumber(int shirtNumber) {
         this.shirtNumber = shirtNumber;
     }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

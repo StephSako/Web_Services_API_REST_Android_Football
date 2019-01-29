@@ -2,7 +2,6 @@ package com.example.footballapi.restService;
 
 import com.example.footballapi.model.competition.Classement;
 import com.example.footballapi.model.player.Player;
-import com.example.footballapi.model.team.Match;
 import com.example.footballapi.model.team.Team;
 
 import retrofit2.Call;

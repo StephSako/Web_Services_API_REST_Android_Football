@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // Elements de la vue de l'activité
     private Button btnPrintJoueur;
     private Button btnPrintStadings;
+    private Button btnPrintDetailsTeam;
     private Button btnPrintListePlayersTeam;
     private Button btnPrintMatchesTeam;
     private TextView tvStandings;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //récupérer le bouton et la listView
         btnPrintJoueur = findViewById(R.id.btnPrintJoueur);
         btnPrintStadings= findViewById(R.id.btnPrintStadings);
+        btnPrintDetailsTeam= findViewById(R.id.btnPrintDetailsTeam);
         btnPrintListePlayersTeam= findViewById(R.id.btnPrintListePlayersTeam);
         btnPrintMatchesTeam= findViewById(R.id.btnPrintMatchesTeam);
 
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //écouteurs sur le bouton
         btnPrintJoueur.setOnClickListener(this);
         btnPrintStadings.setOnClickListener(this);
+        btnPrintDetailsTeam.setOnClickListener(this);
         btnPrintListePlayersTeam.setOnClickListener(this);
         btnPrintMatchesTeam.setOnClickListener(this);
     }
@@ -66,6 +69,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             tvStandings.setText("");
             afficheListeMatchesTeams(4); // Dortmund = 4
         }
+        else if (v.getId() == R.id.btnPrintDetailsTeam) {
+            tvStandings.setText("");
+            afficheDetailsTeams(4); // Dortmund = 4
+        }
     }
 
     /**
@@ -85,13 +92,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     Toast.makeText(MainActivity.this, "Le joueur est " + player.getName(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MainActivity.this, "Erreur recherche joueur", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Joueur introuvable", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Player> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Erreur service API joueur", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Vérifiez votre connexion Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -118,13 +125,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     tvStandings.setText(standing);
                     Toast.makeText(MainActivity.this, "La competition est " + classement.getCompetition().getName(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MainActivity.this, "Erreur recherche classement", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Classement introuvable", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Classement> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Erreur service API classement", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Vérifiez votre connexion Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -151,13 +158,56 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     tvStandings.setText(listePlayers);
                     Toast.makeText(MainActivity.this, "L'équipe est " + team.getName(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MainActivity.this, "Erreur recherche équipe", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Equipe introuvable", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Team> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Erreur service API équipe", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Vérifiez votre connexion Internet", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    /**
+     * Affiche les détails d'une équipe
+     *
+     * @param id id de l'équipe
+     */
+    private void afficheDetailsTeams(int id) {
+        Call<Team> call = RestUser.get().teams(getString(R.string.token), id);
+        call.enqueue(new Callback<Team>() {
+            @Override
+            public void onResponse(Call<Team> call, Response<Team> response) {
+                if (response.isSuccessful()) {
+                    final Team team = response.body();
+                    assert team != null;
+
+                    // On remplit le textview avec les details de l'équipe
+                    String details = "";
+                    details += "Name : " + team.getName() + "\nCouleurs : " + team.getClubColors() + "\nStade : " + team.getVenue() + "\nCompétitions : \n";
+                    for (int i = 0; i < team.getActiveCompetitions().size(); i++){
+                        details += "            - " + team.getActiveCompetitions().get(i).getName() + "\n";
+                    }
+                    details += "\nEntraineur : ";
+                    // Renvoyer le nom de l'entraineur
+                    for (int i = 0; i < team.getSquad().size(); i++){
+                        if (team.getSquad().get(i).getRole().equals("COACH")) {
+                            details += team.getSquad().get(i).getName();
+                            break;
+                        }
+                    }
+
+                    tvStandings.setText(details);
+                    Toast.makeText(MainActivity.this, "L'équipe est " + team.getName(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Equipe introuvable", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Team> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Vérifiez votre connexion Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -185,13 +235,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                     tvStandings.setText(listeMatches);
                 } else {
-                    Toast.makeText(MainActivity.this, "Erreur recherche matches", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Matches d'équipe introuvables", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Team> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Erreur service API matches", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Vérifiez votre connexion Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }

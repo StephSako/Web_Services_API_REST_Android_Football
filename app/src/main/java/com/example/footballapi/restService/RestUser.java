@@ -38,7 +38,6 @@ public class RestUser {
                 .followSslRedirects(true)
                 .retryOnConnectionFailure(true)).build();
 
-
         if (service == null) {
             final Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(API_URL)
