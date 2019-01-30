@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_print_player);
+        setContentView(R.layout.main_activity);
 
         //récupérer le textview
         tvGeneralActivity = findViewById(R.id.tvGeneralActivity);

@@ -1,4 +1,4 @@
-package com.example.footballapi.view;
+package com.example.footballapi.view.interfaces;
 
 public interface MatchesFragmentInterface {
     void showTeamMatches();
