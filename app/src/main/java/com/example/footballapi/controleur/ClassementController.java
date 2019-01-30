@@ -44,6 +44,11 @@ public class ClassementController {
                         club_names[i] = classement.getStandings().get(0).getTable().get(i).getTeam().getName();
                     }
 
+                    // Remplir la ListView
+
+
+
+
                     Toast.makeText(activity, "La competition est " + classement.getCompetition().getName(), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(activity, "Classement introuvable", Toast.LENGTH_SHORT).show();

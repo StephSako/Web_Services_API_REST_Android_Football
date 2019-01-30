@@ -33,7 +33,7 @@ public class ListClassementFragment extends Fragment implements ListClassementFr
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle   savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_liste_classement, container, false);
+        View view =  inflater.inflate(R.layout.fragment_list_classement, container, false);
         lvRow = view.findViewById(R.id.lvClassement);
         tvCompetition = view.findViewById(R.id.tvCompetition);
 
