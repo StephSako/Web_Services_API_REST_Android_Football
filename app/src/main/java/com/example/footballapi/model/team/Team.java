@@ -53,10 +53,6 @@ public class Team {
         return activeCompetitions;
     }
 
-    public void setActiveCompetitions(List<Competition> activeCompetitions) {
-        this.activeCompetitions = activeCompetitions;
-    }
-
     public String getName() {
         return name;
     }
@@ -65,43 +61,20 @@ public class Team {
         this.name = name;
     }
 
-    public String getCrestUrl() {
-        return crestUrl;
-    }
-
-    public void setCrestUrl(String crestUrl) {
-        this.crestUrl = crestUrl;
-    }
-
     public String getClubColors() {
         return clubColors;
-    }
-
-    public void setClubColors(String clubColors) {
-        this.clubColors = clubColors;
     }
 
     public String getVenue() {
         return venue;
     }
 
-    public void setVenue(String venue) {
-        this.venue = venue;
-    }
-
     public List<Player> getSquad() {
         return squad;
-    }
-
-    public void setSquad(List<Player> squad) {
-        this.squad = squad;
     }
 
     public List<Match> getMatches() {
         return matches;
     }
 
-    public void setMatches(List<Match> matches) {
-        this.matches = matches;
-    }
 }

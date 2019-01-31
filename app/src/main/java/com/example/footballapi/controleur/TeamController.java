@@ -4,7 +4,7 @@ import android.widget.Toast;
 
 import com.example.footballapi.model.team.Team;
 import com.example.footballapi.restService.RestUser;
-import com.example.footballapi.view.MainActivity;
+import com.example.footballapi.view.StadingsActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -12,9 +12,9 @@ import retrofit2.Response;
 
 public class TeamController {
 
-    private MainActivity activity;
+    private StadingsActivity activity;
 
-    public TeamController(MainActivity activity) {
+    public TeamController(StadingsActivity activity) {
         this.activity = activity;
     }
 

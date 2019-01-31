@@ -24,15 +24,8 @@ public class Classement {
         return competition;
     }
 
-    public void setCompetition(Competition competition) {
-        this.competition = competition;
-    }
-
     public List<Standing> getStandings() {
         return standings;
     }
 
-    public void setStandings(List<Standing> standings) {
-        this.standings = standings;
-    }
 }

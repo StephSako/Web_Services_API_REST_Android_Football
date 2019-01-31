@@ -49,31 +49,16 @@ public class Player {
         return nationality;
     }
 
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
-
     public String getPosition() {
         return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
     }
 
     public int getShirtNumber() {
         return shirtNumber;
     }
 
-    public void setShirtNumber(int shirtNumber) {
-        this.shirtNumber = shirtNumber;
-    }
-
     public String getRole() {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 }

@@ -8,85 +8,58 @@ public class Table {
 
     @SerializedName("position")
     @Expose
-    public int position;
+    private int position;
 
     @SerializedName("team")
     @Expose
-    public Team team;
+    private Team team;
 
     @SerializedName("playedGames")
     @Expose
-    public int playedGames;
+    private int playedGames;
 
     @SerializedName("points")
     @Expose
-    public int points;
+    private int points;
 
     @SerializedName("goalsFor")
     @Expose
-    public int goalsFor;
+    private int goalsFor;
 
     @SerializedName("goalsAgainst")
     @Expose
-    public int goalsAgainst;
+    private int goalsAgainst;
 
     @SerializedName("goalDifference")
     @Expose
-    public int goalDifference;
+    private int goalDifference;
 
     public Team getTeam() {
         return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
     }
 
     public int getPlayedGames() {
         return playedGames;
     }
 
-    public void setPlayedGames(int playedGames) {
-        this.playedGames = playedGames;
-    }
-
     public int getPoints() {
         return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
     }
 
     public int getGoalsFor() {
         return goalsFor;
     }
 
-    public void setGoalsFor(int goalsFor) {
-        this.goalsFor = goalsFor;
-    }
-
     public int getGoalsAgainst() {
         return goalsAgainst;
-    }
-
-    public void setGoalsAgainst(int goalsAgainst) {
-        this.goalsAgainst = goalsAgainst;
     }
 
     public int getGoalDifference() {
         return goalDifference;
     }
 
-    public void setGoalDifference(int goalDifference) {
-        this.goalDifference = goalDifference;
-    }
-
     public int getPosition() {
         return position;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
 }
