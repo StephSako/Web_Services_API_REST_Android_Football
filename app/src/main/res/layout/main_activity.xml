@@ -18,11 +18,13 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal">
+
         <Button
+            android:id="@+id/btnPremierLeague"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/btnPremierLeague"
+            android:background="@mipmap/ic_premier_league"
             tools:ignore="NestedWeights" />
         <Button
             android:layout_width="wrap_content"

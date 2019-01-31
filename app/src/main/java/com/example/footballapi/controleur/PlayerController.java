@@ -31,7 +31,7 @@ public class PlayerController {
                 if (response.isSuccessful()) {
                     final Player player = response.body();
                     assert player != null;
-                    activity.tvGeneralActivity.setText("Nom : " + player.getName() + "\nNationalité : " + player.getNationality() + "\nPosition : " + player.getPosition() + "\nNuméro : " + player.getShirtNumber());
+                    //activity.tvGeneralActivity.setText("Nom : " + player.getName() + "\nNationalité : " + player.getNationality() + "\nPosition : " + player.getPosition() + "\nNuméro : " + player.getShirtNumber());
 
                     Toast.makeText(activity, "Le joueur est " + player.getName(), Toast.LENGTH_SHORT).show();
                 } else {

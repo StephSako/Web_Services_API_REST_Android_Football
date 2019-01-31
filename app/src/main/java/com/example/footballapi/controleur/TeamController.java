@@ -37,7 +37,7 @@ public class TeamController {
                     for (int i = 0; i < team.getSquad().size()-1; i++){
                         listePlayers += team.getSquad().get(i).getName() + " - N° " + team.getSquad().get(i).getShirtNumber() + "\n";
                     }
-                    activity.tvGeneralActivity.setText(listePlayers);
+                    //activity.tvGeneralActivity.setText(listePlayers);
                     Toast.makeText(activity, "L'équipe est " + team.getName(), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(activity, "Equipe introuvable", Toast.LENGTH_SHORT).show();
@@ -80,7 +80,7 @@ public class TeamController {
                         }
                     }
 
-                    activity.tvGeneralActivity.setText(details);
+                    //activity.tvGeneralActivity.setText(details);
                     Toast.makeText(activity, "L'équipe est " + team.getName(), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(activity, "Equipe introuvable", Toast.LENGTH_SHORT).show();
@@ -115,7 +115,7 @@ public class TeamController {
                             listeMatches += "J" + team.getMatches().get(i).getMatchday() + " - " + team.getMatches().get(i).getHomeTeam().getName() + " " + team.getMatches().get(i).getScore().getFullTime().getHomeTeam() + " - " + team.getMatches().get(i).getScore().getFullTime().getAwayTeam() + " " + team.getMatches().get(i).getAwayTeam().getName() + "\n";
                         }
                     }
-                    activity.tvGeneralActivity.setText(listeMatches);
+                    //activity.tvGeneralActivity.setText(listeMatches);
                 } else {
                     Toast.makeText(activity, "Matches d'équipe introuvables", Toast.LENGTH_SHORT).show();
                 }

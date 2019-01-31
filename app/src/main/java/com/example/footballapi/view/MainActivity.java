@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if (v.getId() == R.id.btnLigue1) idCompet = 2134;
         else if (v.getId() == R.id.btnLiguaNOS) idCompet = 2096;
 
-        Intent intent = new Intent(this, ClassementFragment.class);
+        Intent intent = new Intent(this, StadingsActivity.class);
         intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
         startActivity(intent);
     }

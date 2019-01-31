@@ -22,8 +22,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.StadingsActivity" >
-        </activity>
+        <activity android:name=".view.StadingsActivity" />
     </application>
 
 </manifest>
