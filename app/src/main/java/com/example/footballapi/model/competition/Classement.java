@@ -15,6 +15,11 @@ public class Classement {
     @Expose
     private List<Standing> standings;
 
+    public Classement(Competition competition, List<Standing> standings) {
+        this.competition = competition;
+        this.standings = standings;
+    }
+
     public Competition getCompetition() {
         return competition;
     }

@@ -6,29 +6,33 @@ import com.google.gson.annotations.SerializedName;
 
 public class Table {
 
+    @SerializedName("position")
+    @Expose
+    public int position;
+
     @SerializedName("team")
     @Expose
-    private Team team;
+    public Team team;
 
     @SerializedName("playedGames")
     @Expose
-    private int playedGames;
+    public int playedGames;
 
     @SerializedName("points")
     @Expose
-    private int points;
+    public int points;
 
     @SerializedName("goalsFor")
     @Expose
-    private int goalsFor;
+    public int goalsFor;
 
     @SerializedName("goalsAgainst")
     @Expose
-    private int goalsAgainst;
+    public int goalsAgainst;
 
     @SerializedName("goalDifference")
     @Expose
-    private int goalDifference;
+    public int goalDifference;
 
     public Team getTeam() {
         return team;
@@ -76,5 +80,13 @@ public class Table {
 
     public void setGoalDifference(int goalDifference) {
         this.goalDifference = goalDifference;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }
