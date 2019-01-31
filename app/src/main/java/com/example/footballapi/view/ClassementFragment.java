@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import com.example.footballapi.R;
 import com.example.footballapi.model.competition.Classement;
@@ -22,15 +23,10 @@ import retrofit2.Response;
 
 public class ClassementFragment extends Fragment {
 
-    // Elements du fragment
-    ListView lvClassement;
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View v = inflater.inflate(R.layout.fragment_list_classement, container, false);
-
-        lvClassement = v.findViewById(R.id.lvClassement);
 
         Call<Classement> call = RestUser.get().competitions(getString(R.string.token), 2002);
         call.enqueue(new Callback<Classement>() {
@@ -39,6 +35,9 @@ public class ClassementFragment extends Fragment {
                 if (response.isSuccessful()) {
                     Classement classement = response.body();
                     assert classement != null;
+
+                    TextView tvClassement = v.findViewById(R.id.tvClassement);
+                    tvClassement.setText(classement.getCompetition().getName());
 
                     String[] columns = new String[] { "_id", "Position", "Club_name", "Diff", "Points" };
 
