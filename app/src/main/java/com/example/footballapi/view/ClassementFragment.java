@@ -23,12 +23,18 @@ import retrofit2.Response;
 
 public class ClassementFragment extends Fragment {
 
+    public static ClassementFragment newInstance() {
+        return new ClassementFragment();
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View v = inflater.inflate(R.layout.fragment_list_classement, container, false);
 
-        Call<Classement> call = RestUser.get().competitions(getString(R.string.token), 2002);
+        int idCompet = ((StadingsActivity) getActivity()).getidCompet();
+
+        Call<Classement> call = RestUser.get().competitions(getString(R.string.token), idCompet);
         call.enqueue(new Callback<Classement>() {
             @Override
             public void onResponse(@NonNull Call<Classement> call, @NonNull Response<Classement> response) {

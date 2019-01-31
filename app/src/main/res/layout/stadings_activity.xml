@@ -8,7 +8,7 @@
     tools:context="com.example.footballapi.view.StadingsActivity"
     tools:ignore="ExtraText">
 
-    <fragment
+    <FrameLayout
         android:id="@+id/idFragmentClassement"
         android:name="com.example.footballapi.view.ClassementFragment"
         android:layout_width="match_parent"

@@ -21,10 +21,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // Id de la compétition
     public int idCompet = -1;
+
+    //méthode permettant de récupérer le numéro de table
+    public int getidCompet(){
+        return this.idCompet;
+    }
+
     // Persistance courte
     public final static String PCidCompet = "idCompet";
+
     // Clef données transmission
-    final static String CLE_DONNEES_ID_COMPET = "ID_COMPET";
+    final static String CLE_DONNEES_ID_COMPET = "idCompet";
 
     @Override
     protected void onSaveInstanceState (Bundle outState) {
@@ -61,15 +68,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onClick(View v) {
-        if (v.getId() == R.id.btnBundesliga) idCompet = 2002;
-        else if (v.getId() == R.id.btnSerieA) idCompet = 2118;
-        else if (v.getId() == R.id.btnPremierLeague) idCompet = 2139;
-        else if (v.getId() == R.id.btnPrimeraDivision) idCompet = 2078;
-        else if (v.getId() == R.id.btnLigue1) idCompet = 2134;
-        else if (v.getId() == R.id.btnLiguaNOS) idCompet = 2096;
+        if (v.getId() == R.id.btnBundesliga){
+            idCompet = 2002;
 
-        Intent intent = new Intent(this, StadingsActivity.class);
-        intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
-        startActivity(intent);
+            Intent intent = new Intent(this, StadingsActivity.class);
+            intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
+            startActivity(intent);
+        }
+        else if (v.getId() == R.id.btnSerieA){
+            idCompet = 2019;
+
+            Intent intent = new Intent(this, StadingsActivity.class);
+            intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
+            startActivity(intent);
+        }
+        else if (v.getId() == R.id.btnPremierLeague){
+            idCompet = 2021;
+
+            Intent intent = new Intent(this, StadingsActivity.class);
+            intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
+            startActivity(intent);
+        }
+        else if (v.getId() == R.id.btnPrimeraDivision){
+            idCompet = 2014;
+
+            Intent intent = new Intent(this, StadingsActivity.class);
+            intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
+            startActivity(intent);
+        }
+        else if (v.getId() == R.id.btnLigue1){
+            idCompet = 2015;
+
+            Intent intent = new Intent(this, StadingsActivity.class);
+            intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
+            startActivity(intent);
+        }
+        else if (v.getId() == R.id.btnLiguaNOS){
+            idCompet = 2017;
+
+            Intent intent = new Intent(this, StadingsActivity.class);
+            intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
+            startActivity(intent);
+        }
     }
 }
