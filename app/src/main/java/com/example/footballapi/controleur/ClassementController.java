@@ -27,7 +27,7 @@ public class ClassementController {
     /**
      * Affiche le classement d'une compétition
      */
-    public void afficheListeTeamsCompetition(int idCompet, final Context context, final Activity activity, String token, final View v) {
+    public void afficheListeTeamsCompetition(int idCompet, final Context context, final Activity activity, String token, final ListView lvClassement) {
         Call<Classement> call = RestUser.get().competitions(token, idCompet);
         call.enqueue(new Callback<Classement>() {
             @Override
@@ -66,8 +66,7 @@ public class ClassementController {
                     }
 
                     // ...qui va remplir l'objet ListView
-                    ListView lv = v.findViewById(R.id.lvClassement);
-                    lv.setAdapter(adapter);
+                    lvClassement.setAdapter(adapter);
 
                     // Gestion des clics sur les lignes
                     AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
@@ -79,7 +78,7 @@ public class ClassementController {
                     };
 
                     // Utilisation avec notre listview
-                    lv.setOnItemClickListener(itemClickListener);
+                    lvClassement.setOnItemClickListener(itemClickListener);
                 } else {
                     Toast.makeText(activity, "Compétition introuvable", Toast.LENGTH_SHORT).show();
                 }

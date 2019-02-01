@@ -44,11 +44,11 @@
             android:gravity="center" />
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/idFragmentClassement"
-        android:name="com.example.footballapi.view.ClassementFragment"
+    <ListView
+        android:id="@+id/lvClassement"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_list_classement" />
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </ListView>
 
 </LinearLayout>

@@ -2,21 +2,19 @@ package com.example.footballapi.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ListView;
 
 import com.example.footballapi.R;
-import com.example.footballapi.view.fragments.ClassementFragment;
+import com.example.footballapi.controleur.ClassementController;
 
 public class ClassementActivity extends AppCompatActivity {
 
     public int idCompet = -1;
     public final static String PCidCompet = "idCompet";
+    ListView lvClassement;
 
-    public int getidCompet(){
-        return this.idCompet;
-    }
+    ClassementController classementcontroller = new ClassementController();
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -29,16 +27,12 @@ public class ClassementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.classement_activity);
 
+        lvClassement = findViewById(R.id.lvClassement);
+
         // On récupere l'id de la competition depuis l'activite mère
         Intent intent = getIntent();
         idCompet = intent.getIntExtra(MainActivity.CLE_DONNEES_ID_COMPET, 1);
 
-        // On affiche le fragment du classement de la compétition choisie
-        ClassementFragment simpleFragment = ClassementFragment.newInstance();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager
-                .beginTransaction();
-        fragmentTransaction.add(R.id.idFragmentClassement,
-                simpleFragment).addToBackStack(null).commit();
+        classementcontroller.afficheListeTeamsCompetition(idCompet, this, this, getString(R.string.token), lvClassement);
     }
 }
