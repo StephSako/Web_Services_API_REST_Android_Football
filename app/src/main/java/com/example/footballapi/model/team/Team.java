@@ -1,6 +1,6 @@
 package com.example.footballapi.model.team;
 
-import com.example.footballapi.model.competition.Competition;
+import com.example.footballapi.model.competition.Classement;
 import com.example.footballapi.model.player.Player;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -15,7 +15,7 @@ public class Team {
 
     @SerializedName("activeCompetitions")
     @Expose
-    private List<Competition> activeCompetitions;
+    private List<Classement.Competition> activeCompetitions;
 
     @SerializedName("name")
     @Expose
@@ -49,7 +49,7 @@ public class Team {
         this.id = id;
     }
 
-    public List<Competition> getActiveCompetitions() {
+    public List<Classement.Competition> getActiveCompetitions() {
         return activeCompetitions;
     }
 

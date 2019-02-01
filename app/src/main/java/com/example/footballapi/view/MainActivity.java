@@ -62,53 +62,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Persistance courte
         if (savedInstanceState != null) {
-            // Sauvegarde de la persistance courte
             idCompet = savedInstanceState.getInt(PCidCompet);
         }
     }
 
     public void onClick(View v) {
-        if (v.getId() == R.id.btnBundesliga){
-            idCompet = 2002;
+        if (v.getId() == R.id.btnBundesliga) idCompet = 2002;
+        else if (v.getId() == R.id.btnSerieA) idCompet = 2019;
+        else if (v.getId() == R.id.btnPremierLeague) idCompet = 2021;
+        else if (v.getId() == R.id.btnPrimeraDivision) idCompet = 2014;
+        else if (v.getId() == R.id.btnLigue1) idCompet = 2015;
+        else if (v.getId() == R.id.btnLiguaNOS) idCompet = 2017;
 
-            Intent intent = new Intent(this, StadingsActivity.class);
-            intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
-            startActivity(intent);
-        }
-        else if (v.getId() == R.id.btnSerieA){
-            idCompet = 2019;
-
-            Intent intent = new Intent(this, StadingsActivity.class);
-            intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
-            startActivity(intent);
-        }
-        else if (v.getId() == R.id.btnPremierLeague){
-            idCompet = 2021;
-
-            Intent intent = new Intent(this, StadingsActivity.class);
-            intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
-            startActivity(intent);
-        }
-        else if (v.getId() == R.id.btnPrimeraDivision){
-            idCompet = 2014;
-
-            Intent intent = new Intent(this, StadingsActivity.class);
-            intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
-            startActivity(intent);
-        }
-        else if (v.getId() == R.id.btnLigue1){
-            idCompet = 2015;
-
-            Intent intent = new Intent(this, StadingsActivity.class);
-            intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
-            startActivity(intent);
-        }
-        else if (v.getId() == R.id.btnLiguaNOS){
-            idCompet = 2017;
-
-            Intent intent = new Intent(this, StadingsActivity.class);
-            intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
-            startActivity(intent);
-        }
+        Intent intent = new Intent(this, StadingsActivity.class);
+        intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
+        startActivity(intent);
     }
 }
