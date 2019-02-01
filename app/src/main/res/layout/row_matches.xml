@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:weightSum="4"> <!-- nombre de colonnes -->
+    android:weightSum="6"> <!-- nombre de colonnes -->
 
     <TextView
-        android:id="@+id/tvPosition"
+        android:id="@+id/tvMatchday"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="1"
@@ -14,7 +14,7 @@
         android:gravity="center"
         android:padding="4dp" />
     <TextView
-        android:id="@+id/tvClubname"
+        android:id="@+id/tvHomeTeam"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Dortmund"
@@ -22,18 +22,34 @@
         android:gravity="center"
         android:padding="4dp" />
     <TextView
-        android:id="@+id/tvDiff"
+        android:id="@+id/tvScoreHomeTeam"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="+31"
+        android:text="3"
         android:layout_weight="1"
         android:gravity="center"
         android:padding="4dp"/>
     <TextView
-        android:id="@+id/tvPoints"
+        android:id="@+id/tiret"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="48"
+        android:text="-"
         android:layout_weight="1"
         android:gravity="center" />
+    <TextView
+        android:id="@+id/tvScoreAwayTeam"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="2"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="4dp"/>
+    <TextView
+        android:id="@+id/tvAwayTeam"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Bayern"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="4dp"/>
 </LinearLayout>

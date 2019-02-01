@@ -1,4 +1,4 @@
-package com.example.footballapi.view;
+package com.example.footballapi.view.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.ClassementController;
+import com.example.footballapi.view.activities.StadingsActivity;
 
 public class ClassementFragment extends Fragment {
 

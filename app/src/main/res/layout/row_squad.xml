@@ -6,34 +6,34 @@
     android:weightSum="4"> <!-- nombre de colonnes -->
 
     <TextView
+        android:id="@+id/tvPlayerName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Marco Reus"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="4dp" />
+    <TextView
+        android:id="@+id/tvNationality"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Germany"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="4dp" />
+    <TextView
         android:id="@+id/tvPosition"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="1"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:padding="4dp" />
-    <TextView
-        android:id="@+id/tvClubname"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Dortmund"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:padding="4dp" />
-    <TextView
-        android:id="@+id/tvDiff"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="+31"
+        android:text="Midfielder"
         android:layout_weight="1"
         android:gravity="center"
         android:padding="4dp"/>
     <TextView
-        android:id="@+id/tvPoints"
+        android:id="@+id/tvShirtNumber"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="48"
+        android:text="11"
         android:layout_weight="1"
         android:gravity="center" />
 </LinearLayout>

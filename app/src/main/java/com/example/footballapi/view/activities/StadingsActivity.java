@@ -1,4 +1,4 @@
-package com.example.footballapi.view;
+package com.example.footballapi.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.footballapi.R;
+import com.example.footballapi.view.fragments.ClassementFragment;
 
 public class StadingsActivity extends AppCompatActivity {
 

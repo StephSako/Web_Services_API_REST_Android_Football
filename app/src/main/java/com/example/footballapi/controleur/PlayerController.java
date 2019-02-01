@@ -4,7 +4,7 @@ import android.widget.Toast;
 
 import com.example.footballapi.model.player.Player;
 import com.example.footballapi.restService.RestUser;
-import com.example.footballapi.view.StadingsActivity;
+import com.example.footballapi.view.activities.StadingsActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;

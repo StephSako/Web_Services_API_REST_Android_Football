@@ -1,4 +1,4 @@
-package com.example.footballapi.view;
+package com.example.footballapi.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
