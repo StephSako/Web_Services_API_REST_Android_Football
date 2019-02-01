@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.MatrixCursor;
 import android.support.annotation.NonNull;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -67,18 +65,6 @@ public class ClassementController {
 
                     // ...qui va remplir l'objet ListView
                     lvClassement.setAdapter(adapter);
-
-                    // Gestion des clics sur les lignes
-                    AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View container, int position, long id) {
-                            // faites ici ce que vous voulez
-                            Toast.makeText(activity, "L'id team est " + id + " dans l'API", Toast.LENGTH_SHORT).show();
-                        }
-                    };
-
-                    // Utilisation avec notre listview
-                    lvClassement.setOnItemClickListener(itemClickListener);
                 } else {
                     Toast.makeText(activity, "Compétition introuvable", Toast.LENGTH_SHORT).show();
                 }
