@@ -4,21 +4,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.footballapi.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     // Boutons de l'écran
-    Button btnBundesliga;
-    Button btnPrimeraDivision;
-    Button btnSerieA;
-    Button btnLigue1;
-    Button btnPremierLeague;
-    Button btnLiguaNOS;
-    Button btnNetherlands;
-    Button btnBresil;
+    ImageButton btnBundesliga;
+    ImageButton btnPrimeraDivision;
+    ImageButton btnSerieA;
+    ImageButton btnLigue1;
+    ImageButton btnPremierLeague;
+    ImageButton btnLiguaNOS;
+    ImageButton btnNetherlands;
+    ImageButton btnBresil;
 
     // Id de la compétition
     public int idCompet = -1;

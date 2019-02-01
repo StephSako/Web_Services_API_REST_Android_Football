@@ -1,100 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity"
     android:orientation="vertical"
-    android:fillViewport="true"-->
+    android:background="@drawable/degrade"
+    tools:context="com.example.footballapi.view.activities.ClassementActivity"
+    tools:ignore="ExtraText">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/main_activity"
-        android:orientation="vertical"
-        android:background="@drawable/degrade"
-        tools:context="com.example.footballapi.view.activities.ClassementActivity"
-        tools:ignore="ExtraText">
-
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginBottom="-20dp"
             android:orientation="horizontal">
-
-            <Button
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="Bundesliga"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Premier League"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            tools:ignore="NestedWeights">
+            <ImageButton
+                android:id="@+id/btnBundesliga"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:src="@mipmap/ic_bundesliga_foreground"
+                tools:ignore="NestedWeights" />
+            <ImageButton
                 android:id="@+id/btnPremierLeague"
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:gravity="center"
                 android:layout_weight="1"
-                android:background="@mipmap/ic_premier_league_foreground"
-                tools:ignore="NestedWeights" />
-            <Button
-                android:layout_width="60dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@mipmap/ic_bundesliga_foreground"
-                android:id="@+id/btnBundesliga"/>
+                android:layout_width="match_parent"
+                android:src="@mipmap/ic_premier_league_foreground"/>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <Button
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@mipmap/ic_primera_division_foreground"
-                android:id="@+id/btnPrimeraDivision"
-                tools:ignore="NestedWeights" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@mipmap/ic_serie_a_foreground"
-                android:id="@+id/btnSerieA"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:id="@+id/btnLigue1"
-                android:background="@mipmap/ic_ligue_1_foreground"
-                tools:ignore="NestedWeights" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@mipmap/ic_ligua_nos_foreground"
-                android:id="@+id/btnLiguaNOS"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@mipmap/ic_bresil_foreground"
-                android:id="@+id/btnBresil"
-                tools:ignore="NestedWeights" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@mipmap/ic_netherlands_foreground"
-                android:id="@+id/btnNetherlands"/>
-        </LinearLayout>
-
     </LinearLayout>
-<!--/ScrollView-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-20dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:text="Ligue 1"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Ligua NOS"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            tools:ignore="NestedWeights">
+            <ImageButton
+                android:id="@+id/btnLigue1"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:src="@mipmap/ic_ligue_1_foreground"
+                tools:ignore="NestedWeights" />
+            <ImageButton
+                android:id="@+id/btnLiguaNOS"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:src="@mipmap/ic_ligua_nos_foreground"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-20dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:text="Serie A"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Primera Division"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            tools:ignore="NestedWeights">
+            <ImageButton
+                android:id="@+id/btnSerieA"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:src="@mipmap/ic_serie_a_foreground"
+                tools:ignore="NestedWeights" />
+            <ImageButton
+                android:id="@+id/btnPrimeraDivision"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:src="@mipmap/ic_primera_division_foreground"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-20dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:text="Serie A Brazil"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Netherlands"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            tools:ignore="NestedWeights">
+            <ImageButton
+                android:id="@+id/btnBresil"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:src="@mipmap/ic_bresil_foreground"
+                tools:ignore="NestedWeights" />
+            <ImageButton
+                android:id="@+id/btnNetherlands"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:src="@mipmap/ic_netherlands_foreground"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
