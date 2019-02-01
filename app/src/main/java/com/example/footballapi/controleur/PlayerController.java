@@ -4,7 +4,7 @@ import android.widget.Toast;
 
 import com.example.footballapi.model.player.Player;
 import com.example.footballapi.restService.RestUser;
-import com.example.footballapi.view.activities.StadingsActivity;
+import com.example.footballapi.view.activities.ClassementActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,9 +17,9 @@ public class PlayerController {
      * @param id id du joueur
      */
 
-    private StadingsActivity activity;
+    private ClassementActivity activity;
 
-    public PlayerController(StadingsActivity activity) {
+    public PlayerController(ClassementActivity activity) {
         this.activity = activity;
     }
 

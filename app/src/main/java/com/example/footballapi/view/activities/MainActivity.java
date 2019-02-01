@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if (v.getId() == R.id.btnLigue1) idCompet = 2015;
         else if (v.getId() == R.id.btnLiguaNOS) idCompet = 2017;
 
-        Intent intent = new Intent(this, StadingsActivity.class);
+        Intent intent = new Intent(this, ClassementActivity.class);
         intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
         startActivity(intent);
     }

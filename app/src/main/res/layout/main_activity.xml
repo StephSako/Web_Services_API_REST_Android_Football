@@ -6,7 +6,7 @@
     android:id="@+id/main_activity"
     android:orientation="vertical"
     android:background="@drawable/degrade"
-    tools:context="com.example.footballapi.view.activities.StadingsActivity"
+    tools:context="com.example.footballapi.view.activities.ClassementActivity"
     tools:ignore="ExtraText">
 
     <LinearLayout

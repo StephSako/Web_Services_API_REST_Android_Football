@@ -5,8 +5,10 @@ import android.content.Context;
 import android.database.MatrixCursor;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import com.example.footballapi.R;
 import com.example.footballapi.model.competition.Classement;
@@ -43,13 +45,14 @@ public class ClassementController {
                     try (MatrixCursor matrixCursor = new MatrixCursor(columns)) {
                         Objects.requireNonNull(activity).startManagingCursor(matrixCursor);
 
-                        // On remplit les lignes
+                        // On remplit les lignes (le classement d'id 0 repésente le classement total du championnat)
                         for (int i = 1; i <= classement.getStandings().get(0).getTable().size(); i++) {
                             String club_name = classement.getStandings().get(0).getTable().get(i - 1).getTeam().getName();
                             int position = classement.getStandings().get(0).getTable().get(i - 1).getPosition();
                             int points = classement.getStandings().get(0).getTable().get(i - 1).getPoints();
                             int diff = classement.getStandings().get(0).getTable().get(i - 1).getGoalDifference();
-                            matrixCursor.addRow(new Object[]{1, position, club_name, diff, points});
+                            int idTeam = classement.getStandings().get(0).getTable().get(i - 1).getTeam().getId();
+                            matrixCursor.addRow(new Object[]{idTeam, position, club_name, diff, points});
                         }
 
                         // on prendra les données des colonnes 1, 2, 3 et 4
@@ -66,15 +69,25 @@ public class ClassementController {
                     ListView lv = v.findViewById(R.id.lvClassement);
                     lv.setAdapter(adapter);
 
-                    //Toast.makeText(getActivity(), "La competition est " + classement.getCompetition().getName(), Toast.LENGTH_SHORT).show();
+                    // Gestion des clics sur les lignes
+                    AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View container, int position, long id) {
+                            // faites ici ce que vous voulez
+                            Toast.makeText(activity, "L'id team est " + id + " dans l'API", Toast.LENGTH_SHORT).show();
+                        }
+                    };
+
+                    // Utilisation avec notre listview
+                    lv.setOnItemClickListener(itemClickListener);
                 } else {
-                    //Toast.makeText(getActivity(), "Classement introuvable", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Compétition introuvable", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<Classement> call, @NonNull Throwable t) {
-                //Toast.makeText(getActivity(), "Vérifiez votre connexion Internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Vérifiez votre connexion Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }

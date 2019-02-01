@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.footballapi.R;
 import com.example.footballapi.view.fragments.ClassementFragment;
 
-public class StadingsActivity extends AppCompatActivity {
+public class ClassementActivity extends AppCompatActivity {
 
     public int idCompet = -1;
     public final static String PCidCompet = "idCompet";
@@ -27,7 +27,7 @@ public class StadingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.stadings_activity);
+        setContentView(R.layout.classement_activity);
 
         // On récupere l'id de la competition depuis l'activite mère
         Intent intent = getIntent();

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.ClassementController;
-import com.example.footballapi.view.activities.StadingsActivity;
+import com.example.footballapi.view.activities.ClassementActivity;
 
 public class ClassementFragment extends Fragment {
 
@@ -24,7 +24,7 @@ public class ClassementFragment extends Fragment {
 
         final View v = inflater.inflate(R.layout.fragment_list_classement, container, false);
 
-        int idCompet = ((StadingsActivity) getActivity()).getidCompet();
+        int idCompet = ((ClassementActivity) getActivity()).getidCompet();
 
         classementcontroller.afficheListeTeamsCompetition(idCompet, getContext(), getActivity(), getString(R.string.token), v);
 
