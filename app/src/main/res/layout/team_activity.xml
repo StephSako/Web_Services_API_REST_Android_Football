@@ -8,10 +8,57 @@
     tools:context="com.example.footballapi.view.activities.TeamActivity"
     tools:ignore="ExtraText">
 
-    <TextView
-        android:id="@+id/tvTeamDetails"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Couleurs : "
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/tvTeamsColors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stade : "
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/tvStade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Compétitions en cours : "
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/tvActiveCompetitions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

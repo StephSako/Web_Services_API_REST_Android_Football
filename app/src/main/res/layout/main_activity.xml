@@ -1,74 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_activity"
     android:orientation="vertical"
-    android:background="@drawable/degrade"
-    tools:context="com.example.footballapi.view.activities.ClassementActivity"
-    tools:ignore="ExtraText">
+    android:fillViewport="true"-->
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main_activity"
+        android:orientation="vertical"
+        android:background="@drawable/degrade"
+        tools:context="com.example.footballapi.view.activities.ClassementActivity"
+        tools:ignore="ExtraText">
 
-        <Button
-            android:id="@+id/btnPremierLeague"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@mipmap/ic_premier_league_foreground"
-            tools:ignore="NestedWeights" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnPremierLeague"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@mipmap/ic_premier_league_foreground"
+                tools:ignore="NestedWeights" />
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@mipmap/ic_bundesliga_foreground"
+                android:id="@+id/btnBundesliga"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@mipmap/ic_bundesliga_foreground"
-            android:id="@+id/btnBundesliga"/>
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@mipmap/ic_primera_division_foreground"
+                android:id="@+id/btnPrimeraDivision"
+                tools:ignore="NestedWeights" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@mipmap/ic_serie_a_foreground"
+                android:id="@+id/btnSerieA"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/btnLigue1"
+                android:background="@mipmap/ic_ligue_1_foreground"
+                tools:ignore="NestedWeights" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@mipmap/ic_ligua_nos_foreground"
+                android:id="@+id/btnLiguaNOS"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@mipmap/ic_bresil_foreground"
+                android:id="@+id/btnBresil"
+                tools:ignore="NestedWeights" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@mipmap/ic_netherlands_foreground"
+                android:id="@+id/btnNetherlands"/>
+        </LinearLayout>
+
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@mipmap/ic_primera_division_foreground"
-            android:id="@+id/btnPrimeraDivision"
-            tools:ignore="NestedWeights" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@mipmap/ic_serie_a_foreground"
-            android:id="@+id/btnSerieA"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/btnLigue1"
-            android:background="@mipmap/ic_ligue_1_foreground"
-            tools:ignore="NestedWeights" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@mipmap/ic_ligua_nos_foreground"
-            android:id="@+id/btnLiguaNOS"/>
-    </LinearLayout>
-
-
-</LinearLayout>
+<!--/ScrollView-->

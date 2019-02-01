@@ -17,7 +17,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnLigue1;
     Button btnPremierLeague;
     Button btnLiguaNOS;
-
+    Button btnNetherlands;
+    Button btnBresil;
 
     // Id de la compétition
     public int idCompet = -1;
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLigue1 = findViewById(R.id.btnLigue1);
         btnPremierLeague = findViewById(R.id.btnPremierLeague);
         btnLiguaNOS = findViewById(R.id.btnLiguaNOS);
+        btnNetherlands = findViewById(R.id.btnNetherlands);
+        btnBresil = findViewById(R.id.btnBresil);
 
         // Ecouteurs sur les boutons
         btnBundesliga.setOnClickListener(this);
@@ -59,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLigue1.setOnClickListener(this);
         btnPremierLeague.setOnClickListener(this);
         btnLiguaNOS.setOnClickListener(this);
+        btnNetherlands.setOnClickListener(this);
+        btnBresil.setOnClickListener(this);
 
         // Persistance courte
         if (savedInstanceState != null) {
@@ -73,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if (v.getId() == R.id.btnPrimeraDivision) idCompet = 2014;
         else if (v.getId() == R.id.btnLigue1) idCompet = 2015;
         else if (v.getId() == R.id.btnLiguaNOS) idCompet = 2017;
+        else if (v.getId() == R.id.btnNetherlands) idCompet = 2003;
+        else if (v.getId() == R.id.btnBresil) idCompet = 2013;
 
         Intent intent = new Intent(this, ClassementActivity.class);
         intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
