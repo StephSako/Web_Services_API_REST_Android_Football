@@ -17,7 +17,7 @@
         android:id="@+id/tvClubname"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Dortmund"
+        android:text="BVB 09 Dortmund"
         android:layout_weight="1"
         android:gravity="center"
         android:padding="4dp" />
