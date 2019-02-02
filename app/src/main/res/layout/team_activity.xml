@@ -82,54 +82,9 @@
             android:text="Matches"
             android:id="@+id/btnMatches"/>
     </LinearLayout>
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:weightSum="4"> <!-- nombre de colonnes -->
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Nom"
-            android:textColor="@color/green"
-            android:textStyle="bold"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="4dp"/>
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Nationalité"
-            android:textColor="@color/green"
-            android:textStyle="bold"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="4dp"/>
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Poste"
-            android:textColor="@color/green"
-            android:textStyle="bold"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="4dp"/>
-        <TextView
-            android:id="@+id/tvPoints"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Numéro"
-            android:textColor="@color/green"
-            android:textStyle="bold"
-            android:layout_weight="1"
-            android:gravity="center" />
-    </LinearLayout>
     <FrameLayout
         android:id="@+id/idFragmentSquad_Match"
-        android:name="com.example.footballapi.view.Squad_MatchFragment"
+        android:name="com.example.footballapi.view.SquadFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_squad" />

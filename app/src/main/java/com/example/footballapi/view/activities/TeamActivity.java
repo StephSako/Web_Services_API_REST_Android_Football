@@ -5,24 +5,26 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.TeamController;
+import com.example.footballapi.view.fragments.MatchesFragment;
 import com.example.footballapi.view.fragments.SquadFragment;
 
-public class TeamActivity extends AppCompatActivity {
+public class TeamActivity extends AppCompatActivity implements View.OnClickListener {
 
-    // Id de la compétition
+    // Id de l'équipe
     public int idTeam = -1;
 
-    //méthode permettant de récupérer le numéro de table
     public int getidTeam(){
         return this.idTeam;
     }
 
-    /*Button btnSquad;
-    Button btnMatches;*/
+    Button btnSquad;
+    Button btnMatches;
     public TextView tvTeamsColors;
     public TextView tvStade;
     public TextView tvActiveCompetitions;
@@ -34,11 +36,11 @@ public class TeamActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.team_activity);
 
-        /*btnSquad = findViewById(R.id.btnSquad);
+        btnSquad = findViewById(R.id.btnSquad);
         btnMatches = findViewById(R.id.btnMatches);
 
         btnSquad.setOnClickListener(this);
-        btnMatches.setOnClickListener(this);*/
+        btnMatches.setOnClickListener(this);
 
         tvTeamsColors = findViewById(R.id.tvTeamsColors);
         tvStade = findViewById(R.id.tvStade);
@@ -50,7 +52,7 @@ public class TeamActivity extends AppCompatActivity {
 
         teamcontroller.afficheDetailsTeam(this.idTeam, this, getString(R.string.token));
 
-        // On affiche le fragment du classement de la compétition choisie
+        // On affiche le fragment de la liste de joueurs par défaut
         SquadFragment simpleFragment = SquadFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager
@@ -59,12 +61,22 @@ public class TeamActivity extends AppCompatActivity {
                 simpleFragment).addToBackStack(null).commit();
     }
 
-    /*public void onClick(View v) {
+    public void onClick(View v) { // On remplace le fragment par celui géré par le bouton cliqué
         if (v.getId() == R.id.btnSquad) { // On affiche la liste des joueurs de l'équipe
-
+            SquadFragment simpleFragment = SquadFragment.newInstance();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager
+                    .beginTransaction();
+            fragmentTransaction.replace(R.id.idFragmentSquad_Match,
+                    simpleFragment).addToBackStack(null).commit();
         }
-        else if (v.getId() == R.id.btnMatches) {
-
+        else if (v.getId() == R.id.btnMatches) { // On affiche la liste des matches de l'équipe
+            MatchesFragment simpleFragment = MatchesFragment.newInstance();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager
+                    .beginTransaction();
+            fragmentTransaction.replace(R.id.idFragmentSquad_Match,
+                    simpleFragment).addToBackStack(null).commit();
         }
-    }*/
+    }
 }

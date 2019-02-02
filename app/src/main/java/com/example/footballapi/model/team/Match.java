@@ -12,18 +12,18 @@ public class Match {
 
             @SerializedName("homeTeam")
             @Expose
-            private int homeTeam;
+            private int ScorehomeTeam;
 
             @SerializedName("awayTeam")
             @Expose
-            private int awayTeam;
+            private int ScoreawayTeam;
 
             public int getHomeTeam() {
-                return homeTeam;
+                return ScorehomeTeam;
             }
 
             public int getAwayTeam() {
-                return awayTeam;
+                return ScoreawayTeam;
             }
 
         }
@@ -45,6 +45,34 @@ public class Match {
         }
     }
 
+    public class AwayTeam{
+        @SerializedName("id")
+        @Expose
+        private int id;
+
+        @SerializedName("name")
+        @Expose
+        private String name;
+
+        public int getId() { return id; }
+
+        public String getName() { return name; }
+    }
+
+    public class HomeTeam{
+        @SerializedName("id")
+        @Expose
+        private int id;
+
+        @SerializedName("name")
+        @Expose
+        private String name;
+
+        public int getId() { return id; }
+
+        public String getName() { return name; }
+    }
+
     @SerializedName("competition")
     @Expose
     private Classement.Competition competition;
@@ -55,15 +83,31 @@ public class Match {
 
     @SerializedName("homeTeam")
     @Expose
-    private Team homeTeam;
+    private HomeTeam homeTeam;
 
     @SerializedName("awayTeam")
     @Expose
-    private Team awayTeam;
+    private AwayTeam awayTeam;
 
     @SerializedName("matchday")
     @Expose
     private int matchday;
+
+    @SerializedName("id")
+    @Expose
+    private int id;
+
+    @SerializedName("status")
+    @Expose
+    private String status;
+
+    @SerializedName("utcDate")
+    @Expose
+    private String utcDate;
+
+    public String getUtcDate() { return utcDate; }
+
+    public String getStatus() { return status; }
 
     public Classement.Competition getCompetition() {
         return competition;
@@ -73,11 +117,11 @@ public class Match {
         return score;
     }
 
-    public Team getHomeTeam() {
+    public HomeTeam getHomeTeam() {
         return homeTeam;
     }
 
-    public Team getAwayTeam() {
+    public AwayTeam getAwayTeam() {
         return awayTeam;
     }
 
@@ -85,4 +129,5 @@ public class Match {
         return matchday;
     }
 
+    public int getId() { return id; }
 }

@@ -41,6 +41,14 @@ public class Team {
     @Expose
     private List<Match> matches;
 
+    @SerializedName("shortName")
+    @Expose
+    private String shortName;
+
+    public String getCrestUrl() { return crestUrl; }
+
+    public String getShortName() { return shortName; }
+
     public int getId() {
         return id;
     }
