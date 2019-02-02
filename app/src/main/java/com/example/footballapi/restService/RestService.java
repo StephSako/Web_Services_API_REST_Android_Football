@@ -19,9 +19,13 @@ public interface RestService {
     @GET("players/{id}/")
     Call<Player> players(@Header("X-Auth-Token") String token, @Path("id") int id);
 
-    // Afficher une equipe en particulier (détails + liste de joueurs)
+    // Afficher la liste des joueurs d'une equipe
     @GET("teams/{id}/")
-    Call<Team> teams(@Header("X-Auth-Token") String token, @Path("id") int id);
+    Call<Team> teamSquad(@Header("X-Auth-Token") String token, @Path("id") int id);
+
+    // Afficher les détails d'une equipe
+    @GET("teams/{id}/")
+    Call<Team> teamsDetails(@Header("X-Auth-Token") String token, @Path("id") int id);
 
     // Afficher la classement d'une competition
     @GET("competitions/{id}/standings")

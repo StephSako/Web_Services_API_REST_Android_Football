@@ -1,16 +1,15 @@
 package com.example.footballapi.controleur;
 
-import android.app.Activity;
 import android.content.Context;
 import android.database.MatrixCursor;
 import android.support.annotation.NonNull;
-import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import com.example.footballapi.R;
 import com.example.footballapi.model.competition.Classement;
 import com.example.footballapi.restService.RestUser;
+import com.example.footballapi.view.activities.ClassementActivity;
 
 import java.util.Objects;
 
@@ -25,7 +24,7 @@ public class ClassementController {
     /**
      * Affiche le classement d'une compétition
      */
-    public void afficheListeTeamsCompetition(int idCompet, final Context context, final Activity activity, String token, final ListView lvClassement) {
+    public void afficheListeTeamsCompetition(int idCompet, final Context context, final ClassementActivity activity, String token) {
         Call<Classement> call = RestUser.get().competitions(token, idCompet);
         call.enqueue(new Callback<Classement>() {
             @Override
@@ -64,7 +63,7 @@ public class ClassementController {
                     }
 
                     // ...qui va remplir l'objet ListView
-                    lvClassement.setAdapter(adapter);
+                    activity.lvClassement.setAdapter(adapter);
                 } else {
                     Toast.makeText(activity, "Compétition introuvable", Toast.LENGTH_SHORT).show();
                 }

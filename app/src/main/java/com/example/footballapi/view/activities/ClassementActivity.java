@@ -12,7 +12,7 @@ import com.example.footballapi.controleur.ClassementController;
 
 public class ClassementActivity extends AppCompatActivity {
 
-    ListView lvClassement;
+    public ListView lvClassement;
 
     // Transmission de l'id de l'équipe cliquée
     final static String CLE_DONNEES_ID_TEAM = "idTeam";
@@ -30,7 +30,7 @@ public class ClassementActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int idCompet = intent.getIntExtra(MainActivity.CLE_DONNEES_ID_COMPET, 1);
 
-        classementcontroller.afficheListeTeamsCompetition(idCompet, this, this, getString(R.string.token), lvClassement);
+        classementcontroller.afficheListeTeamsCompetition(idCompet, this, this, getString(R.string.token));
 
         // Gestion des clics sur les lignes
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {

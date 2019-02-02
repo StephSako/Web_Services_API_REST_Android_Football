@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.footballapi.R;
 import com.example.footballapi.model.team.Team;
 import com.example.footballapi.restService.RestUser;
+import com.example.footballapi.view.activities.TeamActivity;
 
 import java.util.Objects;
 
@@ -22,11 +23,13 @@ import retrofit2.Response;
 
 public class TeamController {
 
+    public TeamController() {   }
+
     /**
-     * Affiche la liste des joueurs
-     */
-    public void afficheListePlayersTeams(int idTeam, final Context context, final Activity activity, final String token, final View v) {
-        Call<Team> call = RestUser.get().teams(token, idTeam);
+     * Affiche les détails d'une équipe
+     * */
+    public void afficheDetailsTeam(int idTeam, final TeamActivity activity, final String token) {
+        Call<Team> call = RestUser.get().teamsDetails(token, idTeam);
         call.enqueue(new Callback<Team>() {
             @Override
             public void onResponse(@NonNull Call<Team> call, @NonNull Response<Team> response) {
@@ -35,6 +38,40 @@ public class TeamController {
                     assert team != null;
 
                     Objects.requireNonNull(activity).setTitle(team.getName());
+
+                    activity.tvTeamsColors.setText(team.getClubColors());
+                    activity.tvStade.setText(team.getVenue());
+
+                    StringBuilder activeCompetitions = new StringBuilder();
+                    for (int i = 0; i < team.getActiveCompetitions().size(); i++){
+                        if (i == team.getActiveCompetitions().size() - 1) activeCompetitions.append(team.getActiveCompetitions().get(i).getName());
+                        else activeCompetitions.append(team.getActiveCompetitions().get(i).getName()).append(", ");
+                    }
+                    activity.tvActiveCompetitions.setText(activeCompetitions.toString());
+
+                } else {
+                    Toast.makeText(activity, "Compétition introuvable", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Team> call, @NonNull Throwable t) {
+                Toast.makeText(activity, "Vérifiez votre connexion Internet", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    /**
+     * Affiche la liste des joueurs d'une équipe
+     */
+    public void afficheListePlayersTeams(int idTeam, final Context context, final Activity activity, final String token, final View v) {
+        Call<Team> call = RestUser.get().teamSquad(token, idTeam);
+        call.enqueue(new Callback<Team>() {
+            @Override
+            public void onResponse(@NonNull Call<Team> call, @NonNull Response<Team> response) {
+                if (response.isSuccessful()) {
+                    Team team = response.body();
+                    assert team != null;
 
                     String[] columns = new String[] { "_id", "PlayerName", "Nationality", "Position", "ShirtNumber" };
 
@@ -46,9 +83,32 @@ public class TeamController {
                         // On remplit les lignes (le classement d'id 0 repésente le classement total du championnat)
                         for (int i = 0; i < team.getSquad().size(); i++) {
                             String player_name = team.getSquad().get(i).getName();
-                            String position = team.getSquad().get(i).getPosition();
+
+                            String position = "";
+                            if (team.getSquad().get(i).getPosition() != null) {
+                                switch (team.getSquad().get(i).getPosition()) {
+                                    case "Goalkeeper":
+                                        position = "Gardien";
+                                        break;
+                                    case "Defender":
+                                        position = "Défenseur";
+                                        break;
+                                    case "Midfielder":
+                                        position = "Milieu";
+                                        break;
+                                    case "Attacker":
+                                        position = "Attaquant";
+                                        break;
+                                }
+                            }
+                            else position = "Entraîneur";
+
                             String nationality = team.getSquad().get(i).getNationality();
-                            int shirtNumber = team.getSquad().get(i).getShirtNumber();
+
+                            String shirtNumber = "";
+                            if (team.getSquad().get(i).getShirtNumber() != 0)
+                                shirtNumber = String.valueOf(team.getSquad().get(i).getShirtNumber());
+
                             int idPlayer = team.getSquad().get(i).getId();
                             matrixCursor.addRow(new Object[]{idPlayer, player_name, nationality, position, shirtNumber});
                         }
@@ -71,7 +131,7 @@ public class TeamController {
                     AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View container, int position, long id) {
-                            Toast.makeText(activity, "L'id team est " + id + " dans l'API", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, "L'id player est " + id + " dans l'API", Toast.LENGTH_SHORT).show();
                         }
                     };
 
