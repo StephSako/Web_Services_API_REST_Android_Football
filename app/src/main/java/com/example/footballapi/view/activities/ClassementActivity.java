@@ -15,7 +15,7 @@ public class ClassementActivity extends AppCompatActivity {
     ListView lvClassement;
 
     // Transmission de l'id de l'équipe cliquée
-    final static String CLE_DONNEES_ID_TEAM= "idTeam";
+    final static String CLE_DONNEES_ID_TEAM = "idTeam";
 
     ClassementController classementcontroller = new ClassementController();
 
@@ -38,7 +38,7 @@ public class ClassementActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View container, int position, long id) {
                 // On affiche l'équipe cliquée
                 Intent intent = new Intent(getApplicationContext(), TeamActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_TEAM, id);
+                intent.putExtra(CLE_DONNEES_ID_TEAM, (int) id);
                 startActivity(intent);
             }
         };

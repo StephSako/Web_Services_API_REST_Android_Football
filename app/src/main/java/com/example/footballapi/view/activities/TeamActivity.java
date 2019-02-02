@@ -5,29 +5,37 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.example.footballapi.R;
 import com.example.footballapi.view.fragments.SquadFragment;
 
-public class TeamActivity  extends AppCompatActivity {
+public class TeamActivity extends AppCompatActivity {
 
+    // Id de la compétition
     public int idTeam = -1;
 
+    //méthode permettant de récupérer le numéro de table
     public int getidTeam(){
         return this.idTeam;
     }
 
+    /*Button btnSquad;
+    Button btnMatches;*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.classement_activity);
+        setContentView(R.layout.team_activity);
 
-        // On récupere l'id de la competition depuis l'activite mère
+        /*btnSquad = findViewById(R.id.btnSquad);
+        btnMatches = findViewById(R.id.btnMatches);
+
+        btnSquad.setOnClickListener(this);
+        btnMatches.setOnClickListener(this);*/
+
+        // On récupere l'id de l'équipe depuis l'activite mère
         Intent intent = getIntent();
-        this.idTeam = intent.getIntExtra(MainActivity.CLE_DONNEES_ID_COMPET, 1);
-
-        Toast.makeText(getApplicationContext(), "Compétition introuvable", Toast.LENGTH_SHORT).show();
+        this.idTeam = intent.getIntExtra(ClassementActivity.CLE_DONNEES_ID_TEAM, 1);
 
         // On affiche le fragment du classement de la compétition choisie
         SquadFragment simpleFragment = SquadFragment.newInstance();
@@ -38,6 +46,12 @@ public class TeamActivity  extends AppCompatActivity {
                 simpleFragment).addToBackStack(null).commit();
     }
 
-    // CAS DU CLICK SUR LE BOUTON MATCHES OU SQUAD
-    // => CHANGEMENT DE FRAGMENT
+    /*public void onClick(View v) {
+        if (v.getId() == R.id.btnSquad) { // On affiche la liste des joueurs de l'équipe
+
+        }
+        else if (v.getId() == R.id.btnMatches) {
+
+        }
+    }*/
 }

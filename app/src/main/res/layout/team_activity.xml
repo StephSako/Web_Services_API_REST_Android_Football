@@ -66,12 +66,11 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnTeam"
+            android:id="@+id/btnSquad"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Equipe"
-            tools:ignore="NestedWeights" />
+            android:text="Equipe" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -85,6 +84,6 @@
         android:name="com.example.footballapi.view.Squad_MatchFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_list_classement" />
+        tools:layout="@layout/fragment_squad" />
 
 </LinearLayout>

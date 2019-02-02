@@ -24,10 +24,10 @@ public class SquadFragment extends Fragment {
 
         final View v = inflater.inflate(R.layout.fragment_squad, container, false);
 
-        int idCompet = ((TeamActivity) getActivity()).getidTeam();
+        int idTeam = ((TeamActivity) getActivity()).getidTeam();
 
         // Par defaut, on affiche l'équipe du club sélectionné
-        teamcontroller.afficheListePlayersTeams(idCompet, getContext(), getActivity(), getString(R.string.token), v);
+        teamcontroller.afficheListePlayersTeams(idTeam, getContext(), getActivity(), getString(R.string.token), v);
 
         // Inflate the layout for this fragment
         return v;
