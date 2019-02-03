@@ -46,14 +46,17 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
         tvStade = findViewById(R.id.tvStade);
         tvActiveCompetitions = findViewById(R.id.tvActiveCompetitions);
 
-        // On récupere l'id de l'équipe depuis l'activite mère
+        // On récupère l'id de l'équipe depuis l'activite mère
         Intent intent = getIntent();
         this.idTeam = intent.getIntExtra(ClassementActivity.CLE_DONNEES_ID_TEAM, 1);
 
         teamcontroller.afficheDetailsTeam(this.idTeam, this, getString(R.string.token));
 
-        // On affiche le fragment de la liste de joueurs par défaut
-        SquadFragment simpleFragment = SquadFragment.newInstance();
+        // On affiche le fragment de la liste de joueurs par défaut (on change la couleur du bouton
+        btnMatches.setBackgroundResource(R.color.green);
+        btnSquad.setBackgroundResource(R.color.grey_desactivated);
+
+        MatchesFragment simpleFragment = MatchesFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager
                 .beginTransaction();
@@ -63,6 +66,10 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View v) { // On remplace le fragment par celui géré par le bouton cliqué
         if (v.getId() == R.id.btnSquad) { // On affiche la liste des joueurs de l'équipe
+
+            btnMatches.setBackgroundResource(R.color.grey_desactivated);
+            btnSquad.setBackgroundResource(R.color.green);
+
             SquadFragment simpleFragment = SquadFragment.newInstance();
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager
@@ -71,6 +78,10 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
                     simpleFragment).addToBackStack(null).commit();
         }
         else if (v.getId() == R.id.btnMatches) { // On affiche la liste des matches de l'équipe
+
+            btnSquad.setBackgroundResource(R.color.grey_desactivated);
+            btnMatches.setBackgroundResource(R.color.green);
+
             MatchesFragment simpleFragment = MatchesFragment.newInstance();
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager

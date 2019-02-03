@@ -70,17 +70,19 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnSquad"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Equipe" />
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Matches"
             android:id="@+id/btnMatches"/>
+
+        <Button
+            android:id="@+id/btnSquad"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Equipe" />
+
     </LinearLayout>
     <FrameLayout
         android:id="@+id/idFragmentSquad_Match"

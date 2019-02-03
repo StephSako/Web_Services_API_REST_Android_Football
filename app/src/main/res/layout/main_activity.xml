@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_activity"
     android:orientation="vertical"
-    android:background="@drawable/degrade"
+    android:background="@drawable/degradesplashscreen"
     tools:context="com.example.footballapi.view.activities.ClassementActivity"
     tools:ignore="ExtraText">
 
@@ -21,7 +21,7 @@
             android:layout_marginBottom="-20dp"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -29,7 +29,7 @@
                 android:gravity="center_horizontal"
                 android:layout_height="wrap_content" />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:text="Premier League"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -77,7 +77,7 @@
             android:layout_marginBottom="-20dp"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="Ligue 1"
                 android:textColor="@color/black"
@@ -85,7 +85,7 @@
                 android:gravity="center_horizontal"
                 android:layout_height="wrap_content" />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:text="Ligua NOS"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -133,7 +133,7 @@
             android:layout_marginBottom="-20dp"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="Serie A"
                 android:textColor="@color/black"
@@ -141,7 +141,7 @@
                 android:gravity="center_horizontal"
                 android:layout_height="wrap_content" />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:text="Primera Division"
                 android:layout_weight="1"
                 android:textColor="@color/black"
@@ -189,7 +189,7 @@
             android:layout_marginBottom="-20dp"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="Serie A Brazil"
                 android:textColor="@color/black"
@@ -197,7 +197,7 @@
                 android:gravity="center_horizontal"
                 android:layout_height="wrap_content" />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:text="Netherlands"
                 android:textColor="@color/black"
                 android:textStyle="bold"
