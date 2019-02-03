@@ -1,8 +1,7 @@
 <resources>
-    <string name="app_name">FootballAPI</string>
+    <string name="app_name">Football API</string>
     <string name="token">e0d9f47d73ae4a4a87eeb24935d8b2f8</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_choix_competition">ChoixCompetition</string>
 </resources>

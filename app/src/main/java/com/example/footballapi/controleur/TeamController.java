@@ -178,8 +178,12 @@ public class TeamController {
                             String Score;
                             if (team.getMatches().get(i).getStatus().equals("FINISHED"))
                                 Score = team.getMatches().get(i).getScore().getFullTime().getHomeTeam() + " - " + team.getMatches().get(i).getScore().getFullTime().getAwayTeam();
-                            else
-                                Score = team.getMatches().get(i).getUtcDate();
+                            else{
+                                String[] parts = team.getMatches().get(i).getUtcDate().split("T");
+                                String part1 = parts[0]; // Day
+                                String part2 = parts[1]; // Hour
+                                Score = part1 + " " + (new StringBuilder(part2)).deleteCharAt(part2.length()-1).toString();
+                            }
 
                             int id = team.getMatches().get(i).getId();
 
