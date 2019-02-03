@@ -1,6 +1,5 @@
 package com.example.footballapi.model.team;
 
-import com.example.footballapi.model.competition.Classement;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -12,11 +11,11 @@ public class Match {
 
             @SerializedName("homeTeam")
             @Expose
-            private int ScorehomeTeam;
+            private int ScorehomeTeam = -1;
 
             @SerializedName("awayTeam")
             @Expose
-            private int ScoreawayTeam;
+            private int ScoreawayTeam = -1;
 
             public int getHomeTeam() {
                 return ScorehomeTeam;
@@ -30,88 +29,62 @@ public class Match {
 
         @SerializedName("fullTime")
         @Expose
-        private FullTime fullTime;
-
-        @SerializedName("winner")
-        @Expose
-        private String winner;
+        private FullTime fullTime = new FullTime();
 
         public FullTime getFullTime() {
             return fullTime;
         }
-
-        public String getWinner() {
-            return winner;
-        }
     }
 
     public class AwayTeam{
-        @SerializedName("id")
-        @Expose
-        private int id;
 
         @SerializedName("name")
         @Expose
-        private String name;
-
-        public int getId() { return id; }
+        private String name = "";
 
         public String getName() { return name; }
     }
 
     public class HomeTeam{
-        @SerializedName("id")
-        @Expose
-        private int id;
 
         @SerializedName("name")
         @Expose
-        private String name;
-
-        public int getId() { return id; }
+        private String name = "";
 
         public String getName() { return name; }
     }
 
-    @SerializedName("competition")
-    @Expose
-    private Classement.Competition competition;
-
     @SerializedName("score")
     @Expose
-    private Score score;
+    private Score score = new Score();
 
     @SerializedName("homeTeam")
     @Expose
-    private HomeTeam homeTeam;
+    private HomeTeam homeTeam = new HomeTeam();
 
     @SerializedName("awayTeam")
     @Expose
-    private AwayTeam awayTeam;
+    private AwayTeam awayTeam = new AwayTeam();
 
     @SerializedName("matchday")
     @Expose
-    private int matchday;
+    private int matchday = -1;
 
     @SerializedName("id")
     @Expose
-    private int id;
+    private int id = -1;
 
     @SerializedName("status")
     @Expose
-    private String status;
+    private String status = "";
 
     @SerializedName("utcDate")
     @Expose
-    private String utcDate;
+    private String utcDate = "";
 
     public String getUtcDate() { return utcDate; }
 
     public String getStatus() { return status; }
-
-    public Classement.Competition getCompetition() {
-        return competition;
-    }
 
     public Score getScore() {
         return score;

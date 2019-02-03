@@ -42,7 +42,7 @@ public class ClassementController {
                     try (MatrixCursor matrixCursor = new MatrixCursor(columns)) {
                         Objects.requireNonNull(activity).startManagingCursor(matrixCursor);
 
-                        // On remplit les lignes (le classement d'id 0 repésente le classement total du championnat)
+                        // On remplit les lignes (le classement d'id 0 représente le classement total du championnat)
                         for (int i = 1; i <= classement.getStandings().get(0).getTable().size(); i++) {
                             String club_name = classement.getStandings().get(0).getTable().get(i - 1).getTeam().getName();
                             int position = classement.getStandings().get(0).getTable().get(i - 1).getPosition();

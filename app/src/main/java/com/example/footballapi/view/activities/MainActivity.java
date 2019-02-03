@@ -11,25 +11,20 @@ import com.example.footballapi.R;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     // Boutons de l'écran
-    ImageButton btnBundesliga;
-    ImageButton btnPrimeraDivision;
-    ImageButton btnSerieA;
-    ImageButton btnLigue1;
-    ImageButton btnPremierLeague;
-    ImageButton btnLiguaNOS;
-    ImageButton btnNetherlands;
-    ImageButton btnBresil;
+    private ImageButton btnBundesliga;
+    private ImageButton btnPrimeraDivision;
+    private ImageButton btnSerieA;
+    private ImageButton btnLigue1;
+    private ImageButton btnPremierLeague;
+    private ImageButton btnLiguaNOS;
+    private ImageButton btnNetherlands;
+    private ImageButton btnBresil;
 
     // Id de la compétition
-    public int idCompet = -1;
-
-    //méthode permettant de récupérer le numéro de table
-    public int getidCompet(){
-        return this.idCompet;
-    }
+    private int idCompet = -1;
 
     // Persistance courte
-    public final static String PCidCompet = "idCompet";
+    private final static String PCidCompet = "idCompet";
 
     // Clef données transmission
     final static String CLE_DONNEES_ID_COMPET = "idCompet";

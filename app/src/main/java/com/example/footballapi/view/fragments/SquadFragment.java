@@ -11,20 +11,22 @@ import com.example.footballapi.R;
 import com.example.footballapi.controleur.TeamController;
 import com.example.footballapi.view.activities.TeamActivity;
 
+import java.util.Objects;
+
 public class SquadFragment extends Fragment {
 
     public static SquadFragment newInstance() {
         return new SquadFragment();
     }
 
-    TeamController teamcontroller = new TeamController();
+    private TeamController teamcontroller = new TeamController();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View v = inflater.inflate(R.layout.fragment_squad, container, false);
 
-        int idTeam = ((TeamActivity) getActivity()).getidTeam();
+        int idTeam = ((TeamActivity) Objects.requireNonNull(getActivity())).getidTeam();
 
         // Par defaut, on affiche l'équipe du club sélectionné
         teamcontroller.afficheListePlayersTeams(idTeam, getContext(), getActivity(), getString(R.string.token), v);

@@ -11,20 +11,22 @@ import com.example.footballapi.R;
 import com.example.footballapi.controleur.TeamController;
 import com.example.footballapi.view.activities.TeamActivity;
 
+import java.util.Objects;
+
 public class MatchesFragment extends Fragment {
 
     public static MatchesFragment newInstance() {
         return new MatchesFragment();
     }
 
-    TeamController teamcontroller = new TeamController();
+    private TeamController teamcontroller = new TeamController();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View v = inflater.inflate(R.layout.fragment_matches, container, false);
 
-        int idTeam = ((TeamActivity) getActivity()).getidTeam();
+        int idTeam = ((TeamActivity) Objects.requireNonNull(getActivity())).getidTeam();
 
         teamcontroller.afficheMatchesTeams(idTeam, getContext(), getActivity(), getString(R.string.token), v);
 

@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Couleurs : "
+            android:text="@string/tvCouleursTitle"
             android:textStyle="bold"
             android:layout_weight="1"/>
         <TextView
@@ -34,7 +34,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Stade : "
+            android:text="@string/tvStadeTitle"
             android:textStyle="bold"
             android:layout_weight="1"/>
         <TextView
@@ -52,7 +52,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Compétitions en cours : "
+            android:text="@string/tvActiveCompetTitle"
             android:textStyle="bold"
             android:layout_weight="1"/>
         <TextView
@@ -73,15 +73,17 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Matches"
-            android:id="@+id/btnMatches"/>
+            android:text="@string/btMatchesTitle"
+            android:id="@+id/btnMatches"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnSquad"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Equipe" />
+            android:text="@string/btnSquadTitle"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
     <FrameLayout

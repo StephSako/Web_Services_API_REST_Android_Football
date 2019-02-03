@@ -4,11 +4,12 @@ import com.example.footballapi.model.team.Team;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Classement {
 
-    public class Competition {
+    public static class Competition {
 
         @SerializedName("name")
         @Expose
@@ -16,10 +17,6 @@ public class Classement {
 
         public String getName() {
             return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
         }
     }
 
@@ -29,50 +26,26 @@ public class Classement {
 
             @SerializedName("position")
             @Expose
-            private int position;
+            private int position = -1;
 
             @SerializedName("team")
             @Expose
-            private Team team;
-
-            @SerializedName("playedGames")
-            @Expose
-            private int playedGames;
+            private Team team = new Team();
 
             @SerializedName("points")
             @Expose
-            private int points;
-
-            @SerializedName("goalsFor")
-            @Expose
-            private int goalsFor;
-
-            @SerializedName("goalsAgainst")
-            @Expose
-            private int goalsAgainst;
+            private int points = -1;
 
             @SerializedName("goalDifference")
             @Expose
-            private int goalDifference;
+            private int goalDifference = -1;
 
             public Team getTeam() {
                 return team;
             }
 
-            public int getPlayedGames() {
-                return playedGames;
-            }
-
             public int getPoints() {
                 return points;
-            }
-
-            public int getGoalsFor() {
-                return goalsFor;
-            }
-
-            public int getGoalsAgainst() {
-                return goalsAgainst;
             }
 
             public int getGoalDifference() {
@@ -85,39 +58,14 @@ public class Classement {
 
         }
 
-        @SerializedName("stage")
-        @Expose
-        private String stage;
-
-        @SerializedName("type")
-        @Expose
-        private String type;
-
         @SerializedName("table")
         @Expose
-        private List<Table> table;
+        private List<Table> table = Collections.emptyList();
 
         public List<Table> getTable() {
             return table;
         }
     }
-
-    @SerializedName("stage")
-    @Expose
-    private String stage;
-
-    @SerializedName("type")
-    @Expose
-    private String type;
-
-    @SerializedName("table")
-    @Expose
-    private List<Standing.Table> table;
-
-    public List<Standing.Table> getTable() {
-        return table;
-    }
-
 
     @SerializedName("competition")
     @Expose
@@ -126,11 +74,6 @@ public class Classement {
     @SerializedName("standings")
     @Expose
     private List<Standing> standings;
-
-    public Classement(Competition competition, List<Standing> standings) {
-        this.competition = competition;
-        this.standings = standings;
-    }
 
     public Competition getCompetition() {
         return competition;

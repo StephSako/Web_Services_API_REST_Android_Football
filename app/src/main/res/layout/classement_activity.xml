@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Diff."
+            android:text="@string/tvDiffTitle"
             android:textColor="@color/green"
             android:textStyle="bold"
             android:layout_weight="1"
@@ -36,7 +36,7 @@
             android:id="@+id/tvPoints"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Points"
+            android:text="@string/tvPointsTitle"
             android:textColor="@color/green"
             android:textStyle="bold"
             android:layout_weight="1"
@@ -46,7 +46,7 @@
     <ListView
         android:id="@+id/lvClassement"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1">
     </ListView>
 

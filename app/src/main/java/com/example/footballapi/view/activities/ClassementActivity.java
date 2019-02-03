@@ -17,7 +17,9 @@ public class ClassementActivity extends AppCompatActivity {
     // Transmission de l'id de l'équipe cliquée
     final static String CLE_DONNEES_ID_TEAM = "idTeam";
 
-    ClassementController classementcontroller = new ClassementController();
+    private ClassementController classementcontroller = new ClassementController();
+
+    public ClassementActivity() { }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +28,7 @@ public class ClassementActivity extends AppCompatActivity {
 
         lvClassement = findViewById(R.id.lvClassement);
 
-        // On récupere l'id de la competition depuis l'activite mère
+        // On récupère l'id de la competition depuis l'activite mère
         Intent intent = getIntent();
         int idCompet = intent.getIntExtra(MainActivity.CLE_DONNEES_ID_COMPET, 1);
 

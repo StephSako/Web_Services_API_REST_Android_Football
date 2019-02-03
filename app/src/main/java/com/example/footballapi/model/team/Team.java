@@ -5,56 +5,47 @@ import com.example.footballapi.model.player.Player;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Team {
 
     @SerializedName("id")
     @Expose
-    private int id;
+    private int id = -1;
 
     @SerializedName("activeCompetitions")
     @Expose
-    private List<Classement.Competition> activeCompetitions;
+    private List<Classement.Competition> activeCompetitions = Collections.emptyList();
 
     @SerializedName("name")
     @Expose
-    private String name;
+    private String name = "";
 
-    @SerializedName("crestUrl")
+    /*@SerializedName("crestUrl")
     @Expose
-    private String crestUrl;
+    private String crestUrl = "";*/
 
     @SerializedName("clubColors")
     @Expose
-    private String clubColors;
+    private String clubColors = "";
 
     @SerializedName("venue")
     @Expose
-    private String venue;
+    private String venue = "";
 
     @SerializedName("squad")
     @Expose
-    private List<Player> squad;
+    private List<Player> squad  = Collections.emptyList();
 
     @SerializedName("matches")
     @Expose
-    private List<Match> matches;
+    private List<Match> matches  = Collections.emptyList();
 
-    @SerializedName("shortName")
-    @Expose
-    private String shortName;
-
-    public String getCrestUrl() { return crestUrl; }
-
-    public String getShortName() { return shortName; }
+    //public String getCrestUrl() { return crestUrl; }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public List<Classement.Competition> getActiveCompetitions() {
@@ -63,10 +54,6 @@ public class Team {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getClubColors() {

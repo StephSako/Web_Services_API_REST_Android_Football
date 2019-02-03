@@ -25,12 +25,12 @@
                 android:layout_weight="1"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:text="Bundesliga"
+                android:text="@string/tvBundesligaTitle"
                 android:gravity="center_horizontal"
                 android:layout_height="wrap_content" />
             <TextView
                 android:layout_width="0dp"
-                android:text="Premier League"
+                android:text="@string/tvPremierLeagueTitle"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_weight="1"
@@ -52,7 +52,8 @@
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:src="@mipmap/ic_bundesliga_foreground"
-                tools:ignore="NestedWeights" />
+                tools:ignore="NestedWeights"
+                android:contentDescription="@string/ibDescrBundesliga" />
             <ImageButton
                 android:id="@+id/btnPremierLeague"
                 android:scaleType="fitCenter"
@@ -61,7 +62,8 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:src="@mipmap/ic_premier_league_foreground"/>
+                android:src="@mipmap/ic_premier_league_foreground"
+                android:contentDescription="@string/ibDescrPremierLeague" />
         </LinearLayout>
     </LinearLayout>
 
@@ -79,14 +81,14 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="Ligue 1"
+                android:text="@string/tvLigue1Title"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:gravity="center_horizontal"
                 android:layout_height="wrap_content" />
             <TextView
                 android:layout_width="0dp"
-                android:text="Ligua NOS"
+                android:text="@string/tvLiguaNOSTitle"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_weight="1"
@@ -108,7 +110,8 @@
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:src="@mipmap/ic_ligue_1_foreground"
-                tools:ignore="NestedWeights" />
+                tools:ignore="NestedWeights"
+                android:contentDescription="@string/ibDescrLigue1" />
             <ImageButton
                 android:id="@+id/btnLiguaNOS"
                 android:scaleType="fitCenter"
@@ -117,7 +120,8 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:src="@mipmap/ic_ligua_nos_foreground"/>
+                android:src="@mipmap/ic_ligua_nos_foreground"
+                android:contentDescription="@string/ibDescrLiguaNOS" />
         </LinearLayout>
     </LinearLayout>
 
@@ -135,14 +139,14 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="Serie A"
+                android:text="@string/tvSerieATitle"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:gravity="center_horizontal"
                 android:layout_height="wrap_content" />
             <TextView
                 android:layout_width="0dp"
-                android:text="Primera Division"
+                android:text="@string/tvPrimeraDivisionTitle"
                 android:layout_weight="1"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -164,7 +168,8 @@
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:src="@mipmap/ic_serie_a_foreground"
-                tools:ignore="NestedWeights" />
+                tools:ignore="NestedWeights"
+                android:contentDescription="@string/ibDescrSerieA" />
             <ImageButton
                 android:id="@+id/btnPrimeraDivision"
                 android:scaleType="fitCenter"
@@ -173,7 +178,8 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:src="@mipmap/ic_primera_division_foreground"/>
+                android:src="@mipmap/ic_primera_division_foreground"
+                android:contentDescription="@string/ibDescrPrimeraDivision" />
         </LinearLayout>
     </LinearLayout>
 
@@ -191,14 +197,14 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="Serie A Brazil"
+                android:text="@string/tvSerieABrazilTitle"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:gravity="center_horizontal"
                 android:layout_height="wrap_content" />
             <TextView
                 android:layout_width="0dp"
-                android:text="Netherlands"
+                android:text="@string/tvNetherlandsTitle"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_weight="1"
@@ -220,7 +226,8 @@
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:src="@mipmap/ic_bresil_foreground"
-                tools:ignore="NestedWeights" />
+                tools:ignore="NestedWeights"
+                android:contentDescription="@string/ibDescrSerieABrazil" />
             <ImageButton
                 android:id="@+id/btnNetherlands"
                 android:scaleType="fitCenter"
@@ -229,7 +236,8 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:src="@mipmap/ic_netherlands_foreground"/>
+                android:src="@mipmap/ic_netherlands_foreground"
+                android:contentDescription="@string/ibDescrNetherlands" />
         </LinearLayout>
     </LinearLayout>
 

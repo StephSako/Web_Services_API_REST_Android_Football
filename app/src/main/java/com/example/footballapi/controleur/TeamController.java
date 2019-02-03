@@ -39,15 +39,15 @@ public class TeamController {
 
                     Objects.requireNonNull(activity).setTitle(team.getName());
 
-                    activity.tvTeamsColors.setText(team.getClubColors());
-                    activity.tvStade.setText(team.getVenue());
+                    activity.getTvTeamsColors().setText(team.getClubColors());
+                    activity.getTvStade().setText(team.getVenue());
 
                     StringBuilder activeCompetitions = new StringBuilder();
                     for (int i = 0; i < team.getActiveCompetitions().size(); i++){
                         if (i == team.getActiveCompetitions().size() - 1) activeCompetitions.append(team.getActiveCompetitions().get(i).getName());
                         else activeCompetitions.append(team.getActiveCompetitions().get(i).getName()).append(", ");
                     }
-                    activity.tvActiveCompetitions.setText(activeCompetitions.toString());
+                    activity.getTvActiveCompetitions().setText(activeCompetitions.toString());
 
                 } else {
                     Toast.makeText(activity, "Compétition introuvable", Toast.LENGTH_SHORT).show();
@@ -225,36 +225,4 @@ public class TeamController {
             }
         });
     }
-
-    /**
-     * Récupère le nom court d'une équipe
-     * */
-    /*public String shortNameTeam(int idTeam, final Activity activity, final String token) {
-
-        final String[] shortName = {""};
-
-        Call<Team> call = RestUser.get().teamsDetails(token, idTeam);
-        call.enqueue(new Callback<Team>() {
-            @Override
-            public void onResponse(@NonNull Call<Team> call, @NonNull Response<Team> response) {
-                if (response.isSuccessful()) {
-                    Team team = response.body();
-                    assert team != null;
-
-                    String name = team.getShortName();
-                    shortName[0] = name;
-
-                } else {
-                    Toast.makeText(activity, "Equipe de match introuvable", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<Team> call, @NonNull Throwable t) {
-                Toast.makeText(activity, "Vérifiez votre connexion Internet", Toast.LENGTH_SHORT).show();
-            }
-        });
-        String name = shortName[0];
-        return name;
-    }*/
 }

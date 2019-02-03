@@ -17,19 +17,23 @@ import com.example.footballapi.view.fragments.SquadFragment;
 public class TeamActivity extends AppCompatActivity implements View.OnClickListener {
 
     // Id de l'équipe
-    public int idTeam = -1;
+    private int idTeam = -1;
 
     public int getidTeam(){
         return this.idTeam;
     }
 
-    Button btnSquad;
-    Button btnMatches;
-    public TextView tvTeamsColors;
-    public TextView tvStade;
-    public TextView tvActiveCompetitions;
+    private Button btnSquad;
+    private Button btnMatches;
+    private TextView tvTeamsColors;
+    private TextView tvStade;
+    private TextView tvActiveCompetitions;
 
-    TeamController teamcontroller = new TeamController();
+    public TextView getTvActiveCompetitions() { return tvActiveCompetitions; }
+    public TextView getTvTeamsColors() { return tvTeamsColors; }
+    public TextView getTvStade() { return tvStade; }
+
+    private TeamController teamcontroller = new TeamController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
