@@ -22,13 +22,13 @@ public class Team {
     @Expose
     private String name = "";
 
-    /*@SerializedName("crestUrl")
+    @SerializedName("crestUrl")
     @Expose
-    private String crestUrl = "";*/
+    private String crestUrl = "";
 
-    @SerializedName("clubColors")
+    @SerializedName("website")
     @Expose
-    private String clubColors = "";
+    private String website = "";
 
     @SerializedName("venue")
     @Expose
@@ -42,7 +42,7 @@ public class Team {
     @Expose
     private List<Match> matches  = Collections.emptyList();
 
-    //public String getCrestUrl() { return crestUrl; }
+    public String getCrestUrl() { return crestUrl; }
 
     public int getId() {
         return id;
@@ -52,12 +52,10 @@ public class Team {
         return activeCompetitions;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() {return name; }
 
-    public String getClubColors() {
-        return clubColors;
+    public String getWebSite() {
+        return website;
     }
 
     public String getVenue() {

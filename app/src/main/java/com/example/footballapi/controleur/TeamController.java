@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.model.team.Team;
 import com.example.footballapi.restService.RestUser;
@@ -39,7 +40,7 @@ public class TeamController {
 
                     Objects.requireNonNull(activity).setTitle(team.getName());
 
-                    activity.getTvTeamsColors().setText(team.getClubColors());
+                    activity.getTvWebSite().setText(team.getWebSite());
                     activity.getTvStade().setText(team.getVenue());
 
                     StringBuilder activeCompetitions = new StringBuilder();
@@ -48,6 +49,15 @@ public class TeamController {
                         else activeCompetitions.append(team.getActiveCompetitions().get(i).getName()).append(", ");
                     }
                     activity.getTvActiveCompetitions().setText(activeCompetitions.toString());
+
+                    String URLLogoClub = team.getCrestUrl();
+
+                    SvgLoader.pluck()
+                            .with(activity)
+                            .setPlaceHolder(R.mipmap.ic_waiting_foreground, R.mipmap.ic_waiting_foreground)
+                            .load(URLLogoClub, activity.getLogo_club());
+
+
 
                 } else {
                     Toast.makeText(activity, "Compétition introuvable", Toast.LENGTH_SHORT).show();

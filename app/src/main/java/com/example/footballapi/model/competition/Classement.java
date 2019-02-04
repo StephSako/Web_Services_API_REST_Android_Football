@@ -13,7 +13,7 @@ public class Classement {
 
         @SerializedName("name")
         @Expose
-        private String name;
+        private String name = "";
 
         public String getName() {
             return name;
@@ -69,11 +69,11 @@ public class Classement {
 
     @SerializedName("competition")
     @Expose
-    private Competition competition;
+    private Competition competition = new Competition();
 
     @SerializedName("standings")
     @Expose
-    private List<Standing> standings;
+    private List<Standing> standings = Collections.emptyList();
 
     public Competition getCompetition() {
         return competition;

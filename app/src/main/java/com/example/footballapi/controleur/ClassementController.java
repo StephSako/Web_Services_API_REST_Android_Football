@@ -49,6 +49,8 @@ public class ClassementController {
                             int points = classement.getStandings().get(0).getTable().get(i - 1).getPoints();
                             int diff = classement.getStandings().get(0).getTable().get(i - 1).getGoalDifference();
                             int idTeam = classement.getStandings().get(0).getTable().get(i - 1).getTeam().getId();
+                            String url = classement.getStandings().get(0).getTable().get(i - 1).getTeam().getCrestUrl();
+
                             matrixCursor.addRow(new Object[]{idTeam, position, club_name, diff, points});
                         }
 
@@ -75,14 +77,4 @@ public class ClassementController {
             }
         });
     }
-
-    /*public static Drawable RestImage(String url) {
-        try {
-            InputStream is = (InputStream) new URL(url).getContent();
-            Drawable d = Drawable.createFromStream(is, "srcImage");
-            return d;
-        } catch (Exception e) {
-            return null;
-        }
-    }*/
 }

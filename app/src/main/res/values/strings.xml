@@ -34,4 +34,6 @@
     <string name="tvActiveCompetTitle">Compétitions en cours :</string>
     <string name="btMatchesTitle">Matches</string>
     <string name="btnSquadTitle">Equipe</string>
+    <string name="tvWebSiteTitle">WebSite : </string>
+    <string name="ivLogoClub">LogoClub</string>
 </resources>

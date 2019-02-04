@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.footballapi.R;
@@ -25,13 +26,15 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button btnSquad;
     private Button btnMatches;
-    private TextView tvTeamsColors;
+    private TextView tvWebSite;
     private TextView tvStade;
     private TextView tvActiveCompetitions;
+    private ImageView logo_club;
 
     public TextView getTvActiveCompetitions() { return tvActiveCompetitions; }
-    public TextView getTvTeamsColors() { return tvTeamsColors; }
+    public TextView getTvWebSite() { return tvWebSite; }
     public TextView getTvStade() { return tvStade; }
+    public ImageView getLogo_club() { return logo_club; }
 
     private TeamController teamcontroller = new TeamController();
 
@@ -46,9 +49,11 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
         btnSquad.setOnClickListener(this);
         btnMatches.setOnClickListener(this);
 
-        tvTeamsColors = findViewById(R.id.tvTeamsColors);
+        tvWebSite = findViewById(R.id.tvWebsite);
         tvStade = findViewById(R.id.tvStade);
         tvActiveCompetitions = findViewById(R.id.tvActiveCompetitions);
+
+        logo_club = findViewById(R.id.logo_club);
 
         // On récupère l'id de l'équipe depuis l'activite mère
         Intent intent = getIntent();
