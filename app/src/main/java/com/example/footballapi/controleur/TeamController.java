@@ -189,16 +189,13 @@ public class TeamController {
                                 Score = team.getMatches().get(i).getScore().getFullTime().getHomeTeam() + " - " + team.getMatches().get(i).getScore().getFullTime().getAwayTeam();
                             else{
                                 String[] parts = team.getMatches().get(i).getUtcDate().split("T");
-
                                 String date = parts[0]; // Day
                                 String[] dateDay = date.split("-");
                                 String day = dateDay[2];
                                 String month = dateDay[1];
                                 String year = dateDay[0];
 
-                                String hour = parts[1]; // Hour
-
-                                Score = day + "/" + month + "/" + year + "\n" + (new StringBuilder(hour)).deleteCharAt(hour.length()-1).toString();
+                                Score = day + "/" + month + "/" + year;
                             }
 
                             int id = team.getMatches().get(i).getId();

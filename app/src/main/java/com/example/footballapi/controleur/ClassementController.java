@@ -24,7 +24,7 @@ public class ClassementController {
     /**
      * Affiche le classement d'une compétition
      */
-    public void afficheListeTeamsCompetition(int idCompet, final Context context, final ClassementActivity activity, String token) {
+    public void afficheListeTeamsCompetition(final int idCompet, final Context context, final ClassementActivity activity, String token) {
         Call<Classement> call = RestUser.get().competitions(token, idCompet);
         call.enqueue(new Callback<Classement>() {
             @Override

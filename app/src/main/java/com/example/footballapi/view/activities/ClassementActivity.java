@@ -18,7 +18,21 @@ public class ClassementActivity extends AppCompatActivity {
     // Transmission de l'id de l'équipe cliquée
     final static String CLE_DONNEES_ID_TEAM = "idTeam";
 
+    int idCompet = -1;
+
     private ClassementController classementcontroller = new ClassementController();
+
+    // Sauvegarder l'id de la compétition lors du onBackPressed
+    /*@Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt("idCompet", this.idCompet);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState){
+        this.idCompet = savedInstanceState.getInt("idCompet");
+    }*/
 
     public ClassementActivity() { }
 
@@ -31,7 +45,7 @@ public class ClassementActivity extends AppCompatActivity {
 
         // On récupère l'id de la competition depuis l'activite mère
         Intent intent = getIntent();
-        int idCompet = intent.getIntExtra(MainActivity.CLE_DONNEES_ID_COMPET, 1);
+        this.idCompet = intent.getIntExtra(MainActivity.CLE_DONNEES_ID_COMPET, 1);
 
         classementcontroller.afficheListeTeamsCompetition(idCompet, this, this, getString(R.string.token));
 
@@ -43,10 +57,18 @@ public class ClassementActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), TeamActivity.class);
                 intent.putExtra(CLE_DONNEES_ID_TEAM, (int) id);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
             }
         };
 
         // Utilisation avec notre listview
         lvClassement.setOnItemClickListener(itemClickListener);
+    }
+
+    // Appuie sur le bouton Précédent du portable
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 }

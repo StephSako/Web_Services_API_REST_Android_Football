@@ -79,5 +79,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, ClassementActivity.class);
         intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 }

@@ -69,10 +69,8 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
 
         MatchesFragment simpleFragment = MatchesFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager
-                .beginTransaction();
-        fragmentTransaction.add(R.id.idFragmentSquad_Match,
-                simpleFragment).addToBackStack(null).commit();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.idFragmentSquad_Match, simpleFragment).addToBackStack(null).commit();
     }
 
     public void onClick(View v) { // On remplace le fragment par celui géré par le bouton cliqué
@@ -83,10 +81,8 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
 
             SquadFragment simpleFragment = SquadFragment.newInstance();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager
-                    .beginTransaction();
-            fragmentTransaction.replace(R.id.idFragmentSquad_Match,
-                    simpleFragment).addToBackStack(null).commit();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.idFragmentSquad_Match, simpleFragment).addToBackStack(null).commit();
         }
         else if (v.getId() == R.id.btnMatches) { // On affiche la liste des matches de l'équipe
 
@@ -95,10 +91,18 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
 
             MatchesFragment simpleFragment = MatchesFragment.newInstance();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager
-                    .beginTransaction();
-            fragmentTransaction.replace(R.id.idFragmentSquad_Match,
-                    simpleFragment).addToBackStack("ClassementActivity").commit();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.idFragmentSquad_Match, simpleFragment).addToBackStack(null).commit();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(this, ClassementActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(i);
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+        finish();
     }
 }
