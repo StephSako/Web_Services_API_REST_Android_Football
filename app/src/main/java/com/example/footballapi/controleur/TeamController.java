@@ -115,7 +115,7 @@ public class TeamController {
                             String nationality = team.getSquad().get(i).getNationality();
 
                             String shirtNumber = "";
-                            if (team.getSquad().get(i).getShirtNumber() != 0)
+                            if (team.getSquad().get(i).getShirtNumber() != -1)
                                 shirtNumber = String.valueOf(team.getSquad().get(i).getShirtNumber());
 
                             int idPlayer = team.getSquad().get(i).getId();
@@ -190,10 +190,15 @@ public class TeamController {
                             else{
                                 String[] parts = team.getMatches().get(i).getUtcDate().split("T");
 
-                                String s = parts[0]; // Day
+                                String date = parts[0]; // Day
+                                String[] dateDay = date.split("-");
+                                String day = dateDay[2];
+                                String month = dateDay[1];
+                                String year = dateDay[0];
+
                                 String hour = parts[1]; // Hour
 
-                                Score = s + " " + (new StringBuilder(hour)).deleteCharAt(hour.length()-1).toString();
+                                Score = day + "/" + month + "/" + year + "\n" + (new StringBuilder(hour)).deleteCharAt(hour.length()-1).toString();
                             }
 
                             int id = team.getMatches().get(i).getId();
