@@ -50,14 +50,13 @@ public class TeamController {
                     }
                     activity.getTvActiveCompetitions().setText(activeCompetitions.toString());
 
-                    String URLLogoClub = team.getCrestUrl();
+                    if (!team.getCrestUrl().equals(""))
+                        SvgLoader.pluck()
+                                .with(activity)
+                                .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                                .load(team.getCrestUrl(), activity.getLogo_club());
 
-                    SvgLoader.pluck()
-                            .with(activity)
-                            .setPlaceHolder(R.mipmap.ic_waiting_foreground, R.mipmap.ic_waiting_foreground)
-                            .load(URLLogoClub, activity.getLogo_club());
-
-
+                    else activity.getLogo_club().setImageResource(R.drawable.ic_logo_foreground);
 
                 } else {
                     Toast.makeText(activity, "Compétition introuvable", Toast.LENGTH_SHORT).show();
@@ -190,9 +189,11 @@ public class TeamController {
                                 Score = team.getMatches().get(i).getScore().getFullTime().getHomeTeam() + " - " + team.getMatches().get(i).getScore().getFullTime().getAwayTeam();
                             else{
                                 String[] parts = team.getMatches().get(i).getUtcDate().split("T");
-                                String part1 = parts[0]; // Day
-                                String part2 = parts[1]; // Hour
-                                Score = part1 + " " + (new StringBuilder(part2)).deleteCharAt(part2.length()-1).toString();
+
+                                String s = parts[0]; // Day
+                                String hour = parts[1]; // Hour
+
+                                Score = s + " " + (new StringBuilder(hour)).deleteCharAt(hour.length()-1).toString();
                             }
 
                             int id = team.getMatches().get(i).getId();
@@ -213,17 +214,6 @@ public class TeamController {
                     // ...qui va remplir l'objet ListView
                     ListView lvMatches = v.findViewById(R.id.lvMatches);
                     lvMatches.setAdapter(adapter);
-
-                    // Gestion des clics sur les lignes
-                    /*AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View container, int position, long id) {
-                            Toast.makeText(activity, "L'id player est " + id + " dans l'API", Toast.LENGTH_SHORT).show();
-                        }
-                    };
-
-                    // Utilisation avec notre listview
-                    lvSquad.setOnItemClickListener(itemClickListener);*/
                 } else {
                     Toast.makeText(activity, "Match introuvable", Toast.LENGTH_SHORT).show();
                 }

@@ -42,7 +42,11 @@ public class Team {
     @Expose
     private List<Match> matches  = Collections.emptyList();
 
-    public String getCrestUrl() { return crestUrl; }
+    public String getCrestUrl() {
+        if (crestUrl != null)
+                return crestUrl;
+        else return "";
+    }
 
     public int getId() {
         return id;

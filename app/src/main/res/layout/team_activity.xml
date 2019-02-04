@@ -106,8 +106,8 @@
             android:layout_weight="1"
             android:text="@string/btnSquadTitle"
             tools:ignore="ButtonStyle" />
-
     </LinearLayout>
+
     <FrameLayout
         android:id="@+id/idFragmentSquad_Match"
         android:name="com.example.footballapi.view.SquadFragment"

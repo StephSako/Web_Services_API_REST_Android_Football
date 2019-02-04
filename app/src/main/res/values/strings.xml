@@ -31,7 +31,7 @@
     <string name="ivLogoSplashScreen">Logo application SplashScreen</string>
     <string name="tvCouleursTitle">Couleurs :</string>
     <string name="tvStadeTitle">Stade :</string>
-    <string name="tvActiveCompetTitle">Compétitions en cours :</string>
+    <string name="tvActiveCompetTitle">Compétitions :</string>
     <string name="btMatchesTitle">Matches</string>
     <string name="btnSquadTitle">Equipe</string>
     <string name="tvWebSiteTitle">WebSite : </string>

@@ -238,6 +238,7 @@
                 android:src="@mipmap/ic_netherlands_foreground"
                 android:contentDescription="@string/ibDescrNetherlands" />
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
