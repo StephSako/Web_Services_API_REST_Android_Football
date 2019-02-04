@@ -49,7 +49,6 @@ public class ClassementController {
                             int points = classement.getStandings().get(0).getTable().get(i - 1).getPoints();
                             int diff = classement.getStandings().get(0).getTable().get(i - 1).getGoalDifference();
                             int idTeam = classement.getStandings().get(0).getTable().get(i - 1).getTeam().getId();
-                            String url = classement.getStandings().get(0).getTable().get(i - 1).getTeam().getCrestUrl();
 
                             matrixCursor.addRow(new Object[]{idTeam, position, club_name, diff, points});
                         }

@@ -54,7 +54,8 @@ public class TeamController {
                         SvgLoader.pluck()
                                 .with(activity)
                                 .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                                .load(team.getCrestUrl(), activity.getLogo_club());
+                                .load(team.getCrestUrl(), activity.getLogo_club())
+                                .close();
 
                     else activity.getLogo_club().setImageResource(R.drawable.ic_logo_foreground);
 
