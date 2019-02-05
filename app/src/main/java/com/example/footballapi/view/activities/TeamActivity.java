@@ -18,24 +18,22 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
 
     // Id de l'équipe
     private int idTeam = -1;
+    public String nomClub = "";
 
     public int getidTeam(){
         return this.idTeam;
     }
+    public String getnomClub(){
+        return this.nomClub;
+    }
 
-    private Button btnSquad;
-    private Button btnMatches;
-    private TextView tvWebSite;
-    private TextView tvStade;
-    private TextView tvActiveCompetitions;
-    private TextView tvEntraineur;
-    private ImageView logo_club;
-
-    public TextView getTvActiveCompetitions() { return tvActiveCompetitions; }
-    public TextView getTvWebSite() { return tvWebSite; }
-    public TextView getTvStade() { return tvStade; }
-    public TextView getTvEntraineur() { return tvEntraineur; }
-    public ImageView getLogo_club() { return logo_club; }
+    public Button btnSquad;
+    public Button btnMatches;
+    public TextView tvWebSite;
+    public TextView tvStade;
+    public TextView tvActiveCompetitions;
+    public TextView tvEntraineur;
+    public ImageView logo_club;
 
     private TeamController teamcontroller = new TeamController();
 

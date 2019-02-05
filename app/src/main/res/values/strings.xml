@@ -36,4 +36,9 @@
     <string name="tvWebSiteTitle">WebSite : </string>
     <string name="ivLogoClub">LogoClub</string>
     <string name="tvEntraineursTitle">Entraîneur(s) :</string>
+    <string name="tvNomPlayerTitle">Nom :</string>
+    <string name="tvBirthdayTitle">Date de naissance :</string>
+    <string name="tvNationalityTitle">Pays d\'origine :</string>
+    <string name="tvPostePlayerTitle">Poste :</string>
+    <string name="tvShirtNumberPlayerTitle">Numéro de maillot :</string>
 </resources>

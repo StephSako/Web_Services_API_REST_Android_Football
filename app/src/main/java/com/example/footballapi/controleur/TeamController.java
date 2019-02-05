@@ -38,10 +38,11 @@ public class TeamController {
                     Team team = response.body();
                     assert team != null;
 
+                    activity.nomClub = team.getName();
                     Objects.requireNonNull(activity).setTitle(team.getName());
 
-                    activity.getTvWebSite().setText(team.getWebSite());
-                    activity.getTvStade().setText(team.getVenue());
+                    activity.tvWebSite.setText(team.getWebSite());
+                    activity.tvStade.setText(team.getVenue());
 
                     StringBuilder activeCompetitions = new StringBuilder();
 
@@ -60,17 +61,17 @@ public class TeamController {
                         }
                     }
 
-                    activity.getTvActiveCompetitions().setText(activeCompetitions.toString());
-                    activity.getTvEntraineur().setText(entraineur.toString());
+                    activity.tvActiveCompetitions.setText(activeCompetitions.toString());
+                    activity.tvEntraineur.setText(entraineur.toString());
 
                     if (!team.getCrestUrl().equals(""))
                         SvgLoader.pluck()
                                 .with(activity)
                                 .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                                .load(team.getCrestUrl(), activity.getLogo_club())
+                                .load(team.getCrestUrl(), activity.logo_club)
                                 .close();
 
-                    else activity.getLogo_club().setImageResource(R.drawable.ic_logo_foreground);
+                    else activity.logo_club.setImageResource(R.drawable.ic_logo_foreground);
 
                 } else {
                     Toast.makeText(activity, "Compétition introuvable", Toast.LENGTH_SHORT).show();

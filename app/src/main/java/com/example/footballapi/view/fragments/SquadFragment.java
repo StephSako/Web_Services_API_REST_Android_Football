@@ -21,8 +21,9 @@ public class SquadFragment extends Fragment {
 
     public ListView lvSquad;
 
-    // Transmission de l'id de l'équipe cliquée
+    // Transmission de l'id du joueur cliqué et du nom du club
     public final static String CLE_DONNEES_ID_PLAYER = "idPlayer";
+    public final static String CLE_DONNEES_NOM_CLUB = "nomClub";
 
     public static SquadFragment newInstance() {
         return new SquadFragment();
@@ -49,6 +50,7 @@ public class SquadFragment extends Fragment {
                 // On affiche le joueur cliqué
                 Intent intent = new Intent(getActivity(), PlayerActivity.class);
                 intent.putExtra(CLE_DONNEES_ID_PLAYER, id);
+                intent.putExtra(CLE_DONNEES_NOM_CLUB, ((TeamActivity) Objects.requireNonNull(getActivity())).getnomClub());
                 startActivity(intent);
             }
         };
