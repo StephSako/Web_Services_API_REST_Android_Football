@@ -53,7 +53,7 @@ public class TeamController {
 
                     StringBuilder entraineur = new StringBuilder();
                     for (int i = 0; i < team.getSquad().size(); i++) {
-                        if (team.getSquad().get(i).getPosition() == null) {
+                        if (team.getSquad().get(i).getRole().equals("COACH")) {
                             if (i == team.getSquad().size() - 1)
                                 entraineur.append(team.getSquad().get(i).getName());
                             else
@@ -107,7 +107,7 @@ public class TeamController {
                         // On remplit les lignes (le classement d'id 0 repésente le classement total du championnat)
                         for (int i = 0; i < team.getSquad().size(); i++) {
 
-                            if (team.getSquad().get(i).getPosition() != null) {
+                            if (team.getSquad().get(i).getRole().equals("PLAYER")) {
                                 String player_name = team.getSquad().get(i).getName();
                                 String position = "";
 

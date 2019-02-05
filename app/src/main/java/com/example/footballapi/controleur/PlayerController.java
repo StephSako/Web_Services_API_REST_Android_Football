@@ -1,5 +1,6 @@
 package com.example.footballapi.controleur;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.widget.ListView;
@@ -24,6 +25,7 @@ public class PlayerController {
     public void afficheDetailsJoueur(final int idPlayer, final PlayerActivity activity, String token) {
         Call<Player> call = RestUser.get().players(token, idPlayer);
         call.enqueue(new Callback<Player>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(@NonNull Call<Player> call, @NonNull Response<Player> response) {
                 if (response.isSuccessful()) {
