@@ -16,15 +16,19 @@ import com.example.footballapi.view.fragments.SquadFragment;
 
 public class TeamActivity extends AppCompatActivity implements View.OnClickListener {
 
-    // Id de l'équipe
+    // Variables qui seront transmises dans la vue Player
     private int idTeam = -1;
     public String nomClub = "";
+    public String crestURLPlayer = "";
 
     public int getidTeam(){
         return this.idTeam;
     }
     public String getnomClub(){
         return this.nomClub;
+    }
+    public String getcrestURLPlayer(){
+        return this.crestURLPlayer;
     }
 
     public Button btnSquad;

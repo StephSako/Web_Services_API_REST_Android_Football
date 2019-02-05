@@ -18,6 +18,7 @@ public class PlayerActivity extends AppCompatActivity {
 
     public int idPlayer = -1;
     public String nomClub = "";
+    public String crestURLPlayer = "";
 
     public ImageView logo_club_player;
     public TextView tvClubPlayer;
@@ -44,7 +45,8 @@ public class PlayerActivity extends AppCompatActivity {
         Intent intent = getIntent();
         this.idPlayer = intent.getIntExtra(SquadFragment.CLE_DONNEES_ID_PLAYER, 1);
         this.nomClub = intent.getStringExtra(SquadFragment.CLE_DONNEES_NOM_CLUB);
+        this.crestURLPlayer = ((new TeamActivity())).getcrestURLPlayer();
 
-        playercontroller.afficheDetailsJoueur(this.idPlayer, this, getString(R.string.token));
+        playercontroller.afficheDetailsJoueur(this, getString(R.string.token));
     }
 }

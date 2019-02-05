@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.ahmadrosid.svgloader.SvgLoader;
+import com.example.footballapi.R;
 import com.example.footballapi.model.player.Player;
 import com.example.footballapi.restService.RestUser;
 import com.example.footballapi.view.activities.ClassementActivity;
@@ -22,8 +24,8 @@ public class PlayerController {
     /**
      * Affiche les détails d'un joueur
      */
-    public void afficheDetailsJoueur(final int idPlayer, final PlayerActivity activity, String token) {
-        Call<Player> call = RestUser.get().players(token, idPlayer);
+    public void afficheDetailsJoueur(final PlayerActivity activity, String token) {
+        Call<Player> call = RestUser.get().players(token, activity.idPlayer);
         call.enqueue(new Callback<Player>() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -32,11 +34,21 @@ public class PlayerController {
                     final Player player = response.body();
                     assert player != null;
 
+                    if (!activity.crestURLPlayer.equals(""))
+                        SvgLoader.pluck()
+                                .with(activity)
+                                .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                                .load(activity.crestURLPlayer, activity.logo_club_player)
+                                .close();
+                    else activity.logo_club_player.setImageResource(R.drawable.ic_logo_foreground);
+
                     activity.tvBirthday.setText(player.getDateOfBirth());
                     activity.tvClubPlayer.setText(activity.nomClub);
                     activity.tvNationality.setText(player.getNationality());
                     activity.tvPlayerName.setText(player.getName());
-                    activity.tvShirtNumberPlayer.setText(player.getShirtNumber());
+
+                    if (player.getShirtNumber() != -1)
+                        activity.tvShirtNumberPlayer.setText(String.valueOf(player.getShirtNumber()));
 
                     switch (player.getPosition()) {
                         case "Goalkeeper":
