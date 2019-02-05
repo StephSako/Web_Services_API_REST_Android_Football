@@ -20,7 +20,7 @@ public class PlayerActivity extends AppCompatActivity {
     public String nomClub = "";
 
     public ImageView logo_club_player;
-    /*public TextView tvClubPlayer;*/
+    public TextView tvClubPlayer;
     public TextView tvPlayerName;
     public TextView tvBirthday;
     public TextView tvNationality;
@@ -30,10 +30,10 @@ public class PlayerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.classement_activity);
+        setContentView(R.layout.player_activity);
 
         this.logo_club_player = findViewById(R.id.ivLogoClubPlayer);
-        /*this.tvClubPlayer = */
+        this.tvClubPlayer = findViewById(R.id.tvClubPlayer);
         this.tvPlayerName = findViewById(R.id.tvPlayerName);
         this.tvBirthday = findViewById(R.id.tvBirthday);
         this.tvNationality = findViewById(R.id.tvNationality);
@@ -45,6 +45,6 @@ public class PlayerActivity extends AppCompatActivity {
         this.idPlayer = intent.getIntExtra(SquadFragment.CLE_DONNEES_ID_PLAYER, 1);
         this.nomClub = intent.getStringExtra(SquadFragment.CLE_DONNEES_NOM_CLUB);
 
-        playercontroller.afficheDetailsJoueur(this.idPlayer, this, this, getString(R.string.token));
+        playercontroller.afficheDetailsJoueur(this.idPlayer, this, getString(R.string.token));
     }
 }

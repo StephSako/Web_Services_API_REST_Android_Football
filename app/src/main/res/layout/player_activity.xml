@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/team_activity"
     android:orientation="vertical"
-    tools:context="com.example.footballapi.view.activities.TeamActivity"
+    tools:context="com.example.footballapi.view.activities.PlayerActivity"
     tools:ignore="ExtraText">
 
     <LinearLayout
@@ -30,14 +30,14 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Equipe :"
+            android:text="@string/tvClubNamePlayerTitle"
             android:textColor="@color/green"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_weight="1"
             tools:ignore="NestedWeights" />
         <TextView
-            android:id="tvTeamPlayer"
+            android:id="@+id/tvClubPlayer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"

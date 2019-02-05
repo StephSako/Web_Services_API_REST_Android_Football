@@ -21,13 +21,7 @@ public class PlayerController {
     /**
      * Affiche les détails d'un joueur
      */
-    private ClassementActivity activity;
-
-    public PlayerController(ClassementActivity activity) {
-        this.activity = activity;
-    }
-
-    public void afficheDetailsJoueur(final int idPlayer, final Context context, final PlayerActivity activity, String token) {
+    public void afficheDetailsJoueur(final int idPlayer, final PlayerActivity activity, String token) {
         Call<Player> call = RestUser.get().players(token, idPlayer);
         call.enqueue(new Callback<Player>() {
             @Override
@@ -36,12 +30,26 @@ public class PlayerController {
                     final Player player = response.body();
                     assert player != null;
 
+                    activity.tvBirthday.setText(player.getDateOfBirth());
+                    activity.tvClubPlayer.setText(activity.nomClub);
+                    activity.tvNationality.setText(player.getNationality());
+                    activity.tvPlayerName.setText(player.getName());
+                    activity.tvShirtNumberPlayer.setText(player.getShirtNumber());
 
-
-                    // ...
-
-
-                    Toast.makeText(activity, "ID joueur : " + idPlayer, Toast.LENGTH_SHORT).show();
+                    switch (player.getPosition()) {
+                        case "Goalkeeper":
+                            activity.tvShirtNumberPlayer.setText("Gardien");
+                            break;
+                        case "Defender":
+                            activity.tvShirtNumberPlayer.setText("Défenseur");
+                            break;
+                        case "Midfielder":
+                            activity.tvShirtNumberPlayer.setText("Milieu");
+                            break;
+                        case "Attacker":
+                            activity.tvShirtNumberPlayer.setText("Attaquant");
+                            break;
+                    }
                 } else {
                     Toast.makeText(activity, "Joueur introuvable", Toast.LENGTH_SHORT).show();
                 }

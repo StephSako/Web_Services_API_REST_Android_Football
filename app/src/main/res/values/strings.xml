@@ -41,4 +41,5 @@
     <string name="tvNationalityTitle">Pays d\'origine :</string>
     <string name="tvPostePlayerTitle">Poste :</string>
     <string name="tvShirtNumberPlayerTitle">Numéro de maillot :</string>
+    <string name="tvClubNamePlayerTitle">Equipe :</string>
 </resources>
