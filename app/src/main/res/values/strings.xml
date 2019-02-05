@@ -35,4 +35,5 @@
     <string name="btnSquadTitle">Equipe</string>
     <string name="tvWebSiteTitle">WebSite : </string>
     <string name="ivLogoClub">LogoClub</string>
+    <string name="tvEntraineursTitle">Entraîneur(s) :</string>
 </resources>

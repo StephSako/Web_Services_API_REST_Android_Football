@@ -44,11 +44,24 @@ public class TeamController {
                     activity.getTvStade().setText(team.getVenue());
 
                     StringBuilder activeCompetitions = new StringBuilder();
+
                     for (int i = 0; i < team.getActiveCompetitions().size(); i++){
                         if (i == team.getActiveCompetitions().size() - 1) activeCompetitions.append(team.getActiveCompetitions().get(i).getName());
                         else activeCompetitions.append(team.getActiveCompetitions().get(i).getName()).append(", ");
                     }
+
+                    StringBuilder entraineur = new StringBuilder();
+                    for (int i = 0; i < team.getSquad().size(); i++) {
+                        if (team.getSquad().get(i).getPosition() == null) {
+                            if (i == team.getSquad().size() - 1)
+                                entraineur.append(team.getSquad().get(i).getName());
+                            else
+                                entraineur.append(team.getSquad().get(i).getName()).append("\n");
+                        }
+                    }
+
                     activity.getTvActiveCompetitions().setText(activeCompetitions.toString());
+                    activity.getTvEntraineur().setText(entraineur.toString());
 
                     if (!team.getCrestUrl().equals(""))
                         SvgLoader.pluck()
@@ -92,10 +105,11 @@ public class TeamController {
 
                         // On remplit les lignes (le classement d'id 0 repésente le classement total du championnat)
                         for (int i = 0; i < team.getSquad().size(); i++) {
-                            String player_name = team.getSquad().get(i).getName();
 
-                            String position = "";
                             if (team.getSquad().get(i).getPosition() != null) {
+                                String player_name = team.getSquad().get(i).getName();
+                                String position = "";
+
                                 switch (team.getSquad().get(i).getPosition()) {
                                     case "Goalkeeper":
                                         position = "Gardien";
@@ -110,17 +124,15 @@ public class TeamController {
                                         position = "Attaquant";
                                         break;
                                 }
+                                String nationality = team.getSquad().get(i).getNationality();
+
+                                String shirtNumber = "";
+                                if (team.getSquad().get(i).getShirtNumber() != -1)
+                                    shirtNumber = String.valueOf(team.getSquad().get(i).getShirtNumber());
+
+                                int idPlayer = team.getSquad().get(i).getId();
+                                matrixCursor.addRow(new Object[]{idPlayer, player_name, nationality, position, shirtNumber});
                             }
-                            else position = "Entraîneur";
-
-                            String nationality = team.getSquad().get(i).getNationality();
-
-                            String shirtNumber = "";
-                            if (team.getSquad().get(i).getShirtNumber() != -1)
-                                shirtNumber = String.valueOf(team.getSquad().get(i).getShirtNumber());
-
-                            int idPlayer = team.getSquad().get(i).getId();
-                            matrixCursor.addRow(new Object[]{idPlayer, player_name, nationality, position, shirtNumber});
                         }
 
                         // on prendra les données des colonnes 1, 2, 3 et 4
@@ -136,17 +148,6 @@ public class TeamController {
                     // ...qui va remplir l'objet ListView
                     ListView lvSquad = v.findViewById(R.id.lvSquad);
                     lvSquad.setAdapter(adapter);
-
-                    // Gestion des clics sur les lignes des joueurs
-                    AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View container, int position, long id) {
-                            Toast.makeText(activity, "L'id player est " + id + " dans l'API", Toast.LENGTH_SHORT).show();
-                        }
-                    };
-
-                    // Utilisation avec notre listview
-                    lvSquad.setOnItemClickListener(itemClickListener);
                 } else {
                     Toast.makeText(activity, "Equipe introuvable", Toast.LENGTH_SHORT).show();
                 }
