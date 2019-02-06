@@ -21,9 +21,21 @@ public class Player {
     @Expose
     private String position = "";
 
+    @SerializedName("dateOfBirth")
+    @Expose
+    private String dateOfBirth = "";
+
     @SerializedName("shirtNumber")
     @Expose
     private int shirtNumber = -1;
+
+    @SerializedName("role")
+    @Expose
+    private String role = "";
+
+    public String getRole() { return role; }
+
+    public String getDateOfBirth() { return dateOfBirth; }
 
     public int getId() { return id; }
 

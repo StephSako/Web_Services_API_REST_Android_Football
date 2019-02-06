@@ -2,14 +2,14 @@
     <string name="app_name">Football API</string>
     <string name="token">e0d9f47d73ae4a4a87eeb24935d8b2f8</string>
 
-    <string name="tvBundesligaTitle">Bundesliga</string>
-    <string name="tvPremierLeagueTitle">Premier League</string>
-    <string name="tvLiguaNOSTitle">Ligua NOS</string>
-    <string name="tvLigue1Title">Ligue 1</string>
-    <string name="tvSerieATitle">Serie A</string>
-    <string name="tvPrimeraDivisionTitle">Primera Division</string>
-    <string name="tvSerieABrazilTitle">Serie A Brazil</string>
-    <string name="tvNetherlandsTitle">Netherlands</string>
+    <string name="tvBundesligaTitle">Allemagne</string>
+    <string name="tvPremierLeagueTitle">Angleterre</string>
+    <string name="tvLiguaNOSTitle">Portugal</string>
+    <string name="tvLigue1Title">France</string>
+    <string name="tvSerieATitle">Italie</string>
+    <string name="tvPrimeraDivisionTitle">Espagne</string>
+    <string name="tvSerieABrazilTitle">Brésil</string>
+    <string name="tvNetherlandsTitle">Pays-Bas</string>
     <string name="ibDescrSerieABrazil">Logo du championnat brésilien</string>
     <string name="ibDescrNetherlands">Logo du championnat néerlandais</string>
     <string name="ibDescrSerieA">Logo championnat Serie A</string>
@@ -35,4 +35,11 @@
     <string name="btnSquadTitle">Equipe</string>
     <string name="tvWebSiteTitle">WebSite : </string>
     <string name="ivLogoClub">LogoClub</string>
+    <string name="tvEntraineursTitle">Entraîneur(s) :</string>
+    <string name="tvNomPlayerTitle">Nom :</string>
+    <string name="tvBirthdayTitle">Date de naissance :</string>
+    <string name="tvNationalityTitle">Pays d\'origine :</string>
+    <string name="tvPostePlayerTitle">Poste :</string>
+    <string name="tvShirtNumberPlayerTitle">Numéro de maillot :</string>
+    <string name="tvClubNamePlayerTitle">Equipe :</string>
 </resources>

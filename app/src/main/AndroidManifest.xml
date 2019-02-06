@@ -29,6 +29,8 @@
         <activity android:name=".view.activities.ClassementActivity" />
 
         <activity android:name=".view.activities.TeamActivity" />
+
+        <activity android:name=".view.activities.PlayerActivity" />
     </application>
 
 </manifest>

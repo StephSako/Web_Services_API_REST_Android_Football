@@ -80,64 +80,6 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="@string/tvLigue1Title"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:gravity="center_horizontal"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_width="0dp"
-                android:text="@string/tvLiguaNOSTitle"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            tools:ignore="NestedWeights">
-            <ImageButton
-                android:id="@+id/btnLigue1"
-                android:scaleType="fitCenter"
-                android:background="@null"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:src="@mipmap/ic_ligue_1_foreground"
-                tools:ignore="NestedWeights"
-                android:contentDescription="@string/ibDescrLigue1" />
-            <ImageButton
-                android:id="@+id/btnLiguaNOS"
-                android:scaleType="fitCenter"
-                android:background="@null"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:src="@mipmap/ic_ligua_nos_foreground"
-                android:contentDescription="@string/ibDescrLiguaNOS" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="-20dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
                 android:text="@string/tvSerieATitle"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -179,6 +121,64 @@
                 android:layout_width="match_parent"
                 android:src="@mipmap/ic_primera_division_foreground"
                 android:contentDescription="@string/ibDescrPrimeraDivision" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-20dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/tvLigue1Title"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="0dp"
+                android:text="@string/tvLiguaNOSTitle"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            tools:ignore="NestedWeights">
+            <ImageButton
+                android:id="@+id/btnLigue1"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:src="@mipmap/ic_ligue_1_foreground"
+                tools:ignore="NestedWeights"
+                android:contentDescription="@string/ibDescrLigue1" />
+            <ImageButton
+                android:id="@+id/btnLiguaNOS"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:src="@mipmap/ic_ligua_nos_foreground"
+                android:contentDescription="@string/ibDescrLiguaNOS" />
         </LinearLayout>
     </LinearLayout>
 

@@ -21,18 +21,6 @@ public class ClassementActivity extends AppCompatActivity {
 
     private ClassementController classementcontroller = new ClassementController();
 
-    // Sauvegarder l'id de la compétition lors du onBackPressed
-    /*@Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putInt("idCompet", this.idCompet);
-    }
-
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState){
-        this.idCompet = savedInstanceState.getInt("idCompet");
-    }*/
-
     public ClassementActivity() { }
 
     @Override
@@ -60,7 +48,7 @@ public class ClassementActivity extends AppCompatActivity {
             }
         };
 
-        // Utilisation avec notre listview
+        // Utilisation avec notre listview d'équipe
         lvClassement.setOnItemClickListener(itemClickListener);
     }
 
