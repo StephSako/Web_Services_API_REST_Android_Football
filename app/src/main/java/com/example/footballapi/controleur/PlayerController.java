@@ -13,6 +13,8 @@ import com.example.footballapi.restService.RestUser;
 import com.example.footballapi.view.activities.ClassementActivity;
 import com.example.footballapi.view.activities.PlayerActivity;
 
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,6 +36,9 @@ public class PlayerController {
                     final Player player = response.body();
                     assert player != null;
 
+                    // On change le title de l'actionBar par le nom du joueur
+                    Objects.requireNonNull(activity).setTitle(player.getName());
+
                     if (!activity.crestURLPlayer.equals(""))
                         SvgLoader.pluck()
                                 .with(activity)
@@ -42,7 +47,14 @@ public class PlayerController {
                                 .close();
                     else activity.logo_club_player.setImageResource(R.drawable.ic_logo_foreground);
 
-                    activity.tvBirthday.setText(player.getDateOfBirth());
+                    String[] dateBirthDay = player.getDateOfBirth().split("-");
+                    String day = dateBirthDay[2];
+                    String month = dateBirthDay[1];
+                    String year = dateBirthDay[0];
+
+                    String birthday = day + "/" + month + "/" + year;
+                    activity.tvBirthday.setText(birthday);
+
                     activity.tvClubPlayer.setText(activity.nomClub);
                     activity.tvNationality.setText(player.getNationality());
                     activity.tvPlayerName.setText(player.getName());
@@ -52,16 +64,16 @@ public class PlayerController {
 
                     switch (player.getPosition()) {
                         case "Goalkeeper":
-                            activity.tvShirtNumberPlayer.setText("Gardien");
+                            activity.tvPostePlayer.setText("Gardien");
                             break;
                         case "Defender":
-                            activity.tvShirtNumberPlayer.setText("Défenseur");
+                            activity.tvPostePlayer.setText("Défenseur");
                             break;
                         case "Midfielder":
-                            activity.tvShirtNumberPlayer.setText("Milieu");
+                            activity.tvPostePlayer.setText("Milieu");
                             break;
                         case "Attacker":
-                            activity.tvShirtNumberPlayer.setText("Attaquant");
+                            activity.tvPostePlayer.setText("Attaquant");
                             break;
                     }
                 } else {

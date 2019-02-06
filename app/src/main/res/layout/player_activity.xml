@@ -12,6 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:paddingTop="4dp"
+        android:paddingBottom="1dp"
         android:orientation="horizontal">
         <ImageView
             android:id="@+id/ivLogoClubPlayer"
@@ -23,7 +25,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="1dp"
+        android:paddingBottom="1dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal">
@@ -37,11 +39,11 @@
             android:layout_weight="1"
             tools:ignore="NestedWeights" />
         <TextView
-            android:id="@+id/tvClubPlayer"
+            android:id="@+id/tvClubname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:layout_weight="2"/>
+            android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -62,9 +64,10 @@
         <TextView
             android:id="@+id/tvPlayerName"
             android:autoLink="web"
+            android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"/>
+            android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -87,7 +90,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:layout_weight="2"/>
+            android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -110,7 +113,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:layout_weight="2"/>
+            android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -133,7 +136,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:layout_weight="2"/>
+            android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -156,6 +159,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:layout_weight="2"/>
+            android:layout_weight="1"/>
     </LinearLayout>
 </LinearLayout>

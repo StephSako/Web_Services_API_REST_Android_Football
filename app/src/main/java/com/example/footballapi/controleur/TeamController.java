@@ -38,7 +38,11 @@ public class TeamController {
                     Team team = response.body();
                     assert team != null;
 
+                    activity.crestURLPlayer = team.getCrestUrl();
+
                     activity.nomClub = team.getName();
+
+                    // On change le title de l'actionBar par le nom du club
                     Objects.requireNonNull(activity).setTitle(team.getName());
 
                     activity.tvWebSite.setText(team.getWebSite());

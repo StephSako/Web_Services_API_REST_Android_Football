@@ -34,7 +34,7 @@ public class PlayerActivity extends AppCompatActivity {
         setContentView(R.layout.player_activity);
 
         this.logo_club_player = findViewById(R.id.ivLogoClubPlayer);
-        this.tvClubPlayer = findViewById(R.id.tvClubPlayer);
+        this.tvClubPlayer = findViewById(R.id.tvClubname);
         this.tvPlayerName = findViewById(R.id.tvPlayerName);
         this.tvBirthday = findViewById(R.id.tvBirthday);
         this.tvNationality = findViewById(R.id.tvNationality);
@@ -45,7 +45,7 @@ public class PlayerActivity extends AppCompatActivity {
         Intent intent = getIntent();
         this.idPlayer = intent.getIntExtra(SquadFragment.CLE_DONNEES_ID_PLAYER, 1);
         this.nomClub = intent.getStringExtra(SquadFragment.CLE_DONNEES_NOM_CLUB);
-        this.crestURLPlayer = ((new TeamActivity())).getcrestURLPlayer();
+        this.crestURLPlayer = intent.getStringExtra(SquadFragment.CLE_DONNEES_CRUST_URL);
 
         playercontroller.afficheDetailsJoueur(this, getString(R.string.token));
     }

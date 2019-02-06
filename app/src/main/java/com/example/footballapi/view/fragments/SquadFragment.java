@@ -24,6 +24,10 @@ public class SquadFragment extends Fragment {
     // Transmission de l'id du joueur cliqué et du nom du club
     public final static String CLE_DONNEES_ID_PLAYER = "idPlayer";
     public final static String CLE_DONNEES_NOM_CLUB = "nomClub";
+    public final static String CLE_DONNEES_CRUST_URL = "crestURL";
+
+    public int idTeam = -1;
+    public String crestURLPlayer = "";
 
     public static SquadFragment newInstance() {
         return new SquadFragment();
@@ -38,7 +42,8 @@ public class SquadFragment extends Fragment {
 
         lvSquad = v.findViewById(R.id.lvSquad);
 
-        int idTeam = ((TeamActivity) Objects.requireNonNull(getActivity())).getidTeam();
+        this.idTeam = ((TeamActivity) Objects.requireNonNull(getActivity())).getidTeam();
+        this.crestURLPlayer = ((TeamActivity) Objects.requireNonNull(getActivity())).getcrestURLPlayer();
 
         // Par defaut, on affiche l'équipe du club sélectionné
         teamcontroller.afficheListePlayersTeams(idTeam, getContext(), getActivity(), getString(R.string.token), v);
@@ -49,8 +54,9 @@ public class SquadFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View container, int position, long id) {
                 // On affiche le joueur cliqué
                 Intent intent = new Intent(getActivity(), PlayerActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_PLAYER, id);
+                intent.putExtra(CLE_DONNEES_ID_PLAYER, (int) id);
                 intent.putExtra(CLE_DONNEES_NOM_CLUB, ((TeamActivity) Objects.requireNonNull(getActivity())).getnomClub());
+                intent.putExtra(CLE_DONNEES_CRUST_URL, ((TeamActivity) Objects.requireNonNull(getActivity())).getcrestURLPlayer());
                 startActivity(intent);
             }
         };
