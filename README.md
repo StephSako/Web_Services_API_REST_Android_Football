@@ -9,15 +9,18 @@ Dans l'optique de récupérer un nombre conséquent de données, j'ai choisi l'A
 
 ![](https://www.football-data.org/assets/logo.jpg)
 
-Afin d'accéder aux services de l'API, nous devons créer un compte et ainsi obtenir un tocken^(1) qui sera passé dans le Header de la requête.
-Tous les services d'appel, 
+Afin d'accéder aux services de l'API, nous devons créer un compte et ainsi obtenir un tocken<sup>1</sup> qui sera passé dans le Header de la requête.
+Tous les WebServices sont à appeler avec la méthode HTTP @GET
 
-^(1): "Jeton d'authentification, séquence de lettres et de chiffres en guise de mot de passe pour une authentification forte"
+<sup>1</sup> : "Jeton d'authentification, séquence de lettres et de chiffres en guise de mot de passe pour une authentification forte"
 
 # Outils de développement
 
 - Android Studio
 - Retrofit2
+
+https://square.github.io/retrofit/
+
 - Postman
 
 # Enchaînement et compositions des écrans
