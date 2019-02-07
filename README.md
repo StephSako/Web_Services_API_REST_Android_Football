@@ -46,7 +46,7 @@ Afin d'assurer une persistance longue des classements, j'ai choisi d'opter pour 
 Voici ma logique concernant la mise en cache et son utilisation :
 
 ~~~
-Au démarrage
+Au démarrage (ce qui permet d'avoir tous les classements au lieu d'en avoir qu'un seul à sa consultation)
     s'il y a Internet
         on met à jour la BD locale
     sinon
@@ -55,7 +55,7 @@ Au démarrage
 A la consultation d'un classement
     s'il y a Internet
         on fait un appel de WebService
-        on met à jour la BD locale
+        on met à jour la BD locale du classement consulté
     sinon
         on utilise la BD locale
 ~~~
