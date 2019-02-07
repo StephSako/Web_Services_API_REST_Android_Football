@@ -140,17 +140,11 @@ public class TeamController {
                             }
                         }
 
-                        // on prendra les données des colonnes 1, 2, 3 et 4
                         String[] from = new String[]{"PlayerName", "Nationality", "Position", "ShirtNumber"};
-
-                        // ...pour les placer dans les TextView définis dans "row_squad.xml"
                         int[] to = new int[]{R.id.tvPlayerName, R.id.tvNationality, R.id.tvPosition, R.id.tvShirtNumber};
-
-                        // création de l'objet SimpleCursorAdapter...
                         adapter = new SimpleCursorAdapter(context, R.layout.row_squad, matrixCursor, from, to, 0);
                     }
 
-                    // ...qui va remplir l'objet ListView
                     ListView lvSquad = v.findViewById(R.id.lvSquad);
                     lvSquad.setAdapter(adapter);
                 } else {
@@ -204,23 +198,15 @@ public class TeamController {
 
                                 Score = day + "/" + month + "/" + year;
                             }
-
                             int id = team.getMatches().get(i).getId();
-
                             matrixCursor.addRow(new Object[]{id, MatchDay, HomeTeam, Score, AwayTeam});
                         }
 
-                        // on prendra les données des colonnes 1, 2, 3, 4, 5 et 6
                         String[] from = new String[]{ "MatchDay", "HomeTeam", "Score", "AwayTeam"};
-
-                        // ...pour les placer dans les TextView définis dans "row_matches.xml"
                         int[] to = new int[]{R.id.tvMatchday, R.id.tvHomeTeam, R.id.tvScore, R.id.tvAwayTeam};
-
-                        // création de l'objet SimpleCursorAdapter...
                         adapter = new SimpleCursorAdapter(context, R.layout.row_matches, matrixCursor, from, to, 0);
                     }
 
-                    // ...qui va remplir l'objet ListView
                     ListView lvMatches = v.findViewById(R.id.lvMatches);
                     lvMatches.setAdapter(adapter);
                 } else {

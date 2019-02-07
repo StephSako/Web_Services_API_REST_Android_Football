@@ -3,14 +3,21 @@ package com.example.footballapi.controleur;
 import android.content.Context;
 import android.database.MatrixCursor;
 import android.support.annotation.NonNull;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import com.example.footballapi.R;
 import com.example.footballapi.model.competition.Classement;
+import com.example.footballapi.model.dao.DataBase;
+import com.example.footballapi.model.dao.TeamDAO;
 import com.example.footballapi.restService.RestUser;
 import com.example.footballapi.view.activities.ClassementActivity;
+import com.example.footballapi.view.activities.SplashScreen;
+import com.example.footballapi.view.activities.TeamActivity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -27,6 +34,7 @@ public class ClassementController {
     public void afficheListeTeamsCompetition(final int idCompet, final Context context, final ClassementActivity activity, String token) {
         Call<Classement> call = RestUser.get().competitions(token, idCompet);
         call.enqueue(new Callback<Classement>() {
+
             @Override
             public void onResponse(@NonNull Call<Classement> call, @NonNull Response<Classement> response) {
                 if (response.isSuccessful()) {
@@ -53,17 +61,10 @@ public class ClassementController {
                             matrixCursor.addRow(new Object[]{idTeam, position, club_name, diff, points});
                         }
 
-                        // on prendra les données des colonnes 1, 2, 3 et 4
                         String[] from = new String[]{"Position", "Club_name", "Diff", "Points"};
-
-                        // ...pour les placer dans les TextView définis dans "row_classement.xml"
                         int[] to = new int[]{R.id.tvPosition, R.id.tvClubname, R.id.tvDiff, R.id.tvPoints};
-
-                        // création de l'objet SimpleCursorAdapter...
                         adapter = new SimpleCursorAdapter(context, R.layout.row_classement, matrixCursor, from, to, 0);
                     }
-
-                    // ...qui va remplir l'objet ListView
                     activity.lvClassement.setAdapter(adapter);
                 } else {
                     Toast.makeText(activity, "Compétition introuvable", Toast.LENGTH_SHORT).show();
@@ -72,7 +73,39 @@ public class ClassementController {
 
             @Override
             public void onFailure(@NonNull Call<Classement> call, @NonNull Throwable t) {
-                Toast.makeText(activity, "Vérifiez votre connexion Internet", Toast.LENGTH_SHORT).show();
+                // On affiche le classement récupéré depuis la base de données locale
+                DataBase database = new DataBase(context);
+                List<TeamDAO> classementDAO = database.findClassementById(idCompet);
+
+                if (classementDAO.size() > 0) {
+
+                    Objects.requireNonNull(activity).setTitle(classementDAO.get(0).getNomCompet() + " - [Hors ligne]");
+
+                    String[] columns = new String[]{"_id", "Position", "Club_name", "Diff", "Points"};
+                    // Définition des données du tableau
+                    SimpleCursorAdapter adapter;
+                    try (MatrixCursor matrixCursor = new MatrixCursor(columns)) {
+                        Objects.requireNonNull(activity).startManagingCursor(matrixCursor);
+
+                        // On remplit les lignes (le classement d'id 0 représente le classement total du championnat)
+                        for (int i = 0; i < classementDAO.size(); i++) {
+                            String club_name = classementDAO.get(i).getClub_name();
+                            int position = classementDAO.get(i).getPosition();
+                            int points = classementDAO.get(i).getPoints();
+                            int diff = classementDAO.get(i).getDiff();
+                            int idTeam = classementDAO.get(i).getIdTeam();
+
+                            matrixCursor.addRow(new Object[]{idTeam, position, club_name, diff, points});
+                        }
+
+                        String[] from = new String[]{"Position", "Club_name", "Diff", "Points"};
+                        int[] to = new int[]{R.id.tvPosition, R.id.tvClubname, R.id.tvDiff, R.id.tvPoints};
+                        adapter = new SimpleCursorAdapter(context, R.layout.row_classement, matrixCursor, from, to, 0);
+                    }
+                    activity.lvClassement.setAdapter(adapter);
+                }
+
+                Toast.makeText(activity, "Classement non mis à jour.\nVérifiez votre connexion.", Toast.LENGTH_SHORT).show();
             }
         });
     }

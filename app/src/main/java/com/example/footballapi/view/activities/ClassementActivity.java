@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.ClassementController;
+import com.example.footballapi.model.dao.DataBase;
 
 public class ClassementActivity extends AppCompatActivity {
 
@@ -16,7 +17,6 @@ public class ClassementActivity extends AppCompatActivity {
 
     // Transmission de l'id de l'équipe cliquée
     final static String CLE_DONNEES_ID_TEAM = "idTeam";
-
     int idCompet = -1;
 
     private ClassementController classementcontroller = new ClassementController();

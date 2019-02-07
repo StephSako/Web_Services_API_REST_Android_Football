@@ -65,9 +65,12 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
 
         teamcontroller.afficheDetailsTeam(this.idTeam, this, getString(R.string.token));
 
-        // On affiche le fragment de la liste de joueurs par défaut (on change la couleur du bouton
+        // On affiche le fragment de la liste des matches par défaut (on change la couleur du bouton
         btnMatches.setBackgroundResource(R.color.green);
         btnSquad.setBackgroundResource(R.color.grey_desactivated);
+
+        btnSquad.setEnabled(true);
+        btnMatches.setEnabled(false);
 
         MatchesFragment simpleFragment = MatchesFragment.newInstance();
         getSupportFragmentManager().beginTransaction().add(R.id.idFragmentSquad_Match, simpleFragment, "MATCHES").addToBackStack("MATCHES").commit();
@@ -76,32 +79,33 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) { // On remplace le fragment par celui géré par le bouton cliqué
         if (v.getId() == R.id.btnSquad) { // On affiche la liste des joueurs de l'équipe
 
+            btnSquad.setEnabled(false);
+            btnMatches.setEnabled(true);
+
             btnMatches.setBackgroundResource(R.color.grey_desactivated);
             btnSquad.setBackgroundResource(R.color.green);
 
             SquadFragment simpleFragment = SquadFragment.newInstance();
-            getSupportFragmentManager().beginTransaction().replace(R.id.idFragmentSquad_Match, simpleFragment, "MATCHES").addToBackStack("MATCHES").commit();
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left)
+                    .replace(R.id.idFragmentSquad_Match, simpleFragment, "MATCHES").addToBackStack("MATCHES").commit();
         }
         else if (v.getId() == R.id.btnMatches) { // On affiche la liste des matches de l'équipe
+
+            btnSquad.setEnabled(true);
+            btnMatches.setEnabled(false);
 
             btnSquad.setBackgroundResource(R.color.grey_desactivated);
             btnMatches.setBackgroundResource(R.color.green);
 
             MatchesFragment simpleFragment = MatchesFragment.newInstance();
-            getSupportFragmentManager().beginTransaction().replace(R.id.idFragmentSquad_Match, simpleFragment).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_left, R.anim.slide_to_right)
+                    .replace(R.id.idFragmentSquad_Match, simpleFragment).addToBackStack(null).commit();
         }
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
-        // On supprime le fragment pour éviter un appel REST inutile
-        /*for (Fragment fragment:getSupportFragmentManager().getFragments()) {
-            if (fragment!=null) {
-                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-            }
-        }*/
 
         Intent i = new Intent(this, ClassementActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
