@@ -51,13 +51,6 @@ Au démarrage (ce qui permet d'avoir tous les classements au lieu d'en avoir qu'
         on met à jour la BD locale
     sinon
         rien
-    
-A la consultation d'un classement
-    s'il y a Internet
-        on fait un appel de WebService
-        on met à jour la BD locale du classement consulté
-    sinon
-        on utilise la BD locale
 ~~~
 
 # Problèmes rencontrés
