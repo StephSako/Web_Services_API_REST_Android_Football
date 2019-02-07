@@ -30,6 +30,19 @@ https://square.github.io/retrofit/
 # Mise en cache des données
 ## DAO (Data Access Object)
 
+L'API me renvoyant beaucoup de données que je traite dans mon application, à savoir 8 championnats composées d'une vingtaine d'équipes chacun, elles-mêmes composées de plus de 40 matches et d'une trentaine de joueurs chacune, j'ai décidé de stocker les classements de chaque championnat.
+
+Afin d'assurer une persistance longue des classements, j'ai choisi d'opter pour la DAO qui permet de stocker des données dans une base de données locale SQLite. Voici sa construction :
+
+| Colonne       | Type    | Nullable | Description                                                        |
+|:-------------:|:-------:|:--------:|--------------------------------------------------------------------|
+| idCompet (PK) | integer | Non      | ID de la compétition associée à l'équipe                           |
+| idTeam        | integer | Non      | ID de l'équipe                                                     |
+| position      | integer | Non      | Position de l'équipe dans le classement de la compétition associée |
+| nomTeam       | text    | Non      | Nom de l'équipe                                                    |
+| diff          | integer | Non      | Différence de buts de l'équipe (NbButsMarqués - NbButsConcédés)    |
+| points        | integer | Non      | Points de l'équipe dans le classement de la compétition associée   |
+
 # Problèmes rencontrés
 
 # Conclusion
