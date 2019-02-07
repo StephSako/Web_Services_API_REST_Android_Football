@@ -34,7 +34,7 @@ public class DataBaseController {
                         int diff = classement.getStandings().get(0).getTable().get(i - 1).getGoalDifference();
                         int idTeam = classement.getStandings().get(0).getTable().get(i - 1).getTeam().getId();
 
-                        activity.database.insertClassement(idTeam, idCompet, position, club_name, diff, points);
+                        activity.getDataBase().insertClassement(idTeam, idCompet, classement.getCompetition().getName(), position, club_name, diff, points);
                     }
                 } else {
                     Toast.makeText(activity, "Classement introuvable", Toast.LENGTH_SHORT).show();
@@ -42,9 +42,7 @@ public class DataBaseController {
             }
 
             @Override
-            public void onFailure(@NonNull Call<Classement> call, @NonNull Throwable t) {
-                Toast.makeText(activity, "Classements non mis à jour\nVérifiez votre connexion", Toast.LENGTH_SHORT).show();
-            }
+            public void onFailure(@NonNull Call<Classement> call, @NonNull Throwable t) { }
         });
     }
 }

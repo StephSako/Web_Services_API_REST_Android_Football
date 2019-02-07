@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.footballapi.R;
 import com.example.footballapi.model.competition.Classement;
+import com.example.footballapi.model.dao.DataBase;
 import com.example.footballapi.model.dao.TeamDAO;
 import com.example.footballapi.restService.RestUser;
 import com.example.footballapi.view.activities.ClassementActivity;
@@ -58,10 +59,6 @@ public class ClassementController {
                             int idTeam = classement.getStandings().get(0).getTable().get(i - 1).getTeam().getId();
 
                             matrixCursor.addRow(new Object[]{idTeam, position, club_name, diff, points});
-
-                            // Mise à jour du classement consulté dans la base de données locale
-                            SplashScreen splashscreen = new SplashScreen();
-                            splashscreen.database.insertClassement(idTeam, idCompet, position, club_name, diff, points);
                         }
 
                         String[] from = new String[]{"Position", "Club_name", "Diff", "Points"};
@@ -77,33 +74,38 @@ public class ClassementController {
             @Override
             public void onFailure(@NonNull Call<Classement> call, @NonNull Throwable t) {
                 // On affiche le classement récupéré depuis la base de données locale
-                SplashScreen splashscreen = new SplashScreen();
-                List<TeamDAO> classementDAO = splashscreen.database.findClassementById(idCompet);
+                DataBase database = new DataBase(context);
+                List<TeamDAO> classementDAO = database.findClassementById(idCompet);
 
-                String[] columns = new String[] { "_id", "Position", "Club_name", "Diff", "Points" };
+                if (classementDAO.size() > 0) {
 
-                // Définition des données du tableau
-                SimpleCursorAdapter adapter;
-                try (MatrixCursor matrixCursor = new MatrixCursor(columns)) {
-                    Objects.requireNonNull(activity).startManagingCursor(matrixCursor);
+                    Objects.requireNonNull(activity).setTitle(classementDAO.get(0).getNomCompet() + " - [Hors ligne]");
 
-                    // On remplit les lignes (le classement d'id 0 représente le classement total du championnat)
-                    for (int i = 0; i <= classementDAO.size(); i++) {
-                        String club_name = classementDAO.get(i).getClub_name();
-                        int position = classementDAO.get(i).getPosition();
-                        int points = classementDAO.get(i).getPoints();
-                        int diff = classementDAO.get(i).getDiff();
-                        int idTeam = classementDAO.get(i).getIdTeam();
+                    String[] columns = new String[]{"_id", "Position", "Club_name", "Diff", "Points"};
+                    // Définition des données du tableau
+                    SimpleCursorAdapter adapter;
+                    try (MatrixCursor matrixCursor = new MatrixCursor(columns)) {
+                        Objects.requireNonNull(activity).startManagingCursor(matrixCursor);
 
-                        matrixCursor.addRow(new Object[]{idTeam, position, club_name, diff, points});
+                        // On remplit les lignes (le classement d'id 0 représente le classement total du championnat)
+                        for (int i = 0; i < classementDAO.size(); i++) {
+                            String club_name = classementDAO.get(i).getClub_name();
+                            int position = classementDAO.get(i).getPosition();
+                            int points = classementDAO.get(i).getPoints();
+                            int diff = classementDAO.get(i).getDiff();
+                            int idTeam = classementDAO.get(i).getIdTeam();
+
+                            matrixCursor.addRow(new Object[]{idTeam, position, club_name, diff, points});
+                        }
+
+                        String[] from = new String[]{"Position", "Club_name", "Diff", "Points"};
+                        int[] to = new int[]{R.id.tvPosition, R.id.tvClubname, R.id.tvDiff, R.id.tvPoints};
+                        adapter = new SimpleCursorAdapter(context, R.layout.row_classement, matrixCursor, from, to, 0);
                     }
-
-                    String[] from = new String[]{"Position", "Club_name", "Diff", "Points"};
-                    int[] to = new int[]{R.id.tvPosition, R.id.tvClubname, R.id.tvDiff, R.id.tvPoints};
-                    adapter = new SimpleCursorAdapter(context, R.layout.row_classement, matrixCursor, from, to, 0);
+                    activity.lvClassement.setAdapter(adapter);
                 }
-                activity.lvClassement.setAdapter(adapter);
-                Toast.makeText(activity, "Classement non mis à jour\nVérifiez votre connexion", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(activity, "Classement non mis à jour.\nVérifiez votre connexion.", Toast.LENGTH_SHORT).show();
             }
         });
     }
