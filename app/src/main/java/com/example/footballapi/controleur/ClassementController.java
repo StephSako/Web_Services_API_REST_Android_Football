@@ -3,6 +3,7 @@ package com.example.footballapi.controleur;
 import android.content.Context;
 import android.database.MatrixCursor;
 import android.support.annotation.NonNull;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
@@ -52,6 +53,8 @@ public class ClassementController {
 
                             matrixCursor.addRow(new Object[]{idTeam, position, club_name, diff, points});
                         }
+
+                        ListView lv = activity.lvClassement;
 
                         // on prendra les données des colonnes 1, 2, 3 et 4
                         String[] from = new String[]{"Position", "Club_name", "Diff", "Points"};

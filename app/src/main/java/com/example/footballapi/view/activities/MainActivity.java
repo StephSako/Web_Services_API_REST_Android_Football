@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 
 import com.example.footballapi.R;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     // Boutons de l'écran
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+
+        // On change le title de l'actionBar
+        Objects.requireNonNull(this).setTitle("Compétitions");
 
         // Récupérer les buttons
         btnBundesliga = findViewById(R.id.btnBundesliga);
