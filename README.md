@@ -43,6 +43,23 @@ Afin d'assurer une persistance longue des classements, j'ai choisi d'opter pour 
 | diff          | integer | Non      | Différence de buts de l'équipe (NbButsMarqués - NbButsConcédés)    |
 | points        | integer | Non      | Points de l'équipe dans le classement de la compétition associée   |
 
+Voici ma logique concernant la mise en cache et son utilisation :
+
+~~~
+Au démarrage
+    s'il y a Internet
+        on met à jour la BD locale
+    sinon
+        rien
+    
+A la consultation d'un classement
+    s'il y a Internet
+        on fait un appel de WebService
+        on met à jour la BD locale
+    sinon
+        on utilise la BD locale
+~~~
+
 # Problèmes rencontrés
 
 # Conclusion
