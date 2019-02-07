@@ -25,6 +25,8 @@ https://square.github.io/retrofit/
 
 # Enchaînement et compositions des écrans
 
+# Préférences
+
 # Chargement des images au format SVG
 
 # Mise en cache des données
