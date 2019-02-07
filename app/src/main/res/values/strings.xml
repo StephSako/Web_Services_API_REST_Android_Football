@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Football API</string>
+    <string name="app_name">FootLite</string>
     <string name="token">e0d9f47d73ae4a4a87eeb24935d8b2f8</string>
 
     <string name="tvBundesligaTitle">Allemagne</string>
