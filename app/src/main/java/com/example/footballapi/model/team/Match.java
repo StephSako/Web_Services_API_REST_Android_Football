@@ -1,6 +1,5 @@
 package com.example.footballapi.model.team;
 
-import com.example.footballapi.model.competition.Competition;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -12,111 +11,96 @@ public class Match {
 
             @SerializedName("homeTeam")
             @Expose
-            private int homeTeam;
+            private int ScorehomeTeam = -1;
 
             @SerializedName("awayTeam")
             @Expose
-            private int awayTeam;
+            private int ScoreawayTeam = -1;
 
             public int getHomeTeam() {
-                return homeTeam;
-            }
-
-            public void setHomeTeam(int homeTeam) {
-                this.homeTeam = homeTeam;
+                return ScorehomeTeam;
             }
 
             public int getAwayTeam() {
-                return awayTeam;
+                return ScoreawayTeam;
             }
 
-            public void setAwayTeam(int awayTeam) {
-                this.awayTeam = awayTeam;
-            }
         }
 
         @SerializedName("fullTime")
         @Expose
-        private FullTime fullTime;
-
-        @SerializedName("winner")
-        @Expose
-        private String winner;
+        private FullTime fullTime = new FullTime();
 
         public FullTime getFullTime() {
             return fullTime;
         }
-
-        public void setFullTime(FullTime fullTime) {
-            this.fullTime = fullTime;
-        }
-
-        public String getWinner() {
-            return winner;
-        }
-
-        public void setWinner(String winner) {
-            this.winner = winner;
-        }
     }
 
-    @SerializedName("competition")
-    @Expose
-    private Competition competition;
+    public class AwayTeam{
+
+        @SerializedName("name")
+        @Expose
+        private String name = "";
+
+        public String getName() { return name; }
+    }
+
+    public class HomeTeam{
+
+        @SerializedName("name")
+        @Expose
+        private String name = "";
+
+        public String getName() { return name; }
+    }
 
     @SerializedName("score")
     @Expose
-    private Score score;
+    private Score score = new Score();
 
     @SerializedName("homeTeam")
     @Expose
-    private Team homeTeam;
+    private HomeTeam homeTeam = new HomeTeam();
 
     @SerializedName("awayTeam")
     @Expose
-    private Team awayTeam;
+    private AwayTeam awayTeam = new AwayTeam();
 
     @SerializedName("matchday")
     @Expose
-    private int matchday;
+    private int matchday = -1;
 
-    public Competition getCompetition() {
-        return competition;
-    }
+    @SerializedName("id")
+    @Expose
+    private int id = -1;
 
-    public void setCompetition(Competition competition) {
-        this.competition = competition;
-    }
+    @SerializedName("status")
+    @Expose
+    private String status = "";
+
+    @SerializedName("utcDate")
+    @Expose
+    private String utcDate = "";
+
+    public String getUtcDate() { return utcDate; }
+
+    public String getStatus() { return status; }
 
     public Score getScore() {
         return score;
     }
 
-    public void setScore(Score score) {
-        this.score = score;
-    }
-
-    public Team getHomeTeam() {
+    public HomeTeam getHomeTeam() {
         return homeTeam;
     }
 
-    public void setHomeTeam(Team homeTeam) {
-        this.homeTeam = homeTeam;
-    }
-
-    public Team getAwayTeam() {
+    public AwayTeam getAwayTeam() {
         return awayTeam;
-    }
-
-    public void setAwayTeam(Team awayTeam) {
-        this.awayTeam = awayTeam;
     }
 
     public int getMatchday() {
         return matchday;
     }
 
-    public void setMatchday(int matchday) {
-        this.matchday = matchday;
-    }
+    public int getId() { return id; }
 }

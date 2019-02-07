@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context="com.example.footballapi.view.fragments.SquadFragment">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tvNomTitle"
+            android:textColor="@color/green"
+            android:textStyle="bold"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:padding="4dp"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tvPaysTitle"
+            android:textColor="@color/green"
+            android:textStyle="bold"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:padding="4dp"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tvPosteTitle"
+            android:textColor="@color/green"
+            android:textStyle="bold"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:padding="4dp"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tvNumeroTitle"
+            android:textColor="@color/green"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:gravity="center" />
+    </LinearLayout>
+    <ListView
+        android:id="@+id/lvSquad"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </ListView>
+
+</LinearLayout>

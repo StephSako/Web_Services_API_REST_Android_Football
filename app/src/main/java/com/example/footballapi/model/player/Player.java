@@ -7,65 +7,52 @@ public class Player {
 
     @SerializedName("id")
     @Expose
-    private int id;
+    private int id = -1;
 
     @SerializedName("name")
     @Expose
-    private String name;
+    private String name = "";
 
     @SerializedName("nationality")
     @Expose
-    private String nationality;
+    private String nationality = "";
 
     @SerializedName("position")
     @Expose
-    private String position;
+    private String position = "";
 
-    @SerializedName("role")
+    @SerializedName("dateOfBirth")
     @Expose
-    private String role;
+    private String dateOfBirth = "";
 
     @SerializedName("shirtNumber")
     @Expose
-    private int shirtNumber;
+    private int shirtNumber = -1;
 
-    public int getId() {
-        return id;
-    }
+    @SerializedName("role")
+    @Expose
+    private String role = "";
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public String getRole() { return role; }
+
+    public String getDateOfBirth() { return dateOfBirth; }
+
+    public int getId() { return id; }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getNationality() {
         return nationality;
     }
 
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
-
     public String getPosition() {
         return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
     }
 
     public int getShirtNumber() {
         return shirtNumber;
     }
 
-    public void setShirtNumber(int shirtNumber) {
-        this.shirtNumber = shirtNumber;
-    }
 }

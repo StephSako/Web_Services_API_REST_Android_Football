@@ -1,107 +1,77 @@
 package com.example.footballapi.model.team;
 
-import com.example.footballapi.model.competition.Competition;
+import com.example.footballapi.model.competition.Classement;
 import com.example.footballapi.model.player.Player;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Team {
 
     @SerializedName("id")
     @Expose
-    private int id;
+    private int id = -1;
 
     @SerializedName("activeCompetitions")
     @Expose
-    private List<Competition> activeCompetitions;
+    private List<Classement.Competition> activeCompetitions = Collections.emptyList();
 
     @SerializedName("name")
     @Expose
-    private String name;
+    private String name = "";
 
     @SerializedName("crestUrl")
     @Expose
-    private String crestUrl;
+    private String crestUrl = "";
 
-    @SerializedName("clubColors")
+    @SerializedName("website")
     @Expose
-    private String clubColors;
+    private String website = "";
 
     @SerializedName("venue")
     @Expose
-    private String venue;
+    private String venue = "";
 
     @SerializedName("squad")
     @Expose
-    private List<Player> squad;
+    private List<Player> squad  = Collections.emptyList();
 
     @SerializedName("matches")
     @Expose
-    private List<Match> matches;
+    private List<Match> matches  = Collections.emptyList();
+
+    public String getCrestUrl() {
+        if (crestUrl != null)
+                return crestUrl;
+        else return "";
+    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public List<Competition> getActiveCompetitions() {
+    public List<Classement.Competition> getActiveCompetitions() {
         return activeCompetitions;
     }
 
-    public void setActiveCompetitions(List<Competition> activeCompetitions) {
-        this.activeCompetitions = activeCompetitions;
-    }
+    public String getName() {return name; }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCrestUrl() {
-        return crestUrl;
-    }
-
-    public void setCrestUrl(String crestUrl) {
-        this.crestUrl = crestUrl;
-    }
-
-    public String getClubColors() {
-        return clubColors;
-    }
-
-    public void setClubColors(String clubColors) {
-        this.clubColors = clubColors;
+    public String getWebSite() {
+        return website;
     }
 
     public String getVenue() {
         return venue;
     }
 
-    public void setVenue(String venue) {
-        this.venue = venue;
-    }
-
     public List<Player> getSquad() {
         return squad;
-    }
-
-    public void setSquad(List<Player> squad) {
-        this.squad = squad;
     }
 
     public List<Match> getMatches() {
         return matches;
     }
 
-    public void setMatches(List<Match> matches) {
-        this.matches = matches;
-    }
 }
