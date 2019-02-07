@@ -3,6 +3,8 @@ package com.example.footballapi.view.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -77,5 +79,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+
+    // Affichage du menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    // Écouteur sur le menu
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // L’item sur lequel l’utilisateur a cliqué
+        int id = item.getItemId();
+        // Afficher le fragment des préférences
+        if (id == R.id.pref) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+            return true;
+        }
+        else if (id == R.id.credits) {
+            Intent intent = new Intent(this, CreditsActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

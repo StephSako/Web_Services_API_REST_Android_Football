@@ -31,7 +31,7 @@ public class ClassementController {
     /**
      * Affiche le classement d'une compétition
      */
-    public void afficheListeTeamsCompetition(final int idCompet, final Context context, final ClassementActivity activity, String token) {
+    public void afficheListeTeamsCompetition(final int idCompet, final ClassementActivity activity, String token) {
         Call<Classement> call = RestUser.get().competitions(token, idCompet);
         call.enqueue(new Callback<Classement>() {
 
@@ -63,9 +63,10 @@ public class ClassementController {
 
                         String[] from = new String[]{"Position", "Club_name", "Diff", "Points"};
                         int[] to = new int[]{R.id.tvPosition, R.id.tvClubname, R.id.tvDiff, R.id.tvPoints};
-                        adapter = new SimpleCursorAdapter(context, R.layout.row_classement, matrixCursor, from, to, 0);
+                        adapter = new SimpleCursorAdapter(activity, R.layout.row_classement, matrixCursor, from, to, 0);
                     }
                     activity.lvClassement.setAdapter(adapter);
+
                 } else {
                     Toast.makeText(activity, "Compétition introuvable", Toast.LENGTH_SHORT).show();
                 }
@@ -73,8 +74,9 @@ public class ClassementController {
 
             @Override
             public void onFailure(@NonNull Call<Classement> call, @NonNull Throwable t) {
+
                 // On affiche le classement récupéré depuis la base de données locale
-                DataBase database = new DataBase(context);
+                DataBase database = new DataBase(activity);
                 List<TeamDAO> classementDAO = database.findClassementById(idCompet);
 
                 if (classementDAO.size() > 0) {
@@ -100,7 +102,7 @@ public class ClassementController {
 
                         String[] from = new String[]{"Position", "Club_name", "Diff", "Points"};
                         int[] to = new int[]{R.id.tvPosition, R.id.tvClubname, R.id.tvDiff, R.id.tvPoints};
-                        adapter = new SimpleCursorAdapter(context, R.layout.row_classement, matrixCursor, from, to, 0);
+                        adapter = new SimpleCursorAdapter(activity, R.layout.row_classement, matrixCursor, from, to, 0);
                     }
                     activity.lvClassement.setAdapter(adapter);
                 }

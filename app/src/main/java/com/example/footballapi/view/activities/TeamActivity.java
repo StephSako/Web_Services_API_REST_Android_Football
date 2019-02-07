@@ -1,9 +1,13 @@
 package com.example.footballapi.view.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -39,12 +43,19 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
     public TextView tvEntraineur;
     public ImageView logo_club;
 
+    public boolean loadingPicsTeam;
+
     private TeamController teamcontroller = new TeamController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.team_activity);
+
+        // Récupérer les valeurs choisies
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        // Préférences du switch pour afficher les logos
+        this.loadingPicsTeam = sharedPref.getBoolean("logosTeam", true);
 
         this.btnSquad = findViewById(R.id.btnSquad);
         this.btnMatches = findViewById(R.id.btnMatches);
@@ -112,5 +123,43 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(i);
         overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
         finish();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Récupérer les valeurs choisies
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        // Préférences du switch pour afficher les logos
+        this.loadingPicsTeam = sharedPref.getBoolean("logosTeam", true);
+    }
+
+    // Affichage du menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    // Écouteur sur le menu
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // L’item sur lequel l’utilisateur a cliqué
+        int id = item.getItemId();
+        // Afficher le fragment des préférences
+        if (id == R.id.pref) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+            return true;
+        }
+        else if (id == R.id.credits) {
+            Intent intent = new Intent(this, CreditsActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

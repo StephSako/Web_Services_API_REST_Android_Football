@@ -31,6 +31,10 @@
         <activity android:name=".view.activities.TeamActivity" />
 
         <activity android:name=".view.activities.PlayerActivity" />
+
+        <activity android:name=".view.activities.CreditsActivity" />
+
+        <activity android:name=".view.activities.SettingsActivity" />
     </application>
 
 </manifest>

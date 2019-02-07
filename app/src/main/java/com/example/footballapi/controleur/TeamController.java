@@ -3,11 +3,13 @@ package com.example.footballapi.controleur;
 import android.app.Activity;
 import android.content.Context;
 import android.database.MatrixCursor;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ahmadrosid.svgloader.SvgLoader;
@@ -68,7 +70,7 @@ public class TeamController {
                     activity.tvActiveCompetitions.setText(activeCompetitions.toString());
                     activity.tvEntraineur.setText(entraineur.toString());
 
-                    if (!team.getCrestUrl().equals(""))
+                    if (!team.getCrestUrl().equals("") && activity.loadingPicsTeam)
                         SvgLoader.pluck()
                                 .with(activity)
                                 .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
@@ -198,6 +200,7 @@ public class TeamController {
 
                                 Score = day + "/" + month + "/" + year;
                             }
+
                             int id = team.getMatches().get(i).getId();
                             matrixCursor.addRow(new Object[]{id, MatchDay, HomeTeam, Score, AwayTeam});
                         }
@@ -206,7 +209,6 @@ public class TeamController {
                         int[] to = new int[]{R.id.tvMatchday, R.id.tvHomeTeam, R.id.tvScore, R.id.tvAwayTeam};
                         adapter = new SimpleCursorAdapter(context, R.layout.row_matches, matrixCursor, from, to, 0);
                     }
-
                     ListView lvMatches = v.findViewById(R.id.lvMatches);
                     lvMatches.setAdapter(adapter);
                 } else {

@@ -2,12 +2,15 @@ package com.example.footballapi.view.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.DataBaseController;
@@ -30,13 +33,18 @@ public class SplashScreen extends Activity {
         int SPLASH_TIME_OUT = 2050;
         ImageView logo = findViewById(R.id.ivSplashscreen);
 
-        this.database = new DataBase(this);
+        // Récupérer les valeurs choisies
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
         /* On met à jour l'intégralité de la table EQUIPES de la base de données locales pour la persistance longue
         avec le classement des 8 championnats car les classements sont dynamiques */
 
-        for (int i = 0; i < tabIdCompet.length; i++){
-            databaseupdatercompet.updateAllCompet(tabIdCompet[i],this, getString(R.string.token));
+        if (sharedPref.getBoolean("cache", true)) {
+            this.database = new DataBase(this);
+
+            for (int i = 0; i < tabIdCompet.length; i++) {
+                databaseupdatercompet.updateAllCompet(tabIdCompet[i], this, getString(R.string.token));
+            }
         }
 
         new Handler().postDelayed(new Runnable(){

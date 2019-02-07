@@ -39,7 +39,7 @@ public class PlayerController {
                     // On change le title de l'actionBar par le nom du joueur
                     Objects.requireNonNull(activity).setTitle(player.getName());
 
-                    if (!activity.crestURLPlayer.equals(""))
+                    if (!activity.crestURLPlayer.equals("") && activity.loadingPicsPlayer)
                         SvgLoader.pluck()
                                 .with(activity)
                                 .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
