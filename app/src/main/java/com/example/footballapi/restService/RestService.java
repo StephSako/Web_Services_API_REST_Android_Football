@@ -2,6 +2,7 @@ package com.example.footballapi.restService;
 
 import com.example.footballapi.model.competition.Classement;
 import com.example.footballapi.model.player.Player;
+import com.example.footballapi.model.team.Match;
 import com.example.footballapi.model.team.Team;
 
 import retrofit2.Call;
@@ -19,13 +20,9 @@ public interface RestService {
     @GET("players/{id}/")
     Call<Player> players(@Header("X-Auth-Token") String token, @Path("id") int id);
 
-    // Afficher la liste des joueurs d'une equipe
+    // Afficher une equipe en particulier (détails + liste de joueurs)
     @GET("teams/{id}/")
-    Call<Team> teamSquad(@Header("X-Auth-Token") String token, @Path("id") int id);
-
-    // Afficher les détails d'une equipe
-    @GET("teams/{id}/")
-    Call<Team> teamsDetails(@Header("X-Auth-Token") String token, @Path("id") int id);
+    Call<Team> teams(@Header("X-Auth-Token") String token, @Path("id") int id);
 
     // Afficher la classement d'une competition
     @GET("competitions/{id}/standings")

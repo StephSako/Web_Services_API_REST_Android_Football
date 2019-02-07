@@ -1,45 +1,4 @@
 <resources>
-    <string name="app_name">Football API</string>
+    <string name="app_name">FootballAPI</string>
     <string name="token">e0d9f47d73ae4a4a87eeb24935d8b2f8</string>
-
-    <string name="tvBundesligaTitle">Allemagne</string>
-    <string name="tvPremierLeagueTitle">Angleterre</string>
-    <string name="tvLiguaNOSTitle">Portugal</string>
-    <string name="tvLigue1Title">France</string>
-    <string name="tvSerieATitle">Italie</string>
-    <string name="tvPrimeraDivisionTitle">Espagne</string>
-    <string name="tvSerieABrazilTitle">Brésil</string>
-    <string name="tvNetherlandsTitle">Pays-Bas</string>
-    <string name="ibDescrSerieABrazil">Logo du championnat brésilien</string>
-    <string name="ibDescrNetherlands">Logo du championnat néerlandais</string>
-    <string name="ibDescrSerieA">Logo championnat Serie A</string>
-    <string name="ibDescrPrimeraDivision">Logo championnat Primera Division</string>
-    <string name="ibDescrLigue1">Logo championnat Ligue 1</string>
-    <string name="ibDescrLiguaNOS">Logo championnat Ligue NOS</string>
-    <string name="ibDescrBundesliga">Logo championnat Bundesliga</string>
-    <string name="ibDescrPremierLeague">Logo championnat Premier League</string>
-    <string name="tvDiffTitle">Diff.</string>
-    <string name="tvPointsTitle">Points</string>
-    <string name="tvMatchTitle">Match</string>
-    <string name="tvDomicileTitle">Domicile</string>
-    <string name="tvScoreTitle">Score</string>
-    <string name="tvVisiteurTitle">Visiteur</string>
-    <string name="tvNomTitle">Nom</string>
-    <string name="tvPaysTitle">Pays</string>
-    <string name="tvPosteTitle">Poste</string>
-    <string name="tvNumeroTitle">N°</string>
-    <string name="ivLogoSplashScreen">Logo application SplashScreen</string>
-    <string name="tvStadeTitle">Stade :</string>
-    <string name="tvActiveCompetTitle">Compétitions :</string>
-    <string name="btMatchesTitle">Matches</string>
-    <string name="btnSquadTitle">Equipe</string>
-    <string name="tvWebSiteTitle">WebSite : </string>
-    <string name="ivLogoClub">LogoClub</string>
-    <string name="tvEntraineursTitle">Entraîneur(s) :</string>
-    <string name="tvNomPlayerTitle">Nom :</string>
-    <string name="tvBirthdayTitle">Date de naissance :</string>
-    <string name="tvNationalityTitle">Pays d\'origine :</string>
-    <string name="tvPostePlayerTitle">Poste :</string>
-    <string name="tvShirtNumberPlayerTitle">Numéro de maillot :</string>
-    <string name="tvClubNamePlayerTitle">Equipe :</string>
 </resources>
