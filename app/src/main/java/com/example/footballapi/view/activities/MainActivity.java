@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.footballapi.R;
+import com.example.footballapi.model.dao.DataBase;
 
 import java.util.Objects;
 

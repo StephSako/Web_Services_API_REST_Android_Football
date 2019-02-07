@@ -11,6 +11,8 @@ import com.example.footballapi.R;
 import com.example.footballapi.model.competition.Classement;
 import com.example.footballapi.restService.RestUser;
 import com.example.footballapi.view.activities.ClassementActivity;
+import com.example.footballapi.view.activities.SplashScreen;
+import com.example.footballapi.view.activities.TeamActivity;
 
 import java.util.Objects;
 
@@ -28,6 +30,7 @@ public class ClassementController {
     public void afficheListeTeamsCompetition(final int idCompet, final Context context, final ClassementActivity activity, String token) {
         Call<Classement> call = RestUser.get().competitions(token, idCompet);
         call.enqueue(new Callback<Classement>() {
+
             @Override
             public void onResponse(@NonNull Call<Classement> call, @NonNull Response<Classement> response) {
                 if (response.isSuccessful()) {
@@ -52,6 +55,10 @@ public class ClassementController {
                             int idTeam = classement.getStandings().get(0).getTable().get(i - 1).getTeam().getId();
 
                             matrixCursor.addRow(new Object[]{idTeam, position, club_name, diff, points});
+
+                            // Mise à jour du classement consulté dans la base de données locale
+                            SplashScreen splashscreen = new SplashScreen();
+                            splashscreen.database.insertClassement(idTeam, idCompet, position, club_name, diff, points);
                         }
 
                         ListView lv = activity.lvClassement;

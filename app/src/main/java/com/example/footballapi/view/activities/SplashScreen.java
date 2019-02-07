@@ -9,8 +9,16 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.example.footballapi.R;
+import com.example.footballapi.controleur.DataBaseController;
+import com.example.footballapi.model.dao.DataBase;
 
 public class SplashScreen extends Activity {
+
+    private final int[] tabIdCompet = {2002, 2019, 2021, 2014, 2015, 2017, 2003, 2013};
+    public DataBase database;
+    private DataBaseController databaseupdatercompet = new DataBaseController();
+
+    public SplashScreen() { }
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -19,10 +27,21 @@ public class SplashScreen extends Activity {
         int SPLASH_TIME_OUT = 2050;
         ImageView logo = findViewById(R.id.ivSplashscreen);
 
+        this.database = new DataBase(this);
+
+        /* On met à jour l'intégralité de la table EQUIPES de la base de données locales pour la persistance longue
+        avec le classement des 8 championnats car les classements sont dynamiques */
+
+        for (int i = 0; i < tabIdCompet.length; i++){
+            databaseupdatercompet.updateAllCompet(tabIdCompet[i],this, getString(R.string.token));
+        }
+
         new Handler().postDelayed(new Runnable(){
 
             @Override
             public void run(){
+
+                // On lance la première activité du choix des compétitions
                 Intent intent = new Intent(SplashScreen.this, MainActivity.class);
                 startActivity(intent);
                 finish();
