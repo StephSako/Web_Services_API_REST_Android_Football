@@ -43,7 +43,7 @@ public class DataBaseController {
 
             @Override
             public void onFailure(@NonNull Call<Classement> call, @NonNull Throwable t) {
-                Toast.makeText(activity, "Mise à jour des classements impossible", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Classements non mis à jour\nVérifiez votre connexion", Toast.LENGTH_SHORT).show();
             }
         });
     }

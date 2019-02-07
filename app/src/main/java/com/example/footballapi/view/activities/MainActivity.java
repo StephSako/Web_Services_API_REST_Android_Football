@@ -13,16 +13,6 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    // Boutons de l'écran
-    private ImageButton btnBundesliga;
-    private ImageButton btnPrimeraDivision;
-    private ImageButton btnSerieA;
-    private ImageButton btnLigue1;
-    private ImageButton btnPremierLeague;
-    private ImageButton btnLiguaNOS;
-    private ImageButton btnNetherlands;
-    private ImageButton btnBresil;
-
     // Id de la compétition
     private int idCompet = -1;
 
@@ -44,17 +34,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.main_activity);
 
         // On change le title de l'actionBar
-        Objects.requireNonNull(this).setTitle("Compétitions");
+        this.setTitle("Compétitions");
 
         // Récupérer les buttons
-        btnBundesliga = findViewById(R.id.btnBundesliga);
-        btnPrimeraDivision = findViewById(R.id.btnPrimeraDivision);
-        btnSerieA = findViewById(R.id.btnSerieA);
-        btnLigue1 = findViewById(R.id.btnLigue1);
-        btnPremierLeague = findViewById(R.id.btnPremierLeague);
-        btnLiguaNOS = findViewById(R.id.btnLiguaNOS);
-        btnNetherlands = findViewById(R.id.btnNetherlands);
-        btnBresil = findViewById(R.id.btnBresil);
+        // Boutons de l'écran
+        ImageButton btnBundesliga = findViewById(R.id.btnBundesliga);
+        ImageButton btnPrimeraDivision = findViewById(R.id.btnPrimeraDivision);
+        ImageButton btnSerieA = findViewById(R.id.btnSerieA);
+        ImageButton btnLigue1 = findViewById(R.id.btnLigue1);
+        ImageButton btnPremierLeague = findViewById(R.id.btnPremierLeague);
+        ImageButton btnLiguaNOS = findViewById(R.id.btnLiguaNOS);
+        ImageButton btnNetherlands = findViewById(R.id.btnNetherlands);
+        ImageButton btnBresil = findViewById(R.id.btnBresil);
 
         // Ecouteurs sur les boutons
         btnBundesliga.setOnClickListener(this);

@@ -1,8 +1,13 @@
 package com.example.footballapi.model.dao;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataBase extends SQLiteOpenHelper {
 
@@ -38,5 +43,26 @@ public class DataBase extends SQLiteOpenHelper {
         String sqlInsert = "insert or replace into EQUIPES (idTeam, idCompet, nomTeam, diff, points) values ("
                             + idTeam + ", " + idCompet + ", '" + position + ", " + nomTeam + "', " + diff + ", " + points + ")";
         this.getWritableDatabase().execSQL(sqlInsert);
+    }
+
+    // Méthode permettant de récupérer le classement d'une compétition dont l'id est passé en paramètre
+    public List<TeamDAO> findClassementById(int idCompet){
+        List<TeamDAO> classement = new ArrayList<>();
+        String sqlSearchClassment = "select idTeam, position, nomTeam, diff, points from EQUIPES where idCompet = '"
+                                + idCompet + "' order by position";
+
+        // Résultat du SELECT
+        @SuppressLint("Recycle") Cursor cursor = this.getReadableDatabase().rawQuery(sqlSearchClassment, null);
+
+        // On parcours le curseur
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            TeamDAO teamDAO = new TeamDAO(cursor.getInt(0),cursor.getInt(1),
+                    cursor.getString(2), cursor.getInt(3), cursor.getInt(4));
+            classement.add(teamDAO);
+            cursor.moveToNext();
+        }
+
+        return classement;
     }
 }
