@@ -21,12 +21,16 @@ import retrofit2.Response;
 
 public class PlayerController {
 
-    public PlayerController() {   }
+    private PlayerActivity activity;
+
+    public PlayerController(PlayerActivity activity) {
+        this.activity = activity;
+    }
 
     /**
      * Affiche les détails d'un joueur
      */
-    public void afficheDetailsJoueur(final PlayerActivity activity, String token) {
+    public void onCreate(String token) {
         Call<Player> call = RestUser.get().players(token, activity.idPlayer);
         call.enqueue(new Callback<Player>() {
             @SuppressLint("SetTextI18n")

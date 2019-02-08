@@ -6,7 +6,7 @@ import android.widget.Toast;
 import com.example.footballapi.model.competition.Classement;
 import com.example.footballapi.model.dao.DataBase;
 import com.example.footballapi.model.dao.TeamDAO;
-import com.example.footballapi.recyclerview.model.TeamModel;
+import com.example.footballapi.recyclerview.classement.TeamModel;
 import com.example.footballapi.restService.RestUser;
 import com.example.footballapi.view.activities.ClassementActivity;
 

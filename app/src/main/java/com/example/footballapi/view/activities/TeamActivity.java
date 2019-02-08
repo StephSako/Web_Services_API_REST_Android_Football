@@ -45,12 +45,13 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
 
     public boolean loadingPicsTeam;
 
-    private TeamController teamcontroller = new TeamController();
+    private TeamController teamcontroller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.team_activity);
+        teamcontroller = new TeamController(this);
 
         // Récupérer les valeurs choisies
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -74,7 +75,7 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         this.idTeam = intent.getIntExtra(ClassementActivity.CLE_DONNEES_ID_TEAM, 1);
 
-        teamcontroller.afficheDetailsTeam(this.idTeam, this, getString(R.string.token));
+        teamcontroller.onCreate(this.idTeam, getString(R.string.token));
 
         // On affiche le fragment de la liste des matches par défaut (on change la couleur du bouton
         btnMatches.setBackgroundResource(R.color.green);

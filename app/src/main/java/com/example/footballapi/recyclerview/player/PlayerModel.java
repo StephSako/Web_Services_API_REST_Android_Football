@@ -1,4 +1,4 @@
-package com.example.footballapi.recyclerview.model;
+package com.example.footballapi.recyclerview.player;
 
 public class PlayerModel {
 

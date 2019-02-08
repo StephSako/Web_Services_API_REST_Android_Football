@@ -19,7 +19,7 @@ public class PlayerActivity extends AppCompatActivity {
 
     public PlayerActivity(){ }
 
-    private PlayerController playercontroller = new PlayerController();
+    private PlayerController playercontroller;
 
     public int idPlayer = -1;
     public String nomClub = "";
@@ -39,6 +39,7 @@ public class PlayerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player_activity);
+        playercontroller = new PlayerController(this);
 
         // Récupérer les valeurs choisies
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -59,7 +60,7 @@ public class PlayerActivity extends AppCompatActivity {
         this.nomClub = intent.getStringExtra(SquadFragment.CLE_DONNEES_NOM_CLUB);
         this.crestURLPlayer = intent.getStringExtra(SquadFragment.CLE_DONNEES_CRUST_URL);
 
-        playercontroller.afficheDetailsJoueur(this, getString(R.string.token));
+        playercontroller.afficheDetailsJoueur(getString(R.string.token));
     }
 
     @Override

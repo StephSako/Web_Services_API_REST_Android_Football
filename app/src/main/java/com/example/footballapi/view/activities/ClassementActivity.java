@@ -10,8 +10,8 @@ import android.view.MenuItem;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.ClassementController;
-import com.example.footballapi.recyclerview.AdapterRV;
-import com.example.footballapi.recyclerview.model.TeamModel;
+import com.example.footballapi.recyclerview.classement.AdapterRV_Classement;
+import com.example.footballapi.recyclerview.classement.TeamModel;
 
 import java.util.List;
 
@@ -86,7 +86,7 @@ public class ClassementActivity extends AppCompatActivity {
         // Define an adapter
         layoutManager = new LinearLayoutManager(this);
         rvClassement.setLayoutManager(layoutManager);
-        mAdapter = new AdapterRV(list);
+        mAdapter = new AdapterRV_Classement(list);
         rvClassement.setAdapter(mAdapter);
     }
 }
