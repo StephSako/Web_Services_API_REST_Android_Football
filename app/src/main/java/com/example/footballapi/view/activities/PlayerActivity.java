@@ -60,7 +60,7 @@ public class PlayerActivity extends AppCompatActivity {
         this.nomClub = intent.getStringExtra(SquadFragment.CLE_DONNEES_NOM_CLUB);
         this.crestURLPlayer = intent.getStringExtra(SquadFragment.CLE_DONNEES_CRUST_URL);
 
-        playercontroller.afficheDetailsJoueur(getString(R.string.token));
+        playercontroller.onCreate(getString(R.string.token));
     }
 
     @Override

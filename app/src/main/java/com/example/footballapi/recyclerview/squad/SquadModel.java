@@ -1,11 +1,20 @@
-package com.example.footballapi.recyclerview.player;
+package com.example.footballapi.recyclerview.squad;
 
-public class PlayerModel {
+public class SquadModel {
 
     private String playerName;
     private String playerShirtNumber;
     private String playerPosition;
     private String playerNationality;
+    private String playerId;
+
+    public String getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(String playerId) {
+        this.playerId = playerId;
+    }
 
     public String getPlayerName() {
         return playerName;
