@@ -1,9 +1,7 @@
 package com.example.footballapi.controleur;
 
-import android.content.Context;
 import android.database.MatrixCursor;
 import android.support.annotation.NonNull;
-import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
@@ -13,10 +11,7 @@ import com.example.footballapi.model.dao.DataBase;
 import com.example.footballapi.model.dao.TeamDAO;
 import com.example.footballapi.restService.RestUser;
 import com.example.footballapi.view.activities.ClassementActivity;
-import com.example.footballapi.view.activities.SplashScreen;
-import com.example.footballapi.view.activities.TeamActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
