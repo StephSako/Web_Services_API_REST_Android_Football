@@ -75,7 +75,7 @@ public class ClassementController {
             @Override
             public void onFailure(@NonNull Call<Classement> call, @NonNull Throwable t) {
 
-                // On affiche le classement récupéré depuis la base de données locale en mode hors ligne
+                // On affiche le classement récupéré depuis la base de données locale
                 DataBase database = new DataBase(activity);
                 List<TeamDAO> classementDAO = database.findClassementById(idCompet);
 
