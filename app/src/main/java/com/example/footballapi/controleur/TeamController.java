@@ -1,22 +1,12 @@
 package com.example.footballapi.controleur;
 
-import android.app.Activity;
-import android.content.Context;
-import android.database.MatrixCursor;
-import android.graphics.Typeface;
 import android.support.annotation.NonNull;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.model.team.Team;
 import com.example.footballapi.restService.RestUser;
-import com.example.footballapi.view.activities.ClassementActivity;
 import com.example.footballapi.view.activities.TeamActivity;
 
 import java.util.Objects;

@@ -1,16 +1,13 @@
 package com.example.footballapi.controleur;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.support.annotation.NonNull;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.model.player.Player;
 import com.example.footballapi.restService.RestUser;
-import com.example.footballapi.view.activities.ClassementActivity;
 import com.example.footballapi.view.activities.PlayerActivity;
 
 import java.util.Objects;

@@ -1,7 +1,6 @@
 package com.example.footballapi.controleur;
 
 import android.support.annotation.NonNull;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.footballapi.model.team.Team;
@@ -62,10 +61,9 @@ public class SquadController {
                             model.setPlayerNationality(team.getSquad().get(i).getNationality());
                             model.setPlayerId(String.valueOf(team.getSquad().get(i).getId()));
 
-                            String shirtNumber = "";
                             if (team.getSquad().get(i).getShirtNumber() != -1)
-                                shirtNumber = String.valueOf(team.getSquad().get(i).getShirtNumber());
-                            model.setPlayerShirtNumber(shirtNumber);
+                                model.setPlayerShirtNumber(String.valueOf(team.getSquad().get(i).getShirtNumber()));
+                            else model.setPlayerShirtNumber("");
 
                             listFinal.add(model);
                         }
