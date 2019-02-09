@@ -1,4 +1,4 @@
-package com.example.footballapi.model.player;
+package com.example.footballapi.model.model_retrofit.player;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

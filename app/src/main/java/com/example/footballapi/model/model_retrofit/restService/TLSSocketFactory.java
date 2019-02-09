@@ -1,4 +1,4 @@
-package com.example.footballapi.restService;
+package com.example.footballapi.model.model_retrofit.restService;
 
 import java.io.IOException;
 import java.net.InetAddress;

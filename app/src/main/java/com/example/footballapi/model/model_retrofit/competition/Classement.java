@@ -1,6 +1,6 @@
-package com.example.footballapi.model.competition;
+package com.example.footballapi.model.model_retrofit.competition;
 
-import com.example.footballapi.model.team.Team;
+import com.example.footballapi.model.model_retrofit.team.Team;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

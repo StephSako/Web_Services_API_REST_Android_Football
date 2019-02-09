@@ -1,4 +1,4 @@
-package com.example.footballapi.recyclerview.squad;
+package com.example.footballapi.model.model_recyclerview.squad;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

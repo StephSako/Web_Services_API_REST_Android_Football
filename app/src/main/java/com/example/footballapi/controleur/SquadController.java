@@ -3,9 +3,9 @@ package com.example.footballapi.controleur;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
-import com.example.footballapi.model.team.Team;
-import com.example.footballapi.recyclerview.squad.SquadModel;
-import com.example.footballapi.restService.RestUser;
+import com.example.footballapi.model.model_retrofit.team.Team;
+import com.example.footballapi.model.model_recyclerview.squad.SquadModel;
+import com.example.footballapi.model.model_retrofit.restService.RestUser;
 import com.example.footballapi.view.fragments.SquadFragment;
 
 import java.util.ArrayList;

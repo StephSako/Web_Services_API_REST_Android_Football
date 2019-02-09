@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.DataBaseController;
-import com.example.footballapi.model.dao.DataBase;
+import com.example.footballapi.model.model_dao.DataBase;
 
 public class SplashScreen extends Activity {
 

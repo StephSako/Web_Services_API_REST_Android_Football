@@ -1,8 +1,8 @@
-package com.example.footballapi.restService;
+package com.example.footballapi.model.model_retrofit.restService;
 
-import com.example.footballapi.model.competition.Classement;
-import com.example.footballapi.model.player.Player;
-import com.example.footballapi.model.team.Team;
+import com.example.footballapi.model.model_retrofit.competition.Classement;
+import com.example.footballapi.model.model_retrofit.player.Player;
+import com.example.footballapi.model.model_retrofit.team.Team;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

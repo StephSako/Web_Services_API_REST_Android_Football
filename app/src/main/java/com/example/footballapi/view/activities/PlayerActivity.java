@@ -12,8 +12,7 @@ import android.widget.TextView;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.PlayerController;
-import com.example.footballapi.recyclerview.squad.AdapterRV_Squad;
-import com.example.footballapi.view.fragments.SquadFragment;
+import com.example.footballapi.model.model_recyclerview.squad.AdapterRV_Squad;
 
 public class PlayerActivity extends AppCompatActivity {
 

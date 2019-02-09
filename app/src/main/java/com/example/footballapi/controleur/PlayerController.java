@@ -6,8 +6,8 @@ import android.widget.Toast;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
-import com.example.footballapi.model.player.Player;
-import com.example.footballapi.restService.RestUser;
+import com.example.footballapi.model.model_retrofit.player.Player;
+import com.example.footballapi.model.model_retrofit.restService.RestUser;
 import com.example.footballapi.view.activities.PlayerActivity;
 
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package com.example.footballapi.recyclerview.classement;
+package com.example.footballapi.model.model_recyclerview.classement;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

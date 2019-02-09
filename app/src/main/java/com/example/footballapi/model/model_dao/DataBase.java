@@ -1,4 +1,4 @@
-package com.example.footballapi.model.dao;
+package com.example.footballapi.model.model_dao;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

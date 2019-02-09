@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.SquadController;
-import com.example.footballapi.recyclerview.squad.AdapterRV_Squad;
-import com.example.footballapi.recyclerview.squad.SquadModel;
+import com.example.footballapi.model.model_recyclerview.squad.AdapterRV_Squad;
+import com.example.footballapi.model.model_recyclerview.squad.SquadModel;
 import com.example.footballapi.view.activities.TeamActivity;
 
 import java.util.List;

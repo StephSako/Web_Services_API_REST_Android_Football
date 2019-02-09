@@ -1,4 +1,4 @@
-package com.example.footballapi.recyclerview.squad;
+package com.example.footballapi.model.model_recyclerview.squad;
 
 public class SquadModel {
 

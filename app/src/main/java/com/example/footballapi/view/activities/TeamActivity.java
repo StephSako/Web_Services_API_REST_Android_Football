@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.TeamController;
-import com.example.footballapi.recyclerview.classement.AdapterRV_Classement;
-import com.example.footballapi.recyclerview.matches.AdapterRV_Matches;
+import com.example.footballapi.model.model_recyclerview.classement.AdapterRV_Classement;
+import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.example.footballapi.view.fragments.SquadFragment;
 

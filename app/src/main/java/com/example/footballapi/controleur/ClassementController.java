@@ -3,11 +3,11 @@ package com.example.footballapi.controleur;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
-import com.example.footballapi.model.competition.Classement;
-import com.example.footballapi.model.dao.DataBase;
-import com.example.footballapi.model.dao.TeamDAO;
-import com.example.footballapi.recyclerview.classement.TeamModel;
-import com.example.footballapi.restService.RestUser;
+import com.example.footballapi.model.model_retrofit.competition.Classement;
+import com.example.footballapi.model.model_dao.DataBase;
+import com.example.footballapi.model.model_dao.TeamDAO;
+import com.example.footballapi.model.model_recyclerview.classement.TeamModel;
+import com.example.footballapi.model.model_retrofit.restService.RestUser;
 import com.example.footballapi.view.activities.ClassementActivity;
 
 import java.util.ArrayList;

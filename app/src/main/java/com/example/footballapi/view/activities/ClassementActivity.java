@@ -10,8 +10,8 @@ import android.view.MenuItem;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.ClassementController;
-import com.example.footballapi.recyclerview.classement.AdapterRV_Classement;
-import com.example.footballapi.recyclerview.classement.TeamModel;
+import com.example.footballapi.model.model_recyclerview.classement.AdapterRV_Classement;
+import com.example.footballapi.model.model_recyclerview.classement.TeamModel;
 
 import java.util.List;
 
