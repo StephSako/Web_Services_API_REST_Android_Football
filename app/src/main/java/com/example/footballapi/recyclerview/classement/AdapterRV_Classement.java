@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
+import com.example.footballapi.view.activities.ClassementActivity;
 import com.example.footballapi.view.activities.TeamActivity;
 
 import java.util.List;
@@ -23,17 +24,20 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
     public static final String CLE_DONNEES_ID_TEAM = "idTeam";
 
     private List<TeamModel> values;
+    private ClassementActivity activity;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        TextView tvPosition;
-        TextView tvClubname;
-        TextView tvDiff;
-        TextView tvPoints;
-        ImageView ivLogoClubClassement;
+        private TextView tvPosition;
+        private TextView tvClubname;
+        private TextView tvDiff;
+        private TextView tvPoints;
+        private ImageView ivLogoClubClassement;
+
+        ImageView getivLogoClubClassement(){ return this.ivLogoClubClassement;}
 
         public View layout;
 
@@ -49,8 +53,9 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public AdapterRV_Classement(List<TeamModel> myDataset) {
+    public AdapterRV_Classement(List<TeamModel> myDataset, ClassementActivity activity) {
         values = myDataset;
+        this.activity = activity;
     }
 
     // Create new views (invoked by the layout manager)
@@ -75,11 +80,14 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
         holder.tvDiff.setText(values.get(position).getDiff());
         holder.tvPoints.setText(values.get(position).getPoints());
 
-        /*SvgLoader.pluck()
-                .with(getActivity())
-                .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                .load(values.get(position).getCrestURL(), holder.ivLogoClubClassement)
-                .close();*/
+        // On affiche l'image SVG
+        if (values.get(position).getCrestURL() != null) {
+            SvgLoader.pluck()
+                    .with(this.activity)
+                    .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                    .load(values.get(position).getCrestURL(), holder.getivLogoClubClassement())
+                    .close();
+        }
 
         holder.tvClubname.setOnClickListener(new OnClickListener() {
             @Override

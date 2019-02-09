@@ -84,7 +84,7 @@ public class ClassementActivity extends AppCompatActivity {
         // Define an adapter
         layoutManager = new LinearLayoutManager(this);
         rvClassement.setLayoutManager(layoutManager);
-        mAdapter = new AdapterRV_Classement(list);
+        mAdapter = new AdapterRV_Classement(list, this);
         rvClassement.setAdapter(mAdapter);
     }
 }

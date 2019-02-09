@@ -65,12 +65,13 @@ public class TeamController {
                     activity.tvActiveCompetitions.setText(activeCompetitions.toString());
                     activity.tvEntraineur.setText(entraineur.toString());
 
-                    if (!team.getCrestUrl().equals("") && activity.loadingPicsTeam)
+                    if (!team.getCrestUrl().equals("") && activity.loadingPicsTeam) {
                         SvgLoader.pluck()
                                 .with(activity)
                                 .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
                                 .load(team.getCrestUrl(), activity.logo_club)
                                 .close();
+                    }
 
                     else activity.logo_club.setImageResource(R.drawable.ic_logo_foreground);
 
