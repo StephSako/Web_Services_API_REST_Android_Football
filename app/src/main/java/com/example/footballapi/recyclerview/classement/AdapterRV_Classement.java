@@ -80,7 +80,7 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
         holder.tvDiff.setText(values.get(position).getDiff());
         holder.tvPoints.setText(values.get(position).getPoints());
 
-        // On affiche l'image SVG
+        // On affiche l'image SVG pour afficher le logo du club
         if (values.get(position).getCrestURL() != null) {
             SvgLoader.pluck()
                     .with(this.activity)
