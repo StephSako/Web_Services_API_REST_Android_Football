@@ -34,6 +34,14 @@ public class Match {
         public FullTime getFullTime() {
             return fullTime;
         }
+
+        @SerializedName("winner")
+        @Expose
+        private String winner = "";
+
+        public String getWinner() {
+            return winner;
+        }
     }
 
     public class AwayTeam{

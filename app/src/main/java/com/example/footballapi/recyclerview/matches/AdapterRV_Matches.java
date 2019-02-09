@@ -1,5 +1,7 @@
 package com.example.footballapi.recyclerview.matches;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,6 +74,25 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         holder.tvAwayTeam.setText(values.get(position).getAwayTeam());
         holder.tvScore.setText(values.get(position).getScore());
         holder.tvHomeTeam.setText(values.get(position).getHomeTeam());
+
+        holder.tvHomeTeam.setTypeface(null, Typeface.BOLD);
+        holder.tvAwayTeam.setTypeface(null, Typeface.BOLD);
+        if (values.get(position).getWinner() != null) {
+            if (values.get(position).getWinner().equals("HOME_TEAM")) {
+                holder.tvHomeTeam.setTextColor(Color.parseColor("#8BDB88"));
+                holder.tvAwayTeam.setTextColor(Color.parseColor("#FF7A7A"));
+            } else if (values.get(position).getWinner().equals("AWAY_TEAM")) {
+                holder.tvHomeTeam.setTextColor(Color.parseColor("#FF7A7A"));
+                holder.tvAwayTeam.setTextColor(Color.parseColor("#8BDB88"));
+            } else if (values.get(position).getWinner().equals("DRAW")) { // Match nul
+                holder.tvHomeTeam.setTypeface(null, Typeface.NORMAL);
+                holder.tvAwayTeam.setTypeface(null, Typeface.NORMAL);
+            }
+        }
+        else{
+            holder.tvHomeTeam.setTextColor(Color.parseColor("#000000"));
+            holder.tvAwayTeam.setTextColor(Color.parseColor("#000000"));
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)

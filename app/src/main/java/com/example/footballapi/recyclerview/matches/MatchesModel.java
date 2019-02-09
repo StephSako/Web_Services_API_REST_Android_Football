@@ -6,6 +6,11 @@ public class MatchesModel {
     private String homeTeam;
     private String score;
     private String awayTeam;
+    private String winner;
+
+    public String getWinner() { return winner; }
+
+    public void setWinner(String winner) { this.winner = winner; }
 
     public String getMatchDay() {
         return matchDay;
