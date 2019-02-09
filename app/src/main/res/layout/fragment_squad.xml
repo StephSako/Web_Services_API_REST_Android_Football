@@ -48,11 +48,11 @@
             android:layout_weight="1"
             android:gravity="center" />
     </LinearLayout>
-    <ListView
-        android:id="@+id/lvSquad"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvSquad"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-    </ListView>
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

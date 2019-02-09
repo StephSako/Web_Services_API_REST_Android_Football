@@ -2,7 +2,6 @@ package com.example.footballapi.view.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,13 +12,14 @@ import android.widget.TextView;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.PlayerController;
+import com.example.footballapi.recyclerview.squad.AdapterRV_Squad;
 import com.example.footballapi.view.fragments.SquadFragment;
 
 public class PlayerActivity extends AppCompatActivity {
 
     public PlayerActivity(){ }
 
-    private PlayerController playercontroller = new PlayerController();
+    private PlayerController playercontroller;
 
     public int idPlayer = -1;
     public String nomClub = "";
@@ -39,6 +39,7 @@ public class PlayerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player_activity);
+        playercontroller = new PlayerController(this);
 
         // Récupérer les valeurs choisies
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -55,11 +56,11 @@ public class PlayerActivity extends AppCompatActivity {
 
         // On récupère l'id du joueur depuis le fragment père de la squad
         Intent intent = getIntent();
-        this.idPlayer = intent.getIntExtra(SquadFragment.CLE_DONNEES_ID_PLAYER, 1);
-        this.nomClub = intent.getStringExtra(SquadFragment.CLE_DONNEES_NOM_CLUB);
-        this.crestURLPlayer = intent.getStringExtra(SquadFragment.CLE_DONNEES_CRUST_URL);
+        this.idPlayer = intent.getIntExtra(AdapterRV_Squad.CLE_DONNEES_ID_PLAYER, 1);
+        this.nomClub = intent.getStringExtra(AdapterRV_Squad.CLE_DONNEES_NOM_CLUB);
+        this.crestURLPlayer = intent.getStringExtra(AdapterRV_Squad.CLE_DONNEES_CRUST_URL);
 
-        playercontroller.afficheDetailsJoueur(this, getString(R.string.token));
+        playercontroller.onCreate(getString(R.string.token));
     }
 
     @Override

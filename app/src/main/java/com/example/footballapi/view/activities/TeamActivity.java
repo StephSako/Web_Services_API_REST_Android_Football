@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.TeamController;
+import com.example.footballapi.recyclerview.classement.AdapterRV_Classement;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.example.footballapi.view.fragments.SquadFragment;
 
@@ -45,12 +45,13 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
 
     public boolean loadingPicsTeam;
 
-    private TeamController teamcontroller = new TeamController();
+    private TeamController teamcontroller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.team_activity);
+        teamcontroller = new TeamController(this);
 
         // Récupérer les valeurs choisies
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -72,9 +73,9 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
 
         // On récupère l'id de l'équipe depuis l'activite mère
         Intent intent = getIntent();
-        this.idTeam = intent.getIntExtra(ClassementActivity.CLE_DONNEES_ID_TEAM, 1);
+        this.idTeam = intent.getIntExtra(AdapterRV_Classement.CLE_DONNEES_ID_TEAM, 1);
 
-        teamcontroller.afficheDetailsTeam(this.idTeam, this, getString(R.string.token));
+        teamcontroller.onCreate(this.idTeam, getString(R.string.token));
 
         // On affiche le fragment de la liste des matches par défaut (on change la couleur du bouton
         btnMatches.setBackgroundResource(R.color.green);

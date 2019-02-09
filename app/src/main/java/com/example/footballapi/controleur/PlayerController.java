@@ -1,16 +1,13 @@
 package com.example.footballapi.controleur;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.support.annotation.NonNull;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.model.player.Player;
 import com.example.footballapi.restService.RestUser;
-import com.example.footballapi.view.activities.ClassementActivity;
 import com.example.footballapi.view.activities.PlayerActivity;
 
 import java.util.Objects;
@@ -21,12 +18,16 @@ import retrofit2.Response;
 
 public class PlayerController {
 
-    public PlayerController() {   }
+    private PlayerActivity activity;
+
+    public PlayerController(PlayerActivity activity) {
+        this.activity = activity;
+    }
 
     /**
      * Affiche les détails d'un joueur
      */
-    public void afficheDetailsJoueur(final PlayerActivity activity, String token) {
+    public void onCreate(String token) {
         Call<Player> call = RestUser.get().players(token, activity.idPlayer);
         call.enqueue(new Callback<Player>() {
             @SuppressLint("SetTextI18n")

@@ -3,25 +3,28 @@ package com.example.footballapi.view.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.ClassementController;
-import com.example.footballapi.model.dao.DataBase;
+import com.example.footballapi.recyclerview.classement.AdapterRV_Classement;
+import com.example.footballapi.recyclerview.classement.TeamModel;
+
+import java.util.List;
 
 public class ClassementActivity extends AppCompatActivity {
 
-    public ListView lvClassement;
+    private RecyclerView rvClassement;
 
-    // Transmission de l'id de l'équipe cliquée
-    final static String CLE_DONNEES_ID_TEAM = "idTeam";
     int idCompet = -1;
 
-    private ClassementController classementcontroller = new ClassementController();
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
+    private ClassementController classementcontroller;
 
     public ClassementActivity() { }
 
@@ -29,29 +32,16 @@ public class ClassementActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.classement_activity);
+        classementcontroller = new ClassementController(this);
 
-        lvClassement = findViewById(R.id.lvClassement);
+        rvClassement = findViewById(R.id.rvClassement);
 
         // On récupère l'id de la competition depuis l'activite mère
         Intent intent = getIntent();
         this.idCompet = intent.getIntExtra(MainActivity.CLE_DONNEES_ID_COMPET, 1);
 
-        classementcontroller.afficheListeTeamsCompetition(idCompet,this, getString(R.string.token));
+        classementcontroller.onCreate(idCompet,  getString(R.string.token));
 
-        // Gestion des clics sur les lignes
-        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View container, int position, long id) {
-                // On affiche l'équipe cliquée
-                Intent intent = new Intent(getApplicationContext(), TeamActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_TEAM, (int) id);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-            }
-        };
-
-        // Utilisation avec notre listview d'équipe
-        lvClassement.setOnItemClickListener(itemClickListener);
     }
 
     // Appuie sur le bouton Précédent du portable
@@ -88,5 +78,13 @@ public class ClassementActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showList(List<TeamModel> list){
+        // Define an adapter
+        layoutManager = new LinearLayoutManager(this);
+        rvClassement.setLayoutManager(layoutManager);
+        mAdapter = new AdapterRV_Classement(list, this);
+        rvClassement.setAdapter(mAdapter);
     }
 }
