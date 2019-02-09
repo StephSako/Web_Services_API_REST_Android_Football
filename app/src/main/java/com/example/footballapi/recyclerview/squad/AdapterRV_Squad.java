@@ -87,6 +87,42 @@ public class AdapterRV_Squad extends RecyclerView.Adapter<AdapterRV_Squad.ViewHo
                 context.startActivity(intent);
             }
         });
+
+        holder.tvPosition.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, PlayerActivity.class);
+                intent.putExtra(CLE_DONNEES_ID_PLAYER, Integer.parseInt(values.get(position).getPlayerId()));
+                intent.putExtra(CLE_DONNEES_NOM_CLUB, ((TeamActivity) Objects.requireNonNull(context)).getnomClub());
+                intent.putExtra(CLE_DONNEES_CRUST_URL, ((TeamActivity) Objects.requireNonNull(context)).getcrestURLPlayer());
+                context.startActivity(intent);
+            }
+        });
+
+        holder.tvShirtNumber.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, PlayerActivity.class);
+                intent.putExtra(CLE_DONNEES_ID_PLAYER, Integer.parseInt(values.get(position).getPlayerId()));
+                intent.putExtra(CLE_DONNEES_NOM_CLUB, ((TeamActivity) Objects.requireNonNull(context)).getnomClub());
+                intent.putExtra(CLE_DONNEES_CRUST_URL, ((TeamActivity) Objects.requireNonNull(context)).getcrestURLPlayer());
+                context.startActivity(intent);
+            }
+        });
+
+        holder.tvNationality.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, PlayerActivity.class);
+                intent.putExtra(CLE_DONNEES_ID_PLAYER, Integer.parseInt(values.get(position).getPlayerId()));
+                intent.putExtra(CLE_DONNEES_NOM_CLUB, ((TeamActivity) Objects.requireNonNull(context)).getnomClub());
+                intent.putExtra(CLE_DONNEES_CRUST_URL, ((TeamActivity) Objects.requireNonNull(context)).getcrestURLPlayer());
+                context.startActivity(intent);
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)

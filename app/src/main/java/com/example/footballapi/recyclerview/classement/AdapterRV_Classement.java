@@ -80,6 +80,36 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
                 context.startActivity(intent);
             }
         });
+
+        holder.tvPoints.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, TeamActivity.class);
+                intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeam()));
+                context.startActivity(intent);
+            }
+        });
+
+        holder.tvPosition.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, TeamActivity.class);
+                intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeam()));
+                context.startActivity(intent);
+            }
+        });
+
+        holder.tvDiff.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, TeamActivity.class);
+                intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeam()));
+                context.startActivity(intent);
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)
