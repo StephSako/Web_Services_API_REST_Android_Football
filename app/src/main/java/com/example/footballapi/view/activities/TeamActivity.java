@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.TeamController;
+import com.example.footballapi.recyclerview.classement.AdapterRV_Classement;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.example.footballapi.view.fragments.SquadFragment;
 
@@ -72,7 +73,7 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
 
         // On récupère l'id de l'équipe depuis l'activite mère
         Intent intent = getIntent();
-        this.idTeam = intent.getIntExtra(ClassementActivity.CLE_DONNEES_ID_TEAM, 1);
+        this.idTeam = intent.getIntExtra(AdapterRV_Classement.CLE_DONNEES_ID_TEAM, 1);
 
         teamcontroller.onCreate(this.idTeam, getString(R.string.token));
 

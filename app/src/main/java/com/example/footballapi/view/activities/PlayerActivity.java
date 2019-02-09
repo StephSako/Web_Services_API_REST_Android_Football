@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.PlayerController;
+import com.example.footballapi.recyclerview.squad.AdapterRV_Squad;
 import com.example.footballapi.view.fragments.SquadFragment;
 
 public class PlayerActivity extends AppCompatActivity {
@@ -55,9 +56,9 @@ public class PlayerActivity extends AppCompatActivity {
 
         // On récupère l'id du joueur depuis le fragment père de la squad
         Intent intent = getIntent();
-        this.idPlayer = intent.getIntExtra(SquadFragment.CLE_DONNEES_ID_PLAYER, 1);
-        this.nomClub = intent.getStringExtra(SquadFragment.CLE_DONNEES_NOM_CLUB);
-        this.crestURLPlayer = intent.getStringExtra(SquadFragment.CLE_DONNEES_CRUST_URL);
+        this.idPlayer = intent.getIntExtra(AdapterRV_Squad.CLE_DONNEES_ID_PLAYER, 1);
+        this.nomClub = intent.getStringExtra(AdapterRV_Squad.CLE_DONNEES_NOM_CLUB);
+        this.crestURLPlayer = intent.getStringExtra(AdapterRV_Squad.CLE_DONNEES_CRUST_URL);
 
         playercontroller.onCreate(getString(R.string.token));
     }

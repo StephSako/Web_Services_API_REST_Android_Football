@@ -20,11 +20,6 @@ import java.util.Objects;
 
 public class SquadFragment extends Fragment {
 
-    // Transmission de l'id du joueur cliqué et du nom du club
-    public final static String CLE_DONNEES_ID_PLAYER = "idPlayer";
-    public final static String CLE_DONNEES_NOM_CLUB = "nomClub";
-    public final static String CLE_DONNEES_CRUST_URL = "crestURL";
-
     public int idTeam = -1;
     public String crestURLPlayer = "";
 
@@ -48,7 +43,7 @@ public class SquadFragment extends Fragment {
         this.crestURLPlayer = ((TeamActivity) Objects.requireNonNull(getActivity())).getcrestURLPlayer();
 
         // Par defaut, on affiche l'équipe du club sélectionné
-        squadcontroller.onCreate(idTeam, getString(R.string.token));
+        squadcontroller.onCreate(this.idTeam, getString(R.string.token));
 
         // Inflate the layout for this fragment
         return v;

@@ -7,6 +7,11 @@ public class TeamModel {
     private String diff;
     private String points;
     private String idTeam;
+    private String crestURL;
+
+    public String getCrestURL() { return crestURL; }
+
+    public void setCrestURL(String crestURL) { this.crestURL = crestURL; }
 
     public String getIdTeam() { return idTeam; }
 

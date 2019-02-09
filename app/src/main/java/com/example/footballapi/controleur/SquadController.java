@@ -37,8 +37,7 @@ public class SquadController {
 
                     List<SquadModel> listFinal = new ArrayList<>();
 
-                    // On remplit les lignes (le classement d'id 0 représente le classement total du championnat)
-                    for (int i = 1; i <= team.getSquad().size(); i++) {
+                    for (int i = 0; i < team.getSquad().size(); i++) {
                         if (team.getSquad().get(i).getRole().equals("PLAYER")) {
                             SquadModel model = new SquadModel();
                             model.setPlayerName(String.valueOf(team.getSquad().get(i).getName()));

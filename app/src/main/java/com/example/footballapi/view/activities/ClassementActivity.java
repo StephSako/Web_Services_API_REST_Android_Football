@@ -19,8 +19,6 @@ public class ClassementActivity extends AppCompatActivity {
 
     private RecyclerView rvClassement;
 
-    // Transmission de l'id de l'équipe cliquée
-    final static String CLE_DONNEES_ID_TEAM = "idTeam";
     int idCompet = -1;
 
     private RecyclerView.Adapter mAdapter;
