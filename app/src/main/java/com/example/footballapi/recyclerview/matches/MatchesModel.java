@@ -7,6 +7,24 @@ public class MatchesModel {
     private String score;
     private String awayTeam;
     private String winner;
+    private String idTeamHome;
+    private String idTeamAway;
+
+    public String getIdTeamHome() {
+        return idTeamHome;
+    }
+
+    public void setIdTeamHome(String idTeamHome) {
+        this.idTeamHome = idTeamHome;
+    }
+
+    public String getIdTeamAway() {
+        return idTeamAway;
+    }
+
+    public void setIdTeamAway(String idTeamAway) {
+        this.idTeamAway = idTeamAway;
+    }
 
     public String getWinner() { return winner; }
 

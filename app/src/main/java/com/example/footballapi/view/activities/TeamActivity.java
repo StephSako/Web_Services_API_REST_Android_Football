@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.TeamController;
 import com.example.footballapi.recyclerview.classement.AdapterRV_Classement;
+import com.example.footballapi.recyclerview.matches.AdapterRV_Matches;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.example.footballapi.view.fragments.SquadFragment;
 
@@ -45,13 +46,11 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
 
     public boolean loadingPicsTeam;
 
-    private TeamController teamcontroller;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.team_activity);
-        teamcontroller = new TeamController(this);
+        TeamController teamcontroller = new TeamController(this);
 
         // Récupérer les valeurs choisies
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -71,9 +70,10 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
 
         logo_club = findViewById(R.id.logo_club);
 
-        // On récupère l'id de l'équipe depuis l'activite mère
+        // On récupère l'id de l'équipe qui peut soit venir de la liste dans le classement, soit de celle des matches
         Intent intent = getIntent();
-        this.idTeam = intent.getIntExtra(AdapterRV_Classement.CLE_DONNEES_ID_TEAM, 1);
+        if ((this.idTeam = intent.getIntExtra(AdapterRV_Classement.CLE_DONNEES_ID_TEAM, -1)) == -1)
+            this.idTeam = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_TEAM, -1);
 
         teamcontroller.onCreate(this.idTeam, getString(R.string.token));
 

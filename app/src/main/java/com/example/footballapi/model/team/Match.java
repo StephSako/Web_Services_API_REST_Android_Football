@@ -51,6 +51,12 @@ public class Match {
         private String name = "";
 
         public String getName() { return name; }
+
+        @SerializedName("id")
+        @Expose
+        private int id = -1;
+
+        public int getId() { return id; }
     }
 
     public class HomeTeam{
@@ -60,6 +66,12 @@ public class Match {
         private String name = "";
 
         public String getName() { return name; }
+
+        @SerializedName("id")
+        @Expose
+        private int id = -1;
+
+        public int getId() { return id; }
     }
 
     @SerializedName("score")
