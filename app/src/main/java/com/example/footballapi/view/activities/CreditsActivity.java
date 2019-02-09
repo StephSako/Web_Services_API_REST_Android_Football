@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.example.footballapi.R;
 
+import java.util.Objects;
+
 @SuppressLint("Registered")
 public class CreditsActivity extends AppCompatActivity {
 
@@ -14,6 +16,8 @@ public class CreditsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.credits);
+
+        this.setTitle("A propos");
 
         TextView tvCredits = findViewById(R.id.tvCredits);
         tvCredits.setText(getString(R.string.DescriptionAPropos));

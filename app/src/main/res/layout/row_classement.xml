@@ -13,6 +13,12 @@
         android:layout_weight="1"
         android:gravity="center"
         android:padding="4dp" />
+    <ImageView
+        android:id="@+id/ivLogoClubClassement"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:contentDescription="Logo club classement" />
     <TextView
         android:id="@+id/tvClubname"
         android:layout_width="0dp"

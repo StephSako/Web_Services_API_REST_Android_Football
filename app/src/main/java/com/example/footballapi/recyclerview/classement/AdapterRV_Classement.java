@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.view.activities.TeamActivity;
 
@@ -31,6 +33,7 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
         TextView tvClubname;
         TextView tvDiff;
         TextView tvPoints;
+        ImageView ivLogoClubClassement;
 
         public View layout;
 
@@ -41,6 +44,7 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
             tvClubname = v.findViewById(R.id.tvClubname);
             tvDiff = v.findViewById(R.id.tvDiff);
             tvPoints = v.findViewById(R.id.tvPoints);
+            ivLogoClubClassement = v.findViewById(R.id.ivLogoClubClassement);
         }
     }
 
@@ -70,6 +74,12 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
         holder.tvClubname.setText(values.get(position).getName());
         holder.tvDiff.setText(values.get(position).getDiff());
         holder.tvPoints.setText(values.get(position).getPoints());
+
+        /*SvgLoader.pluck()
+                .with(getActivity())
+                .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                .load(values.get(position).getCrestURL(), holder.ivLogoClubClassement)
+                .close();*/
 
         holder.tvClubname.setOnClickListener(new OnClickListener() {
             @Override
