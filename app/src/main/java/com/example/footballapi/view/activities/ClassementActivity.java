@@ -80,11 +80,11 @@ public class ClassementActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void showList(List<TeamModel> list){
+    public void showList(List<TeamModel> list, boolean netaccess){
         // Define an adapter
         layoutManager = new LinearLayoutManager(this);
         rvClassement.setLayoutManager(layoutManager);
-        mAdapter = new AdapterRV_Classement(list, this);
+        mAdapter = new AdapterRV_Classement(list, this, netaccess);
         rvClassement.setAdapter(mAdapter);
     }
 }

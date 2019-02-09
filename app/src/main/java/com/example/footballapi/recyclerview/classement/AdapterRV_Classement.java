@@ -25,6 +25,7 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
 
     private List<TeamModel> values;
     private ClassementActivity activity;
+    private boolean netaccess;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -53,9 +54,10 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public AdapterRV_Classement(List<TeamModel> myDataset, ClassementActivity activity) {
+    public AdapterRV_Classement(List<TeamModel> myDataset, ClassementActivity activity, boolean netaccess) {
         values = myDataset;
         this.activity = activity;
+        this.netaccess = netaccess;
     }
 
     // Create new views (invoked by the layout manager)
@@ -89,45 +91,48 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
                     .close();
         }
 
-        holder.tvClubname.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, TeamActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeam()));
-                context.startActivity(intent);
-            }
-        });
+        // On active les listener en cas de connexion à Internet, on les désactive sinon
+        if(netaccess) {
+            holder.tvClubname.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, TeamActivity.class);
+                    intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeam()));
+                    context.startActivity(intent);
+                }
+            });
 
-        holder.tvPoints.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, TeamActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeam()));
-                context.startActivity(intent);
-            }
-        });
+            holder.tvPoints.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, TeamActivity.class);
+                    intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeam()));
+                    context.startActivity(intent);
+                }
+            });
 
-        holder.tvPosition.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, TeamActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeam()));
-                context.startActivity(intent);
-            }
-        });
+            holder.tvPosition.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, TeamActivity.class);
+                    intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeam()));
+                    context.startActivity(intent);
+                }
+            });
 
-        holder.tvDiff.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, TeamActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeam()));
-                context.startActivity(intent);
-            }
-        });
+            holder.tvDiff.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, TeamActivity.class);
+                    intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeam()));
+                    context.startActivity(intent);
+                }
+            });
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)

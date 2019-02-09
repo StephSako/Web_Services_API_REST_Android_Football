@@ -54,7 +54,7 @@ public class ClassementController {
                         listFinal.add(model);
                     }
 
-                    activity.showList(listFinal);
+                    activity.showList(listFinal, true);
                 } else {
                     Toast.makeText(activity, "Compétition introuvable", Toast.LENGTH_SHORT).show();
                 }
@@ -69,10 +69,12 @@ public class ClassementController {
 
                 if (classementDAO.size() > 0) { // Si la BD locale n'a jamais été initialisée
 
+                    Objects.requireNonNull(activity).setTitle(classementDAO.get(0).getNomCompet() + " - [Hors ligne]");
+
                     List<TeamModel> listFinal = new ArrayList<>();
 
                     // On remplit les lignes (le classement d'id 0 représente le classement total du championnat)
-                    for (int i = 1; i <= classementDAO.size(); i++) {
+                    for (int i = 0; i < classementDAO.size(); i++) {
                         TeamModel model = new TeamModel();
 
                         model.setPosition(String.valueOf(classementDAO.get(i).getPosition()));
@@ -83,7 +85,8 @@ public class ClassementController {
                         listFinal.add(model);
                     }
 
-                    activity.showList(listFinal);
+                    // booléen qui active ou désactive les écouteurs sur les item de la recyclerview en cas de connexion oun non à internet
+                    activity.showList(listFinal, false);
                 }
                 Toast.makeText(activity, "Classement non mis à jour.\nVérifiez votre connexion.", Toast.LENGTH_SHORT).show();
             }
