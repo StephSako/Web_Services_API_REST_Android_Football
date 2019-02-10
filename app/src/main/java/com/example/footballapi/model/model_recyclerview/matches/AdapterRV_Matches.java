@@ -22,6 +22,7 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
     public static final String CLE_DONNEES_ID_TEAM = "idTeam";
 
     private List<MatchesModel> values;
+    private int idTeam;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -46,8 +47,9 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public AdapterRV_Matches(List<MatchesModel> myDataset) {
-        values = myDataset;
+    public AdapterRV_Matches(List<MatchesModel> myDataset, int idTeam) {
+        this.values = myDataset;
+        this.idTeam = idTeam;
     }
 
     // Create new views (invoked by the layout manager)
@@ -103,25 +105,29 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
             holder.tvAwayTeam.setTextColor(Color.BLACK);
         }
 
-        holder.tvHomeTeam.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, TeamActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeamHome()));
-                context.startActivity(intent);
-            }
-        });
+        if (this.idTeam != Integer.parseInt(values.get(position).getIdTeamHome())) {
+            holder.tvHomeTeam.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, TeamActivity.class);
+                    intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeamHome()));
+                    context.startActivity(intent);
+                }
+            });
+        }
 
-        holder.tvAwayTeam.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, TeamActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeamAway()));
-                context.startActivity(intent);
-            }
-        });
+        if (this.idTeam != Integer.parseInt(values.get(position).getIdTeamAway())) {
+            holder.tvAwayTeam.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, TeamActivity.class);
+                    intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeamAway()));
+                    context.startActivity(intent);
+                }
+            });
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
