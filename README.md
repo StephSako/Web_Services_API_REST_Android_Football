@@ -23,6 +23,70 @@ https://square.github.io/retrofit/
 
 - Postman
 
+# Modèle MVC
+
+Voici la structure MVC du projet : 
+
+```
+.
++-- app/
+|   +-- manifests/
+|   |   +-- AndroidManifest.xml
+|   +-- java/
+|   |   +-- com.example.footballapi/
+|   |   |   +-- controleur/
+|   |   |   |   +-- (*.java)
+|   |   |   +-- model/
+|   |   |   |   +-- model_dao/
+|   |   |   |   |   +-- (*.java)
+|   |   |   |   +-- model_recyclerview/
+|   |   |   |   |   +-- classement/
+|   |   |   |   |   |   +-- (*.java)
+|   |   |   |   |   +-- matches/
+|   |   |   |   |   |   +-- (*.java)
+|   |   |   |   |   +-- squad/
+|   |   |   |   |   |   +-- (*.java)
+|   |   |   |   +-- model_retrofit/
+|   |   |   |   |   +-- competition/
+|   |   |   |   |   |   +-- (*.java)
+|   |   |   |   |   +-- player/
+|   |   |   |   |   |   +-- (*.java)
+|   |   |   |   |   +-- restService/
+|   |   |   |   |   |   +-- (*.java)
+|   |   |   |   |   +-- team/
+|   |   |   |   |   |   +-- (*.java)
+|   |   |   +-- view/
+|   |   |   |   +-- activities/
+|   |   |   |   |   +-- (*.java)
+|   |   |   |   +-- fragments/
+|   |   |   |   |   +-- (*.java)
+|   |   +-- com.example.footballapi (androidTest/
+|   |   |   +-- (...)
+|   |   +-- com.example.footballapi (test)/
+|   |   |   +-- (...)
+|   +-- generatedJava/
+|   |   +-- (...)
+|
+|   +-- res/
+|   |   +-- anim/
+|   |   |   +-- (*.xml)
+|   |   +-- drawable/
+|   |   |   +-- (*.xml)
+|   |   +-- layout/
+|   |   |   +-- (*.xml)
+|   |   +-- menu/
+|   |   |   +-- (*.xml)
+|   |   +-- mipmap/
+|   |   |   +-- ic_[CHAMPIONNAT]_foreground
+|   |   |   |   +-- (*.png)
+|   |   +-- values/
+|   |   |   +-- (*.xml)
+|   |   +-- xml/
+|   |   |   +-- (*.xml)
++-- svgloader/
++-- Gradle Scripts/
+```
+
 # Enchaînement et compositions des écrans
 
 # Préférences
