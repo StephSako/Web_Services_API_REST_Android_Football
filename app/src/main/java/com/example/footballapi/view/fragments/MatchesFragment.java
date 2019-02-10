@@ -39,7 +39,7 @@ public class MatchesFragment extends Fragment {
 
         rvMatches = v.findViewById(R.id.rvMatches);
 
-        idTeam = ((TeamActivity) Objects.requireNonNull(getActivity())).getidTeam();
+        idTeam = ((TeamActivity) Objects.requireNonNull(getActivity())).idTeam;
 
         teamcontroller.onCreate(getString(R.string.token));
 
