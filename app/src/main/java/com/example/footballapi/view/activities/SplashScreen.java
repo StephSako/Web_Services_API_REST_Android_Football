@@ -18,7 +18,7 @@ public class SplashScreen extends Activity {
 
     private final int[] tabIdCompet = {2002, 2019, 2021, 2014, 2015, 2017, 2003, 2013};
     private DataBase database;
-    private DataBaseController databaseupdatercompet = new DataBaseController();
+    private DataBaseController databaseupdatercompet = new DataBaseController(this);
 
     public DataBase getDataBase(){ return database; }
 
@@ -41,7 +41,7 @@ public class SplashScreen extends Activity {
             this.database = new DataBase(this);
 
             for (int i = 0; i < tabIdCompet.length; i++) {
-                databaseupdatercompet.updateAllCompet(tabIdCompet[i], this, getString(R.string.token));
+                databaseupdatercompet.updateAllCompet(tabIdCompet[i], getString(R.string.token));
             }
         }
 

@@ -28,9 +28,10 @@ public class ClassementController {
 
     /**
      * Affiche le classement d'une compétition
+     * @param token
      */
-    public void onCreate(final int idCompet, String token) {
-        Call<Classement> call = RestUser.get().competitions(token, idCompet);
+    public void onCreate(String token) {
+        Call<Classement> call = RestUser.get().competitions(token, activity.idCompet);
         call.enqueue(new Callback<Classement>() {
 
             @Override
@@ -65,7 +66,7 @@ public class ClassementController {
 
                 // On affiche le classement récupéré depuis la base de données locale en mode hors ligne
                 DataBase database = new DataBase(activity);
-                List<TeamDAO> classementDAO = database.findClassementById(idCompet);
+                List<TeamDAO> classementDAO = database.findClassementById(activity.idCompet);
 
                 if (classementDAO.size() > 0) { // Si la BD locale n'a jamais été initialisée
 

@@ -39,11 +39,11 @@ public class SquadFragment extends Fragment {
 
         rvSquad = v.findViewById(R.id.rvSquad);
 
-        this.idTeam = ((TeamActivity) Objects.requireNonNull(getActivity())).getidTeam();
-        this.crestURLPlayer = ((TeamActivity) Objects.requireNonNull(getActivity())).getcrestURLPlayer();
+        this.idTeam = ((TeamActivity) Objects.requireNonNull(getActivity())).idTeam;
+        this.crestURLPlayer = ((TeamActivity) Objects.requireNonNull(getActivity())).crestURLPlayer;
 
         // Par defaut, on affiche l'équipe du club sélectionné
-        squadcontroller.onCreate(this.idTeam, getString(R.string.token));
+        squadcontroller.onCreate(getString(R.string.token));
 
         // Inflate the layout for this fragment
         return v;

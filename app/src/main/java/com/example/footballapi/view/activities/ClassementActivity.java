@@ -19,7 +19,7 @@ public class ClassementActivity extends AppCompatActivity {
 
     private RecyclerView rvClassement;
 
-    int idCompet = -1;
+    public int idCompet = -1;
 
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -40,7 +40,7 @@ public class ClassementActivity extends AppCompatActivity {
         Intent intent = getIntent();
         this.idCompet = intent.getIntExtra(MainActivity.CLE_DONNEES_ID_COMPET, 1);
 
-        classementcontroller.onCreate(idCompet,  getString(R.string.token));
+        classementcontroller.onCreate(getString(R.string.token));
 
     }
 

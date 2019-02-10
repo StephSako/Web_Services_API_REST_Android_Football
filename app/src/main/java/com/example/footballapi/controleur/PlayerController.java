@@ -26,6 +26,7 @@ public class PlayerController {
 
     /**
      * Affiche les détails d'un joueur
+     * @param token
      */
     public void onCreate(String token) {
         Call<Player> call = RestUser.get().players(token, activity.idPlayer);

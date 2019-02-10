@@ -25,9 +25,10 @@ public class MatchesController {
 
     /**
      * Affiche la liste des matches d'une équipe
+     * @param token
      */
-    public void onCreate(int idTeam, final String token) {
-        Call<Team> call = RestUser.get().matches(token, idTeam);
+    public void onCreate(final String token) {
+        Call<Team> call = RestUser.get().matches(token, fragment.idTeam);
         call.enqueue(new Callback<Team>() {
             @Override
             public void onResponse(@NonNull Call<Team> call, @NonNull Response<Team> response) {
@@ -47,7 +48,6 @@ public class MatchesController {
                         model.setIdTeamHome(String.valueOf(team.getMatches().get(i).getHomeTeam().getId()));
 
                         // On vérifie si le match a déjà été joué ou pas
-                        String Score = "";
                         if (team.getMatches().get(i).getStatus().equals("FINISHED"))
                             model.setScore(team.getMatches().get(i).getScore().getFullTime().getHomeTeam() + " - " + team.getMatches().get(i).getScore().getFullTime().getAwayTeam());
                         else{

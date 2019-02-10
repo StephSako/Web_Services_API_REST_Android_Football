@@ -72,29 +72,35 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         holder.tvScore.setText(values.get(position).getScore());
         holder.tvHomeTeam.setText(values.get(position).getHomeTeam());
 
-        holder.tvHomeTeam.setTypeface(null, Typeface.BOLD);
-        holder.tvAwayTeam.setTypeface(null, Typeface.BOLD);
+        /*holder.tvHomeTeam.setTypeface(null, Typeface.BOLD);
+        holder.tvAwayTeam.setTypeface(null, Typeface.BOLD);*/
         if (values.get(position).getWinner() != null) {
             switch (values.get(position).getWinner()) {
                 case "HOME_TEAM":
-                    holder.tvHomeTeam.setTextColor(Color.parseColor("#8BDB88"));
-                    holder.tvAwayTeam.setTextColor(Color.parseColor("#FF7A7A"));
+                    holder.tvHomeTeam.setTypeface(null, Typeface.BOLD);
+                    holder.tvAwayTeam.setTypeface(null, Typeface.NORMAL);
+                    holder.tvHomeTeam.setTextColor(Color.BLACK);
+                    holder.tvAwayTeam.setTextColor(Color.BLACK);
                     break;
                 case "AWAY_TEAM":
-                    holder.tvHomeTeam.setTextColor(Color.parseColor("#FF7A7A"));
-                    holder.tvAwayTeam.setTextColor(Color.parseColor("#8BDB88"));
+                    holder.tvHomeTeam.setTypeface(null, Typeface.NORMAL);
+                    holder.tvAwayTeam.setTypeface(null, Typeface.BOLD);
+                    holder.tvHomeTeam.setTextColor(Color.BLACK);
+                    holder.tvAwayTeam.setTextColor(Color.BLACK);
                     break;
                 case "DRAW":  // Match nul
                     holder.tvHomeTeam.setTypeface(null, Typeface.NORMAL);
                     holder.tvAwayTeam.setTypeface(null, Typeface.NORMAL);
+                    holder.tvHomeTeam.setTextColor(Color.GRAY);
+                    holder.tvAwayTeam.setTextColor(Color.GRAY);
                     break;
             }
         }
         else{
             holder.tvHomeTeam.setTypeface(null, Typeface.NORMAL);
             holder.tvAwayTeam.setTypeface(null, Typeface.NORMAL);
-            holder.tvHomeTeam.setTextColor(Color.parseColor("#000000"));
-            holder.tvAwayTeam.setTextColor(Color.parseColor("#000000"));
+            holder.tvHomeTeam.setTextColor(Color.BLACK);
+            holder.tvAwayTeam.setTextColor(Color.BLACK);
         }
 
         holder.tvHomeTeam.setOnClickListener(new View.OnClickListener() {

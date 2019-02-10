@@ -13,12 +13,18 @@ import retrofit2.Response;
 
 public class DataBaseController {
 
-    public DataBaseController() { }
+    private SplashScreen activity;
+
+    public DataBaseController(SplashScreen activity) {
+        this.activity = activity;
+    }
 
     /**
      * Met à jour le classement identifié dans la base de données locale pour la persistance longue
+     * @param idCompet
+     * @param token
      */
-    public void updateAllCompet(final int idCompet, final SplashScreen activity, String token) {
+    public void updateAllCompet(final int idCompet, String token) {
         Call<Classement> call = RestUser.get().competitions(token, idCompet);
         call.enqueue(new Callback<Classement>() {
             @Override

@@ -22,19 +22,9 @@ import com.example.footballapi.view.fragments.SquadFragment;
 public class TeamActivity extends AppCompatActivity implements View.OnClickListener {
 
     // Variables qui seront transmises dans la vue Player
-    private int idTeam = -1;
+    public int idTeam = -1;
     public String nomClub = "";
     public String crestURLPlayer = "";
-
-    public int getidTeam(){
-        return this.idTeam;
-    }
-    public String getnomClub(){
-        return this.nomClub;
-    }
-    public String getcrestURLPlayer(){
-        return this.crestURLPlayer;
-    }
 
     public Button btnSquad;
     public Button btnMatches;
@@ -75,7 +65,7 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
         if ((this.idTeam = intent.getIntExtra(AdapterRV_Classement.CLE_DONNEES_ID_TEAM, -1)) == -1)
             this.idTeam = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_TEAM, -1);
 
-        teamcontroller.onCreate(this.idTeam, getString(R.string.token));
+        teamcontroller.onCreate(getString(R.string.token));
 
         // On affiche le fragment de la liste des matches par défaut (on change la couleur du bouton
         btnMatches.setBackgroundResource(R.color.green);

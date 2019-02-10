@@ -25,9 +25,10 @@ public class SquadController {
 
     /**
      * Affiche la liste des joueurs d'une équipe
+     * @param token
      */
-    public void onCreate(int idTeam, final String token) {
-        Call<Team> call = RestUser.get().teamSquad(token, idTeam);
+    public void onCreate(final String token) {
+        Call<Team> call = RestUser.get().teamSquad(token, fragment.idTeam);
         call.enqueue(new Callback<Team>() {
             @Override
             public void onResponse(@NonNull Call<Team> call, @NonNull Response<Team> response) {

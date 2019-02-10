@@ -25,9 +25,10 @@ public class TeamController {
 
     /**
      * Affiche les détails d'une équipe
+     * @param token
      * */
-    public void onCreate(int idTeam, final String token) {
-        Call<Team> call = RestUser.get().teamsDetails(token, idTeam);
+    public void onCreate(final String token) {
+        Call<Team> call = RestUser.get().teamsDetails(token, activity.idTeam);
         call.enqueue(new Callback<Team>() {
             @Override
             public void onResponse(@NonNull Call<Team> call, @NonNull Response<Team> response) {
