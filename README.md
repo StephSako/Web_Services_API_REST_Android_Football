@@ -66,7 +66,6 @@ Voici la structure MVC du projet :
 |   |   |   +-- (...)
 |   +-- generatedJava/
 |   |   +-- (...)
-|
 |   +-- res/
 |   |   +-- anim/
 |   |   |   +-- (*.xml)
