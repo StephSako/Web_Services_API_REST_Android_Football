@@ -17,11 +17,16 @@ Tous les WebServices sont à appeler avec la méthode HTTP @GET
 # Outils de développement
 
 - Android Studio
+Android Studio est un environnement de développement pour développer des applications mobiles Android.
+
 - Retrofit2
+Retrofit est une librairie permettant de réaliser des appels à des webservices REST sur Android.
 
 https://square.github.io/retrofit/
 
 - Postman
+PostMan est un envrionnement de développement permettant de visualiser les réponses d'API sous différents formats, pour différentes requêtes HTTP.
+https://www.getpostman.com/
 
 # Modèle MVC
 
@@ -88,7 +93,48 @@ Voici la structure MVC du projet :
 
 # Enchaînement et compositions des écrans
 
-# Préférences
+## SplashScreen
+En ouvrant l'application, un SplashScreen apparait laissant le temps au programme de mettre en cache<sup>2</sup> les classements des championnats proposés.
+
+## Choix de la compétition (Menu principal)
+
+Le second écran présente huit championnats consultables, avec le logo et le pays associé.
+
+## Classement
+
+En cliquant sur un championnat, l'écran suivant affiche le classement des équipes sous forme de liste avec les logos, les noms des club, leur différences de buts et leurs points. Le nom du championnat est spécifié dans le titre de l'ActionBar.
+Un bouton est disponible en haut en droite dans l'ActionBar pour revenir au menu principal.
+
+## Ecran de l'équipe
+
+Nous avons accès aux détails, à la liste (fragment) des matches et des joueurs d'une équipe en cliquant sur un item de la liste.
+
+### Liste des matches
+
+Ce fragment liste les matches par ordre chronologique en renseignant la journée, l'équipe domicile et extèrieure et le score (date de la rencontre si le match n'a pas encore été joué).
+Il est possible de cliquer sur l'équipe adversaire pour accéder à sa fiche.
+
+### Liste des joueurs (Line-up)
+
+Ce fragment liste tous les joueurs de l'équipe. IL est possible de cliquer sur un joueur pour accéder à sa fiche.
+
+# Fiche d'un joueur
+
+Cette fiche détaille des informations sur le joueur comme sa date de naissance, son nom, sa nationalité, son poste et son numéro de maillot.
+
+# Menu
+
+Un Overflow est disponible sur tous les écrans et permet d'accéder aux préférences et aux crédits.
+
+## Crédits
+
+Une description, les coordonnées du développeur ainsi que le Git du projet sont renseignés.
+
+## Préférences
+
+**Affichage des images** : l'uilisateur peut choisir d'afficher ou non les logos des clubs dans le classement ainsi que dans l'écran de détails d'une équipe.
+
+**Mise en cache**<sup>2</sup>  : l'utlisateur peut choisir d'activer ou non la mise en cache des classements dans la base de données locale au démarrage de l'application.
 
 # Chargement des images au format SVG
 
@@ -108,16 +154,21 @@ Afin d'assurer une persistance longue des classements, j'ai choisi d'opter pour 
 | diff          | integer | Non      | Différence de buts de l'équipe (NbButsMarqués - NbButsConcédés)    |
 | points        | integer | Non      | Points de l'équipe dans le classement de la compétition associée   |
 
-Voici ma logique concernant la mise en cache et son utilisation :
 
-~~~
-Au démarrage (ce qui permet d'avoir tous les classements au lieu d'en avoir qu'un seul à sa consultation)
-    s'il y a Internet
-        on met à jour la BD locale
-    sinon
-        rien
-~~~
+Au démarrage, s'il y a Internet et que l'utilisateur à activer cette fonctionnalités dans les préférences, on met à jour la BD locale.
 
 # Problèmes rencontrés
+
+## API
+Des informations ne sont pas fournies par l'API  certains numéros de maillots de joueurs ou lien vers les logos des clubs. D'ailleurs, les logos des équipes de Ligue 1 sont fournis mais ils sont protégés par des licenses : le logo de l'application est alors affiché.
+De plus, le championnat brésilien dure de mai à décembre; les matches ne sont plus disponibles en dehors de cette plage.
+
+## Git
+
+Bien que j'utilise Git régulièrement, j'ai eu des difficultés à comprendre l'intéret des branches au tout début du développement.
+
+## IRL d'images SVG
+
+Charger des images au format SVG depuis un URL est une tâche compliquée. J'ai d'abord recherché du côté de Glide et de la librairie svg:android, mais les images ne s'affichaient pas correctement. J'ai enfin fini par trouvé une librairie qui parse et affiche les images dans des ImageViews (projet Android-SVGLoader forked dans mes repos).
 
 # Conclusion
