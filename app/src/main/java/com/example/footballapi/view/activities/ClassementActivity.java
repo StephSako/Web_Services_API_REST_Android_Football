@@ -76,6 +76,12 @@ public class ClassementActivity extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
             return true;
         }
+        else if (id == R.id.home) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
