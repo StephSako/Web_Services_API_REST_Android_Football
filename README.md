@@ -168,6 +168,7 @@ De plus, le championnat brésilien dure de mai à décembre; les matches ne sont
 ## Git
 
 Bien que j'utilise Git régulièrement, j'ai eu des difficultés à comprendre l'intéret des branches au tout début du développement.
+Le GitFlow a été respecté entre les Merge #4 et #10.
 
 ## IRL d'images 
 
