@@ -58,10 +58,11 @@ public class SquadFragment extends Fragment {
     }
 
     public void showList(List<SquadModel> list){
-        // Define an adapter
-        layoutManager = new LinearLayoutManager(getContext());
-        rvSquad.setLayoutManager(layoutManager);
-        mAdapter = new AdapterRV_Squad(list);
-        rvSquad.setAdapter(mAdapter);
+        if (list != null && list.size() > 0) {
+            layoutManager = new LinearLayoutManager(getContext());
+            rvSquad.setLayoutManager(layoutManager);
+            mAdapter = new AdapterRV_Squad(list);
+            rvSquad.setAdapter(mAdapter);
+        }
     }
 }
