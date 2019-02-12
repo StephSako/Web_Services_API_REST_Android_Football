@@ -39,34 +39,36 @@ public class SquadController {
                     List<SquadModel> listFinal = new ArrayList<>();
 
                     for (int i = 0; i < team.getSquad().size(); i++) {
-                        if (team.getSquad().get(i).getRole().equals("PLAYER")) {
-                            SquadModel model = new SquadModel();
-                            model.setPlayerName(String.valueOf(team.getSquad().get(i).getName()));
+                        if (team.getSquad().size() > 0) {
+                            if (team.getSquad().get(i).getRole().equals("PLAYER")) {
+                                SquadModel model = new SquadModel();
+                                model.setPlayerName(String.valueOf(team.getSquad().get(i).getName()));
 
-                            switch (team.getSquad().get(i).getPosition()) {
-                                case "Goalkeeper":
-                                    model.setPlayerPosition("Gardien");
-                                    break;
-                                case "Defender":
-                                    model.setPlayerPosition("Défenseur");
-                                    break;
-                                case "Midfielder":
-                                    model.setPlayerPosition("Milieu");
-                                    break;
-                                case "Attacker":
-                                    model.setPlayerPosition("Attaquant");
-                                    break;
+                                switch (team.getSquad().get(i).getPosition()) {
+                                    case "Goalkeeper":
+                                        model.setPlayerPosition("Gardien");
+                                        break;
+                                    case "Defender":
+                                        model.setPlayerPosition("Défenseur");
+                                        break;
+                                    case "Midfielder":
+                                        model.setPlayerPosition("Milieu");
+                                        break;
+                                    case "Attacker":
+                                        model.setPlayerPosition("Attaquant");
+                                        break;
+                                }
+
+                                model.setPlayerNationality(team.getSquad().get(i).getNationality());
+                                model.setPlayerId(String.valueOf(team.getSquad().get(i).getId()));
+
+                                if (team.getSquad().get(i).getShirtNumber() != -1)
+                                    model.setPlayerShirtNumber(String.valueOf(team.getSquad().get(i).getShirtNumber()));
+                                else model.setPlayerShirtNumber("");
+
+                                fragment.list = listFinal;
+                                listFinal.add(model);
                             }
-
-                            model.setPlayerNationality(team.getSquad().get(i).getNationality());
-                            model.setPlayerId(String.valueOf(team.getSquad().get(i).getId()));
-
-                            if (team.getSquad().get(i).getShirtNumber() != -1)
-                                model.setPlayerShirtNumber(String.valueOf(team.getSquad().get(i).getShirtNumber()));
-                            else model.setPlayerShirtNumber("");
-
-                            fragment.list = listFinal;
-                            listFinal.add(model);
                         }
                     }
 

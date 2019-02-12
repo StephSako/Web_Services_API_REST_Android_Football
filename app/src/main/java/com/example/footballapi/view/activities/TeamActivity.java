@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.TeamController;
+import com.example.footballapi.model.model_dao.AdapterRV_Search;
 import com.example.footballapi.model.model_recyclerview.classement.AdapterRV_Classement;
 import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
 import com.example.footballapi.view.fragments.MatchesFragment;
@@ -38,6 +39,8 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
 
     private MatchesFragment matchesFragment;
     private SquadFragment squadFragment;
+
+    private boolean resultOfSearch = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +70,7 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         if ((this.idTeam = intent.getIntExtra(AdapterRV_Classement.CLE_DONNEES_ID_TEAM, -1)) == -1)
             this.idTeam = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_TEAM, -1);
+        this.resultOfSearch = intent.getBooleanExtra(AdapterRV_Search.CLE_DONNES_RESULT_SEARCH, false);
 
         teamcontroller.onCreate(getString(R.string.token));
 
@@ -112,11 +116,21 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent i = new Intent(this, ClassementActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(i);
-        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
-        finish();
+        if (!resultOfSearch) {
+            Intent i = new Intent(this, ClassementActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(i);
+            overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+            finish();
+        }
+        else {
+            Intent i = new Intent(this, MainActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(i);
+            overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+            finish();
+        }
+
     }
 
     @Override
@@ -157,6 +171,12 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+            return true;
+        }
+        else if (id == R.id.search) {
+            Intent intent = new Intent(this, SearchTeamActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
             return true;
         }
 

@@ -7,6 +7,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/search"
+        android:icon="@mipmap/ic_search_foreground"
+        app:showAsAction="ifRoom"
+        android:title="Search" />
+
+    <item
         android:id="@+id/credits"
         android:title="A propos"
         app:showAsAction="never" />

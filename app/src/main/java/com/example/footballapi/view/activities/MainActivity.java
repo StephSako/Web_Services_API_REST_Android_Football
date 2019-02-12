@@ -103,6 +103,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
             return true;
         }
+        else if (id == R.id.search) {
+            Intent intent = new Intent(this, SearchTeamActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
