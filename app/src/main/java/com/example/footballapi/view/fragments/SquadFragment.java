@@ -31,7 +31,11 @@ public class SquadFragment extends Fragment {
         return new SquadFragment();
     }
 
+    private boolean isAlreadyCreated = false; // Ne pas recharger le controlleur au démarrage
+
     private SquadController squadcontroller = new SquadController(this);
+
+    public List<SquadModel> list;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,10 +46,14 @@ public class SquadFragment extends Fragment {
         this.idTeam = ((TeamActivity) Objects.requireNonNull(getActivity())).idTeam;
         this.crestURLPlayer = ((TeamActivity) Objects.requireNonNull(getActivity())).crestURLPlayer;
 
-        // Par defaut, on affiche l'équipe du club sélectionné
-        squadcontroller.onCreate(getString(R.string.token));
+        if(!isAlreadyCreated){
+            squadcontroller.onCreate(getString(R.string.token));
+            isAlreadyCreated = true;
+        }
+        else{
+            showList(list); // On ne fais pas d'appel REST si le fragment existe déjà
+        }
 
-        // Inflate the layout for this fragment
         return v;
     }
 

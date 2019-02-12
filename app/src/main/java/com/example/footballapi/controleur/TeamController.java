@@ -77,7 +77,7 @@ public class TeamController {
                     else activity.logo_club.setImageResource(R.drawable.ic_logo_foreground);
 
                 } else {
-                    Toast.makeText(activity, "Compétition introuvable", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
                 }
             }
 

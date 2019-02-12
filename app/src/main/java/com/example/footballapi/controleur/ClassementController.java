@@ -57,7 +57,7 @@ public class ClassementController {
 
                     activity.showList(listFinal, true);
                 } else {
-                    Toast.makeText(activity, "Compétition introuvable", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
                 }
             }
 

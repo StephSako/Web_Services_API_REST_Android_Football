@@ -33,6 +33,10 @@ public class MatchesFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    private boolean isAlreadyCreated = false; // Ne pas recharger le controlleur au démarrage
+
+    public List<MatchesModel> list;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_matches, container, false);
@@ -41,9 +45,14 @@ public class MatchesFragment extends Fragment {
 
         idTeam = ((TeamActivity) Objects.requireNonNull(getActivity())).idTeam;
 
-        teamcontroller.onCreate(getString(R.string.token));
+        if (!isAlreadyCreated){
+            teamcontroller.onCreate(getString(R.string.token));
+            isAlreadyCreated = true;
+        }
+        else{
+            showList(list); // On ne fais pas d'appel REST si le fragment existe déjà
+        }
 
-        // Inflate the layout for this fragment
         return v;
     }
 

@@ -79,7 +79,7 @@ public class PlayerController {
                             break;
                     }
                 } else {
-                    Toast.makeText(activity, "Joueur introuvable", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
                 }
             }
 

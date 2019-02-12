@@ -65,13 +65,14 @@ public class SquadController {
                                 model.setPlayerShirtNumber(String.valueOf(team.getSquad().get(i).getShirtNumber()));
                             else model.setPlayerShirtNumber("");
 
+                            fragment.list = listFinal;
                             listFinal.add(model);
                         }
                     }
 
                     fragment.showList(listFinal);
                 } else {
-                    Toast.makeText(fragment.getContext(), "Equipe introuvable", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(fragment.getContext(), "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
                 }
             }
 

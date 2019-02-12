@@ -63,10 +63,10 @@ public class MatchesController {
 
                         listFinal.add(model);
                     }
-
+                    fragment.list = listFinal; // Appelée et affichée si le fragment existe déjà
                     fragment.showList(listFinal);
                 } else {
-                    Toast.makeText(fragment.getActivity(), "Match introuvable", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(fragment.getActivity(), "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
                 }
             }
 
