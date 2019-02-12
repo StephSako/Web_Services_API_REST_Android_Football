@@ -10,7 +10,9 @@ Dans l'optique de récupérer un nombre conséquent de données, j'ai choisi l'A
 ![](https://www.football-data.org/assets/logo.jpg)
 
 Afin d'accéder aux services de l'API, nous devons créer un compte et ainsi obtenir un tocken<sup>1</sup> qui sera passé dans le Header de la requête.
-Tous les WebServices sont à appeler avec la méthode HTTP @GET
+Tous les WebServices sont à appeler avec la méthode HTTP @GET.
+
+**_ATTENTON : l'API me restreint à 10 appels/min_**
 
 <sup>1</sup> : "Jeton d'authentification, séquence de lettres et de chiffres en guise de mot de passe pour une authentification forte"
 
@@ -136,7 +138,7 @@ Une description, les coordonnées du développeur ainsi que le Git du projet son
 
 **Mise en cache**<sup>2</sup>  : l'utlisateur peut choisir d'activer ou non la mise en cache des classements dans la base de données locale au démarrage de l'application.
 
-# Chargement des images au format SVG
+**_ATTENTON : l'API me restreignant à 10 appels/min et la mise en cache en réalisant 8 d'un coup, cette préférence est désactivée par défaut_**
 
 # Mise en cache des données
 ## DAO (Data Access Object)
@@ -167,7 +169,7 @@ De plus, le championnat brésilien dure de mai à décembre; les matches ne sont
 
 Bien que j'utilise Git régulièrement, j'ai eu des difficultés à comprendre l'intéret des branches au tout début du développement.
 
-## IRL d'images SVG
+## IRL d'images 
 
 Charger des images au format SVG depuis un URL est une tâche compliquée. J'ai d'abord recherché du côté de Glide et de la librairie svg:android, mais les images ne s'affichaient pas correctement. J'ai enfin fini par trouvé une librairie qui parse et affiche les images dans des ImageViews (projet Android-SVGLoader forked dans mes repos).
 
