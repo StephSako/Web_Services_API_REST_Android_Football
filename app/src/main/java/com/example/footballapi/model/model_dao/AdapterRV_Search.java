@@ -23,23 +23,15 @@ public class AdapterRV_Search extends RecyclerView.Adapter<AdapterRV_Search.View
 
     private List<TeamDAO> listSearch;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
     public class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        private TextView tvPosition;
         private TextView tvClubname;
-        private TextView tvPoints;
 
         public View layout;
 
         ViewHolder(View v) {
             super(v);
             layout = v;
-            tvPosition = v.findViewById(R.id.tvPosition);
-            tvClubname = v.findViewById(R.id.tvClubname);
-            tvPoints = v.findViewById(R.id.tvPoints);
+            tvClubname = v.findViewById(R.id.nomClub_search);
         }
     }
 
@@ -59,38 +51,12 @@ public class AdapterRV_Search extends RecyclerView.Adapter<AdapterRV_Search.View
         return new ViewHolder(v);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
 
-        holder.tvPosition.setText(listSearch.get(position).getPosition());
-        holder.tvClubname.setText(listSearch.get(position).getClub_name());
-        holder.tvPoints.setText(listSearch.get(position).getPoints());
-
+        holder.tvClubname.setText(String.valueOf(listSearch.get(position).getClub_name()));
 
         holder.tvClubname.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, TeamActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_TEAM, listSearch.get(position).getPosition());
-                context.startActivity(intent);
-            }
-        });
-
-        holder.tvPoints.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, TeamActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_TEAM, listSearch.get(position).getIdTeam());
-                context.startActivity(intent);
-            }
-        });
-
-        holder.tvPosition.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
