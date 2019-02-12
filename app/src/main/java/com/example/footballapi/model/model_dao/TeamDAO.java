@@ -18,6 +18,12 @@ public class TeamDAO {
         this.points = points;
     }
 
+    TeamDAO(int idTeam, int position, String club_name) {
+        this.idTeam = idTeam;
+        this.club_name = club_name;
+        this.position = position;
+    }
+
     public int getIdTeam() {
         return idTeam;
     }

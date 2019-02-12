@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if (id == R.id.search) {
             Intent intent = new Intent(this, SearchTeamActivity.class);
             startActivity(intent);
-            overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
             return true;
         }
 
