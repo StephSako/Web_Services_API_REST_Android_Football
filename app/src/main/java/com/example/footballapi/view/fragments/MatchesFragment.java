@@ -34,6 +34,7 @@ public class MatchesFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
 
     private boolean isAlreadyCreated = false; // Ne pas recharger le controlleur au démarrage
+    public int resultOfSearch; // Gère les bugs d'enchainements de TeamActivity si la première est résultat d'une recherche
 
     public List<MatchesModel> list;
 
@@ -44,6 +45,7 @@ public class MatchesFragment extends Fragment {
         rvMatches = v.findViewById(R.id.rvMatches);
 
         idTeam = ((TeamActivity) Objects.requireNonNull(getActivity())).idTeam;
+        resultOfSearch = ((TeamActivity) Objects.requireNonNull(getActivity())).resultOfSearch;
 
         if (!isAlreadyCreated){
             teamcontroller.onCreate(getString(R.string.token));
@@ -61,7 +63,7 @@ public class MatchesFragment extends Fragment {
             // Define an adapter
             layoutManager = new LinearLayoutManager(getContext());
             rvMatches.setLayoutManager(layoutManager);
-            mAdapter = new AdapterRV_Matches(list, this.idTeam);
+            mAdapter = new AdapterRV_Matches(list, this.idTeam, resultOfSearch);
             rvMatches.setAdapter(mAdapter);
         }
     }

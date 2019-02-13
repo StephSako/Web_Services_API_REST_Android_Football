@@ -40,11 +40,12 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
     private MatchesFragment matchesFragment;
     private SquadFragment squadFragment;
 
-    private boolean resultOfSearch = false;
+    public int resultOfSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.team_activity);
         TeamController teamcontroller = new TeamController(this);
 
@@ -68,9 +69,18 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
 
         // On récupère l'id de l'équipe qui peut soit venir de la liste dans le classement, soit de celle des matches
         Intent intent = getIntent();
-        if ((this.idTeam = intent.getIntExtra(AdapterRV_Classement.CLE_DONNEES_ID_TEAM, -1)) == -1)
-            this.idTeam = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_TEAM, -1);
-        this.resultOfSearch = intent.getBooleanExtra(AdapterRV_Search.CLE_DONNES_RESULT_SEARCH, false);
+
+        this.resultOfSearch = intent.getIntExtra(AdapterRV_Search.CLE_DONNES_RESULT_SEARCH, -1);
+
+        // Si la première équipe affichée a été trouvée par recherche, nous devons transmettre l'information à
+        // chaque nouvelle instance de TeamActivity lorsque l'on clique sur une équipe dans la liste des matches.
+        // Il faut alors revenir au menu principal. Sinon, revenir classiquement au classement de la première équipe cliquée.
+        if ((resultOfSearch = intent.getIntExtra(AdapterRV_Search.CLE_DONNES_RESULT_SEARCH, -1)) == -1)
+            resultOfSearch = intent.getIntExtra(AdapterRV_Matches.CLE_DONNES_RESULT_SEARCH, -1);
+
+        // L'ID de l'équipe peut venir de deux endroits : du classement, d'où on a cliquée, ou comme vu au dessus du fragment des matches.
+        if ((idTeam = intent.getIntExtra(AdapterRV_Classement.CLE_DONNEES_ID_TEAM, -1)) == -1)
+            idTeam = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_TEAM, -1);
 
         teamcontroller.onCreate(getString(R.string.token));
 
@@ -116,7 +126,7 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
     public void onBackPressed() {
         super.onBackPressed();
 
-        if (!resultOfSearch) {
+        if (resultOfSearch != 1) { // Ne provient pas d'une initiale recherche
             Intent i = new Intent(this, ClassementActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(i);

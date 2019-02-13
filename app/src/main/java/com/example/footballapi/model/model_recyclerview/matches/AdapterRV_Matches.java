@@ -20,9 +20,11 @@ import java.util.List;
 public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.ViewHolder> {
 
     public static final String CLE_DONNEES_ID_TEAM = "idTeam";
+    public static final String CLE_DONNES_RESULT_SEARCH = "resultSearch";
 
     private List<MatchesModel> values;
     private int idTeam;
+    private int resultSearch;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -47,9 +49,10 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public AdapterRV_Matches(List<MatchesModel> myDataset, int idTeam) {
+    public AdapterRV_Matches(List<MatchesModel> myDataset, int idTeam, int resultSearch) {
         this.values = myDataset;
         this.idTeam = idTeam;
+        this.resultSearch = resultSearch;
     }
 
     // Create new views (invoked by the layout manager)
@@ -112,6 +115,7 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
                     Context context = v.getContext();
                     Intent intent = new Intent(context, TeamActivity.class);
                     intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeamHome()));
+                    intent.putExtra(CLE_DONNES_RESULT_SEARCH, resultSearch);
                     context.startActivity(intent);
                 }
             });
@@ -124,6 +128,7 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
                     Context context = v.getContext();
                     Intent intent = new Intent(context, TeamActivity.class);
                     intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeamAway()));
+                    intent.putExtra(CLE_DONNES_RESULT_SEARCH, resultSearch);
                     context.startActivity(intent);
                 }
             });
