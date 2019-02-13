@@ -8,6 +8,7 @@ public class TeamDAO {
     private int position;
     private int diff;
     private int points;
+    private int idCompet;
 
     TeamDAO(int idTeam, int position, String club_name, int diff, int points, String nomCompet) {
         this.idTeam = idTeam;
@@ -18,9 +19,42 @@ public class TeamDAO {
         this.points = points;
     }
 
-    TeamDAO(int idTeam, String club_name) {
+    TeamDAO(int idTeam, int idCompet, String club_name) {
+        this.idCompet = idCompet;
         this.idTeam = idTeam;
         this.club_name = club_name;
+    }
+
+    public void setIdTeam(int idTeam) {
+        this.idTeam = idTeam;
+    }
+
+    public void setClub_name(String club_name) {
+        this.club_name = club_name;
+    }
+
+    public void setNomCompet(String nomCompet) {
+        this.nomCompet = nomCompet;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public void setDiff(int diff) {
+        this.diff = diff;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public int getIdCompet() {
+        return idCompet;
+    }
+
+    public void setIdCompet(int idCompet) {
+        this.idCompet = idCompet;
     }
 
     public int getIdTeam() {

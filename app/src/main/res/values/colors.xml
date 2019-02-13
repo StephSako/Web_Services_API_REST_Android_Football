@@ -5,4 +5,5 @@
     <color name="grey_desactivated">#949494</color>
     <color name="colorFonce">#275D1E</color>
     <color name="colorClair">#7FB675</color>
+    <color name="white">#FFFFFF</color>
 </resources>

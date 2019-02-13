@@ -130,7 +130,6 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
             overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
             finish();
         }
-
     }
 
     @Override

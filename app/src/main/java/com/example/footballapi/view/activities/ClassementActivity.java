@@ -10,8 +10,10 @@ import android.view.MenuItem;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.ClassementController;
+import com.example.footballapi.model.model_dao.AdapterRV_Search;
 import com.example.footballapi.model.model_recyclerview.classement.AdapterRV_Classement;
 import com.example.footballapi.model.model_recyclerview.classement.TeamModel;
+import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
 
 import java.util.List;
 
@@ -38,7 +40,8 @@ public class ClassementActivity extends AppCompatActivity {
 
         // On récupère l'id de la competition depuis l'activite mère
         Intent intent = getIntent();
-        this.idCompet = intent.getIntExtra(MainActivity.CLE_DONNEES_ID_COMPET, 1);
+        if ((this.idCompet = intent.getIntExtra(AdapterRV_Search.CLE_DONNEES_ID_COMPET, -1)) == -1)
+            this.idCompet = intent.getIntExtra(MainActivity.CLE_DONNEES_ID_COMPET, -1);
 
         classementcontroller.onCreate(getString(R.string.token));
 
