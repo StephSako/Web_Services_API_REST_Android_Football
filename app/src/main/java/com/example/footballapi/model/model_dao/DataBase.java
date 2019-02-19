@@ -70,7 +70,7 @@ public class DataBase extends SQLiteOpenHelper {
     // Méthode permettant de récupérer les équipes like ce qu'a saisi l'utulisateur dans la search view
     public List<TeamDAO> findTeamByName(String nomClub){
         List<TeamDAO> classement = new ArrayList<>();
-        String sqlSearchClassment = "select idTeam, idCompet, nomTeam from EQUIPES where nomTeam LIKE '%" + nomClub + "%' order by nomTeam";
+        String sqlSearchClassment = "SELECT idTeam, idCompet, nomTeam FROM EQUIPES where nomTeam LIKE '%" + nomClub + "%' order by nomTeam";
 
         // Résultat du SELECT
         @SuppressLint("Recycle") Cursor cursor = this.getReadableDatabase().rawQuery(sqlSearchClassment, null);
