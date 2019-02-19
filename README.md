@@ -1,6 +1,6 @@
 # Description du projet
 
-L'application "Football API" permet de récupérer des données au format JSON envoyées via des requêtes HTTP depuis une API REST
+L'application "Football API" permet de récupérer des données au format JSON envoyées via des requêtes HTTP sécurisée depuis une API REST
 concernant des compétitions, équipes, matches et joueurs de football des huit principaux championnats, à savoir la Bundesliga (Allemagne), la Ligue 1 (France), La Primera Division (Espagne), la Premier League (Angleterre), la Serie A (Brésil et Italie), l'Eredivisie (Pays-Bas), et enfin la Primereira Liga (ou "Liga NOS", Portugal).
 
 # Choix de l'API REST
@@ -9,8 +9,7 @@ Dans l'optique de récupérer un nombre conséquent de données, j'ai choisi l'A
 
 ![](https://www.football-data.org/assets/logo.jpg)
 
-Afin d'accéder aux services de l'API, nous devons créer un compte et ainsi obtenir un tocken<sup>1</sup> qui sera passé dans le Header de la requête.
-Tous les WebServices sont à appeler avec la méthode HTTP @GET.
+Afin d'accéder aux services de l'API, nous devons créer un compte et ainsi obtenir un tocken<sup>1</sup> qui sera passé dans le Header de la requête. Tous les WebServices sont à appeler avec la méthode HTTP @GET. De plus, les requêtes utilisent une couche de transport sécurisée (TSL Connection).
 
 **_ATTENTON : l'API me restreint à 10 appels/min_**
 
