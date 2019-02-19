@@ -107,6 +107,8 @@ Le second écran présente huit championnats consultables, avec le logo et le pa
 En cliquant sur un championnat, l'écran suivant affiche le classement des équipes sous forme de liste avec les logos, les noms des club, leur différences de buts et leurs points. Le nom du championnat est spécifié dans le titre de l'ActionBar.
 Un bouton est disponible en haut en droite dans l'ActionBar pour revenir au menu principal.
 
+S'il n'y a pas de connexion Internet, les équipes dans le classement ne sont pas cliquables.
+
 ## Ecran de l'équipe
 
 Nous avons accès aux détails, à la liste (fragment) des matches et des joueurs d'une équipe en cliquant sur un item de la liste.
@@ -127,6 +129,14 @@ Cette fiche détaille des informations sur le joueur comme sa date de naissance,
 # Menu
 
 Un Overflow est disponible sur tous les écrans et permet d'accéder aux préférences et aux crédits.
+
+## Bouton principal
+
+Un bouton (home) redirigeant vers le menu principal est disponible sur chaque écrans de l'application.
+
+## Recherche d'équipes
+
+Un autre bouton (loupe) permet de rechercher une équipe : une liste apparaît et affiche les équipes correspondant au mot-clef saisi grâce à une requête SQL réalisée sur la base de données locale. Un bouton permet d'accéder au championnat de l'équipe ou directement à sa fiche.
 
 ## Crédits
 
@@ -173,5 +183,3 @@ Le GitFlow a été respecté entre les Merge #4 et #10.
 ## IRL d'images 
 
 Charger des images au format SVG depuis un URL est une tâche compliquée. J'ai d'abord recherché du côté de Glide et de la librairie svg:android, mais les images ne s'affichaient pas correctement. J'ai enfin fini par trouvé une librairie qui parse et affiche les images dans des ImageViews (projet Android-SVGLoader forked dans mes repos).
-
-# Conclusion
