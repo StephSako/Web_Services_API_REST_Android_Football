@@ -11,7 +11,7 @@ Dans l'optique de récupérer un nombre conséquent de données, j'ai choisi l'A
 
 Afin d'accéder aux services de l'API, nous devons créer un compte et ainsi obtenir un tocken<sup>1</sup> qui sera passé dans le Header de la requête. Tous les WebServices sont à appeler avec la méthode HTTP @GET. De plus, les requêtes utilisent une couche de transport sécurisée (TSL Connection).
 
-**_ATTENTON : l'API me restreint à 10 appels/min. Par défaut, la mise en cache est desactivée; afin de remplir une première fois la base de données locale, activez-la, remémarrez l'application puis désactivez-la pour ne plus utiliser 8 appels au démarrage de l'application._**
+**_ATTENTON : l'API me restreint à 10 appels/min. Pour la première utilisation, la mise en cache est activée afin de remplir une première fois la base de données locale. Désactivez-la pour ne plus utiliser 8 appels au démarrage de l'application._**
 
 <sup>1</sup> : "Jeton d'authentification, séquence de lettres et de chiffres en guise de mot de passe pour une authentification forte"
 
