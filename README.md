@@ -17,15 +17,15 @@ Afin d'accéder aux services de l'API, nous devons créer un compte et ainsi obt
 
 # Outils de développement
 
-- Android Studio
+-**_Android Studio_**
 Android Studio est un environnement de développement pour développer des applications mobiles Android.
 
-- Retrofit2
+-**_Retrofit2_**
 Retrofit est une librairie permettant de réaliser des appels à des webservices REST sur Android.
 
 https://square.github.io/retrofit/
 
-- Postman
+-**_Postman_**
 PostMan est un envrionnement de développement permettant de visualiser les réponses d'API sous différents formats, pour différentes requêtes HTTP.
 https://www.getpostman.com/
 
