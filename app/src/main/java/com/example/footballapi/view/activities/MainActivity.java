@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // Id de la compétition
     private int idCompet = -1;
 
-    // Persistance courte
+    // Persistance courte de idCompet
     private final static String PCidCompet = "idCompet";
 
     // Clef données transmission
