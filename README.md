@@ -11,7 +11,7 @@ Dans l'optique de récupérer un nombre conséquent de données, j'ai choisi l'A
 
 Afin d'accéder aux services de l'API, nous devons créer un compte et ainsi obtenir un tocken<sup>1</sup> qui sera passé dans le Header de la requête. Tous les WebServices sont à appeler avec la méthode HTTP @GET. De plus, les requêtes utilisent une couche de transport sécurisée (TSL Connection).
 
-**_ATTENTON : l'API me restreint à 10 appels/min_**
+**_ATTENTON : l'API me restreint à 10 appels/min. Pour la première utilisation, la mise en cache est activée afin de remplir une première fois la base de données locale. Désactivez-la pour ne plus utiliser 8 appels au démarrage de l'application._**
 
 <sup>1</sup> : "Jeton d'authentification, séquence de lettres et de chiffres en guise de mot de passe pour une authentification forte"
 
@@ -179,6 +179,6 @@ De plus, le championnat brésilien dure de mai à décembre; les matches ne sont
 Bien que j'utilise Git régulièrement, j'ai eu des difficultés à comprendre l'intéret des branches au tout début du développement.
 Le GitFlow a été respecté entre les Merge #4 et #10.
 
-## IRL d'images 
+## URL d'images 
 
 Charger des images au format SVG depuis un URL est une tâche compliquée. J'ai d'abord recherché du côté de Glide et de la librairie svg:android, mais les images ne s'affichaient pas correctement. J'ai enfin fini par trouvé une librairie qui parse et affiche les images dans des ImageViews (projet Android-SVGLoader forked dans mes repos).
