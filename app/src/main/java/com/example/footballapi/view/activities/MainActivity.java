@@ -2,6 +2,7 @@ package com.example.footballapi.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // Persistance courte
     private final static String PCidCompet = "idCompet";
 
-    // Clef données transmission
+    // Clef données transmissionyO
     final static String CLE_DONNEES_ID_COMPET = "idCompet";
 
     @Override
