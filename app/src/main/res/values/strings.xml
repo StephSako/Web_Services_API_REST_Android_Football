@@ -48,10 +48,13 @@
     <string name="Promotion">ESIEA 3A 2018–2019</string>
     <string name="tvEmailTitle">Email</string>
     <string name="EmailDevelopper">steph.sako@gmail.com</string>
-    <string name="tvGitTitle">Git du projet :</string>
+    <string name="tvGitTitle">Git</string>
     <string name="LienGitProjet">https://github.com/StephSako/FootLite</string>
-    <string name="DescriptionAPropos">L\'application FootLite permet de récupérer des données au format JSON envoyées via des requêtes HTTP depuis une API REST concernant des compétitions, équipes, matches et joueurs de football des huit principaux championnats, à savoir la Bundesliga (Allemagne), la Ligue 1 (France), La Primera Division (Espagne), la Premier League (Angleterre), la Serie A (Brésil et Italie), l\'Eredivisie (Pays-Bas), et enfin la Primereira Liga (ou \"Liga NOS\", Portugal).</string>
+    <string name="DescriptionAPropos">L\'application FootLite permet de récupérer des données au format JSON envoyées via des\nrequêtes HTTP depuis une API REST concernant des compétitions, équipes, matches et joueurs de football des huit principaux championnats :\n\n- la Bundesliga (Allemagne)\n- la Ligue 1 (France)\n- la Primera Division (Espagne)\n- la Premier League (Angleterre)\n- la Serie A (Brésil et Italie)\n- l\'Eredivisie (Pays-Bas)\n- la Primereira Liga (ou \"Liga NOS\", Portugal).</string>
     <string name="descrTvLogoClubClassement">Logo club classement</string>
     <string name="btnTeamSearchTitle">Team</string>
     <string name="btnCompetSearchTitle">Champ</string>
+    <string name="txtCreditTitle">Qu\'est ce que FootLite ?</string>
+    <string name="txtTitleApiUsed">API utilisée</string>
+    <string name="txtApiLink">https://www.football-data.org/</string>
 </resources>

@@ -5,17 +5,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/team_activity"
     android:orientation="vertical"
-    tools:context="com.example.footballapi.view.activities."
+    tools:context="com.example.footballapi.view.activities.CreditsActivity"
     tools:ignore="ExtraText">
 
+    <TextView
+        android:id="@+id/tvTitleCredits"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:text="@string/txtCreditTitle"
+        android:textColor="@color/green"
+        android:textStyle="bold"
+        android:layout_marginTop = "45dp"
+        tools:ignore="RtlHardcoded"
+        android:layout_height="25dp" />
     <TextView
         android:id="@+id/tvCredits"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="center"
+        android:gravity="left"
         android:textColor="@color/green"
-        android:textStyle="bold"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:text="@string/DescriptionAPropos"
+        android:textSize="16sp"
+        android:layout_marginTop = "30dp"
+        android:layout_marginLeft = "10dp"
+        android:layout_marginRight = "10dp"
+        tools:ignore="RtlHardcoded" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -94,17 +110,41 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/tvGitTitle"
+            android:textColor="@color/green"
+            android:textStyle="bold" />
+        <TextView
+            android:autoLink="web"
+            android:text="@string/LienGitProjet"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="35dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txtTitleApiUsed"
             android:gravity="center"
             android:layout_weight="1"
             android:textColor="@color/green"
             android:textStyle="bold"/>
         <TextView
             android:autoLink="web"
-            android:text="@string/LienGitProjet"
+            android:text="@string/txtApiLink"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:gravity="center"

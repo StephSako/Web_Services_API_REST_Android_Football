@@ -26,7 +26,7 @@
             android:title="Sauvegarde des classements"
             android:summaryOn="Cache activé"
             android:summaryOff="Cache désactivé"
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="cache"
             android:disableDependentsState="true"/>
     </PreferenceCategory>
