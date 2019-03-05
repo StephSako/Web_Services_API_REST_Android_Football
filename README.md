@@ -17,16 +17,13 @@ Afin d'accéder aux services de l'API, nous devons créer un compte et ainsi obt
 
 # Outils de développement
 
--**_Android Studio_**
-Android Studio est un environnement de développement pour développer des applications mobiles Android.
+-**_Android Studio_** est un environnement de développement pour développer des applications mobiles Android.
 
--**_Retrofit2_**
-Retrofit est une librairie permettant de réaliser des appels à des webservices REST sur Android.
+-**_Retrofit2_** est une librairie permettant de réaliser des appels à des webservices REST sur Android.
 
 https://square.github.io/retrofit/
 
--**_Postman_**
-PostMan est un envrionnement de développement permettant de visualiser les réponses d'API sous différents formats, pour différentes requêtes HTTP.
+-**_Postman_** est un envrionnement de développement permettant de visualiser les réponses d'API sous différents formats, pour différentes requêtes HTTP.
 https://www.getpostman.com/
 
 # Modèle MVC
