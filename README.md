@@ -1,6 +1,6 @@
 # Description du projet
 
-L'application "Football API" permet de récupérer des données au format JSON envoyées via des requêtes HTTP sécurisée depuis une API REST
+L'application "FootLite" permet de récupérer des données au format JSON envoyées via des requêtes HTTP sécurisée depuis une API REST
 concernant des compétitions, équipes, matches et joueurs de football des huit principaux championnats, à savoir la Bundesliga (Allemagne), la Ligue 1 (France), La Primera Division (Espagne), la Premier League (Angleterre), la Serie A (Brésil et Italie), l'Eredivisie (Pays-Bas), et enfin la Primereira Liga (ou "Liga NOS", Portugal).
 
 # Choix de l'API REST
