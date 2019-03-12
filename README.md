@@ -1,6 +1,6 @@
 # Description du projet
 
-L'application "Football API" permet de récupérer des données au format JSON envoyées via des requêtes HTTP sécurisée depuis une API REST
+L'application "FootLite" permet de récupérer des données au format JSON envoyées via des requêtes HTTP sécurisée depuis une API REST
 concernant des compétitions, équipes, matches et joueurs de football des huit principaux championnats, à savoir la Bundesliga (Allemagne), la Ligue 1 (France), La Primera Division (Espagne), la Premier League (Angleterre), la Serie A (Brésil et Italie), l'Eredivisie (Pays-Bas), et enfin la Primereira Liga (ou "Liga NOS", Portugal).
 
 # Choix de l'API REST
@@ -11,22 +11,19 @@ Dans l'optique de récupérer un nombre conséquent de données, j'ai choisi l'A
 
 Afin d'accéder aux services de l'API, nous devons créer un compte et ainsi obtenir un tocken<sup>1</sup> qui sera passé dans le Header de la requête. Tous les WebServices sont à appeler avec la méthode HTTP @GET. De plus, les requêtes utilisent une couche de transport sécurisée (TSL Connection).
 
-**_ATTENTON : l'API me restreint à 10 appels/min. Par défaut, la mise en cache est desactivée; afin de remplir une première fois la base de données locale, activez-la, remémarrez l'application puis désactivez-la pour ne plus utiliser 8 appels au démarrage de l'application._**
+**_ATTENTON : l'API me restreint à 10 appels/min. Pour la première utilisation, la mise en cache est activée afin de remplir une première fois la base de données locale. Désactivez-la pour ne plus utiliser 8 appels au démarrage de l'application._**
 
 <sup>1</sup> : "Jeton d'authentification, séquence de lettres et de chiffres en guise de mot de passe pour une authentification forte"
 
 # Outils de développement
 
-- Android Studio
-Android Studio est un environnement de développement pour développer des applications mobiles Android.
+-**_Android Studio_** est un environnement de développement pour développer des applications mobiles Android.
 
-- Retrofit2
-Retrofit est une librairie permettant de réaliser des appels à des webservices REST sur Android.
+-**_Retrofit2_** est une librairie permettant de réaliser des appels à des webservices REST sur Android.
 
 https://square.github.io/retrofit/
 
-- Postman
-PostMan est un envrionnement de développement permettant de visualiser les réponses d'API sous différents formats, pour différentes requêtes HTTP.
+-**_Postman_** est un envrionnement de développement permettant de visualiser les réponses d'API sous différents formats, pour différentes requêtes HTTP.
 https://www.getpostman.com/
 
 # Modèle MVC
