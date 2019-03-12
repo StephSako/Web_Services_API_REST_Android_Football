@@ -43,8 +43,11 @@ public class SquadFragment extends Fragment {
 
         rvSquad = v.findViewById(R.id.rvSquad);
 
-        this.idTeam = ((TeamActivity) Objects.requireNonNull(getActivity())).idTeam;
-        this.crestURLPlayer = ((TeamActivity) Objects.requireNonNull(getActivity())).crestURLPlayer;
+        Bundle bundle = this.getArguments();
+        if (bundle != null){
+            idTeam = bundle.getInt("idTeam", -1);
+            crestURLPlayer = bundle.getString("crestURL", "");
+        }
 
         if(!isAlreadyCreated){
             squadcontroller.onCreate(getString(R.string.token));

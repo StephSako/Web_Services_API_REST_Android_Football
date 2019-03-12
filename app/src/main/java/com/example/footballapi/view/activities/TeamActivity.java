@@ -38,9 +38,8 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
     public boolean loadingPicsTeam;
 
     private MatchesFragment matchesFragment;
+    Bundle bundle = new Bundle();
     private SquadFragment squadFragment;
-
-    public int resultOfSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,14 +69,6 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
         // On récupère l'id de l'équipe qui peut soit venir de la liste dans le classement, soit de celle des matches
         Intent intent = getIntent();
 
-        this.resultOfSearch = intent.getIntExtra(AdapterRV_Search.CLE_DONNES_RESULT_SEARCH, -1);
-
-        // Si la première équipe affichée a été trouvée par recherche, nous devons transmettre l'information à
-        // chaque nouvelle instance de TeamActivity lorsque l'on clique sur une équipe dans la liste des matches.
-        // Il faut alors revenir au menu principal. Sinon, revenir classiquement au classement de la première équipe cliquée.
-        if ((resultOfSearch = intent.getIntExtra(AdapterRV_Search.CLE_DONNES_RESULT_SEARCH, -1)) == -1)
-            resultOfSearch = intent.getIntExtra(AdapterRV_Matches.CLE_DONNES_RESULT_SEARCH, -1);
-
         // L'ID de l'équipe peut venir de deux endroits : du classement, d'où on a cliquée, ou comme vu au dessus du fragment des matches.
         if ((idTeam = intent.getIntExtra(AdapterRV_Classement.CLE_DONNEES_ID_TEAM, -1)) == -1)
             idTeam = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_TEAM, -1);
@@ -92,8 +83,9 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
         btnMatches.setEnabled(false);
 
         matchesFragment = MatchesFragment.newInstance();
-
-        getSupportFragmentManager().beginTransaction().add(R.id.idFragmentSquad_Match, matchesFragment, "MATCHES").addToBackStack("MATCHES").commit();
+        bundle.putInt("idTeam", idTeam);
+        matchesFragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().add(R.id.idFragmentSquad_Match, matchesFragment).commit();
     }
 
     public void onClick(View v) { // On remplace le fragment par celui géré par le bouton cliqué
@@ -105,9 +97,15 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
             btnMatches.setBackgroundResource(R.color.grey_desactivated);
             btnSquad.setBackgroundResource(R.color.green);
 
-            if (squadFragment == null) squadFragment = SquadFragment.newInstance();
+            if (squadFragment == null){
+                squadFragment = SquadFragment.newInstance();
+                bundle.putInt("idTeam", idTeam);
+                bundle.putString("crestURL", crestURLPlayer);
+                squadFragment.setArguments(bundle);
+            }
+
             getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left)
-                    .replace(R.id.idFragmentSquad_Match, squadFragment, "MATCHES").addToBackStack("MATCHES").commit();
+                    .replace(R.id.idFragmentSquad_Match,squadFragment).commit();
         }
         else if (v.getId() == R.id.btnMatches) { // On affiche la liste des matches de l'équipe
 
@@ -117,28 +115,10 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
             btnSquad.setBackgroundResource(R.color.grey_desactivated);
             btnMatches.setBackgroundResource(R.color.green);
 
+            bundle.putInt("idTeam", idTeam);
+            matchesFragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_left, R.anim.slide_to_right)
-                    .replace(R.id.idFragmentSquad_Match, matchesFragment).addToBackStack(null).commit();
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        if (resultOfSearch != 1) { // Ne provient pas d'une initiale recherche
-            Intent i = new Intent(this, ClassementActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(i);
-            overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
-            finish();
-        }
-        else {
-            Intent i = new Intent(this, MainActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(i);
-            overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
-            finish();
+                    .replace(R.id.idFragmentSquad_Match,matchesFragment).commit();
         }
     }
 

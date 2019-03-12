@@ -27,7 +27,7 @@ public class MatchesFragment extends Fragment {
 
     private MatchesController teamcontroller = new MatchesController(this);
 
-    public int idTeam = -1;
+    public int idTeam;
 
     public RecyclerView rvMatches;
     private RecyclerView.Adapter mAdapter;
@@ -44,8 +44,8 @@ public class MatchesFragment extends Fragment {
 
         rvMatches = v.findViewById(R.id.rvMatches);
 
-        idTeam = ((TeamActivity) Objects.requireNonNull(getActivity())).idTeam;
-        resultOfSearch = ((TeamActivity) Objects.requireNonNull(getActivity())).resultOfSearch;
+        Bundle bundle = this.getArguments();
+        if (bundle != null) idTeam = bundle.getInt("idTeam", -1);
 
         if (!isAlreadyCreated){
             teamcontroller.onCreate(getString(R.string.token));
