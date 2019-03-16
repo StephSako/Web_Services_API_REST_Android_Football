@@ -7,7 +7,7 @@ concernant des compétitions, équipes, matches et joueurs de football des huit 
 
 Dans l'optique de récupérer un nombre conséquent de données, j'ai choisi l'API de [football-data.org](https://www.football-data.org/ "Site de football-data.org").
 
-<img src="https://www.football-data.org/assets/logo.jpg" width="30%">
+<p align="center"><img src="https://www.football-data.org/assets/logo.jpg" width="30%"></p>
 
 Afin d'accéder aux services de l'API, nous devons créer un compte et ainsi obtenir un tocken<sup>1</sup> qui sera passé dans le Header de la requête. Tous les WebServices sont à appeler avec la méthode HTTP @GET. De plus, les requêtes utilisent une couche de transport sécurisée (TSL Connection).
 
