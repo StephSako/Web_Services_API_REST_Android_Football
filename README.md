@@ -114,19 +114,19 @@ Il est possible de cliquer sur l'équipe adversaire pour accéder à sa fiche.
 
 Ce fragment liste tous les joueurs de l'équipe. IL est possible de cliquer sur un joueur pour accéder à sa fiche.
 
-<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750827-screenshot-20190316-163905-footlite.jpg">
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750827-screenshot-20190316-163905-footlite.jpg" width="30%">
 
 # Fiche d'un joueur
 
 Cette fiche détaille des informations sur le joueur comme sa date de naissance, son nom, sa nationalité, son poste et son numéro de maillot.
 
-<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750684-team-squad.jpg">
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750684-team-squad.jpg" width="30%">
 
 # Menu
 
 Un Overflow est disponible sur tous les écrans et permet d'accéder aux préférences et aux crédits.
 
-<img src="https://image.noelshack.com/fichiers/2019/11/6/1552751032-overflow.png">
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552751032-overflow.png" width="30%">
 
 ## Bouton principal
 
@@ -136,17 +136,17 @@ Un bouton (home) redirigeant vers le menu principal est disponible sur chaque é
 
 Un autre bouton (loupe) permet de rechercher une équipe : une liste apparaît et affiche les équipes correspondant au mot-clef saisi grâce à une requête SQL réalisée sur la base de données locale. Un bouton permet d'accéder au championnat de l'équipe ou directement à sa fiche.
 
-<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750384-search.jpg">
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750384-search.jpg" width="30%">
 
 ## Crédits
 
 Une description, les coordonnées du développeur ainsi que le Git du projet sont renseignés.
 
-<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750381-credits.jpg">
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750381-credits.jpg" width="30%">
 
 ## Préférences
 
-<img src="https://image.noelshack.com/fichiers/2019/11/6/1552751109-settings.jpg">
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552751109-settings.jpg" width="30%">
 
 **Affichage des images** : l'uilisateur peut choisir d'afficher ou non les logos des clubs dans le classement ainsi que dans l'écran de détails d'une équipe.
 
