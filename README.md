@@ -78,7 +78,7 @@ Voici la structure MVC du projet :
 ## SplashScreen
 En ouvrant l'application, un SplashScreen apparait laissant le temps au programme de mettre en cache<sup>2</sup> les classements des championnats proposés.
 
-![](https://image.noelshack.com/fichiers/2019/11/6/1552750386-splashscreen.jpg){:height="36px" width="36px"}
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750386-splashscreen.jpg" width="40%">
 
 ## Choix de la compétition (Menu principal)
 
