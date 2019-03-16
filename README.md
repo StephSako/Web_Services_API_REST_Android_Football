@@ -63,28 +63,12 @@ Voici la structure MVC du projet :
 |   |   |   |   |   +-- (*.java)
 |   |   |   |   +-- fragments/
 |   |   |   |   |   +-- (*.java)
-|   |   +-- com.example.footballapi (androidTest/
-|   |   |   +-- (...)
-|   |   +-- com.example.footballapi (test)/
-|   |   |   +-- (...)
-|   +-- generatedJava/
-|   |   +-- (...)
 |   +-- res/
-|   |   +-- anim/
-|   |   |   +-- (*.xml)
-|   |   +-- drawable/
-|   |   |   +-- (*.xml)
-|   |   +-- layout/
-|   |   |   +-- (*.xml)
-|   |   +-- menu/
+|   |   +-- anim/, drawable/, layout/, menu/, values/, xml/
 |   |   |   +-- (*.xml)
 |   |   +-- mipmap/
 |   |   |   +-- ic_[CHAMPIONNAT]_foreground
 |   |   |   |   +-- (*.png)
-|   |   +-- values/
-|   |   |   +-- (*.xml)
-|   |   +-- xml/
-|   |   |   +-- (*.xml)
 +-- svgloader/
 +-- Gradle Scripts/
 ```
@@ -94,14 +78,20 @@ Voici la structure MVC du projet :
 ## SplashScreen
 En ouvrant l'application, un SplashScreen apparait laissant le temps au programme de mettre en cache<sup>2</sup> les classements des championnats proposés.
 
+![](https://image.noelshack.com/fichiers/2019/11/6/1552750386-splashscreen.jpg)
+
 ## Choix de la compétition (Menu principal)
 
 Le second écran présente huit championnats consultables, avec le logo et le pays associé.
+
+![](https://image.noelshack.com/fichiers/2019/11/6/1552750371-home.jpg)
 
 ## Classement
 
 En cliquant sur un championnat, l'écran suivant affiche le classement des équipes sous forme de liste avec les logos, les noms des club, leur différences de buts et leurs points. Le nom du championnat est spécifié dans le titre de l'ActionBar.
 Un bouton est disponible en haut en droite dans l'ActionBar pour revenir au menu principal.
+
+![](https://image.noelshack.com/fichiers/2019/11/6/1552750377-classement.jpg)
 
 S'il n'y a pas de connexion Internet, les équipes dans le classement ne sont pas cliquables.
 
@@ -109,22 +99,34 @@ S'il n'y a pas de connexion Internet, les équipes dans le classement ne sont pa
 
 Nous avons accès aux détails, à la liste (fragment) des matches et des joueurs d'une équipe en cliquant sur un item de la liste.
 
+![](https://image.noelshack.com/fichiers/2019/11/6/1552750689-team-matches.jpg)
+
 ### Liste des matches
 
-Ce fragment liste les matches par ordre chronologique en renseignant la journée, l'équipe domicile et extèrieure et le score (date de la rencontre si le match n'a pas encore été joué).
+Ce fragment (voir image du dessus) liste les matches par ordre chronologique en renseignant la journée, l'équipe domicile et extèrieure et le score (date de la rencontre si le match n'a pas encore été joué).
 Il est possible de cliquer sur l'équipe adversaire pour accéder à sa fiche.
+
+![](https://image.noelshack.com/fichiers/2019/11/6/1552750921-team-matches-copie.jpg)
+=>
+![](https://image.noelshack.com/fichiers/2019/11/6/1552750687-to-team-matches.jpg)
 
 ### Liste des joueurs (Line-up)
 
 Ce fragment liste tous les joueurs de l'équipe. IL est possible de cliquer sur un joueur pour accéder à sa fiche.
 
+![](https://image.noelshack.com/fichiers/2019/11/6/1552750827-screenshot-20190316-163905-footlite.jpg)
+
 # Fiche d'un joueur
 
 Cette fiche détaille des informations sur le joueur comme sa date de naissance, son nom, sa nationalité, son poste et son numéro de maillot.
 
+![](https://image.noelshack.com/fichiers/2019/11/6/1552750684-team-squad.jpg)
+
 # Menu
 
 Un Overflow est disponible sur tous les écrans et permet d'accéder aux préférences et aux crédits.
+
+![](https://image.noelshack.com/fichiers/2019/11/6/1552751032-overflow.png)
 
 ## Bouton principal
 
@@ -134,11 +136,17 @@ Un bouton (home) redirigeant vers le menu principal est disponible sur chaque é
 
 Un autre bouton (loupe) permet de rechercher une équipe : une liste apparaît et affiche les équipes correspondant au mot-clef saisi grâce à une requête SQL réalisée sur la base de données locale. Un bouton permet d'accéder au championnat de l'équipe ou directement à sa fiche.
 
+![](https://image.noelshack.com/fichiers/2019/11/6/1552750384-search.jpg)
+
 ## Crédits
 
 Une description, les coordonnées du développeur ainsi que le Git du projet sont renseignés.
 
+![](https://image.noelshack.com/fichiers/2019/11/6/1552750381-credits.jpg)
+
 ## Préférences
+
+![](https://image.noelshack.com/fichiers/2019/11/6/1552751109-settings.jpg)
 
 **Affichage des images** : l'uilisateur peut choisir d'afficher ou non les logos des clubs dans le classement ainsi que dans l'écran de détails d'une équipe.
 
