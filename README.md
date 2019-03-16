@@ -7,7 +7,7 @@ concernant des compétitions, équipes, matches et joueurs de football des huit 
 
 Dans l'optique de récupérer un nombre conséquent de données, j'ai choisi l'API de [football-data.org](https://www.football-data.org/ "Site de football-data.org").
 
-![](https://www.football-data.org/assets/logo.jpg)
+<img src="https://www.football-data.org/assets/logo.jpg" width="30%">
 
 Afin d'accéder aux services de l'API, nous devons créer un compte et ainsi obtenir un tocken<sup>1</sup> qui sera passé dans le Header de la requête. Tous les WebServices sont à appeler avec la méthode HTTP @GET. De plus, les requêtes utilisent une couche de transport sécurisée (TSL Connection).
 
@@ -78,20 +78,20 @@ Voici la structure MVC du projet :
 ## SplashScreen
 En ouvrant l'application, un SplashScreen apparait laissant le temps au programme de mettre en cache<sup>2</sup> les classements des championnats proposés.
 
-<img align="center" src="https://image.noelshack.com/fichiers/2019/11/6/1552750386-splashscreen.jpg" width="30%">
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750386-splashscreen.jpg" width="30%">
 
 ## Choix de la compétition (Menu principal)
 
 Le second écran présente huit championnats consultables, avec le logo et le pays associé.
 
-![](https://image.noelshack.com/fichiers/2019/11/6/1552750371-home.jpg)
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750371-home.jpg" width="30%">
 
 ## Classement
 
 En cliquant sur un championnat, l'écran suivant affiche le classement des équipes sous forme de liste avec les logos, les noms des club, leur différences de buts et leurs points. Le nom du championnat est spécifié dans le titre de l'ActionBar.
 Un bouton est disponible en haut en droite dans l'ActionBar pour revenir au menu principal.
 
-![](https://image.noelshack.com/fichiers/2019/11/6/1552750377-classement.jpg)
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750377-classement.jpg" width="30%">
 
 S'il n'y a pas de connexion Internet, les équipes dans le classement ne sont pas cliquables.
 
@@ -99,34 +99,34 @@ S'il n'y a pas de connexion Internet, les équipes dans le classement ne sont pa
 
 Nous avons accès aux détails, à la liste (fragment) des matches et des joueurs d'une équipe en cliquant sur un item de la liste.
 
-![](https://image.noelshack.com/fichiers/2019/11/6/1552750689-team-matches.jpg)
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750689-team-matches.jpg" width="30%">
 
 ### Liste des matches
 
 Ce fragment (voir image du dessus) liste les matches par ordre chronologique en renseignant la journée, l'équipe domicile et extèrieure et le score (date de la rencontre si le match n'a pas encore été joué).
 Il est possible de cliquer sur l'équipe adversaire pour accéder à sa fiche.
 
-![](https://image.noelshack.com/fichiers/2019/11/6/1552750921-team-matches-copie.jpg)
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750921-team-matches-copie.jpg" width="30%">
 =>
-![](https://image.noelshack.com/fichiers/2019/11/6/1552750687-to-team-matches.jpg)
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750687-to-team-matches.jpg" width="30%">
 
 ### Liste des joueurs (Line-up)
 
 Ce fragment liste tous les joueurs de l'équipe. IL est possible de cliquer sur un joueur pour accéder à sa fiche.
 
-![](https://image.noelshack.com/fichiers/2019/11/6/1552750827-screenshot-20190316-163905-footlite.jpg)
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750827-screenshot-20190316-163905-footlite.jpg">
 
 # Fiche d'un joueur
 
 Cette fiche détaille des informations sur le joueur comme sa date de naissance, son nom, sa nationalité, son poste et son numéro de maillot.
 
-![](https://image.noelshack.com/fichiers/2019/11/6/1552750684-team-squad.jpg)
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750684-team-squad.jpg">
 
 # Menu
 
 Un Overflow est disponible sur tous les écrans et permet d'accéder aux préférences et aux crédits.
 
-![](https://image.noelshack.com/fichiers/2019/11/6/1552751032-overflow.png)
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552751032-overflow.png">
 
 ## Bouton principal
 
@@ -136,17 +136,17 @@ Un bouton (home) redirigeant vers le menu principal est disponible sur chaque é
 
 Un autre bouton (loupe) permet de rechercher une équipe : une liste apparaît et affiche les équipes correspondant au mot-clef saisi grâce à une requête SQL réalisée sur la base de données locale. Un bouton permet d'accéder au championnat de l'équipe ou directement à sa fiche.
 
-![](https://image.noelshack.com/fichiers/2019/11/6/1552750384-search.jpg)
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750384-search.jpg">
 
 ## Crédits
 
 Une description, les coordonnées du développeur ainsi que le Git du projet sont renseignés.
 
-![](https://image.noelshack.com/fichiers/2019/11/6/1552750381-credits.jpg)
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552750381-credits.jpg">
 
 ## Préférences
 
-![](https://image.noelshack.com/fichiers/2019/11/6/1552751109-settings.jpg)
+<img src="https://image.noelshack.com/fichiers/2019/11/6/1552751109-settings.jpg">
 
 **Affichage des images** : l'uilisateur peut choisir d'afficher ou non les logos des clubs dans le classement ainsi que dans l'écran de détails d'une équipe.
 
