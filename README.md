@@ -1,7 +1,8 @@
 # Description du projet
 
-L'application "FootLite" permet de récupérer des données au format JSON envoyées via des requêtes HTTP sécurisée depuis une API REST
-concernant des compétitions, équipes, matches et joueurs de football des huit principaux championnats, à savoir la Bundesliga (Allemagne), la Ligue 1 (France), La Primera Division (Espagne), la Premier League (Angleterre), la Serie A (Brésil et Italie), l'Eredivisie (Pays-Bas), et enfin la Primereira Liga (ou "Liga NOS", Portugal).
+Projet de développement utilisant le pattern MVC dans une application Android codée en Java.
+
+L'application "FootLite" permet de récupérer des données au format JSON envoyées via des requêtes HTTP sécurisée depuis une API REST concernant des compétitions, équipes, matches et joueurs de football des huit principaux championnats, à savoir la Bundesliga (Allemagne), la Ligue 1 (France), La Primera Division (Espagne), la Premier League (Angleterre), la Serie A (Brésil et Italie), l'Eredivisie (Pays-Bas), et enfin la Primereira Liga (ou "Liga NOS", Portugal).
 
 # Choix de l'API REST
 
@@ -9,7 +10,7 @@ Dans l'optique de récupérer un nombre conséquent de données, j'ai choisi l'A
 
 <p align="center"><img src="https://www.football-data.org/assets/logo.jpg" width="30%"></p>
 
-Afin d'accéder aux services de l'API, nous devons créer un compte et ainsi obtenir un tocken<sup>1</sup> qui sera passé dans le Header de la requête. Tous les WebServices sont à appeler avec la méthode HTTP @GET. De plus, les requêtes utilisent une couche de transport sécurisée (TSL Connection).
+Afin d'accéder aux services de l'API, nous devons créer un compte et ainsi obtenir un tocken<sup>1</sup> qui sera passé dans le Header de la requête. Tous les WebServices sont à appeler avec la méthode HTTP @GET (pattern Singleton & Facade). De plus, les requêtes utilisent une couche de transport sécurisée (TSL Connection).
 
 **_ATTENTON : l'API me restreint à 10 appels/min. Pour la première utilisation, la mise en cache est activée afin de remplir une première fois la base de données locale. Désactivez-la pour ne plus utiliser 8 appels au démarrage de l'application._**
 
@@ -27,8 +28,9 @@ https://square.github.io/retrofit/
 https://www.getpostman.com/
 
 #Modèle MVC
-Voici la structure MVC du projet :
-=
+
+Voici la structure MVC du code Java :
+
 ```
 .
 +-- app/
@@ -72,6 +74,8 @@ Voici la structure MVC du projet :
 +-- Gradle Scripts/
 ```
 
+Les controlleurs sont basés sur le pattern de l'injection de dépendances.
+
 # Enchaînement et compositions des écrans
 
 ## SplashScreen
@@ -89,6 +93,8 @@ Le second écran présente huit championnats consultables, avec le logo et le pa
 
 En cliquant sur un championnat, l'écran suivant affiche le classement des équipes sous forme de liste avec les logos, les noms des club, leur différences de buts et leurs points. Le nom du championnat est spécifié dans le titre de l'ActionBar.
 Un bouton est disponible en haut en droite dans l'ActionBar pour revenir au menu principal.
+
+Afin de générer les différentes RecyclerView de l'application, j'ai utilisé un pattern Adapter.
 
 <p align="center"><img src="https://image.noelshack.com/fichiers/2019/11/6/1552750377-classement.jpg" width="30%"></p>
 
