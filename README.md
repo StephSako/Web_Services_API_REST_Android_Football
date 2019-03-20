@@ -27,7 +27,7 @@ https://square.github.io/retrofit/
 -**_Postman_** est un envrionnement de développement permettant de visualiser les réponses d'API sous différents formats, pour différentes requêtes HTTP.
 https://www.getpostman.com/
 
-#Modèle MVC
+# Modèle MVC
 
 Voici la structure MVC du code Java :
 
