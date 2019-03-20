@@ -26,53 +26,6 @@ https://square.github.io/retrofit/
 -**_Postman_** est un envrionnement de développement permettant de visualiser les réponses d'API sous différents formats, pour différentes requêtes HTTP.
 https://www.getpostman.com/
 
-# Modèle MVC
-
-Voici la structure MVC du projet : 
-
-```
-.
-+-- app/
-|   +-- manifests/
-|   |   +-- AndroidManifest.xml
-|   +-- java/
-|   |   +-- com.example.footballapi/
-|   |   |   +-- controleur/
-|   |   |   |   +-- (*.java)
-|   |   |   +-- model/
-|   |   |   |   +-- model_dao/
-|   |   |   |   |   +-- (*.java)
-|   |   |   |   +-- model_recyclerview/
-|   |   |   |   |   +-- classement/
-|   |   |   |   |   |   +-- (*.java)
-|   |   |   |   |   +-- matches/
-|   |   |   |   |   |   +-- (*.java)
-|   |   |   |   |   +-- squad/
-|   |   |   |   |   |   +-- (*.java)
-|   |   |   |   +-- model_retrofit/
-|   |   |   |   |   +-- competition/
-|   |   |   |   |   |   +-- (*.java)
-|   |   |   |   |   +-- player/
-|   |   |   |   |   |   +-- (*.java)
-|   |   |   |   |   +-- restService/
-|   |   |   |   |   |   +-- (*.java)
-|   |   |   |   |   +-- team/
-|   |   |   |   |   |   +-- (*.java)
-|   |   |   +-- view/
-|   |   |   |   +-- activities/
-|   |   |   |   |   +-- (*.java)
-|   |   |   |   +-- fragments/
-|   |   |   |   |   +-- (*.java)
-|   +-- res/
-|   |   +-- anim/, drawable/, layout/, menu/, values/, xml/
-|   |   |   +-- (*.xml)
-|   |   +-- mipmap/
-|   |   |   +-- ic_[CHAMPIONNAT]_foreground
-|   |   |   |   +-- (*.png)
-+-- svgloader/
-+-- Gradle Scripts/
-```
-
 # Enchaînement et compositions des écrans
 
 ## SplashScreen
