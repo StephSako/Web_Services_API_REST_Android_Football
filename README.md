@@ -4,8 +4,8 @@ Projet de développement utilisant le pattern MVC dans une application Android c
 
 L'application "FootLite" permet de récupérer des données au format JSON envoyées via des requêtes HTTP sécurisée depuis une API REST concernant des compétitions, équipes, matches et joueurs de football des huit principaux championnats, à savoir la Bundesliga (Allemagne), la Ligue 1 (France), La Primera Division (Espagne), la Premier League (Angleterre), la Serie A (Brésil et Italie), l'Eredivisie (Pays-Bas), et enfin la Primereira Liga (ou "Liga NOS", Portugal).
 
-* Consignes respectéesintent.getIntExtra(AdapterRV_Classement.CLE_DONNEES_ID_TEAM, -1)
-  - Trois écrans : un écran avec une liste (classement) et un écran avec un détail de l’item (équipe), lui-même composé d'un fragment de deux listes, elles aussi cliquables pour des détails
+* Consignes respectées :
+  - Trois écrans : 1er écran avec les 8 championnats, puis une liste d'un classement (RecyclerView), un écran avec les détails de l’item (club), lui-même composé d'un fragment de deux listes (matches & équipe), elles aussi cliquables pour des détails
    - Appel WebService à une API Rest de Football
    - Stockage des données en cache à l'aide d'une Base de Données SQLite
 * Fonctionnalités supplémentaires :
@@ -14,10 +14,9 @@ L'application "FootLite" permet de récupérer des données au format JSON envoy
    - Animations entre les écrans
    - Option de recherche dans la BD locale avec le nom d'un club
    - Préférences pour :
-          - L'affichage des logos
-          - L'activation mise en cache
+          * L'affichage des logos
+          * L'activation mise en cache
    - Bouton retour au menu Home
-   - Images SVG affichables grâce à une librairie Java externe
    - Ecran crédits
 
 # Choix de l'API REST
