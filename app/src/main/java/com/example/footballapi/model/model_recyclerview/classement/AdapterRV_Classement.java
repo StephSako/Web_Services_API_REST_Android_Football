@@ -27,11 +27,7 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
     private ClassementActivity activity;
     private boolean netaccess;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
     public class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
         private TextView tvPosition;
         private TextView tvClubname;
         private TextView tvDiff;
@@ -53,30 +49,22 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
     public AdapterRV_Classement(List<TeamModel> myDataset, ClassementActivity activity, boolean netaccess) {
         values = myDataset;
         this.activity = activity;
         this.netaccess = netaccess;
     }
 
-    // Create new views (invoked by the layout manager)
     @NonNull
     @Override
     public AdapterRV_Classement.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // create a new view
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.row_classement, parent, false);
-        // set the view's size, margins, paddings and layout parameters
         return new ViewHolder(v);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-
         holder.tvPosition.setText(values.get(position).getPosition());
         holder.tvClubname.setText(values.get(position).getName());
         holder.tvDiff.setText(values.get(position).getDiff());
@@ -105,7 +93,6 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
         }
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return values.size();

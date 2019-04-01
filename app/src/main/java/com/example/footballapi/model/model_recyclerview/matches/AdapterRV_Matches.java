@@ -23,13 +23,8 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
 
     private List<MatchesModel> values;
     private int idTeam;
-    private int resultSearch;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
     public class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
         TextView tvMatchday;
         TextView tvHomeTeam;
         TextView tvScore;
@@ -47,37 +42,26 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public AdapterRV_Matches(List<MatchesModel> myDataset, int idTeam, int resultSearch) {
+    public AdapterRV_Matches(List<MatchesModel> myDataset, int idTeam) {
         this.values = myDataset;
         this.idTeam = idTeam;
-        this.resultSearch = resultSearch;
     }
 
-    // Create new views (invoked by the layout manager)
     @NonNull
     @Override
     public AdapterRV_Matches.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // create a new view
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.row_matches, parent, false);
-        // set the view's size, margins, paddings and layout parameters
         return new ViewHolder(v);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-
         holder.tvMatchday.setText(values.get(position).getMatchDay());
         holder.tvAwayTeam.setText(values.get(position).getAwayTeam());
         holder.tvScore.setText(values.get(position).getScore());
         holder.tvHomeTeam.setText(values.get(position).getHomeTeam());
 
-        /*holder.tvHomeTeam.setTypeface(null, Typeface.BOLD);
-        holder.tvAwayTeam.setTypeface(null, Typeface.BOLD);*/
         if (values.get(position).getWinner() != null) {
             switch (values.get(position).getWinner()) {
                 case "HOME_TEAM":
@@ -132,7 +116,6 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         }
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return values.size();
