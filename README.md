@@ -113,7 +113,9 @@ Afin de générer les différentes RecyclerView de l'application, j'ai utilisé 
 
 <p align="center"><img src="https://image.noelshack.com/fichiers/2019/11/6/1552750377-classement.jpg" width="30%"></p>
 
-S'il n'y a pas de connexion Internet, les équipes dans le classement ne sont pas cliquables.
+S'il n'y a pas de connexion Internet, les équipes dans le classement ne sont pas cliquables et un message d'avertissement apparaît.
+
+<p align="center"><img src="https://image.noelshack.com/fichiers/2019/14/2/1554218157-screenshot-20190402-171035-footlite.jpg" width="30%"></p>
 
 ## Ecran de l'équipe
 
