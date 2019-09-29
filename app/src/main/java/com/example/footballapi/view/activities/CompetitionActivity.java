@@ -14,14 +14,14 @@ import com.example.footballapi.model.model_viewpager.competition.Adapter_ViewPag
 public class CompetitionActivity extends AppCompatActivity {
 
     public int idCompet = -1;
-    private static final String KEY_COMPET = "id_compet";
+    private static final String KEY_COMPET = "idCompet";
 
     public CompetitionActivity() { }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        setContentView(R.layout.competition_activity);
 
         // On récupère l'id de la competition depuis l'activite mère
         Intent intent = getIntent();

@@ -22,7 +22,7 @@ public class AdapterRV_Squad extends RecyclerView.Adapter<AdapterRV_Squad.ViewHo
 
     public static final String CLE_DONNEES_ID_PLAYER = "idPlayer";
     public static final String CLE_DONNEES_NOM_CLUB = "nomClub";
-    public static final String CLE_DONNEES_CRUST_URL = "crestURL";
+    public static final String CLE_DONNEES_CRUST_URL = "crestTeam";
 
 
     private List<SquadModel> values;

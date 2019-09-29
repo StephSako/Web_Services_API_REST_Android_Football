@@ -20,7 +20,7 @@ public class ClassementFragment extends Fragment {
 
     public int idCompet = -1;
 
-    private static final String KEY_COMPET = "id_compet";
+    private static final String KEY_COMPET = "idCompet";
 
     private RecyclerView rvClassement;
     private RecyclerView.Adapter mAdapter;

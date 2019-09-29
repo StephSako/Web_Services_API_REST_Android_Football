@@ -22,7 +22,7 @@ public class Adapter_ViewPagerTeam extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0: return(MatchesFragment.newInstance(this.id));
-            case 1: return(SquadFragment.newInstance(this.id, this.crestURL));
+            case 1: return(SquadFragment.newInstance(this.id));
         }
         return null;
     }
