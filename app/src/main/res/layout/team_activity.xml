@@ -102,34 +102,29 @@
             android:layout_weight="2"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="1dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/btMatchesTitle"
-            android:id="@+id/btnMatches"
-            tools:ignore="ButtonStyle" />
-
-        <Button
-            android:id="@+id/btnSquad"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/btnSquadTitle"
-            tools:ignore="ButtonStyle" />
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/idFragmentSquad_Match"
-        android:name="com.example.footballapi.view.SquadFragment"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_squad" />
+        android:orientation="vertical">
+
+        <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tablayoutteam"
+            android:textColor="@color/white"
+            android:background="@color/green"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        </android.support.design.widget.TabLayout>
+
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/pagerteam">
+
+        </android.support.v4.view.ViewPager>
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -14,16 +14,13 @@ import com.example.footballapi.R;
 import com.example.footballapi.controleur.MatchesController;
 import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
 import com.example.footballapi.model.model_recyclerview.matches.MatchesModel;
+import com.example.footballapi.model.model_retrofit.team.Match;
 import com.example.footballapi.view.activities.TeamActivity;
 
 import java.util.List;
 import java.util.Objects;
 
 public class MatchesFragment extends Fragment {
-
-    public static MatchesFragment newInstance() {
-        return new MatchesFragment();
-    }
 
     private MatchesController teamcontroller = new MatchesController(this);
 
@@ -33,9 +30,19 @@ public class MatchesFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    private static final String KEY_ID = "id_team";
+
     private boolean isAlreadyCreated = false; // Ne pas recharger le controlleur au démarrage
 
     public List<MatchesModel> list;
+
+    public static MatchesFragment newInstance(int id) {
+        MatchesFragment frag = new MatchesFragment();
+        Bundle args = new Bundle();
+        args.putInt(KEY_ID, id);
+        frag.setArguments(args);
+        return(frag);
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,8 +50,7 @@ public class MatchesFragment extends Fragment {
 
         rvMatches = v.findViewById(R.id.rvMatches);
 
-        Bundle bundle = this.getArguments();
-        if (bundle != null) idTeam = bundle.getInt("idTeam", -1);
+        if(getArguments() != null) this.idTeam = getArguments().getInt(KEY_ID, -1);
 
         if (!isAlreadyCreated){
             teamcontroller.onCreate(getString(R.string.token));

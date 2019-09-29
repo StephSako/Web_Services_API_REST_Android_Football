@@ -27,15 +27,23 @@ public class SquadFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    public static SquadFragment newInstance() {
-        return new SquadFragment();
-    }
+    private static final String KEY_ID = "id_team";
+    private static final String KEY_CREST = "crest_team";
 
     private boolean isAlreadyCreated = false; // Ne pas recharger le controlleur au démarrage
 
     private SquadController squadcontroller = new SquadController(this);
 
     public List<SquadModel> list;
+
+    public static SquadFragment newInstance(int id, String crestURL) {
+        SquadFragment frag = new SquadFragment();
+        Bundle args = new Bundle();
+        args.putInt(KEY_ID, id);
+
+        frag.setArguments(args);
+        return(frag);
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,9 +52,9 @@ public class SquadFragment extends Fragment {
         rvSquad = v.findViewById(R.id.rvSquad);
 
         Bundle bundle = this.getArguments();
-        if (bundle != null){
-            idTeam = bundle.getInt("idTeam", -1);
-            crestURLPlayer = bundle.getString("crestURL", "");
+        if(getArguments() != null){
+            this.idTeam = getArguments().getInt(KEY_ID, -1);
+            this.crestURLPlayer = getArguments().getString(KEY_CREST, "");
         }
 
         if(!isAlreadyCreated){
