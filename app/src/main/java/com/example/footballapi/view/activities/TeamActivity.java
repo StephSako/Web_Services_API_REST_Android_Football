@@ -1,34 +1,32 @@
 package com.example.footballapi.view.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.TeamController;
-import com.example.footballapi.model.model_dao.AdapterRV_Search;
 import com.example.footballapi.model.model_recyclerview.classement.AdapterRV_Classement;
 import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
-import com.example.footballapi.view.fragments.MatchesFragment;
-import com.example.footballapi.view.fragments.SquadFragment;
+import com.example.footballapi.model.model_viewpager.team.Adapter_ViewPager;
 
-public class TeamActivity extends AppCompatActivity implements View.OnClickListener {
+@SuppressLint("Registered")
+public class TeamActivity extends AppCompatActivity {
 
     // Variables qui seront transmises dans la vue Player
     public int idTeam = -1;
     public String nomClub = "";
     public String crestURLPlayer = "";
 
-    public Button btnSquad;
-    public Button btnMatches;
     public TextView tvWebSite;
     public TextView tvStade;
     public TextView tvActiveCompetitions;
@@ -36,10 +34,6 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
     public ImageView logo_club;
 
     public boolean loadingPicsTeam;
-
-    private MatchesFragment matchesFragment;
-    Bundle bundle = new Bundle();
-    private SquadFragment squadFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +46,6 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         // Préférences du switch pour afficher les logos
         this.loadingPicsTeam = sharedPref.getBoolean("logosTeam", true);
-
-        this.btnSquad = findViewById(R.id.btnSquad);
-        this.btnMatches = findViewById(R.id.btnMatches);
-
-        this.btnSquad.setOnClickListener(this);
-        this.btnMatches.setOnClickListener(this);
 
         this.tvWebSite = findViewById(R.id.tvWebsite);
         this.tvStade = findViewById(R.id.tvStade);
@@ -75,51 +63,11 @@ public class TeamActivity extends AppCompatActivity implements View.OnClickListe
 
         teamcontroller.onCreate(getString(R.string.token));
 
-        // On affiche le fragment de la liste des matches par défaut (on change la couleur du bouton
-        btnMatches.setBackgroundResource(R.color.green);
-        btnSquad.setBackgroundResource(R.color.grey_desactivated);
-
-        btnSquad.setEnabled(true);
-        btnMatches.setEnabled(false);
-
-        matchesFragment = MatchesFragment.newInstance();
-        bundle.putInt("idTeam", idTeam);
-        matchesFragment.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction().add(R.id.idFragmentSquad_Match, matchesFragment).commit();
-    }
-
-    public void onClick(View v) { // On remplace le fragment par celui géré par le bouton cliqué
-        if (v.getId() == R.id.btnSquad) { // On affiche la liste des joueurs de l'équipe
-
-            btnSquad.setEnabled(false);
-            btnMatches.setEnabled(true);
-
-            btnMatches.setBackgroundResource(R.color.grey_desactivated);
-            btnSquad.setBackgroundResource(R.color.green);
-
-            if (squadFragment == null){
-                squadFragment = SquadFragment.newInstance();
-                bundle.putInt("idTeam", idTeam);
-                bundle.putString("crestURL", crestURLPlayer);
-                squadFragment.setArguments(bundle);
-            }
-
-            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left)
-                    .replace(R.id.idFragmentSquad_Match,squadFragment).commit();
-        }
-        else if (v.getId() == R.id.btnMatches) { // On affiche la liste des matches de l'équipe
-
-            btnSquad.setEnabled(true);
-            btnMatches.setEnabled(false);
-
-            btnSquad.setBackgroundResource(R.color.grey_desactivated);
-            btnMatches.setBackgroundResource(R.color.green);
-
-            bundle.putInt("idTeam", idTeam);
-            matchesFragment.setArguments(bundle);
-            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_left, R.anim.slide_to_right)
-                    .replace(R.id.idFragmentSquad_Match,matchesFragment).commit();
-        }
+        ViewPager viewPager = findViewById(R.id.pagerteam);
+        Adapter_ViewPager myPagerAdapter = new Adapter_ViewPager(getSupportFragmentManager(), this.idTeam, this.crestURLPlayer);
+        viewPager.setAdapter(myPagerAdapter);
+        TabLayout tabLayout = findViewById(R.id.tablayoutteam);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
