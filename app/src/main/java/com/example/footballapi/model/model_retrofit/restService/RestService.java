@@ -2,6 +2,8 @@ package com.example.footballapi.model.model_retrofit.restService;
 
 import com.example.footballapi.model.model_retrofit.competition.Classement;
 import com.example.footballapi.model.model_retrofit.player.Player;
+import com.example.footballapi.model.model_retrofit.team.Match;
+import com.example.footballapi.model.model_retrofit.team.OneMatch;
 import com.example.footballapi.model.model_retrofit.team.Team;
 
 import retrofit2.Call;
@@ -14,6 +16,8 @@ import retrofit2.http.Path;
  */
 
 public interface RestService {
+
+    /** V1 **/
 
     // Afficher un joueur en particulier
     @GET("players/{id}/")
@@ -33,5 +37,18 @@ public interface RestService {
 
     // Afficher les matches d'une équipe
     @GET("teams/{id}/matches")
-    Call<Team> matches(@Header("X-Auth-Token") String token, @Path("id") int id);
+    Call<Team> matchesTeam(@Header("X-Auth-Token") String token, @Path("id") int id);
+
+
+
+    /** V2 **/
+
+    // Afficher les matches d'une compétition
+    @GET("competitions/{id}/matches")
+    Call<Classement> matchesCompetition(@Header("X-Auth-Token") String token, @Path("id") int id);
+
+    // Afficher un match en particulier
+    @GET("matches/{id}")
+    Call<OneMatch> match(@Header("X-Auth-Token") String token, @Path("id") int id);
+
 }

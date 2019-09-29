@@ -85,7 +85,7 @@ public class PlayerController {
 
             @Override
             public void onFailure(@NonNull Call<Player> call, @NonNull Throwable t) {
-                Toast.makeText(activity, "Vérifiez votre connexion Internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Vérifiez votre connexion_activity Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }

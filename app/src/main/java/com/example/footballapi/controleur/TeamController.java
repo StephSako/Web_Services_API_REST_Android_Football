@@ -83,7 +83,7 @@ public class TeamController {
 
             @Override
             public void onFailure(@NonNull Call<Team> call, @NonNull Throwable t) {
-                Toast.makeText(activity, "Vérifiez votre connexion Internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Vérifiez votre connexion_activity Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }

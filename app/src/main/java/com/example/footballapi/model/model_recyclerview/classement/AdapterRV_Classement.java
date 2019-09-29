@@ -79,7 +79,7 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
                     .close();
         }
 
-        // On active les listener en cas de connexion à Internet, on les désactive sinon
+        // On active les listener en cas de connexion_activity à Internet, on les désactive sinon
         if(netaccess) {
             holder.itemView.setOnClickListener(new OnClickListener() {
                 @Override

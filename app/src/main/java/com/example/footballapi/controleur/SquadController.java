@@ -80,7 +80,7 @@ public class SquadController {
 
             @Override
             public void onFailure(@NonNull Call<Team> call, @NonNull Throwable t) {
-                Toast.makeText(fragment.getContext(), "Vérifiez votre connexion Internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(fragment.getContext(), "Vérifiez votre connexion_activity Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }

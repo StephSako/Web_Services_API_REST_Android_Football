@@ -86,10 +86,10 @@ public class ClassementController {
                         listFinal.add(model);
                     }
 
-                    // booléen qui active ou désactive les écouteurs sur les item de la recyclerview en cas de connexion oun non à internet
+                    // booléen qui active ou désactive les écouteurs sur les item de la recyclerview en cas de connexion_activity oun non à internet
                     activity.showList(listFinal, false);
                 }
-                Toast.makeText(activity, "Classement non mis à jour.\nVérifiez votre connexion.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Classement non mis à jour.\nVérifiez votre connexion_activity.", Toast.LENGTH_SHORT).show();
             }
         });
     }

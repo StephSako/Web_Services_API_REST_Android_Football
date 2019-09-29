@@ -28,7 +28,7 @@ public class MatchesController {
      * @param token
      */
     public void onCreate(final String token) {
-        Call<Team> call = RestUser.get().matches(token, fragment.idTeam);
+        Call<Team> call = RestUser.get().matchesTeam(token, fragment.idTeam);
         call.enqueue(new Callback<Team>() {
             @Override
             public void onResponse(@NonNull Call<Team> call, @NonNull Response<Team> response) {
@@ -72,7 +72,7 @@ public class MatchesController {
 
             @Override
             public void onFailure(@NonNull Call<Team> call, @NonNull Throwable t) {
-                Toast.makeText(fragment.getActivity(), "Vérifiez votre connexion Internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(fragment.getActivity(), "Vérifiez votre connexion_activity Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }
