@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.footballapi.R;
-import com.example.footballapi.view.activities.ClassementActivity;
+import com.example.footballapi.view.fragments.ClassementFragment;
 import com.example.footballapi.view.activities.TeamActivity;
 
 import java.util.List;
@@ -76,7 +76,7 @@ public class AdapterRV_Search extends RecyclerView.Adapter<AdapterRV_Search.View
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-                Intent intent = new Intent(context, ClassementActivity.class);
+                Intent intent = new Intent(context, ClassementFragment.class);
                 intent.putExtra(CLE_DONNEES_ID_COMPET, listSearch.get(position).getIdCompet());
                 context.startActivity(intent);
             }

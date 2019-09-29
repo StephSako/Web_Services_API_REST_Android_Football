@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.footballapi.R;
+import com.example.footballapi.view.fragments.ClassementFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if (v.getId() == R.id.btnNetherlands) idCompet = 2003;
         else if (v.getId() == R.id.btnBresil) idCompet = 2013;
 
-        Intent intent = new Intent(this, ClassementActivity.class);
+        Intent intent = new Intent(this, CompetitionActivity.class);
         intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);

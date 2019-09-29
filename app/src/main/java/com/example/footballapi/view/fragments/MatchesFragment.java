@@ -8,17 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.MatchesController;
 import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
 import com.example.footballapi.model.model_recyclerview.matches.MatchesModel;
-import com.example.footballapi.model.model_retrofit.team.Match;
-import com.example.footballapi.view.activities.TeamActivity;
 
 import java.util.List;
-import java.util.Objects;
 
 public class MatchesFragment extends Fragment {
 

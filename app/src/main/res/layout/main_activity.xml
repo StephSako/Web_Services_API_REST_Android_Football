@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_activity"
     android:orientation="vertical"
-    tools:context="com.example.footballapi.view.activities.ClassementActivity"
+    tools:context="com.example.footballapi.view.fragments.ClassementFragment"
     tools:ignore="ExtraText">
 
     <LinearLayout
