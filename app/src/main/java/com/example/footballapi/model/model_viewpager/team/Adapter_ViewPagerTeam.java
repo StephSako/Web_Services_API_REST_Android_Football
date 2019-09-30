@@ -7,22 +7,22 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.example.footballapi.view.fragments.SquadFragment;
 
-public class Adapter_ViewPager extends FragmentStatePagerAdapter {
+public class Adapter_ViewPagerTeam extends FragmentStatePagerAdapter {
 
     private int id;
-    private String crestURL;
+    private String type;
 
-    public Adapter_ViewPager(FragmentManager fm, int id, String crestURL) {
+    public Adapter_ViewPagerTeam(FragmentManager fm, int id, String type) {
         super(fm);
         this.id = id;
-        this.crestURL = crestURL;
+        this.type = type;
     }
 
     @Override
     public Fragment getItem(int position) {
         switch (position){
-            case 0: return(MatchesFragment.newInstance(this.id));
-            case 1: return(SquadFragment.newInstance(this.id, this.crestURL));
+            case 0: return(MatchesFragment.newInstance(this.id, this.type));
+            case 1: return(SquadFragment.newInstance(this.id));
         }
         return null;
     }
@@ -36,7 +36,7 @@ public class Adapter_ViewPager extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position){
             case 0: return "Matches";
-            case 1: return "Squad";
+            case 1: return "Équipe";
             default: return null;
         }
     }

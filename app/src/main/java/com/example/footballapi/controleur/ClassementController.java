@@ -8,7 +8,7 @@ import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.model.model_dao.TeamDAO;
 import com.example.footballapi.model.model_recyclerview.classement.TeamModel;
 import com.example.footballapi.model.model_retrofit.restService.RestUser;
-import com.example.footballapi.view.activities.ClassementActivity;
+import com.example.footballapi.view.fragments.ClassementFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +20,10 @@ import retrofit2.Response;
 
 public class ClassementController {
 
-    private ClassementActivity activity;
+    private ClassementFragment fragment;
 
-    public ClassementController(ClassementActivity activity) {
-        this.activity = activity;
+    public ClassementController(ClassementFragment fragment) {
+        this.fragment = fragment;
     }
 
     /**
@@ -31,7 +31,7 @@ public class ClassementController {
      * @param token
      */
     public void onCreate(String token) {
-        Call<Classement> call = RestUser.get().competitions(token, activity.idCompet);
+        Call<Classement> call = RestUser.get().competitions(token, fragment.idCompet);
         call.enqueue(new Callback<Classement>() {
 
             @Override
@@ -39,7 +39,6 @@ public class ClassementController {
                 if (response.isSuccessful()) {
                     Classement classement = response.body();
                     assert classement != null;
-                    Objects.requireNonNull(activity).setTitle(classement.getCompetition().getName());
 
                     List<TeamModel> listFinal = new ArrayList<>();
 
@@ -55,9 +54,9 @@ public class ClassementController {
                         listFinal.add(model);
                     }
 
-                    activity.showList(listFinal, true);
+                    fragment.showList(listFinal, true);
                 } else {
-                    Toast.makeText(activity, "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(fragment.getContext(), "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -65,12 +64,10 @@ public class ClassementController {
             public void onFailure(@NonNull Call<Classement> call, @NonNull Throwable t) {
 
                 // On affiche le classement récupéré depuis la base de données locale en mode hors ligne
-                DataBase database = new DataBase(activity);
-                List<TeamDAO> classementDAO = database.findClassementById(activity.idCompet);
+                DataBase database = new DataBase(fragment.getContext());
+                List<TeamDAO> classementDAO = database.findClassementById(fragment.idCompet);
 
                 if (classementDAO.size() > 0) { // Si la BD locale n'a jamais été initialisée
-
-                    Objects.requireNonNull(activity).setTitle(classementDAO.get(0).getNomCompet() + " - [Hors ligne]");
 
                     List<TeamModel> listFinal = new ArrayList<>();
 
@@ -87,9 +84,9 @@ public class ClassementController {
                     }
 
                     // booléen qui active ou désactive les écouteurs sur les item de la recyclerview en cas de connexion_activity oun non à internet
-                    activity.showList(listFinal, false);
+                    fragment.showList(listFinal, false);
                 }
-                Toast.makeText(activity, "Classement non mis à jour.\nVérifiez votre connexion_activity.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(fragment.getContext(), "Classement non mis à jour.\nVérifiez votre connexion_activity.", Toast.LENGTH_SHORT).show();
             }
         });
     }

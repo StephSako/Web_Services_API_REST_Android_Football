@@ -13,10 +13,8 @@ import com.example.footballapi.R;
 import com.example.footballapi.controleur.SquadController;
 import com.example.footballapi.model.model_recyclerview.squad.AdapterRV_Squad;
 import com.example.footballapi.model.model_recyclerview.squad.SquadModel;
-import com.example.footballapi.view.activities.TeamActivity;
 
 import java.util.List;
-import java.util.Objects;
 
 public class SquadFragment extends Fragment {
 
@@ -27,20 +25,16 @@ public class SquadFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    private static final String KEY_ID = "id_team";
-    private static final String KEY_CREST = "crest_team";
-
-    private boolean isAlreadyCreated = false; // Ne pas recharger le controlleur au démarrage
+    private static final String KEY_ID = "idTeam";
 
     private SquadController squadcontroller = new SquadController(this);
 
     public List<SquadModel> list;
 
-    public static SquadFragment newInstance(int id, String crestURL) {
+    public static SquadFragment newInstance(int id) {
         SquadFragment frag = new SquadFragment();
         Bundle args = new Bundle();
         args.putInt(KEY_ID, id);
-
         frag.setArguments(args);
         return(frag);
     }
@@ -48,22 +42,11 @@ public class SquadFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_squad, container, false);
-
         rvSquad = v.findViewById(R.id.rvSquad);
 
-        Bundle bundle = this.getArguments();
-        if(getArguments() != null){
-            this.idTeam = getArguments().getInt(KEY_ID, -1);
-            this.crestURLPlayer = getArguments().getString(KEY_CREST, "");
-        }
+        if(getArguments() != null) this.idTeam = getArguments().getInt(KEY_ID, -1);
 
-        if(!isAlreadyCreated){
-            squadcontroller.onCreate(getString(R.string.token));
-            isAlreadyCreated = true;
-        }
-        else{
-            showList(list); // On ne fais pas d'appel REST si le fragment existe déjà
-        }
+        squadcontroller.onCreate(getString(R.string.token));
 
         return v;
     }

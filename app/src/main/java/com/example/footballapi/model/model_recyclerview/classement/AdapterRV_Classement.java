@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
-import com.example.footballapi.view.activities.ClassementActivity;
+import com.example.footballapi.view.fragments.ClassementFragment;
 import com.example.footballapi.view.activities.TeamActivity;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
     public static final String CLE_DONNEES_ID_TEAM = "idTeam";
 
     private List<TeamModel> values;
-    private ClassementActivity activity;
+    private ClassementFragment fragment;
     private boolean netaccess;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -49,9 +49,9 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
         }
     }
 
-    public AdapterRV_Classement(List<TeamModel> myDataset, ClassementActivity activity, boolean netaccess) {
+    public AdapterRV_Classement(List<TeamModel> myDataset, ClassementFragment fragment, boolean netaccess) {
         values = myDataset;
-        this.activity = activity;
+        this.fragment = fragment;
         this.netaccess = netaccess;
     }
 
@@ -73,7 +73,7 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
         // On affiche l'image SVG pour afficher le logo du club
         if (values.get(position).getCrestURL() != null) {
             SvgLoader.pluck()
-                    .with(this.activity)
+                    .with(this.fragment.getActivity())
                     .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
                     .load(values.get(position).getCrestURL(), holder.getivLogoClubClassement())
                     .close();

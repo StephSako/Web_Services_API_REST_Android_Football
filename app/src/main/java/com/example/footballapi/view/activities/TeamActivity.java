@@ -17,7 +17,7 @@ import com.example.footballapi.R;
 import com.example.footballapi.controleur.TeamController;
 import com.example.footballapi.model.model_recyclerview.classement.AdapterRV_Classement;
 import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
-import com.example.footballapi.model.model_viewpager.team.Adapter_ViewPager;
+import com.example.footballapi.model.model_viewpager.team.Adapter_ViewPagerTeam;
 
 @SuppressLint("Registered")
 public class TeamActivity extends AppCompatActivity {
@@ -64,7 +64,7 @@ public class TeamActivity extends AppCompatActivity {
         teamcontroller.onCreate(getString(R.string.token));
 
         ViewPager viewPager = findViewById(R.id.pagerteam);
-        Adapter_ViewPager myPagerAdapter = new Adapter_ViewPager(getSupportFragmentManager(), this.idTeam, this.crestURLPlayer);
+        Adapter_ViewPagerTeam myPagerAdapter = new Adapter_ViewPagerTeam(getSupportFragmentManager(), this.idTeam, "team");
         viewPager.setAdapter(myPagerAdapter);
         TabLayout tabLayout = findViewById(R.id.tablayoutteam);
         tabLayout.setupWithViewPager(viewPager);

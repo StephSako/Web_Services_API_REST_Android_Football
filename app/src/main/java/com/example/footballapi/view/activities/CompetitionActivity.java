@@ -2,49 +2,37 @@ package com.example.footballapi.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.footballapi.R;
-import com.example.footballapi.controleur.ClassementController;
-import com.example.footballapi.model.model_dao.AdapterRV_Search;
-import com.example.footballapi.model.model_recyclerview.classement.AdapterRV_Classement;
-import com.example.footballapi.model.model_recyclerview.classement.TeamModel;
-import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
+import com.example.footballapi.model.model_viewpager.competition.Adapter_ViewPagerCompetition;
 
-import java.util.List;
-
-public class ClassementActivity extends AppCompatActivity {
-
-    private RecyclerView rvClassement;
+public class CompetitionActivity extends AppCompatActivity {
 
     public int idCompet = -1;
+    private static final String KEY_COMPET = "idCompet";
 
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-
-    private ClassementController classementcontroller;
-
-    public ClassementActivity() { }
+    public CompetitionActivity() { }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.classement_activity);
-        classementcontroller = new ClassementController(this);
-
-        rvClassement = findViewById(R.id.rvClassement);
+        setContentView(R.layout.competition_activity);
 
         // On récupère l'id de la competition depuis l'activite mère
         Intent intent = getIntent();
-        if ((this.idCompet = intent.getIntExtra(AdapterRV_Search.CLE_DONNEES_ID_COMPET, -1)) == -1)
-            this.idCompet = intent.getIntExtra(MainActivity.CLE_DONNEES_ID_COMPET, -1);
+        if ((this.idCompet = intent.getIntExtra(KEY_COMPET, -1)) == -1)
+            this.idCompet = intent.getIntExtra(KEY_COMPET, -1);
 
-        classementcontroller.onCreate(getString(R.string.token));
-
+        ViewPager viewPager = findViewById(R.id.pagerCompet);
+        Adapter_ViewPagerCompetition myPagerAdapter = new Adapter_ViewPagerCompetition(getSupportFragmentManager(), idCompet, "competition");
+        viewPager.setAdapter(myPagerAdapter);
+        TabLayout tabLayout = findViewById(R.id.tablayoutCompet);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     // Appuie sur le bouton Précédent du portable
@@ -93,13 +81,5 @@ public class ClassementActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void showList(List<TeamModel> list, boolean netaccess){
-        // Define an adapter
-        layoutManager = new LinearLayoutManager(this);
-        rvClassement.setLayoutManager(layoutManager);
-        mAdapter = new AdapterRV_Classement(list, this, netaccess);
-        rvClassement.setAdapter(mAdapter);
     }
 }
