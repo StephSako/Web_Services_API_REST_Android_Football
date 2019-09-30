@@ -57,7 +57,7 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        holder.tvMatchday.setText(values.get(position).getMatchDay());
+        holder.tvMatchday.setText("J" + values.get(position).getMatchDay());
         holder.tvAwayTeam.setText(values.get(position).getAwayTeam());
         holder.tvScore.setText(values.get(position).getScore());
         holder.tvHomeTeam.setText(values.get(position).getHomeTeam());

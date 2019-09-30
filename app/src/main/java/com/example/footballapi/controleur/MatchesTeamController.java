@@ -15,11 +15,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MatchesController {
+public class MatchesTeamController {
 
     private MatchesFragment fragment;
 
-    public MatchesController(MatchesFragment fragment) {
+    public MatchesTeamController(MatchesFragment fragment) {
         this.fragment = fragment;
     }
 
@@ -28,7 +28,7 @@ public class MatchesController {
      * @param token
      */
     public void onCreate(final String token) {
-        Call<Team> call = RestUser.get().matchesTeam(token, fragment.idTeam);
+        Call<Team> call = RestUser.get().matchesTeam(token, fragment.id);
         call.enqueue(new Callback<Team>() {
             @Override
             public void onResponse(@NonNull Call<Team> call, @NonNull Response<Team> response) {
@@ -56,9 +56,8 @@ public class MatchesController {
                             String[] dateDay = date.split("-");
                             String day = dateDay[2];
                             String month = dateDay[1];
-                            String year = dateDay[0];
 
-                            model.setScore(day + "/" + month + "/" + year);
+                            model.setScore(day + "/" + month);
                         }
 
                         listFinal.add(model);

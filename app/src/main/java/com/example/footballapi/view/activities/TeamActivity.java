@@ -64,7 +64,7 @@ public class TeamActivity extends AppCompatActivity {
         teamcontroller.onCreate(getString(R.string.token));
 
         ViewPager viewPager = findViewById(R.id.pagerteam);
-        Adapter_ViewPagerTeam myPagerAdapter = new Adapter_ViewPagerTeam(getSupportFragmentManager(), this.idTeam, this.crestURLPlayer);
+        Adapter_ViewPagerTeam myPagerAdapter = new Adapter_ViewPagerTeam(getSupportFragmentManager(), this.idTeam, "team");
         viewPager.setAdapter(myPagerAdapter);
         TabLayout tabLayout = findViewById(R.id.tablayoutteam);
         tabLayout.setupWithViewPager(viewPager);

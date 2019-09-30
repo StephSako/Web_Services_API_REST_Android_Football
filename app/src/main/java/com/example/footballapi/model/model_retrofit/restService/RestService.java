@@ -2,7 +2,6 @@ package com.example.footballapi.model.model_retrofit.restService;
 
 import com.example.footballapi.model.model_retrofit.competition.Classement;
 import com.example.footballapi.model.model_retrofit.player.Player;
-import com.example.footballapi.model.model_retrofit.team.Match;
 import com.example.footballapi.model.model_retrofit.team.OneMatch;
 import com.example.footballapi.model.model_retrofit.team.Team;
 

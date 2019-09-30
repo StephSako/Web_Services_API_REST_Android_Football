@@ -29,7 +29,7 @@ public class CompetitionActivity extends AppCompatActivity {
             this.idCompet = intent.getIntExtra(KEY_COMPET, -1);
 
         ViewPager viewPager = findViewById(R.id.pagerCompet);
-        Adapter_ViewPagerCompetition myPagerAdapter = new Adapter_ViewPagerCompetition(getSupportFragmentManager(), idCompet);
+        Adapter_ViewPagerCompetition myPagerAdapter = new Adapter_ViewPagerCompetition(getSupportFragmentManager(), idCompet, "competition");
         viewPager.setAdapter(myPagerAdapter);
         TabLayout tabLayout = findViewById(R.id.tablayoutCompet);
         tabLayout.setupWithViewPager(viewPager);
