@@ -43,6 +43,7 @@ public class TeamActivity extends AppCompatActivity {
         TeamController teamcontroller = new TeamController(this);
 
         // Récupérer les valeurs choisies
+        // Préférences du switch pour afficher les logos
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         // Préférences du switch pour afficher les logos
         this.loadingPicsTeam = sharedPref.getBoolean("logosTeam", true);

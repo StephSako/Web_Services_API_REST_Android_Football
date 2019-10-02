@@ -37,6 +37,8 @@
         <activity android:name=".view.activities.SettingsActivity" />
 
         <activity android:name=".view.activities.SearchTeamActivity" />
+
+        <activity android:name=".view.activities.MatchActivity" />
     </application>
 
 </manifest>

@@ -12,4 +12,12 @@ public class OneMatch {
     @SerializedName("match")
     @Expose
     private Match match = new Match();
+
+    public Head2Head getHead2head() {
+        return head2head;
+    }
+
+    public Match getMatch() {
+        return match;
+    }
 }

@@ -46,6 +46,7 @@ public class MatchesTeamController {
                         model.setWinner(team.getMatches().get(i).getScore().getWinner());
                         model.setIdTeamAway(String.valueOf(team.getMatches().get(i).getAwayTeam().getId()));
                         model.setIdTeamHome(String.valueOf(team.getMatches().get(i).getHomeTeam().getId()));
+                        model.setIdMatch(String.valueOf(team.getMatches().get(i).getId()));
 
                         // On vérifie si le match a déjà été joué ou pas
                         if (team.getMatches().get(i).getStatus().equals("FINISHED"))

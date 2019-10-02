@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.MatchesCompetController;
@@ -53,6 +54,8 @@ public class MatchesFragment extends Fragment {
         if (this.type.equals("team")) new MatchesTeamController(this).onCreate(getString(R.string.token));
         else if (this.type.equals("competition")) new MatchesCompetController(this).onCreate(getString(R.string.token));
 
+        Toast.makeText(this.getActivity(), "matches", Toast.LENGTH_SHORT).show();
+
         return v;
     }
 
@@ -61,7 +64,7 @@ public class MatchesFragment extends Fragment {
             // Define an adapter
             layoutManager = new LinearLayoutManager(getContext());
             rvMatches.setLayoutManager(layoutManager);
-            mAdapter = new AdapterRV_Matches(list, this.id);
+            mAdapter = new AdapterRV_Matches(list);
             rvMatches.setAdapter(mAdapter);
         }
     }
