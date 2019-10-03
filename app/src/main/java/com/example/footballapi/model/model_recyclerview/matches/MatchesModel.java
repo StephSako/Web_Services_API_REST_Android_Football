@@ -9,6 +9,7 @@ public class MatchesModel {
     private String winner;
     private String idTeamHome;
     private String idTeamAway;
+    private String idMatch;
 
     public String getIdTeamHome() {
         return idTeamHome;
@@ -60,5 +61,13 @@ public class MatchesModel {
 
     public void setAwayTeam(String awayTeam) {
         this.awayTeam = awayTeam;
+    }
+
+    public String getIdMatch() {
+        return idMatch;
+    }
+
+    public void setIdMatch(String idMatch) {
+        this.idMatch = idMatch;
     }
 }

@@ -5,7 +5,7 @@ import android.widget.Toast;
 
 import com.example.footballapi.model.model_retrofit.team.Team;
 import com.example.footballapi.model.model_recyclerview.matches.MatchesModel;
-import com.example.footballapi.model.model_retrofit.restService.RestUser;
+import com.example.footballapi.model.model_retrofit.restService.football_data.RestFootballData;
 import com.example.footballapi.view.fragments.MatchesFragment;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class MatchesTeamController {
      * @param token
      */
     public void onCreate(final String token) {
-        Call<Team> call = RestUser.get().matchesTeam(token, fragment.id);
+        Call<Team> call = RestFootballData.get().matchesTeam(token, fragment.id);
         call.enqueue(new Callback<Team>() {
             @Override
             public void onResponse(@NonNull Call<Team> call, @NonNull Response<Team> response) {
@@ -46,6 +46,7 @@ public class MatchesTeamController {
                         model.setWinner(team.getMatches().get(i).getScore().getWinner());
                         model.setIdTeamAway(String.valueOf(team.getMatches().get(i).getAwayTeam().getId()));
                         model.setIdTeamHome(String.valueOf(team.getMatches().get(i).getHomeTeam().getId()));
+                        model.setIdMatch(String.valueOf(team.getMatches().get(i).getId()));
 
                         // On vérifie si le match a déjà été joué ou pas
                         if (team.getMatches().get(i).getStatus().equals("FINISHED"))

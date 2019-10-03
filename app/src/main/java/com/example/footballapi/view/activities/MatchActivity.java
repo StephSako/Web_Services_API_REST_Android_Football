@@ -1,71 +1,63 @@
 package com.example.footballapi.view.activities;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.footballapi.R;
-import com.example.footballapi.controleur.TeamController;
-import com.example.footballapi.model.model_recyclerview.classement.AdapterRV_Classement;
+import com.example.footballapi.controleur.MatchController;
 import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
-import com.example.footballapi.model.model_viewpager.team.Adapter_ViewPagerTeam;
 
-@SuppressLint("Registered")
-public class TeamActivity extends AppCompatActivity {
+public class MatchActivity extends AppCompatActivity {
 
-    // Variables qui seront transmises dans la vue Player
-    public int idTeam = -1;
-    public String nomClub = "";
-    public String crestURLPlayer = "";
+    private MatchController matchController;
 
-    public TextView tvWebSite;
-    public TextView tvStade;
-    public TextView tvActiveCompetitions;
-    public TextView tvEntraineur;
-    public ImageView logo_club;
+    public int idMatch = -1;
 
-    public boolean loadingPicsTeam;
+    public ImageView logo_club_home;
+    public ImageView logo_club_away;
+    public TextView tvVictoiresHome;
+    public TextView tvVictoiresAway;
+    public TextView tvDefaitesHome;
+    public TextView tvDefaitesAway;
+    public TextView tvNuls;
+    public TextView tvTotaux;
+    public TextView tvMatchDate;
+    public TextView tvButsTotaux;
+
+    public boolean loadingPicsPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.match_activity);
+        matchController = new MatchController(this);
 
-        setContentView(R.layout.team_activity);
-        TeamController teamcontroller = new TeamController(this);
-
-        // Récupérer les valeurs choisies
-        // Préférences du switch pour afficher les logos
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        // Préférences du switch pour afficher les logos
-        this.loadingPicsTeam = sharedPref.getBoolean("logosTeam", true);
+        this.loadingPicsPlayer = sharedPref.getBoolean("logosPlayer", true);
 
-        this.tvWebSite = findViewById(R.id.tvWebsite);
-        this.tvStade = findViewById(R.id.tvStade);
-        this.tvActiveCompetitions = findViewById(R.id.tvActiveCompetitions);
-        this.tvEntraineur = findViewById(R.id.tvEntraineur);
+        this.logo_club_home = findViewById(R.id.ivLogoClubHome);
+        this.logo_club_away = findViewById(R.id.ivLogoClubAway);
+        this.tvVictoiresHome = findViewById(R.id.tvVictoiresHome);
+        this.tvVictoiresAway = findViewById(R.id.tvVictoiresAway);
+        this.tvDefaitesHome = findViewById(R.id.tvDefaitesHome);
+        this.tvDefaitesAway = findViewById(R.id.tvDefaitesAway);
+        this.tvNuls = findViewById(R.id.tvNuls);
+        this.tvTotaux = findViewById(R.id.tvMatchesTotaux);
+        this.tvMatchDate = findViewById(R.id.tvMatchDate);
+        this.tvButsTotaux = findViewById(R.id.tvButsTotaux);
 
-        logo_club = findViewById(R.id.logo_club);
-
-        // On récupère l'id de l'équipe venant du le classement
         Intent intent = getIntent();
-        this.idTeam = intent.getIntExtra(AdapterRV_Classement.CLE_DONNEES_ID_TEAM, -1);
+        this.idMatch = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_MATCH, -1);
 
-        teamcontroller.onCreate(getString(R.string.token));
-
-        ViewPager viewPager = findViewById(R.id.pagerteam);
-        Adapter_ViewPagerTeam myPagerAdapter = new Adapter_ViewPagerTeam(getSupportFragmentManager(), this.idTeam, "team");
-        viewPager.setAdapter(myPagerAdapter);
-        TabLayout tabLayout = findViewById(R.id.tablayoutteam);
-        tabLayout.setupWithViewPager(viewPager);
+        matchController.onCreate(getString(R.string.token));
     }
 
     @Override
@@ -74,7 +66,7 @@ public class TeamActivity extends AppCompatActivity {
         // Récupérer les valeurs choisies
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         // Préférences du switch pour afficher les logos
-        this.loadingPicsTeam = sharedPref.getBoolean("logosTeam", true);
+        this.loadingPicsPlayer = sharedPref.getBoolean("logosPlayer", true);
     }
 
     // Affichage du menu

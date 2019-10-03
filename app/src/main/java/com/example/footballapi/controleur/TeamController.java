@@ -6,7 +6,7 @@ import android.widget.Toast;
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.model.model_retrofit.team.Team;
-import com.example.footballapi.model.model_retrofit.restService.RestUser;
+import com.example.footballapi.model.model_retrofit.restService.football_data.RestFootballData;
 import com.example.footballapi.view.activities.TeamActivity;
 
 import java.util.Objects;
@@ -28,7 +28,7 @@ public class TeamController {
      * @param token
      * */
     public void onCreate(final String token) {
-        Call<Team> call = RestUser.get().teamsDetails(token, activity.idTeam);
+        Call<Team> call = RestFootballData.get().teamsDetails(token, activity.idTeam);
         call.enqueue(new Callback<Team>() {
             @Override
             public void onResponse(@NonNull Call<Team> call, @NonNull Response<Team> response) {

@@ -13,16 +13,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.footballapi.R;
+import com.example.footballapi.view.activities.MatchActivity;
 import com.example.footballapi.view.activities.TeamActivity;
 
 import java.util.List;
 
 public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.ViewHolder> {
 
-    public static final String CLE_DONNEES_ID_TEAM = "idTeam";
+    public static final String CLE_DONNEES_ID_MATCH= "idMatch";
 
     private List<MatchesModel> values;
-    private int idTeam;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvMatchday;
@@ -42,9 +42,8 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         }
     }
 
-    public AdapterRV_Matches(List<MatchesModel> myDataset, int idTeam) {
+    public AdapterRV_Matches(List<MatchesModel> myDataset) {
         this.values = myDataset;
-        this.idTeam = idTeam;
     }
 
     @NonNull
@@ -91,29 +90,15 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
             holder.tvAwayTeam.setTextColor(Color.BLACK);
         }
 
-        if (this.idTeam != Integer.parseInt(values.get(position).getIdTeamHome())) {
-            holder.tvHomeTeam.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Context context = v.getContext();
-                    Intent intent = new Intent(context, TeamActivity.class);
-                    intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeamHome()));
-                    context.startActivity(intent);
-                }
-            });
-        }
-
-        if (this.idTeam != Integer.parseInt(values.get(position).getIdTeamAway())) {
-            holder.tvAwayTeam.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Context context = v.getContext();
-                    Intent intent = new Intent(context, TeamActivity.class);
-                    intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeamAway()));
-                    context.startActivity(intent);
-                }
-            });
-        }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, MatchActivity.class);
+                intent.putExtra(CLE_DONNEES_ID_MATCH, Integer.parseInt(values.get(position).getIdMatch()));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

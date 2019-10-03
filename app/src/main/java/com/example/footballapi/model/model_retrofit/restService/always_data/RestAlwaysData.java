@@ -1,7 +1,9 @@
-package com.example.footballapi.model.model_retrofit.restService;
+package com.example.footballapi.model.model_retrofit.restService.always_data;
 
 import android.os.Build;
 import android.util.Log;
+
+import com.example.footballapi.model.model_retrofit.restService.TLSSocketFactory;
 
 import java.security.KeyStore;
 import java.util.ArrayList;
@@ -23,8 +25,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Client REST
  */
-public class RestUser {
-    private static final String API_URL = "http://api.football-data.org/v2/";
+public class RestAlwaysData {
+    private static final String API_URL = "http://stephsako.alwaysdata.net/";
 
     private static RestService service = null;
 

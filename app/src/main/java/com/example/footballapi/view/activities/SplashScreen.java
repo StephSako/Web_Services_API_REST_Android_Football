@@ -40,8 +40,8 @@ public class SplashScreen extends Activity {
         if (sharedPref.getBoolean("cache", true)) {
             this.database = new DataBase(this);
 
-            for (int i = 0; i < tabIdCompet.length; i++) {
-                databaseupdatercompet.updateAllCompet(tabIdCompet[i], getString(R.string.token));
+            for (int value : tabIdCompet) {
+                databaseupdatercompet.updateAllCompet(value, getString(R.string.token));
             }
         }
 

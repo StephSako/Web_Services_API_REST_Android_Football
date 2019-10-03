@@ -43,4 +43,16 @@ public class Head2Head {
     @SerializedName("totalGoals")
     @Expose
     private int totalGoals = -1;
+
+    public HomeTeam getHomeTeam() {
+        return homeTeam;
+    }
+
+    public int getNumberOfMatches() {
+        return numberOfMatches;
+    }
+
+    public int getTotalGoals() {
+        return totalGoals;
+    }
 }

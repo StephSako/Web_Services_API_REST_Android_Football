@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.example.footballapi.model.model_retrofit.competition.Classement;
-import com.example.footballapi.model.model_retrofit.restService.RestUser;
+import com.example.footballapi.model.model_retrofit.restService.football_data.RestFootballData;
 import com.example.footballapi.view.activities.SplashScreen;
 
 import retrofit2.Call;
@@ -25,7 +25,7 @@ public class DataBaseController {
      * @param token
      */
     public void updateAllCompet(final int idCompet, String token) {
-        Call<Classement> call = RestUser.get().competitions(token, idCompet);
+        Call<Classement> call = RestFootballData.get().competitions(token, idCompet);
         call.enqueue(new Callback<Classement>() {
             @Override
             public void onResponse(@NonNull Call<Classement> call, @NonNull Response<Classement> response) {
