@@ -1,50 +1,51 @@
 package com.example.footballapi.view.activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.footballapi.R;
-import com.example.footballapi.controleur.PlayerController;
-import com.example.footballapi.model.model_recyclerview.squad.AdapterRV_Squad;
+import com.example.footballapi.controleur.ConnexionController;
 
-public class ConnexionActivity extends AppCompatActivity {
+public class ConnexionActivity extends AppCompatActivity implements View.OnClickListener{
 
     public ConnexionActivity(){ }
 
-    private PlayerController playercontroller;
+    private ConnexionController connexionController;
 
     public EditText etPseudo;
     public EditText etPassword;
     public Button btnConnexion;
     public Button btnInscription;
 
-    public boolean loadingPicsPlayer;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.player_activity);
-        playercontroller = new PlayerController(this);
+        setContentView(R.layout.connexion_activity);
+        connexionController = new ConnexionController(this);
 
-        // Récupérer les valeurs choisies
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        // Préférences du switch pour afficher les logos
-        this.loadingPicsPlayer = sharedPref.getBoolean("logosPlayer", true);
+        this.etPseudo = findViewById(R.id.etPseudo);
+        this.etPassword = findViewById(R.id.etPassword);
+        //this.etFavoriteTeam = findViewById(R.id.tvClubname);
+        this.btnConnexion = findViewById(R.id.btnConnexion);
+        this.btnInscription = findViewById(R.id.btnInscription);
 
-        this.logo_club_player = findViewById(R.id.ivLogoClubPlayer);
-        this.tvClubPlayer = findViewById(R.id.tvClubname);
-
-        playercontroller.onCreate(getString(R.string.token));
+        btnConnexion.setOnClickListener(this);
+        btnInscription.setOnClickListener(this);
     }
 
+    public void onClick(View v) {
+        if (v.getId() == R.id.btnConnexion){
+            connexionController.onCreate(this.etPseudo.getText().toString(), this.etPassword.getText().toString());
+        }
+        else if (v.getId() == R.id.btnInscription){
+            Intent intent = new Intent(this, InscriptionActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+    }
 
 }

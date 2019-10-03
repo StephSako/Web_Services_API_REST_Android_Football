@@ -16,16 +16,16 @@
         android:layout_marginTop="100dp"
         android:background="@color/white">
             <EditText
-                android:id="@+id/mail"
+                android:id="@+id/etPseudo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Email"
+                android:hint="Pseudo"
                 android:inputType="textEmailAddress"
                 android:drawablePadding="10dp"
                 android:drawableStart="@android:drawable/sym_action_email"/>
             <EditText
-                android:id="@+id/mdpasse"
+                android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Mot de passe"
@@ -36,7 +36,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnValider"
+        android:id="@+id/btnConnexion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -46,7 +46,7 @@
         android:textSize="18sp" />
 
     <Button
-        android:id="@+id/btnInscript"
+        android:id="@+id/btnInscription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

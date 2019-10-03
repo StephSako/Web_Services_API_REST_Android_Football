@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.DataBaseController;
@@ -45,17 +46,32 @@ public class SplashScreen extends Activity {
             }
         }
 
-        new Handler().postDelayed(new Runnable(){
+        String a = sharedPref.getString("pseudo","");
 
-            @Override
-            public void run(){
+        if (sharedPref.getInt("idSupporter",-1) != -1){
+            new Handler().postDelayed(new Runnable(){
+                @Override
+                public void run(){
 
-                // On lance la première activité du choix des compétitions
-                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }, SPLASH_TIME_OUT);
+                    // On lance la première activité du choix des compétitions
+                    Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }, SPLASH_TIME_OUT);
+        }
+        else{
+            new Handler().postDelayed(new Runnable(){
+                @Override
+                public void run(){
+
+                    // On lance la première activité du choix des compétitions
+                    Intent intent = new Intent(SplashScreen.this, ConnexionActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }, SPLASH_TIME_OUT);
+        }
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.splashscreen_animation);
         logo.startAnimation(myanim);
     }

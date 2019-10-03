@@ -18,7 +18,7 @@ public class InscriptionActivity extends AppCompatActivity {
 
     public InscriptionActivity(){ }
 
-    private PlayerController playercontroller;
+    /*private PlayerController playercontroller;
 
     public int idPlayer = -1;
     public String nomClub = "";
@@ -110,5 +110,5 @@ public class InscriptionActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }
