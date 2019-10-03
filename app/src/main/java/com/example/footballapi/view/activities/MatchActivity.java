@@ -9,16 +9,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.MatchController;
+import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
 
 public class MatchActivity extends AppCompatActivity {
 
     private MatchController matchController;
 
     public int idMatch = -1;
-    private static String CLE_DONNEES_ID_MATCH = "idMatch";
 
     public ImageView logo_club_home;
     public ImageView logo_club_away;
@@ -54,7 +55,7 @@ public class MatchActivity extends AppCompatActivity {
         this.tvButsTotaux = findViewById(R.id.tvButsTotaux);
 
         Intent intent = getIntent();
-        this.idMatch = intent.getIntExtra(CLE_DONNEES_ID_MATCH, -1);
+        this.idMatch = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_MATCH, -1);
 
         matchController.onCreate(getString(R.string.token));
     }

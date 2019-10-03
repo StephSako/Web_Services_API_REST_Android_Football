@@ -45,21 +45,23 @@ public class MatchController {
                     activity.logo_club_away.setImageResource(R.drawable.ic_logo_foreground);
                     activity.logo_club_home.setImageResource(R.drawable.ic_logo_foreground);
 
-                    String[] dateMatch = oneMatch.getMatch().getUtcDate().split("-");
-                    String day = dateMatch[2];
-                    String month = dateMatch[1];
+                    String[] parts = oneMatch.getMatch().getUtcDate().split("T");
+                    String date = parts[0]; // Day
+                    String[] dateDay = date.split("-");
+                    String day = dateDay[2];
+                    String month = dateDay[1];
                     activity.tvMatchDate.setText(day + "/" + month);
 
-                    activity.tvNuls.setText(oneMatch.getHead2head().getHomeTeam().getDraws());
-                    activity.tvButsTotaux.setText(oneMatch.getHead2head().getTotalGoals());
+                    activity.tvNuls.setText(String.valueOf(oneMatch.getHead2head().getHomeTeam().getDraws()));
+                    activity.tvButsTotaux.setText(String.valueOf(oneMatch.getHead2head().getTotalGoals()));
 
-                    activity.tvVictoiresHome.setText(oneMatch.getHead2head().getHomeTeam().getWins());
-                    activity.tvDefaitesHome.setText(oneMatch.getHead2head().getHomeTeam().getLosses());
+                    activity.tvVictoiresHome.setText(String.valueOf(oneMatch.getHead2head().getHomeTeam().getWins()));
+                    activity.tvDefaitesHome.setText(String.valueOf(oneMatch.getHead2head().getHomeTeam().getLosses()));
 
-                    activity.tvVictoiresAway.setText((oneMatch.getHead2head().getNumberOfMatches())-(oneMatch.getHead2head().getHomeTeam().getLosses()));
-                    activity.tvDefaitesAway.setText((oneMatch.getHead2head().getNumberOfMatches())-(oneMatch.getHead2head().getHomeTeam().getWins()));
+                    activity.tvVictoiresAway.setText(String.valueOf((oneMatch.getHead2head().getNumberOfMatches())-(oneMatch.getHead2head().getHomeTeam().getWins() + oneMatch.getHead2head().getHomeTeam().getDraws())));
+                    activity.tvDefaitesAway.setText(String.valueOf((oneMatch.getHead2head().getNumberOfMatches())-(oneMatch.getHead2head().getHomeTeam().getLosses() + oneMatch.getHead2head().getHomeTeam().getDraws())));
 
-                    activity.tvTotaux.setText(oneMatch.getHead2head().getNumberOfMatches());
+                    activity.tvTotaux.setText(String.valueOf(oneMatch.getHead2head().getNumberOfMatches()));
                 } else {
                     Toast.makeText(activity, "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
                 }

@@ -55,12 +55,9 @@ public class TeamActivity extends AppCompatActivity {
 
         logo_club = findViewById(R.id.logo_club);
 
-        // On récupère l'id de l'équipe qui peut soit venir de la liste dans le classement, soit de celle des matches
+        // On récupère l'id de l'équipe venant du le classement
         Intent intent = getIntent();
-
-        // L'ID de l'équipe peut venir de deux endroits : du classement, d'où on a cliquée, ou comme vu au dessus du fragment des matches.
-        if ((idTeam = intent.getIntExtra(AdapterRV_Classement.CLE_DONNEES_ID_TEAM, -1)) == -1)
-            idTeam = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_TEAM, -1);
+        this.idTeam = intent.getIntExtra(AdapterRV_Classement.CLE_DONNEES_ID_TEAM, -1);
 
         teamcontroller.onCreate(getString(R.string.token));
 

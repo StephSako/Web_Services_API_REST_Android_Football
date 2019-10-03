@@ -20,7 +20,7 @@ import java.util.List;
 
 public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.ViewHolder> {
 
-    public static final String CLE_DONNEES_ID_TEAM = "idTeam";
+    public static final String CLE_DONNEES_ID_MATCH= "idMatch";
 
     private List<MatchesModel> values;
 
@@ -95,7 +95,7 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
             public void onClick(View v) {
                 Context context = v.getContext();
                 Intent intent = new Intent(context, MatchActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdMatch()));
+                intent.putExtra(CLE_DONNEES_ID_MATCH, Integer.parseInt(values.get(position).getIdMatch()));
                 context.startActivity(intent);
             }
         });
