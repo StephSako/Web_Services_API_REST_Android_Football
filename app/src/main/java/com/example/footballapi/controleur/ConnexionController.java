@@ -16,11 +16,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlayerController {
+public class ConnexionController {
 
-    private PlayerActivity activity;
+    private ConnexionActivity activity;
 
-    public PlayerController(PlayerActivity activity) {
+    public ConnexionController(ConnexionActivity activity) {
         this.activity = activity;
     }
 

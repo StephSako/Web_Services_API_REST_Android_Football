@@ -39,6 +39,10 @@
         <activity android:name=".view.activities.SearchTeamActivity" />
 
         <activity android:name=".view.activities.MatchActivity" />
+
+        <activity android:name=".view.activities.ConnexionActivity" />
+
+        <activity android:name=".view.activities.InscriptionActivity" />
     </application>
 
 </manifest>

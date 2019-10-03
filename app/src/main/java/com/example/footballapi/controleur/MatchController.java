@@ -4,13 +4,10 @@ import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
-import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
-import com.example.footballapi.model.model_retrofit.player.Player;
-import com.example.footballapi.model.model_retrofit.restService.RestUser;
+import com.example.footballapi.model.model_retrofit.restService.football_data.RestFootballData;
 import com.example.footballapi.model.model_retrofit.team.OneMatch;
 import com.example.footballapi.view.activities.MatchActivity;
-import com.example.footballapi.view.activities.PlayerActivity;
 
 import java.util.Objects;
 
@@ -31,7 +28,7 @@ public class MatchController {
      * @param token
      */
     public void onCreate(String token) {
-        Call<OneMatch> call = RestUser.get().match(token, activity.idMatch);
+        Call<OneMatch> call = RestFootballData.get().match(token, activity.idMatch);
         call.enqueue(new Callback<OneMatch>() {
             @SuppressLint("SetTextI18n")
             @Override

@@ -1,17 +1,13 @@
-package com.example.footballapi.model.model_retrofit.restService;
+package com.example.footballapi.model.model_retrofit.restService.football_data;
 
 import com.example.footballapi.model.model_retrofit.competition.Classement;
 import com.example.footballapi.model.model_retrofit.player.Player;
 import com.example.footballapi.model.model_retrofit.team.OneMatch;
 import com.example.footballapi.model.model_retrofit.team.Team;
-import com.example.footballapi.model.model_retrofit.always_data.Supporter;
 
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -53,13 +49,5 @@ public interface RestService {
     // Afficher un match en particulier
     @GET("matches/{id}")
     Call<OneMatch> match(@Header("X-Auth-Token") String token, @Path("id") int id);
-
-    @FormUrlEncoded
-    @POST("supporter/sign_up.php")
-    Call<Supporter> inscription(@Field("pseudo") String pseudo, @Field("password") String mdpasse, @Field("favoriteTeam") int favoriteTeam);
-
-    @FormUrlEncoded
-    @POST("user/sign_in.php")
-    Call<Supporter> connexion(@Field("pseudo") String pseudo, @Field("password") String password);
 
 }

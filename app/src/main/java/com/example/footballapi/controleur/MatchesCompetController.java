@@ -5,7 +5,7 @@ import android.widget.Toast;
 
 import com.example.footballapi.model.model_recyclerview.matches.MatchesModel;
 import com.example.footballapi.model.model_retrofit.competition.Classement;
-import com.example.footballapi.model.model_retrofit.restService.RestUser;
+import com.example.footballapi.model.model_retrofit.restService.football_data.RestFootballData;
 import com.example.footballapi.view.fragments.MatchesFragment;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class MatchesCompetController {
      * @param token
      */
     public void onCreate(final String token) {
-        Call<Classement> call = RestUser.get().matchesCompetition(token, fragment.id);
+        Call<Classement> call = RestFootballData.get().matchesCompetition(token, fragment.id);
         call.enqueue(new Callback<Classement>() {
             @Override
             public void onResponse(@NonNull Call<Classement> call, @NonNull Response<Classement> response) {
