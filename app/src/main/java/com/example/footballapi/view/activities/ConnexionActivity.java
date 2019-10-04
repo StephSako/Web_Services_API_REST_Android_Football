@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.ConnexionController;
@@ -39,7 +40,12 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
 
     public void onClick(View v) {
         if (v.getId() == R.id.btnConnexion){
-            connexionController.onCreate(this.etPseudo.getText().toString(), this.etPassword.getText().toString());
+            if (this.etPassword.getText().toString().matches("") && this.etPseudo.getText().toString().matches("")){
+                Toast.makeText(this, "Remplissez tous les champs", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                connexionController.onCreate(this.etPseudo.getText().toString(), this.etPassword.getText().toString());
+            }
         }
         else if (v.getId() == R.id.btnInscription){
             Intent intent = new Intent(this, InscriptionActivity.class);

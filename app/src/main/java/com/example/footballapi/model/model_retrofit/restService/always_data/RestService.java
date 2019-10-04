@@ -17,7 +17,7 @@ public interface RestService {
 
     @FormUrlEncoded
     @POST("supporter/sign_up.php")
-    Call<Supporter> inscription(@Field("pseudo") String pseudo, @Field("password") String mdpasse, @Field("favoriteTeam") int favoriteTeam);
+    Call<Supporter> inscription(@Field("pseudo") String pseudo, @Field("password") String password, @Field("favoriteTeam") int favoriteTeam);
 
     @FormUrlEncoded
     @POST("supporter/sign_in.php")

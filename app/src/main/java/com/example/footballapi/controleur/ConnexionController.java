@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
-import com.example.footballapi.model.model_retrofit.always_data.SessionManagerPreferences;
+import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
 import com.example.footballapi.model.model_retrofit.always_data.Supporter;
 import com.example.footballapi.model.model_retrofit.restService.always_data.RestAlwaysData;
 import com.example.footballapi.view.activities.ConnexionActivity;
@@ -38,11 +38,16 @@ public class ConnexionController {
                     final Supporter supporter = response.body();
                     assert supporter != null;
 
-                    // Ajouter les données dans les SharedPreferences
-                    SessionManagerPreferences.getSettings(activity.getApplicationContext()).sign_in(supporter.getIdSupporter(), supporter.getPseudo(), supporter.getPassword(), supporter.getFavoriteTeam());
-                    Intent intent = new Intent(activity, MainActivity.class);
-                    activity.startActivity(intent);
-                    activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    if (supporter.getIdSupporter() == -1){
+                        Toast.makeText(activity, "Vous n'êtes pas isncrit", Toast.LENGTH_SHORT).show();
+                    }else{
+                        // Ajouter les données dans les SharedPreferences
+                        SessionManagerPreferences.getSettings(activity.getApplicationContext()).sign_in(supporter.getIdSupporter(), supporter.getPseudo(), supporter.getPassword(), supporter.getFavoriteTeam(), supporter.getTab_bets());
+                        Intent intent = new Intent(activity, MainActivity.class);
+                        activity.startActivity(intent);
+                        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    }
+
                 } else {
                     Toast.makeText(activity, "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
                 }

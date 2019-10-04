@@ -16,7 +16,7 @@
         android:layout_marginTop="100dp"
         android:background="@color/white">
         <EditText
-            android:id="@+id/pseudo"
+            android:id="@+id/etPseudo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -25,7 +25,7 @@
             android:drawablePadding="10dp"
             android:drawableStart="@drawable/ic_account"/>
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Mot de passe"
@@ -34,7 +34,7 @@
             android:drawablePadding="10dp"
             android:drawableStart="@drawable/ic_password"/>
         <EditText
-            android:id="@+id/passwordVerif"
+            android:id="@+id/etPasswordVerif"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Retapper le mot de passe"

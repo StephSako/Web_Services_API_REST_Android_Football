@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
-import com.example.footballapi.model.model_retrofit.always_data.SessionManagerPreferences;
+import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
 import com.example.footballapi.model.model_retrofit.always_data.Supporter;
 import com.example.footballapi.model.model_retrofit.restService.always_data.RestAlwaysData;
 import com.example.footballapi.view.activities.InscriptionActivity;
@@ -24,12 +24,12 @@ public class InscriptionController {
     }
 
     /**
-     * Connecte un supporter
-     * @param pseudo pseudo du supporter
-     * @param password mot de passe du supporter
+     * Inscrire un supporter
+     * @param pseudo
+     * @param password
      */
     public void onCreate(String pseudo, String password) {
-        Call<Supporter> call = RestAlwaysData.get().connexion(pseudo, password);
+        Call<Supporter> call = RestAlwaysData.get().inscription(pseudo, password, 4); /** ATTENTION A CHANGER !! **/
         call.enqueue(new Callback<Supporter>() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -39,7 +39,7 @@ public class InscriptionController {
                     assert supporter != null;
 
                     // Ajouter les données dans les SharedPreferences
-                    SessionManagerPreferences.getSettings(activity.getApplicationContext()).sign_in(supporter.getIdSupporter(), supporter.getPseudo(), supporter.getPassword(), supporter.getFavoriteTeam());
+                    SessionManagerPreferences.getSettings(activity.getApplicationContext()).sign_in(supporter.getIdSupporter(), supporter.getPseudo(), supporter.getPassword(), supporter.getFavoriteTeam(), supporter.getTab_bets());
                     Intent intent = new Intent(activity, MainActivity.class);
                     activity.startActivity(intent);
                     activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
