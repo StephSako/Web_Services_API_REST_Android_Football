@@ -16,44 +16,53 @@
         android:layout_marginTop="100dp"
         android:background="@color/white">
         <EditText
-            android:id="@+id/mail"
+            android:id="@+id/pseudo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Email"
+            android:hint="Pseudo"
             android:inputType="textEmailAddress"
             android:drawablePadding="10dp"
-            android:drawableStart="@android:drawable/sym_action_email"/>
+            android:drawableStart="@drawable/ic_account"/>
         <EditText
-            android:id="@+id/mdpasse"
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Mot de passe"
             android:ems="10"
             android:inputType="textPassword"
             android:drawablePadding="10dp"
-            android:drawableStart="@android:drawable/ic_secure"/>
+            android:drawableStart="@drawable/ic_password"/>
+        <EditText
+            android:id="@+id/passwordVerif"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Retapper le mot de passe"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_password"/>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btnValider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@android:color/background_light"
-        android:text="Se connecter"
-        android:textSize="18sp" />
 
     <Button
         android:id="@+id/btnInscription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/background_light"
+        android:text="S'inscrire"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnConnexion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:text="S'inscrire"
+        android:text="Se connecter"
         android:textColor="#FFFFFF"
         android:background="@android:color/transparent"
         android:textSize="18sp"
