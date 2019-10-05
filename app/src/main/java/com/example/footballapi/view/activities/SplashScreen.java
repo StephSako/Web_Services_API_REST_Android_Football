@@ -52,8 +52,6 @@ public class SplashScreen extends Activity {
             new Handler().postDelayed(new Runnable(){
                 @Override
                 public void run(){
-
-                    // On lance la première activité du choix des compétitions
                     Intent intent = new Intent(SplashScreen.this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -64,8 +62,6 @@ public class SplashScreen extends Activity {
             new Handler().postDelayed(new Runnable(){
                 @Override
                 public void run(){
-
-                    // On lance la première activité du choix des compétitions
                     Intent intent = new Intent(SplashScreen.this, ConnexionActivity.class);
                     startActivity(intent);
                     finish();

@@ -3,6 +3,7 @@ package com.example.footballapi.view.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,11 +41,11 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
 
     public void onClick(View v) {
         if (v.getId() == R.id.btnConnexion){
-            if (this.etPassword.getText().toString().matches("") && this.etPseudo.getText().toString().matches("")){
-                Toast.makeText(this, "Remplissez tous les champs", Toast.LENGTH_SHORT).show();
+            if (!TextUtils.isEmpty(this.etPassword.getText().toString()) && !TextUtils.isEmpty(this.etPseudo.getText().toString())){
+                connexionController.onCreate(this.etPseudo.getText().toString(), this.etPassword.getText().toString());
             }
             else {
-                connexionController.onCreate(this.etPseudo.getText().toString(), this.etPassword.getText().toString());
+                Toast.makeText(getBaseContext(), "Remplissez tous les champs", Toast.LENGTH_SHORT).show();
             }
         }
         else if (v.getId() == R.id.btnInscription){

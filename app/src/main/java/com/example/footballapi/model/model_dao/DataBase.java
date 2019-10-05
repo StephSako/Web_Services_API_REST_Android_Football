@@ -85,4 +85,23 @@ public class DataBase extends SQLiteOpenHelper {
 
         return classement;
     }
+
+    // Méthode permettant de récupérer toutes les équipes
+    public List<TeamDAO> findAllTeams(){
+        List<TeamDAO> teams = new ArrayList<>();
+        String sqlSearchTeams = "select idTeam, idCompet, nomTeam from EQUIPES order by nomTeam";
+
+        // Résultat du SELECT
+        @SuppressLint("Recycle") Cursor cursor = this.getReadableDatabase().rawQuery(sqlSearchTeams, null);
+
+        // On parcours le curseur
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            TeamDAO teamDAO = new TeamDAO(cursor.getInt(0),cursor.getInt(1), cursor.getString(2));
+            teams.add(teamDAO);
+            cursor.moveToNext();
+        }
+
+        return teams;
+    }
 }

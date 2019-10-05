@@ -14,7 +14,8 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginTop="100dp"
-        android:background="@color/white">
+        android:padding="10px"
+        android:background="@drawable/llshape">
             <EditText
                 android:id="@+id/etPseudo"
                 android:layout_width="match_parent"
