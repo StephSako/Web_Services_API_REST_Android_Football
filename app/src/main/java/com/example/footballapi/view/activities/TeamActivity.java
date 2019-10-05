@@ -5,18 +5,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.tabs.TabLayout;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.TeamController;
 import com.example.footballapi.model.model_recyclerview.classement.AdapterRV_Classement;
-import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
 import com.example.footballapi.model.model_viewpager.team.Adapter_ViewPagerTeam;
 
 @SuppressLint("Registered")
@@ -32,6 +32,7 @@ public class TeamActivity extends AppCompatActivity {
     public TextView tvActiveCompetitions;
     public TextView tvEntraineur;
     public ImageView logo_club;
+    public View contextView;
 
     public boolean loadingPicsTeam;
 
@@ -52,6 +53,7 @@ public class TeamActivity extends AppCompatActivity {
         this.tvStade = findViewById(R.id.tvStade);
         this.tvActiveCompetitions = findViewById(R.id.tvActiveCompetitions);
         this.tvEntraineur = findViewById(R.id.tvEntraineur);
+        this.contextView = findViewById(R.id.team_activity);
 
         logo_club = findViewById(R.id.logo_club);
 

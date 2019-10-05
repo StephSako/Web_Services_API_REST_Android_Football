@@ -1,8 +1,9 @@
 package com.example.footballapi.model.model_viewpager.competition;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.footballapi.view.fragments.ClassementFragment;
 import com.example.footballapi.view.fragments.MatchesFragment;
@@ -18,6 +19,7 @@ public class Adapter_ViewPagerCompetition extends FragmentStatePagerAdapter {
         this.type = type;
     }
 
+    @NonNull
     @Override
     public Fragment getItem(int position) {
         switch (position){

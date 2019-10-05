@@ -3,7 +3,9 @@ package com.example.footballapi.model.model_retrofit.always_data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Bet{
+import java.io.Serializable;
+
+public class Bet implements Serializable {
 
     @SerializedName("idMatch")
     @Expose

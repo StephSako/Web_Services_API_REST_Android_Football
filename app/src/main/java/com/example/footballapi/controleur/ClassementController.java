@@ -1,6 +1,6 @@
 package com.example.footballapi.controleur;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.widget.Toast;
 
 import com.example.footballapi.model.model_retrofit.competition.Classement;
@@ -85,7 +85,7 @@ public class ClassementController {
                     // booléen qui active ou désactive les écouteurs sur les item de la recyclerview en cas de connexion_activity oun non à internet
                     fragment.showList(listFinal, false);
                 }
-                Toast.makeText(fragment.getContext(), "Classement non mis à jour.\nVérifiez votre connexion_activity.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(fragment.getContext(), "Classement non mis à jour.\nVérifiez votre connexion.", Toast.LENGTH_SHORT).show();
             }
         });
     }

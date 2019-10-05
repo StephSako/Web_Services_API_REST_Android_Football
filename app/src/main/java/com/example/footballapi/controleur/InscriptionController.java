@@ -2,13 +2,13 @@ package com.example.footballapi.controleur;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-
 import androidx.annotation.NonNull;
+import android.widget.Toast;
 
+import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
 import com.example.footballapi.model.model_retrofit.always_data.Supporter;
 import com.example.footballapi.model.model_retrofit.restService.always_data.RestAlwaysData;
-import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
-import com.example.footballapi.view.activities.ConnexionActivity;
+import com.example.footballapi.view.activities.InscriptionActivity;
 import com.example.footballapi.view.activities.MainActivity;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -16,21 +16,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ConnexionController {
+public class InscriptionController {
 
-    private ConnexionActivity activity;
+    private InscriptionActivity activity;
 
-    public ConnexionController(ConnexionActivity activity) {
+    public InscriptionController(InscriptionActivity activity) {
         this.activity = activity;
     }
 
     /**
-     * Connecte un supporter
+     * Inscrire un supporter
      * @param pseudo pseudo du supporter
      * @param password mot de passe du supporter
      */
-    public void onCreate(String pseudo, String password) {
-        Call<Supporter> call = RestAlwaysData.get().connexion(pseudo, password);
+    public void onCreate(String pseudo, String password, int favoriteTeamId) {
+        Call<Supporter> call = RestAlwaysData.get().inscription(pseudo, password, favoriteTeamId);
         call.enqueue(new Callback<Supporter>() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -40,8 +40,8 @@ public class ConnexionController {
                     assert supporter != null;
 
                     if (supporter.getIdSupporter() == -1){
-                        Snackbar.make(activity.contextView, "Les informations sont incorrectes", Snackbar.LENGTH_SHORT).show();
-                    }else{
+                        Snackbar.make(activity.contextView, "Ce pseudo est déjà pris", Snackbar.LENGTH_SHORT).show();
+                    }else {
                         // Ajouter les données dans les SharedPreferences
                         SessionManagerPreferences.getSettings(activity.getApplicationContext()).sign_in(supporter.getIdSupporter(), supporter.getPseudo(), supporter.getPassword(), supporter.getFavoriteTeam(), supporter.getTab_bets());
                         Intent intent = new Intent(activity, MainActivity.class);
@@ -53,7 +53,7 @@ public class ConnexionController {
 
             @Override
             public void onFailure(@NonNull Call<Supporter> call, @NonNull Throwable t) {
-                Snackbar.make(activity.contextView, "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Vérifiez votre connexion_activity Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }
