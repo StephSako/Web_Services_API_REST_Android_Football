@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ public class TeamActivity extends AppCompatActivity {
     public TextView tvActiveCompetitions;
     public TextView tvEntraineur;
     public ImageView logo_club;
+    public View contextView;
 
     public boolean loadingPicsTeam;
 
@@ -51,6 +53,7 @@ public class TeamActivity extends AppCompatActivity {
         this.tvStade = findViewById(R.id.tvStade);
         this.tvActiveCompetitions = findViewById(R.id.tvActiveCompetitions);
         this.tvEntraineur = findViewById(R.id.tvEntraineur);
+        this.contextView = findViewById(R.id.team_activity);
 
         logo_club = findViewById(R.id.logo_club);
 

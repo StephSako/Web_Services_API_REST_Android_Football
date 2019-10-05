@@ -2,15 +2,16 @@ package com.example.footballapi.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.ConnexionController;
+import com.google.android.material.snackbar.Snackbar;
 
 public class ConnexionActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -22,6 +23,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     public EditText etPassword;
     public Button btnConnexion;
     public Button btnInscription;
+    public View contextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +33,9 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
 
         this.etPseudo = findViewById(R.id.etPseudo);
         this.etPassword = findViewById(R.id.etPassword);
-        //this.etFavoriteTeam = findViewById(R.id.tvClubname);
         this.btnConnexion = findViewById(R.id.btnConnexion);
         this.btnInscription = findViewById(R.id.btnInscription);
+        this.contextView = findViewById(R.id.connexion_activity);
 
         btnConnexion.setOnClickListener(this);
         btnInscription.setOnClickListener(this);
@@ -45,7 +47,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
                 connexionController.onCreate(this.etPseudo.getText().toString(), this.etPassword.getText().toString());
             }
             else {
-                Toast.makeText(getBaseContext(), "Remplissez tous les champs", Toast.LENGTH_SHORT).show();
+                Snackbar.make(this.contextView, "Remplissez tous les champs", Snackbar.LENGTH_SHORT).show();
             }
         }
         else if (v.getId() == R.id.btnInscription){

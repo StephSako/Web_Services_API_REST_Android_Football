@@ -2,20 +2,21 @@ package com.example.footballapi.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.InscriptionController;
 import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.model.model_dao.TeamDAO;
 import com.example.footballapi.model.model_session_manager.FavoriteTeam;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     public Button btnConnexion;
     public Button btnInscription;
     public Spinner spinnerFavoriteTeam;
+    public View contextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
         this.btnConnexion = findViewById(R.id.btnConnexion);
         this.btnInscription = findViewById(R.id.btnInscription);
         this.spinnerFavoriteTeam = findViewById(R.id.favoriteTeam);
+        this.contextView = findViewById(R.id.inscription_activity);
 
         btnConnexion.setOnClickListener(this);
         btnInscription.setOnClickListener(this);
@@ -58,18 +61,17 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
         }
 
         ArrayAdapter<FavoriteTeam> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, teamsList);
-        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
         this.spinnerFavoriteTeam.setAdapter(adapter);
     }
 
     public void onClick(View v) {
         if (v.getId() == R.id.btnInscription) {
-            if (!TextUtils.isEmpty(this.etPassword.getText().toString()) && !TextUtils.isEmpty(this.etPseudo.getText().toString()) && !TextUtils.isEmpty(this.etPasswordVerif.getText().toString())){
-                Toast.makeText(this, "Remplissez tous les champs", Toast.LENGTH_SHORT).show();
+            if (TextUtils.isEmpty(this.etPassword.getText().toString()) && TextUtils.isEmpty(this.etPseudo.getText().toString()) && TextUtils.isEmpty(this.etPasswordVerif.getText().toString())){
+                Snackbar.make(this.contextView, "Remplissez tous les champs", Snackbar.LENGTH_SHORT).show();
             }
             else{
                 if (!this.etPassword.getText().toString().equals(this.etPasswordVerif.getText().toString())){
-                    Toast.makeText(this, "Les mots de passe ne correspondent pas", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(this.contextView, "Les mots de passe ne correspondent pas", Snackbar.LENGTH_SHORT).show();
                 }else{
                     inscriptionController.onCreate(this.etPseudo.getText().toString(), this.etPassword.getText().toString());
                 }

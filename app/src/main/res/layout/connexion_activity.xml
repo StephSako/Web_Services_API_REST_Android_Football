@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/connexion_activity"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/degradesplashscreen">
+    tools:context="com.example.footballapi.view.activities.ConnexionActivity"
+    android:background="@drawable/degradesplashscreen"
+    tools:ignore="ExtraText">
+
+    <ImageView
+        android:id="@+id/ivSplashscreen"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/ivLogoSplashScreen"
+        android:src="@drawable/ic_logo_splashscreen_foreground" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -13,7 +25,6 @@
         android:layout_gravity="center"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginTop="100dp"
         android:padding="10px"
         android:background="@drawable/llshape">
             <EditText
@@ -44,7 +55,9 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="@android:color/background_light"
         android:text="Se connecter"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        tools:targetApi="lollipop" />
 
     <Button
         android:id="@+id/btnInscription"

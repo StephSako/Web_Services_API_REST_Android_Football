@@ -2,14 +2,15 @@ package com.example.footballapi.controleur;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import android.widget.Toast;
 
-import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
+import androidx.annotation.NonNull;
+
 import com.example.footballapi.model.model_retrofit.always_data.Supporter;
 import com.example.footballapi.model.model_retrofit.restService.always_data.RestAlwaysData;
+import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
 import com.example.footballapi.view.activities.ConnexionActivity;
 import com.example.footballapi.view.activities.MainActivity;
+import com.google.android.material.snackbar.Snackbar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,7 +40,7 @@ public class ConnexionController {
                     assert supporter != null;
 
                     if (supporter.getIdSupporter() == -1){
-                        Toast.makeText(activity, "Vous n'êtes pas isncrit", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(activity.contextView, "Les informations sont incorrectes", Snackbar.LENGTH_SHORT).show();
                     }else{
                         // Ajouter les données dans les SharedPreferences
                         SessionManagerPreferences.getSettings(activity.getApplicationContext()).sign_in(supporter.getIdSupporter(), supporter.getPseudo(), supporter.getPassword(), supporter.getFavoriteTeam(), supporter.getTab_bets());
@@ -47,15 +48,12 @@ public class ConnexionController {
                         activity.startActivity(intent);
                         activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     }
-
-                } else {
-                    Toast.makeText(activity, "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<Supporter> call, @NonNull Throwable t) {
-                Toast.makeText(activity, "Vérifiez votre connexion_activity Internet", Toast.LENGTH_SHORT).show();
+                Snackbar.make(activity.contextView, "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
     }

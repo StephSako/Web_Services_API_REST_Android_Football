@@ -8,6 +8,7 @@ import com.example.footballapi.R;
 import com.example.footballapi.model.model_retrofit.team.Team;
 import com.example.footballapi.model.model_retrofit.restService.football_data.RestFootballData;
 import com.example.footballapi.view.activities.TeamActivity;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
 
@@ -77,13 +78,13 @@ public class TeamController {
                     else activity.logo_club.setImageResource(R.drawable.ic_logo_foreground);
 
                 } else {
-                    Toast.makeText(activity, "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(activity.contextView, "Le nombre d'appels est dépassé", Snackbar.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<Team> call, @NonNull Throwable t) {
-                Toast.makeText(activity, "Vérifiez votre connexion_activity Internet", Toast.LENGTH_SHORT).show();
+                Snackbar.make(activity.contextView, "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
     }
