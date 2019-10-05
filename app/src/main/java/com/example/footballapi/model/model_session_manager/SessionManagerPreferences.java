@@ -14,10 +14,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.ToDoubleFunction;
-import java.util.function.ToIntFunction;
-import java.util.function.ToLongFunction;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -32,7 +28,8 @@ public class SessionManagerPreferences {
     private SharedPreferences sharedPreferences ;
     private SharedPreferences.Editor editor;
 
-    private SessionManagerPreferences(Context context){
+    @SuppressLint("CommitPrefEdits")
+    public SessionManagerPreferences(Context context){
         this.sharedPreferences = context.getSharedPreferences("LOGIN_SETTINGS", MODE_PRIVATE);
         this.editor = this.sharedPreferences.edit();
     }
@@ -49,6 +46,7 @@ public class SessionManagerPreferences {
         this.editor.putString("pseudo", pseudo);
         this.editor.putString("password", password);
         this.editor.putInt("favoriteTeam", favoriteTeam);
+        /*this.editor.putInt("favoriteTeam", favoriteTeam);
 
         // Serializer les paris
         Gson gson = new Gson();
@@ -94,7 +92,7 @@ public class SessionManagerPreferences {
             }
         });
         String json = gson.toJson(bets);
-        editor.putString("bets", json);
+        editor.putString("bets", json);*/
 
         editor.apply();
         this.editor.commit();
@@ -105,15 +103,15 @@ public class SessionManagerPreferences {
         this.editor.commit();
     }
 
-    public HashMap getSupporter(){
+    public HashMap<String, String> getSupporter(){
         HashMap<String, String> supporter = new HashMap<>();
         supporter.put("idSupporter", String.valueOf(this.sharedPreferences.getInt("idSupporter", -1)));
         supporter.put("pseudo", this.sharedPreferences.getString("pseudo", ""));
         supporter.put("password", this.sharedPreferences.getString("password", ""));
-        supporter.put("favoriteTeam", String.valueOf(this.sharedPreferences.getInt("idSupporter", -1)));
+        supporter.put("favoriteTeam", String.valueOf(this.sharedPreferences.getInt("favoriteTeam", -1)));
 
         // Deserializer les paris
-        Gson gson = new Gson();
+        /*Gson gson = new Gson();
         String json = this.sharedPreferences.getString("bets", "");
         Type type = new TypeToken<ArrayList<String>>() {}.getType();
         ArrayList<String> list = gson.fromJson(json, type);
@@ -122,7 +120,7 @@ public class SessionManagerPreferences {
             public int compare(String s1, String s2) {
                 return s1.compareToIgnoreCase(s2);
             }
-        });
+        });*/
         return supporter;
     }
 }

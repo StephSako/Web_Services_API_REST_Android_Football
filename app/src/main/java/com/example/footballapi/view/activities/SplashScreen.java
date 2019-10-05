@@ -9,11 +9,11 @@ import android.preference.PreferenceManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.DataBaseController;
 import com.example.footballapi.model.model_dao.DataBase;
+import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
 
 public class SplashScreen extends Activity {
 
@@ -46,9 +46,7 @@ public class SplashScreen extends Activity {
             }
         }
 
-        String a = sharedPref.getString("pseudo","");
-
-        if (sharedPref.getInt("idSupporter",-1) != -1){
+        if (new SessionManagerPreferences(this).getSupporter() != null){
             new Handler().postDelayed(new Runnable(){
                 @Override
                 public void run(){
