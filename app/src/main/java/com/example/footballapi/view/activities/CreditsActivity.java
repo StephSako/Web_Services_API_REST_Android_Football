@@ -3,13 +3,11 @@ package com.example.footballapi.view.activities;
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.example.footballapi.R;
-
-import java.util.Objects;
 
 import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
 

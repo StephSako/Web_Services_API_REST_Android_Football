@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.tabs.TabLayout;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.TeamController;
 import com.example.footballapi.model.model_recyclerview.classement.AdapterRV_Classement;
-import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
 import com.example.footballapi.model.model_viewpager.team.Adapter_ViewPagerTeam;
 
 @SuppressLint("Registered")
