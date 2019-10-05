@@ -26,11 +26,11 @@ public class InscriptionController {
 
     /**
      * Inscrire un supporter
-     * @param pseudo
-     * @param password
+     * @param pseudo pseudo du supporter
+     * @param password mot de passe du supporter
      */
-    public void onCreate(String pseudo, String password) {
-        Call<Supporter> call = RestAlwaysData.get().inscription(pseudo, password, 4); /** ATTENTION A CHANGER !! **/
+    public void onCreate(String pseudo, String password, int favoriteTeamId) {
+        Call<Supporter> call = RestAlwaysData.get().inscription(pseudo, password, favoriteTeamId);
         call.enqueue(new Callback<Supporter>() {
             @SuppressLint("SetTextI18n")
             @Override

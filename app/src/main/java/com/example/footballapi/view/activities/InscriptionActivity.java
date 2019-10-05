@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     public Button btnConnexion;
     public Button btnInscription;
     public Spinner spinnerFavoriteTeam;
+    public int favoriteTeamId;
     public View contextView;
 
     @Override
@@ -46,8 +48,18 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
         this.etPasswordVerif = findViewById(R.id.etPasswordVerif);
         this.btnConnexion = findViewById(R.id.btnConnexion);
         this.btnInscription = findViewById(R.id.btnInscription);
-        this.spinnerFavoriteTeam = findViewById(R.id.favoriteTeam);
         this.contextView = findViewById(R.id.inscription_activity);
+
+        this.spinnerFavoriteTeam = findViewById(R.id.favoriteTeam);
+        this.spinnerFavoriteTeam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                favoriteTeamId = ((FavoriteTeam) parent.getSelectedItem()).getIdTeam();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
 
         btnConnexion.setOnClickListener(this);
         btnInscription.setOnClickListener(this);
@@ -73,7 +85,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
                 if (!this.etPassword.getText().toString().equals(this.etPasswordVerif.getText().toString())){
                     Snackbar.make(this.contextView, "Les mots de passe ne correspondent pas", Snackbar.LENGTH_SHORT).show();
                 }else{
-                    inscriptionController.onCreate(this.etPseudo.getText().toString(), this.etPassword.getText().toString());
+                    inscriptionController.onCreate(this.etPseudo.getText().toString(), this.etPassword.getText().toString(), this.favoriteTeamId);
                 }
             }
         }
