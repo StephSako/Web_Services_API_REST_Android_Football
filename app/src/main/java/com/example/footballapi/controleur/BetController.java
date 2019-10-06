@@ -6,9 +6,12 @@ import androidx.annotation.NonNull;
 
 import com.example.footballapi.model.model_retrofit.restService.always_data.RestAlwaysData;
 import com.example.footballapi.model.model_retrofit.supporter.Bet;
+import com.example.footballapi.model.model_retrofit.supporter.ListBet;
 import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
 import com.example.footballapi.view.activities.MatchActivity;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,23 +32,23 @@ public class BetController {
      * @param idWinner id de l'équipe gagnante
      */
     public void onCreate(final int idMatch, int idSupporter, final int idWinner) {
-        Call<Bet> call = RestAlwaysData.get().bet(idMatch, idSupporter, idWinner);
-        call.enqueue(new Callback<Bet>() {
+        Call<ListBet> call = RestAlwaysData.get().bet(idMatch, idSupporter, idWinner);
+        call.enqueue(new Callback<ListBet>() {
             @SuppressLint("SetTextI18n")
             @Override
-            public void onResponse(@NonNull Call<Bet> call, @NonNull Response<Bet> response) {
+            public void onResponse(@NonNull Call<ListBet> call, @NonNull Response<ListBet> response) {
                 if (response.isSuccessful()) {
-                    final Bet bet = response.body();
-                    assert bet != null;
+                    final ListBet bets = response.body();
+                    assert bets != null;
 
                     // Mettre à jour les paris dans les SharedPreferences
-                    SessionManagerPreferences.getSettings(activity.getApplicationContext()).updateBets(bet.getIdBet(), idMatch, idWinner);
+                    SessionManagerPreferences.getSettings(activity.getApplicationContext()).updateBets(bets.getTab_bets());
                     Snackbar.make(activity.contextView, "Paris effectué", Snackbar.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<Bet> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<ListBet> call, @NonNull Throwable t) {
                 Snackbar.make(activity.contextView, "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });

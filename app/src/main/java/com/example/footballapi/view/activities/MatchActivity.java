@@ -2,15 +2,17 @@ package com.example.footballapi.view.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.BetController;
@@ -76,6 +78,19 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
         this.idAway = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_AWAY, -1);
 
         matchController.onCreate(getString(R.string.token));
+
+        // On bloque les boutons selon les paris existants
+        if (new SessionManagerPreferences(this).isBet(this.idMatch) != -1){
+            if (new SessionManagerPreferences(this).isBet(this.idMatch) == idHome){
+                this.btnWinnerHome.setBackgroundColor(Color.WHITE);
+                this.btnWinnerHome.setEnabled(false);
+                this.btnWinnerAway.setEnabled(true);
+            }else if (new SessionManagerPreferences(this).isBet(this.idMatch) == idAway){
+                this.btnWinnerHome.setEnabled(true);
+                this.btnWinnerAway.setEnabled(false);
+                this.btnWinnerAway.setBackgroundColor(Color.WHITE);
+            }
+        }
     }
 
     @Override
@@ -129,7 +144,15 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void onClick(View v) {
-        if (v.getId() == R.id.btnWinnerHome) betController.onCreate(idMatch, new SessionManagerPreferences(this).getIdSupporter(), idHome);
-        else if (v.getId() == R.id.btnWinnerAway) betController.onCreate(idMatch, new SessionManagerPreferences(this).getIdSupporter(), idAway);
+        if (v.getId() == R.id.btnWinnerHome){
+            this.btnWinnerHome.setEnabled(false);
+            this.btnWinnerAway.setEnabled(true);
+            betController.onCreate(idMatch, new SessionManagerPreferences(this).getIdSupporter(), idHome);
+        }
+        else if (v.getId() == R.id.btnWinnerAway){
+            this.btnWinnerAway.setEnabled(false);
+            this.btnWinnerHome.setEnabled(true);
+            betController.onCreate(idMatch, new SessionManagerPreferences(this).getIdSupporter(), idAway);
+        }
     }
 }

@@ -78,23 +78,25 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/colorClair"
+            android:background="@color/green"
             android:text="Parier home"
             android:layout_marginEnd="20dp"
             android:textSize="18sp"
             android:textColor="@color/black"
-            tools:targetApi="lollipop" />
+            tools:targetApi="lollipop"
+            tools:ignore="ButtonStyle" />
         <Button
             android:id="@+id/btnWinnerAway"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/green"
+            android:background="@color/green"
             android:text="Parier away"
             android:textSize="18sp"
             android:textColor="@color/black"
-            tools:targetApi="lollipop" />
+            tools:targetApi="lollipop"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 
     <LinearLayout

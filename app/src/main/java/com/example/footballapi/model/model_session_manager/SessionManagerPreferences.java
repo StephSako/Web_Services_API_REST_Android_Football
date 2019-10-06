@@ -74,14 +74,21 @@ public class SessionManagerPreferences {
         return new Gson().fromJson(this.sharedPreferences.getString("bets", ""), new TypeToken<List<Bet>>() {}.getType());
     }
 
-    public void updateBets(int idBet, int idMatch, int idWinner){
-        List<Bet> bets = getBets();
-        bets.add(new Bet(idMatch, idBet, idWinner, this.sharedPreferences.getInt("idSupporter", -1)));
-
+    public void updateBets(List<Bet> bets){
         String betsSerialized = new Gson().toJson(bets);
         this.editor.putString("bets", betsSerialized);
 
         this.editor.apply();
         this.editor.commit();
+    }
+
+    public int isBet(int idMatch){
+        List<Bet> bets =  getBets();
+        for(Bet bet : bets){
+            if (bet.getIdMatch() == idMatch && bet.getIdSupporter() == this.sharedPreferences.getInt("idSupporter", -1)){
+                return bet.getIdWinner();
+            }
+        }
+        return -1;
     }
 }
