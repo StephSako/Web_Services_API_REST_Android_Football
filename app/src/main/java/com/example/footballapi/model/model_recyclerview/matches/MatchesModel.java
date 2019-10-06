@@ -10,10 +10,9 @@ public class MatchesModel {
     private String idTeamHome;
     private String idTeamAway;
     private String idMatch;
+    private String status;
 
-    public String getIdTeamHome() {
-        return idTeamHome;
-    }
+    public String getIdTeamHome() { return idTeamHome; }
 
     public void setIdTeamHome(String idTeamHome) {
         this.idTeamHome = idTeamHome;
@@ -70,4 +69,8 @@ public class MatchesModel {
     public void setIdMatch(String idMatch) {
         this.idMatch = idMatch;
     }
+
+    public String getStatus() { return status; }
+
+    public void setStatus(String status) { this.status = status; }
 }
