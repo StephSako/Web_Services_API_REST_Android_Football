@@ -7,18 +7,24 @@ import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.footballapi.R;
+import com.example.footballapi.controleur.BetController;
 import com.example.footballapi.controleur.MatchController;
 import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
+import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
 
-public class MatchActivity extends AppCompatActivity {
+public class MatchActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private MatchController matchController;
+    private BetController betController;
 
     public int idMatch = -1;
+    public int idHome = -1;
+    public int idAway = -1;
 
     public ImageView logo_club_home;
     public ImageView logo_club_away;
@@ -30,6 +36,9 @@ public class MatchActivity extends AppCompatActivity {
     public TextView tvTotaux;
     public TextView tvMatchDate;
     public TextView tvButsTotaux;
+    public View contextView;
+    public Button btnWinnerHome;
+    public Button btnWinnerAway;
 
     public boolean loadingPicsPlayer;
 
@@ -37,7 +46,9 @@ public class MatchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.match_activity);
-        matchController = new MatchController(this);
+
+        MatchController matchController = new MatchController(this);
+        betController = new BetController(this);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         this.loadingPicsPlayer = sharedPref.getBoolean("logosPlayer", true);
@@ -52,9 +63,17 @@ public class MatchActivity extends AppCompatActivity {
         this.tvTotaux = findViewById(R.id.tvMatchesTotaux);
         this.tvMatchDate = findViewById(R.id.tvMatchDate);
         this.tvButsTotaux = findViewById(R.id.tvButsTotaux);
+        this.btnWinnerHome = findViewById(R.id.btnWinnerHome);
+        this.btnWinnerAway = findViewById(R.id.btnWinnerAway);
+        this.contextView = findViewById(R.id.match_activity);
+
+        this.btnWinnerHome.setOnClickListener(this);
+        this.btnWinnerAway.setOnClickListener(this);
 
         Intent intent = getIntent();
         this.idMatch = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_MATCH, -1);
+        this.idHome = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_HOME, -1);
+        this.idAway = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_AWAY, -1);
 
         matchController.onCreate(getString(R.string.token));
     }
@@ -107,5 +126,10 @@ public class MatchActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClick(View v) {
+        if (v.getId() == R.id.btnWinnerHome) betController.onCreate(idMatch, new SessionManagerPreferences(this).getIdSupporter(), idHome);
+        else if (v.getId() == R.id.btnWinnerAway) betController.onCreate(idMatch, new SessionManagerPreferences(this).getIdSupporter(), idAway);
     }
 }

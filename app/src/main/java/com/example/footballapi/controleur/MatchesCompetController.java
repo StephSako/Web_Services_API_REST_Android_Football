@@ -25,7 +25,7 @@ public class MatchesCompetController {
 
     /**
      * Affiche la liste des matches d'une compétition
-     * @param token
+     * @param token token de la connexion
      */
     public void onCreate(final String token) {
         Call<Classement> call = RestFootballData.get().matchesCompetition(token, fragment.id);

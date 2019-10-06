@@ -20,6 +20,8 @@ import java.util.List;
 public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.ViewHolder> {
 
     public static final String CLE_DONNEES_ID_MATCH= "idMatch";
+    public static final String CLE_DONNEES_ID_HOME= "idHome";
+    public static final String CLE_DONNEES_ID_AWAY= "idAway";
 
     private List<MatchesModel> values;
 
@@ -53,6 +55,7 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         return new ViewHolder(v);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         holder.tvMatchday.setText("J" + values.get(position).getMatchDay());
@@ -95,6 +98,8 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
                 Context context = v.getContext();
                 Intent intent = new Intent(context, MatchActivity.class);
                 intent.putExtra(CLE_DONNEES_ID_MATCH, Integer.parseInt(values.get(position).getIdMatch()));
+                intent.putExtra(CLE_DONNEES_ID_HOME, Integer.parseInt(values.get(position).getIdTeamHome()));
+                intent.putExtra(CLE_DONNEES_ID_AWAY, Integer.parseInt(values.get(position).getIdTeamAway()));
                 context.startActivity(intent);
             }
         });

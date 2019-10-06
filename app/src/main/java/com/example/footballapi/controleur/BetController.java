@@ -1,16 +1,14 @@
-package com.example.footballapi;
+package com.example.footballapi.controleur;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.footballapi.model.model_retrofit.restService.always_data.RestAlwaysData;
 import com.example.footballapi.model.model_retrofit.supporter.Bet;
 import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
-import com.example.footballapi.view.activities.MainActivity;
 import com.example.footballapi.view.activities.MatchActivity;
+import com.google.android.material.snackbar.Snackbar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +28,7 @@ public class BetController {
      * @param idSupporter id du supporter dans les SharedPreferences
      * @param idWinner id de l'équipe gagnante
      */
-    public void onCreate(int idMatch, int idSupporter, int idWinner) {
+    public void onCreate(final int idMatch, int idSupporter, final int idWinner) {
         Call<Bet> call = RestAlwaysData.get().bet(idMatch, idSupporter, idWinner);
         call.enqueue(new Callback<Bet>() {
             @SuppressLint("SetTextI18n")
@@ -41,16 +39,14 @@ public class BetController {
                     assert bet != null;
 
                     // Mettre à jour les paris dans les SharedPreferences
-                    SessionManagerPreferences.getSettings(activity.getApplicationContext()).sign_in(supporter.getIdSupporter(), supporter.getPseudo(), supporter.getPassword(), supporter.getFavoriteTeam(), supporter.getTab_bets());
-                    Intent intent = new Intent(activity, MainActivity.class);
-                    activity.startActivity(intent);
-                    activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    SessionManagerPreferences.getSettings(activity.getApplicationContext()).updateBets(bet.getIdBet(), idMatch, idWinner);
+                    Snackbar.make(activity.contextView, "Paris effectué", Snackbar.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<Bet> call, @NonNull Throwable t) {
-                Toast.makeText(activity, "Vérifiez votre connexion_activity Internet", Toast.LENGTH_SHORT).show();
+                Snackbar.make(activity.contextView, "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
     }

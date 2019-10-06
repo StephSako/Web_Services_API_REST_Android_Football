@@ -7,6 +7,13 @@ import java.io.Serializable;
 
 public class Bet implements Serializable {
 
+    public Bet(int idMatch, int idBet, int idWinner, int idSupporter) {
+        this.idMatch = idMatch;
+        this.idBet = idBet;
+        this.idWinner = idWinner;
+        this.idSupporter = idSupporter;
+    }
+
     @SerializedName("idMatch")
     @Expose
     private int idMatch = -1;

@@ -20,7 +20,7 @@
             android:id="@+id/ivLogoClubHome"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginRight="20px"
+            android:layout_marginRight="20dp"
             android:contentDescription="LogoClubHome"
             android:gravity="center" />
 
@@ -33,37 +33,70 @@
             android:textStyle="bold"
             tools:ignore="NestedWeights" />
         <ImageView
-            android:layout_marginLeft="20px"
+            android:layout_marginLeft="20dp"
             android:id="@+id/ivLogoClubAway"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:contentDescription="LogoClubAway"
             android:gravity="center" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="1dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Date"
-                android:textColor="@color/green"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights" />
-            <TextView
-                android:id="@+id/tvMatchDate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:layout_weight="1"/>
-        </LinearLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="1dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textColor="@color/green"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
+        <TextView
+            android:id="@+id/tvMatchDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="1dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnWinnerHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/colorClair"
+            android:text="Parier home"
+            android:layout_marginEnd="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            tools:targetApi="lollipop" />
+        <Button
+            android:id="@+id/btnWinnerAway"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/green"
+            android:text="Parier away"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            tools:targetApi="lollipop" />
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
