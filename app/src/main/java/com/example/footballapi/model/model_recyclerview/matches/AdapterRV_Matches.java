@@ -22,6 +22,7 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
     public static final String CLE_DONNEES_ID_MATCH= "idMatch";
     public static final String CLE_DONNEES_ID_HOME= "idHome";
     public static final String CLE_DONNEES_ID_AWAY= "idAway";
+    public static final String CLE_DONNEES_STATUS= "status";
 
     private List<MatchesModel> values;
 
@@ -100,6 +101,7 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
                 intent.putExtra(CLE_DONNEES_ID_MATCH, Integer.parseInt(values.get(position).getIdMatch()));
                 intent.putExtra(CLE_DONNEES_ID_HOME, Integer.parseInt(values.get(position).getIdTeamHome()));
                 intent.putExtra(CLE_DONNEES_ID_AWAY, Integer.parseInt(values.get(position).getIdTeamAway()));
+                intent.putExtra(CLE_DONNEES_STATUS, values.get(position).getStatus());
                 context.startActivity(intent);
             }
         });

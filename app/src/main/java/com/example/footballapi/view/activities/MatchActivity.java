@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
     public int idMatch = -1;
     public int idHome = -1;
     public int idAway = -1;
+    public String status = "";
 
     public ImageView logo_club_home;
     public ImageView logo_club_away;
@@ -41,6 +43,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
     public View contextView;
     public Button btnWinnerHome;
     public Button btnWinnerAway;
+    public LinearLayout layoutBetButtons;
 
     public boolean loadingPicsPlayer;
 
@@ -68,6 +71,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
         this.btnWinnerHome = findViewById(R.id.btnWinnerHome);
         this.btnWinnerAway = findViewById(R.id.btnWinnerAway);
         this.contextView = findViewById(R.id.match_activity);
+        this.layoutBetButtons = findViewById(R.id.layoutBetButtons);
 
         this.btnWinnerHome.setOnClickListener(this);
         this.btnWinnerAway.setOnClickListener(this);
@@ -76,8 +80,11 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
         this.idMatch = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_MATCH, -1);
         this.idHome = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_HOME, -1);
         this.idAway = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_AWAY, -1);
+        this.status = intent.getStringExtra(AdapterRV_Matches.CLE_DONNEES_STATUS);
 
-        matchController.onCreate(getString(R.string.token));
+        assert this.status != null;
+        if (this.status.equals("LIVE") || this.status.equals("IN_PLAY") || this.status.equals("FINISHED") || this.status.equals("PAUSED") || this.status.equals("SUSPENDED"))
+            this.layoutBetButtons.setVisibility(LinearLayout.GONE);
 
         // On bloque les boutons selon les paris existants
         if (new SessionManagerPreferences(this).isBet(this.idMatch) != -1){
@@ -91,6 +98,8 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
                 this.btnWinnerAway.setBackgroundColor(Color.WHITE);
             }
         }
+
+        matchController.onCreate(getString(R.string.token));
     }
 
     @Override
