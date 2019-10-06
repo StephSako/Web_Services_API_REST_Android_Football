@@ -1,4 +1,4 @@
-package com.example.footballapi.model.model_retrofit.always_data;
+package com.example.footballapi.model.model_retrofit.supporter;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

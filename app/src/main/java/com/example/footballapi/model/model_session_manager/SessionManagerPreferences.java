@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.footballapi.model.model_retrofit.always_data.Bet;
+import com.example.footballapi.model.model_retrofit.supporter.Bet;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
