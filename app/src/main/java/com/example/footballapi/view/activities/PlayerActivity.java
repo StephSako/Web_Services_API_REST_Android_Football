@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ public class PlayerActivity extends AppCompatActivity {
     public TextView tvNationality;
     public TextView tvPostePlayer;
     public TextView tvShirtNumberPlayer;
+    public View contextView;
 
     public boolean loadingPicsPlayer;
 
@@ -52,6 +54,7 @@ public class PlayerActivity extends AppCompatActivity {
         this.tvNationality = findViewById(R.id.tvNationality);
         this.tvPostePlayer = findViewById(R.id.tvPostePlayer);
         this.tvShirtNumberPlayer = findViewById(R.id.tvShirtNumberPlayer);
+        this.contextView = findViewById(R.id.player_activity);
 
         // On récupère l'id du joueur depuis le fragment père de la squad
         Intent intent = getIntent();

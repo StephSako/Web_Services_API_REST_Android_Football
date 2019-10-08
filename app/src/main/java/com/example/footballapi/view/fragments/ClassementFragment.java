@@ -13,7 +13,9 @@ import com.example.footballapi.R;
 import com.example.footballapi.controleur.ClassementController;
 import com.example.footballapi.model.model_recyclerview.classement.AdapterRV_Classement;
 import com.example.footballapi.model.model_recyclerview.classement.TeamModel;
+import com.example.footballapi.view.activities.CompetitionActivity;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class ClassementFragment extends Fragment {
@@ -47,7 +49,9 @@ public class ClassementFragment extends Fragment {
         return v;
     }
 
-    public void showList(List<TeamModel> list, boolean netaccess){
+    public void showList(List<TeamModel> list, boolean netaccess, HashMap<Integer, String> teamNameCrest){
+        if (teamNameCrest != null) CompetitionActivity.setTeamsNameCrests(teamNameCrest);
+
         layoutManager = new LinearLayoutManager(getContext());
         rvClassement.setLayoutManager(layoutManager);
         mAdapter = new AdapterRV_Classement(list, this, netaccess);

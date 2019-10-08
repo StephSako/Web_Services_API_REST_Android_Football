@@ -105,6 +105,13 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
                 context.startActivity(intent);
             }
         });
+
+        if (values.get(position).getStatus().equals("LIVE") || values.get(position).getStatus().equals("IN_PLAY"))
+            holder.itemView.setBackgroundResource(R.drawable.live);
+        else if (values.get(position).getStatus().equals("PAUSED") || values.get(position).getStatus().equals("SUSPENDED"))
+            holder.itemView.setBackgroundResource(R.drawable.paused);
+        else if (values.get(position).getStatus().equals("CANCELED"))
+            holder.itemView.setBackgroundResource(R.drawable.canceled);
     }
 
     @Override

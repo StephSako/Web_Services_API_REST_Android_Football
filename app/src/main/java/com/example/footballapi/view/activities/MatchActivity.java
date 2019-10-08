@@ -99,7 +99,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
             }
         }
 
-        matchController.onCreate(getString(R.string.token));
+        matchController.onCreate(getString(R.string.token), this.idMatch, CompetitionActivity.getTeamCrest(this.idHome), CompetitionActivity.getTeamCrest(this.idAway));
     }
 
     @Override

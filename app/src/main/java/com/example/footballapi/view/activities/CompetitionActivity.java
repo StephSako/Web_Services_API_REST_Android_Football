@@ -1,20 +1,35 @@
 package com.example.footballapi.view.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.tabs.TabLayout;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.footballapi.R;
 import com.example.footballapi.model.model_viewpager.competition.Adapter_ViewPagerCompetition;
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.HashMap;
 
 public class CompetitionActivity extends AppCompatActivity {
 
     public int idCompet = -1;
     private static final String KEY_COMPET = "idCompet";
+
+    @SuppressLint("UseSparseArrays")
+    public static HashMap<Integer, String> teamsNameCrests = new HashMap<>();
+
+    public static void setTeamsNameCrests(HashMap<Integer, String> teams){
+        teamsNameCrests = teams;
+    }
+
+    public static String getTeamCrest(int team){
+        return teamsNameCrests.get(team);
+    }
 
     public CompetitionActivity() { }
 
