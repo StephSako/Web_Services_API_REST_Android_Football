@@ -56,7 +56,7 @@ public class MatchActivity extends AppCompatActivity {
         Intent intent = getIntent();
         this.idMatch = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_MATCH, -1);
 
-        matchController.onCreate(getString(R.string.token));
+        matchController.onCreate(getString(R.string.token), this.idMatch, CompetitionActivity.getTeamCrest(this.idHome), CompetitionActivity.getTeamCrest(this.idAway));
     }
 
     @Override

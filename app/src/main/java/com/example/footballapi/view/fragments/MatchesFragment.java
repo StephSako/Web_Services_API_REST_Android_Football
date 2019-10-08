@@ -61,7 +61,6 @@ public class MatchesFragment extends Fragment {
 
     public void showList(List<MatchesModel> list){
         if (list != null && list.size() > 0) {
-            // Define an adapter
             layoutManager = new LinearLayoutManager(getContext());
             rvMatches.setLayoutManager(layoutManager);
             mAdapter = new AdapterRV_Matches(list);
