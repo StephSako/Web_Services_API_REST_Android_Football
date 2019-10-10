@@ -1,14 +1,15 @@
 package com.example.footballapi.controleur;
 
 import android.annotation.SuppressLint;
+
 import androidx.annotation.NonNull;
-import android.widget.Toast;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.model.model_retrofit.player.Player;
 import com.example.footballapi.model.model_retrofit.restService.football_data.RestFootballData;
 import com.example.footballapi.view.activities.PlayerActivity;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
 
@@ -26,7 +27,7 @@ public class PlayerController {
 
     /**
      * Affiche les détails d'un joueur
-     * @param token
+     * @param token token de connexion
      */
     public void onCreate(String token) {
         Call<Player> call = RestFootballData.get().players(token, activity.idPlayer);
@@ -79,13 +80,13 @@ public class PlayerController {
                             break;
                     }
                 } else {
-                    Toast.makeText(activity, "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(activity.contextView, "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<Player> call, @NonNull Throwable t) {
-                Toast.makeText(activity, "Vérifiez votre connexion_activity Internet", Toast.LENGTH_SHORT).show();
+                Snackbar.make(activity.contextView, "Vérifiez votre connexion_activity Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
     }

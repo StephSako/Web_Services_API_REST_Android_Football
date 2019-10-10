@@ -25,7 +25,7 @@ public class MatchesCompetController {
 
     /**
      * Affiche la liste des matches d'une compétition
-     * @param token
+     * @param token token de la connexion
      */
     public void onCreate(final String token) {
         Call<Classement> call = RestFootballData.get().matchesCompetition(token, fragment.id);
@@ -47,6 +47,7 @@ public class MatchesCompetController {
                         model.setIdTeamAway(String.valueOf(classement.getMatches().get(i).getAwayTeam().getId()));
                         model.setIdTeamHome(String.valueOf(classement.getMatches().get(i).getHomeTeam().getId()));
                         model.setIdMatch(String.valueOf(classement.getMatches().get(i).getId()));
+                        model.setStatus(String.valueOf(classement.getMatches().get(i).getStatus()));
 
                         // On vérifie si le match a déjà été joué ou pas
                         if (classement.getMatches().get(i).getStatus().equals("FINISHED"))

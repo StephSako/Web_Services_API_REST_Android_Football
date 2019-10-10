@@ -1,17 +1,21 @@
 package com.example.footballapi.controleur;
 
-import androidx.annotation.NonNull;
-import android.widget.Toast;
+import android.annotation.SuppressLint;
 
-import com.example.footballapi.model.model_retrofit.competition.Classement;
+import androidx.annotation.NonNull;
+
 import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.model.model_dao.TeamDAO;
 import com.example.footballapi.model.model_recyclerview.classement.TeamModel;
+import com.example.footballapi.model.model_retrofit.competition.Classement;
 import com.example.footballapi.model.model_retrofit.restService.football_data.RestFootballData;
 import com.example.footballapi.view.fragments.ClassementFragment;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,7 +31,7 @@ public class ClassementController {
 
     /**
      * Affiche le classement d'une compétition
-     * @param token
+     * @param token token de connexion
      */
     public void onCreate(String token) {
         Call<Classement> call = RestFootballData.get().competitions(token, fragment.idCompet);
@@ -40,6 +44,7 @@ public class ClassementController {
                     assert classement != null;
 
                     List<TeamModel> listFinal = new ArrayList<>();
+                    HashMap<Integer, String> teamsNameCrests = new HashMap<>();
 
                     // On remplit les lignes (le classement d'id 0 représente le classement total du championnat)
                     for (int i = 1; i <= classement.getStandings().get(0).getTable().size(); i++) {
@@ -51,11 +56,13 @@ public class ClassementController {
                         model.setIdTeam(String.valueOf(classement.getStandings().get(0).getTable().get(i - 1).getTeam().getId()));
                         model.setCrestURL(String.valueOf(classement.getStandings().get(0).getTable().get(i - 1).getTeam().getCrestUrl()));
                         listFinal.add(model);
+
+                        teamsNameCrests.put(classement.getStandings().get(0).getTable().get(i - 1).getTeam().getId(), classement.getStandings().get(0).getTable().get(i - 1).getTeam().getCrestUrl());
                     }
 
-                    fragment.showList(listFinal, true);
+                    fragment.showList(listFinal, true, teamsNameCrests);
                 } else {
-                    Toast.makeText(fragment.getContext(), "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(Objects.requireNonNull(fragment.getView()), "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();
                 }
             }
 
@@ -83,9 +90,9 @@ public class ClassementController {
                     }
 
                     // booléen qui active ou désactive les écouteurs sur les item de la recyclerview en cas de connexion_activity oun non à internet
-                    fragment.showList(listFinal, false);
+                    fragment.showList(listFinal, false, null);
                 }
-                Toast.makeText(fragment.getContext(), "Classement non mis à jour.\nVérifiez votre connexion.", Toast.LENGTH_SHORT).show();
+                Snackbar.make(Objects.requireNonNull(fragment.getView()), "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
     }
