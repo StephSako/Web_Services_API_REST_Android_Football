@@ -46,7 +46,7 @@ public class SessionManagerPreferences {
         String betsSerialized = new Gson().toJson(bets);
         this.editor.putString("bets", betsSerialized);
 
-        editor.apply();
+        this.editor.apply();
         this.editor.commit();
     }
 
@@ -66,7 +66,29 @@ public class SessionManagerPreferences {
         return supporter;
     }
 
+    public int getIdSupporter(){
+        return this.sharedPreferences.getInt("idSupporter", -1);
+    }
+
     public List<Bet> getBets(){
         return new Gson().fromJson(this.sharedPreferences.getString("bets", ""), new TypeToken<List<Bet>>() {}.getType());
+    }
+
+    public void updateBets(List<Bet> bets){
+        String betsSerialized = new Gson().toJson(bets);
+        this.editor.putString("bets", betsSerialized);
+
+        this.editor.apply();
+        this.editor.commit();
+    }
+
+    public int isBet(int idMatch){
+        List<Bet> bets =  getBets();
+        for(Bet bet : bets){
+            if (bet.getIdMatch() == idMatch && bet.getIdSupporter() == this.sharedPreferences.getInt("idSupporter", -1)){
+                return bet.getIdWinner();
+            }
+        }
+        return -1;
     }
 }
