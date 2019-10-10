@@ -106,12 +106,26 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
             }
         });
 
-        if (values.get(position).getStatus().equals("LIVE") || values.get(position).getStatus().equals("IN_PLAY"))
-            holder.itemView.setBackgroundResource(R.drawable.live);
-        else if (values.get(position).getStatus().equals("PAUSED") || values.get(position).getStatus().equals("SUSPENDED"))
-            holder.itemView.setBackgroundResource(R.drawable.paused);
-        else if (values.get(position).getStatus().equals("CANCELED"))
-            holder.itemView.setBackgroundResource(R.drawable.canceled);
+        String a = values.get(position).getStatus();
+        switch (a) {
+            case "LIVE":
+            case "IN_PLAY":
+                holder.itemView.setBackgroundResource(R.drawable.live);
+                break;
+            case "PAUSED":
+            case "SUSPENDED":
+                holder.itemView.setBackgroundResource(R.drawable.paused);
+                break;
+            case "CANCELED":
+                holder.itemView.setBackgroundResource(R.drawable.canceled);
+                break;
+            case "FINISHED":
+                holder.itemView.setBackgroundResource(R.drawable.terminated);
+                break;
+            case "SCHEDULED":
+                holder.itemView.setBackgroundResource(R.drawable.scheduled);
+                break;
+        }
     }
 
     @Override
