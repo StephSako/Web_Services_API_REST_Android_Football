@@ -9,6 +9,7 @@ import com.example.footballapi.R;
 import com.example.footballapi.model.model_retrofit.restService.football_data.RestFootballData;
 import com.example.footballapi.model.model_retrofit.team.OneMatch;
 import com.example.footballapi.view.activities.MatchActivity;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
 
@@ -80,13 +81,13 @@ public class MatchController {
                     activity.btnWinnerHome.setText(String.valueOf(oneMatch.getMatch().getHomeTeam().getName()));
                     activity.btnWinnerAway.setText(String.valueOf(oneMatch.getMatch().getAwayTeam().getName()));
                 } else {
-                    Toast.makeText(activity, "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(activity.contextView, "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<OneMatch> call, @NonNull Throwable t) {
-                Toast.makeText(activity, "Vérifiez votre activity_connexion Internet", Toast.LENGTH_SHORT).show();
+                Snackbar.make(activity.contextView, "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
     }

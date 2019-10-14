@@ -1,7 +1,5 @@
 package com.example.footballapi.controleur;
 
-import android.annotation.SuppressLint;
-
 import androidx.annotation.NonNull;
 
 import com.example.footballapi.model.model_dao.DataBase;

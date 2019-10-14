@@ -54,8 +54,6 @@ public class MatchesFragment extends Fragment {
         if (this.type.equals("team")) new MatchesTeamController(this).onCreate(getString(R.string.token));
         else if (this.type.equals("competition")) new MatchesCompetController(this).onCreate(getString(R.string.token));
 
-        Toast.makeText(this.getActivity(), "matches", Toast.LENGTH_SHORT).show();
-
         return v;
     }
 
@@ -63,7 +61,7 @@ public class MatchesFragment extends Fragment {
         if (list != null && list.size() > 0) {
             layoutManager = new LinearLayoutManager(getContext());
             rvMatches.setLayoutManager(layoutManager);
-            mAdapter = new AdapterRV_Matches(list);
+            mAdapter = new AdapterRV_Matches(list, this);
             rvMatches.setAdapter(mAdapter);
         }
     }

@@ -25,7 +25,7 @@ public class MatchesTeamController {
 
     /**
      * Affiche la liste des matches d'une équipe
-     * @param token
+     * @param token token de connexion
      */
     public void onCreate(final String token) {
         Call<Team> call = RestFootballData.get().matchesTeam(token, fragment.id);

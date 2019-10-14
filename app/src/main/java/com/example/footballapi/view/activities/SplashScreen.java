@@ -15,6 +15,8 @@ import com.example.footballapi.controleur.DataBaseController;
 import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
 
+import java.util.HashMap;
+
 public class SplashScreen extends Activity {
 
     private final int[] tabIdCompet = {2002, 2019, 2021, 2014, 2015, 2017, 2003, 2013};
@@ -46,7 +48,7 @@ public class SplashScreen extends Activity {
             }
         }
 
-        if (new SessionManagerPreferences(this).getSupporter() != null){
+        if (!new SessionManagerPreferences(this).getSupporter().get("idSupporter").equals("-1")){
             new Handler().postDelayed(new Runnable(){
                 @Override
                 public void run(){
