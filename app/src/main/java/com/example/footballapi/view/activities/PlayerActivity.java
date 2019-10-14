@@ -39,7 +39,7 @@ public class PlayerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.player_activity);
+        setContentView(R.layout.activity_player);
         playercontroller = new PlayerController(this);
 
         // Récupérer les valeurs choisies

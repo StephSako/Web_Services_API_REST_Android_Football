@@ -86,7 +86,7 @@ public class MatchController {
 
             @Override
             public void onFailure(@NonNull Call<OneMatch> call, @NonNull Throwable t) {
-                Toast.makeText(activity, "Vérifiez votre connexion_activity Internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Vérifiez votre activity_connexion Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }

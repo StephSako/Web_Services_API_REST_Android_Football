@@ -73,7 +73,7 @@ public class MatchesCompetController {
 
             @Override
             public void onFailure(@NonNull Call<Classement> call, @NonNull Throwable t) {
-                Toast.makeText(fragment.getActivity(), "Vérifiez votre connexion_activity Internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(fragment.getActivity(), "Vérifiez votre activity_connexion Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -50,7 +50,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.match_activity);
+        setContentView(R.layout.activity_match);
 
         MatchController matchController = new MatchController(this);
         betController = new BetController(this);

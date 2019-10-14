@@ -36,7 +36,7 @@ public class CompetitionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.competition_activity);
+        setContentView(R.layout.activity_competition);
 
         // On récupère l'id de la competition depuis l'activite mère
         Intent intent = getIntent();

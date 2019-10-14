@@ -89,7 +89,7 @@ public class ClassementController {
                         listFinal.add(model);
                     }
 
-                    // booléen qui active ou désactive les écouteurs sur les item de la recyclerview en cas de connexion_activity oun non à internet
+                    // booléen qui active ou désactive les écouteurs sur les item de la recyclerview en cas de activity_connexion oun non à internet
                     fragment.showList(listFinal, false, null);
                 }
                 Snackbar.make(Objects.requireNonNull(fragment.getView()), "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();

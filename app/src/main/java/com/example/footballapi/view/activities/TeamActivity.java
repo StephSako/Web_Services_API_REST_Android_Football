@@ -40,7 +40,7 @@ public class TeamActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.team_activity);
+        setContentView(R.layout.activity_team);
         TeamController teamcontroller = new TeamController(this);
 
         // Récupérer les valeurs choisies

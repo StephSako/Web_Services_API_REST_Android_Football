@@ -40,7 +40,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.inscription_activity);
+        setContentView(R.layout.activity_inscription);
         inscriptionController = new InscriptionController(this);
 
         this.etPseudo = findViewById(R.id.etPseudo);

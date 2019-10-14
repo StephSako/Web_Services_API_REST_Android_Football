@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "237427489560",
+    "firebase_url": "https://footlite-1804c.firebaseio.com",
+    "project_id": "footlite-1804c",
+    "storage_bucket": "footlite-1804c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237427489560:android:03edc263c998e159a77c6d",
+        "android_client_info": {
+          "package_name": "com.example.footballapi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "237427489560-kll6jh0o31cgfgrhu5o65a0jdb63fl2m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.footballapi",
+            "certificate_hash": "9797c1f5303a6b16d04c7124ca26188f16583da0"
+          }
+        },
+        {
+          "client_id": "237427489560-531s76nn4mm42mgghvabm1ieso79n16a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6PGrA4YY5EkV56ctFhdy1yN1WtlcXzxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "237427489560-531s76nn4mm42mgghvabm1ieso79n16a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -86,7 +86,7 @@ public class PlayerController {
 
             @Override
             public void onFailure(@NonNull Call<Player> call, @NonNull Throwable t) {
-                Snackbar.make(activity.contextView, "Vérifiez votre connexion_activity Internet", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(activity.contextView, "Vérifiez votre activity_connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
     }

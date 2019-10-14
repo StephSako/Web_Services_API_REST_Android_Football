@@ -28,7 +28,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.connexion_activity);
+        setContentView(R.layout.activity_connexion);
         connexionController = new ConnexionController(this);
 
         this.etPseudo = findViewById(R.id.etPseudo);
