@@ -37,11 +37,12 @@ public class SessionManagerPreferences {
         return instance;
     }
 
-    public void sign_in(int idSupporter, String pseudo, String password, int favoriteTeam, List<Bet> bets){
+    public void sign_in(int idSupporter, String pseudo, String password, int favoriteTeam, String favoriteTeamName, List<Bet> bets){
         this.editor.putInt("idSupporter", idSupporter);
         this.editor.putString("pseudo", pseudo);
         this.editor.putString("password", password);
         this.editor.putInt("favoriteTeam", favoriteTeam);
+        this.editor.putString("favoriteTeamName", favoriteTeamName);
 
         String betsSerialized = new Gson().toJson(bets);
         this.editor.putString("bets", betsSerialized);
@@ -62,12 +63,25 @@ public class SessionManagerPreferences {
         supporter.put("password", this.sharedPreferences.getString("password", ""));
         supporter.put("favoriteTeam", String.valueOf(this.sharedPreferences.getInt("favoriteTeam", -1)));
         supporter.put("bets", this.sharedPreferences.getString("bets", ""));
+        supporter.put("favoriteTeamName", this.sharedPreferences.getString("favoriteTeamName", ""));
 
         return supporter;
     }
 
     public int getIdSupporter(){
         return this.sharedPreferences.getInt("idSupporter", -1);
+    }
+
+    public String getSupporterName(){
+        return this.sharedPreferences.getString("pseudo", "");
+    }
+
+    public String getFavoriteTeamNameSupporter(){
+        return this.sharedPreferences.getString("favoriteTeamName", "");
+    }
+
+    public boolean isConnected(){
+        return (!this.getSupporter().get("idSupporter").equals("-1"));
     }
 
     public List<Bet> getBets(){

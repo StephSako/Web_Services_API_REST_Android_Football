@@ -20,6 +20,10 @@ public class Supporter {
     @Expose
     private int favoriteTeam = -1;
 
+    @SerializedName("favoriteTeamName")
+    @Expose
+    private String favoriteTeamName = "";
+
     @SerializedName("password")
     @Expose
     private String password = "";
@@ -38,6 +42,10 @@ public class Supporter {
 
     public int getFavoriteTeam() {
         return favoriteTeam;
+    }
+
+    public String getFavoriteTeamName() {
+        return favoriteTeamName;
     }
 
     public String getPassword() {

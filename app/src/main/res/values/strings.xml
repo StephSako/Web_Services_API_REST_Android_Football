@@ -57,4 +57,7 @@
     <string name="txtCreditTitle">Qu\'est ce que FootLite ?</string>
     <string name="txtTitleApiUsed">API utilisée</string>
     <string name="txtApiLink">https://www.football-data.org/</string>
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
+    <string name="imgVDescFT">Navigation drawer</string>
 </resources>

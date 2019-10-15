@@ -1,10 +1,12 @@
 package com.example.footballapi.view.activities;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -12,13 +14,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.footballapi.R;
+import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
 import com.example.footballapi.view.fragments.CompetitionFragment;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout dl;
     private NavigationView nv;
+    private ActionBarDrawerToggle t;
+    private TextView tvSupporterName;
+    private TextView tvSupporterFavoriteTeam;
 
     final static String CLE_DONNEES_ID_COMPET = "idCompet";
 
@@ -28,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         dl = findViewById(R.id.drawer_layout);
+        t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
+
+        dl.addDrawerListener(t);
+        t.syncState();
+
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         Fragment fragment = new CompetitionFragment(); // Fragment displayed by default
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -38,14 +52,13 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
 
         nv = findViewById(R.id.nav_view);//Mise en place du NavigationDrawer
-        nv.getHeaderView(0).setBackgroundColor(Color.parseColor("#FF69B4"));
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
 
                 Fragment fragment = new CompetitionFragment();
-                int idCompet;
+                int idCompet = -1;
                 switch(id)
                 {
                     case R.id.itemBundesliga:
@@ -72,6 +85,16 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.itemSerieA:
                         idCompet = 2019;
                         break;
+
+                    case R.id.logout:
+
+                        break;
+                    case R.id.pref:
+
+                        break;
+                    case R.id.credits:
+
+                        break;
                     default:
                         return true;
                 }
@@ -83,11 +106,25 @@ public class MainActivity extends AppCompatActivity {
                 ft.replace(R.id.fragment_hoster, fragment);
                 ft.commit();
 
-                DrawerLayout drawer = findViewById(R.id.drawer_layout);//Fin de la mise en place du Drawer, et
-                drawer.closeDrawer(GravityCompat.START);//activation du Drawer
+                DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
 
                 return true;
             }
         });
+
+        View v = nv.inflateHeaderView(R.layout.nav_header);
+        this.tvSupporterName = v.findViewById(R.id.tvSupporterName);
+        this.tvSupporterFavoriteTeam = v.findViewById(R.id.tvSupporterFavoriteTeam);
+
+        this.tvSupporterName.setText(new SessionManagerPreferences(this).getSupporterName());
+        this.tvSupporterFavoriteTeam.setText(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { // Displaying Drawer
+        if(t.onOptionsItemSelected(item))
+            return true;
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -19,6 +19,7 @@ import com.example.footballapi.view.activities.MatchActivity;
 import com.example.footballapi.view.fragments.CompetitionFragment;
 import com.example.footballapi.view.fragments.MatchesFragment;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.ViewHolder> {
@@ -77,6 +78,8 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         holder.tvScore.setText(values.get(position).getScore());
         holder.tvHomeTeam.setText(values.get(position).getHomeTeam());
 
+        HashMap<Integer, String> teamsNameCrests = CompetitionFragment.teamsNameCrests;
+
         SvgLoader.pluck()
                 .with(this.fragment.getActivity())
                 .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
@@ -131,8 +134,7 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
             }
         });
 
-        String a = values.get(position).getStatus();
-        switch (a) {
+        switch (values.get(position).getStatus()) {
             case "LIVE":
             case "IN_PLAY":
                 holder.itemView.setBackgroundResource(R.drawable.live);

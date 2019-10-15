@@ -43,7 +43,7 @@ public class ConnexionController {
                         Snackbar.make(activity.contextView, "Les informations sont incorrectes", Snackbar.LENGTH_SHORT).show();
                     }else{
                         // Ajouter les données dans les SharedPreferences
-                        SessionManagerPreferences.getSettings(activity.getApplicationContext()).sign_in(supporter.getIdSupporter(), supporter.getPseudo(), supporter.getPassword(), supporter.getFavoriteTeam(), supporter.getTab_bets());
+                        SessionManagerPreferences.getSettings(activity.getApplicationContext()).sign_in(supporter.getIdSupporter(), supporter.getPseudo(), supporter.getPassword(), supporter.getFavoriteTeam(), supporter.getFavoriteTeamName(), supporter.getTab_bets());
                         Intent intent = new Intent(activity, MainActivity.class);
                         activity.startActivity(intent);
                         activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

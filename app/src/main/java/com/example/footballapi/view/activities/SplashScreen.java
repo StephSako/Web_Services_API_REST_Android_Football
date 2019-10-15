@@ -48,7 +48,7 @@ public class SplashScreen extends Activity {
             }
         }
 
-        if (!new SessionManagerPreferences(this).getSupporter().get("idSupporter").equals("-1")){
+        if (new SessionManagerPreferences(this).isConnected()){
             new Handler().postDelayed(new Runnable(){
                 @Override
                 public void run(){

@@ -19,6 +19,7 @@ import java.util.HashMap;
 public class CompetitionFragment extends Fragment {
 
     public int idCompet = -1;
+    final static String CLE_DONNEES_ID_COMPET = "idCompet";
 
     @SuppressLint("UseSparseArrays")
     public static HashMap<Integer, String> teamsNameCrests = new HashMap<>();
@@ -38,7 +39,7 @@ public class CompetitionFragment extends Fragment {
         final View v = inflater.inflate(R.layout.fragment_competition, container, false);
 
         Bundle bundle = this.getArguments();
-        if (bundle != null) idCompet = bundle.getInt("idTeam", -1);
+        if (bundle != null) idCompet = bundle.getInt(CLE_DONNEES_ID_COMPET, -1);
 
         ViewPager viewPager = v.findViewById(R.id.pagerCompet);
         Adapter_ViewPagerCompetition myPagerAdapter = new Adapter_ViewPagerCompetition(getFragmentManager(), idCompet, "competition");
