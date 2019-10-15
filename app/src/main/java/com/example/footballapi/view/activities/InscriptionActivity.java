@@ -35,6 +35,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     public Button btnInscription;
     public Spinner spinnerFavoriteTeam;
     public int favoriteTeamId;
+    public String favoriteTeamName;
     public View contextView;
 
     @Override
@@ -55,6 +56,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 favoriteTeamId = ((FavoriteTeam) parent.getSelectedItem()).getIdTeam();
+                favoriteTeamName = ((FavoriteTeam) parent.getSelectedItem()).getClub_name();
             }
 
             @Override
@@ -85,7 +87,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
                 if (!this.etPassword.getText().toString().equals(this.etPasswordVerif.getText().toString())){
                     Snackbar.make(this.contextView, "Les mots de passe ne correspondent pas", Snackbar.LENGTH_SHORT).show();
                 }else{
-                    inscriptionController.onCreate(this.etPseudo.getText().toString(), this.etPassword.getText().toString(), this.favoriteTeamId);
+                    inscriptionController.onCreate(this.etPseudo.getText().toString(), this.etPassword.getText().toString(), this.favoriteTeamId, this.favoriteTeamName);
                 }
             }
         }

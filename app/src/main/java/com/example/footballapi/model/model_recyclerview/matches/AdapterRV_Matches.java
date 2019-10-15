@@ -5,13 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
@@ -19,7 +20,6 @@ import com.example.footballapi.view.activities.MatchActivity;
 import com.example.footballapi.view.fragments.CompetitionFragment;
 import com.example.footballapi.view.fragments.MatchesFragment;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.ViewHolder> {
@@ -78,19 +78,43 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         holder.tvScore.setText(values.get(position).getScore());
         holder.tvHomeTeam.setText(values.get(position).getHomeTeam());
 
-        HashMap<Integer, String> teamsNameCrests = CompetitionFragment.teamsNameCrests;
+        if (CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamHome())) != null) {
 
-        SvgLoader.pluck()
-                .with(this.fragment.getActivity())
-                .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                .load(CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamHome())), holder.ivLogoClubHome())
-                .close();
+            switch (CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamHome())).substring(CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamHome())).length() - 3)){
+                case "svg":
+                    SvgLoader.pluck()
+                            .with(this.fragment.getActivity())
+                            .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                            .load(CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamHome())), holder.ivLogoClubHome())
+                            .close();
+                    break;
+                case "gif":
 
-        SvgLoader.pluck()
-                .with(this.fragment.getActivity())
-                .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                .load(CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())), holder.ivLogoClubAway())
-                .close();
+                    break;
+                case "png":
+
+                    break;
+            }
+        }
+
+        if (CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())) != null) {
+
+            switch (CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())).substring(CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())).length() - 3)){
+                case "svg":
+                    SvgLoader.pluck()
+                            .with(this.fragment.getActivity())
+                            .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                            .load(CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())), holder.ivLogoClubAway())
+                            .close();
+                    break;
+                case "gif":
+
+                    break;
+                case "png":
+
+                    break;
+            }
+        }
 
         if (values.get(position).getWinner() != null) {
             switch (values.get(position).getWinner()) {

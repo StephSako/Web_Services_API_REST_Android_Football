@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.logout:
-
+                        //new SessionManagerPreferences(this).logout();
                         break;
                     case R.id.pref:
 
