@@ -20,6 +20,7 @@ import com.example.footballapi.controleur.BetController;
 import com.example.footballapi.controleur.MatchController;
 import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
 import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
+import com.example.footballapi.view.fragments.CompetitionFragment;
 
 public class MatchActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -99,7 +100,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
             }
         }
 
-        matchController.onCreate(getString(R.string.token), this.idMatch, CompetitionActivity.getTeamCrest(this.idHome), CompetitionActivity.getTeamCrest(this.idAway));
+        matchController.onCreate(getString(R.string.token), this.idMatch, CompetitionFragment.getTeamCrest(this.idHome), CompetitionFragment.getTeamCrest(this.idAway));
     }
 
     @Override
@@ -121,31 +122,10 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
     // Écouteur sur le menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // L’item sur lequel l’utilisateur a cliqué
-        int id = item.getItemId();
-        // Afficher le fragment des préférences
-        if (id == R.id.pref) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-            return true;
-        }
-        else if (id == R.id.credits) {
-            Intent intent = new Intent(this, CreditsActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-            return true;
-        }
-        else if (id == R.id.home) {
+        if (item.getItemId() == R.id.home) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
-            return true;
-        }
-        else if (id == R.id.search) {
-            Intent intent = new Intent(this, SearchTeamActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
             return true;
         }
 

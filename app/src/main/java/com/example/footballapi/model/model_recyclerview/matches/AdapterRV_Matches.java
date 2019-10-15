@@ -15,8 +15,8 @@ import android.widget.TextView;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
-import com.example.footballapi.view.activities.CompetitionActivity;
 import com.example.footballapi.view.activities.MatchActivity;
+import com.example.footballapi.view.fragments.CompetitionFragment;
 import com.example.footballapi.view.fragments.MatchesFragment;
 
 import java.util.List;
@@ -80,13 +80,13 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         SvgLoader.pluck()
                 .with(this.fragment.getActivity())
                 .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                .load(CompetitionActivity.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamHome())), holder.ivLogoClubHome())
+                .load(CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamHome())), holder.ivLogoClubHome())
                 .close();
 
         SvgLoader.pluck()
                 .with(this.fragment.getActivity())
                 .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                .load(CompetitionActivity.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())), holder.ivLogoClubAway())
+                .load(CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())), holder.ivLogoClubAway())
                 .close();
 
         if (values.get(position).getWinner() != null) {

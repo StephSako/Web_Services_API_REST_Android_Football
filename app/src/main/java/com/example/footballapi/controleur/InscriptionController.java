@@ -8,6 +8,7 @@ import com.example.footballapi.model.model_session_manager.SessionManagerPrefere
 import com.example.footballapi.model.model_retrofit.supporter.Supporter;
 import com.example.footballapi.model.model_retrofit.restService.always_data.RestAlwaysData;
 import com.example.footballapi.view.activities.InscriptionActivity;
+import com.example.footballapi.view.activities.MainActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 import retrofit2.Call;

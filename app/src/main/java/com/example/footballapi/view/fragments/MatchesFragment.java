@@ -1,14 +1,14 @@
 package com.example.footballapi.view.fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.MatchesCompetController;
@@ -21,9 +21,9 @@ import java.util.List;
 public class MatchesFragment extends Fragment {
 
     public int id;
-    public String type;
+    private String type;
 
-    public RecyclerView rvMatches;
+    private RecyclerView rvMatches;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
