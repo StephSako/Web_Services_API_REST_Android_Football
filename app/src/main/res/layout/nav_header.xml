@@ -8,7 +8,7 @@
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingLeft="16dp"
-    android:paddingTop="16dp"
+    android:paddingTop="5dp"
     android:paddingRight="16dp"
     android:paddingBottom="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
@@ -21,18 +21,30 @@
         app:srcCompat="@drawable/ic_logo_foreground"
         tools:ignore="VectorDrawableCompat" />
 
-    <TextView
-        android:id="@+id/nameDrawer"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Steph Sako"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/nameDrawer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Steph Sako"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-    <TextView
-        android:id="@+id/favoriteTeamHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Borussia Dortmund BVB 09"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+            <TextView
+                android:id="@+id/favoriteTeamHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Borussia Dortmund BVB 09"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

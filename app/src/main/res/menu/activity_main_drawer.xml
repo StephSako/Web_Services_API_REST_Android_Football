@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/itemBundesliga"
+            android:title="Bundesliga" />
+        <item
+            android:id="@+id/itemPremierLeague"
+            android:title="Premier League" />
+        <item
+            android:id="@+id/itemLigue1"
+            android:title="Ligue 1" />
+        <item
+            android:id="@+id/itemLigaEspagne"
+            android:title="Liga Santander" />
+        <item
+            android:id="@+id/itemSerieA"
+            android:title="Serie A" />
+        <item
+            android:id="@+id/itemLigaNOS"
+            android:title="Liga NOS" />
+        <item
+            android:id="@+id/itemLigaBresil"
+            android:title="Brasileirão Assaí" />
+        <item
+            android:id="@+id/itemEredivisie"
+            android:title="Eredivisie" />
+    </group>
+
+    <item android:title="Paramètres">
+        <menu>
+            <item
+                android:id="@+id/logout"
+                android:title="A propos"
+                android:icon="@drawable/ic_logout"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/pref"
+                android:title="Préférences"
+                android:icon="@drawable/ic_preferences"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/credits"
+                android:title="A propos"
+                android:icon="@drawable/ic_about"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+
+</menu>

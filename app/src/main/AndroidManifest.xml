@@ -37,7 +37,7 @@
         <activity android:name=".view.activities.ConnexionActivity" />
         <activity android:name=".view.activities.InscriptionActivity" />
 
-        <service android:name=".FootLiteFirebaseMessagingService">
+        <service android:name=".services.FootLiteFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
