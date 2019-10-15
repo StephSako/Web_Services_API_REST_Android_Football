@@ -2,14 +2,14 @@
     <string name="app_name">FootLite</string>
     <string name="token">e0d9f47d73ae4a4a87eeb24935d8b2f8</string>
 
-    <string name="tvBundesligaTitle">Allemagne</string>
-    <string name="tvPremierLeagueTitle">Angleterre</string>
-    <string name="tvLiguaNOSTitle">Portugal</string>
-    <string name="tvLigue1Title">France</string>
-    <string name="tvSerieATitle">Italie</string>
-    <string name="tvPrimeraDivisionTitle">Espagne</string>
-    <string name="tvSerieABrazilTitle">Brésil</string>
-    <string name="tvNetherlandsTitle">Pays-Bas</string>
+    <string name="tvBundesligaTitle">Bundesliga</string>
+    <string name="tvPremierLeagueTitle">Premier League</string>
+    <string name="tvLiguaNOSTitle">Liga NOS</string>
+    <string name="tvLigue1Title">Ligue 1</string>
+    <string name="tvSerieATitle">Serie A</string>
+    <string name="tvPrimeraDivisionTitle">Liga Santander</string>
+    <string name="tvSerieABrazilTitle">Brasileirão Assaí</string>
+    <string name="tvNetherlandsTitle">Eredivisie</string>
     <string name="ibDescrSerieABrazil">Logo du championnat brésilien</string>
     <string name="ibDescrNetherlands">Logo du championnat néerlandais</string>
     <string name="ibDescrSerieA">Logo championnat Serie A</string>

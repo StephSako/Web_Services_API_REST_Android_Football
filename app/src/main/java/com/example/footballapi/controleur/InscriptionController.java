@@ -3,13 +3,11 @@ package com.example.footballapi.controleur;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import androidx.annotation.NonNull;
-import android.widget.Toast;
 
 import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
 import com.example.footballapi.model.model_retrofit.supporter.Supporter;
 import com.example.footballapi.model.model_retrofit.restService.always_data.RestAlwaysData;
 import com.example.footballapi.view.activities.InscriptionActivity;
-import com.example.footballapi.view.activities.MainActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 import retrofit2.Call;

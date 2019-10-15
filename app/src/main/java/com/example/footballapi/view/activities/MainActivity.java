@@ -1,117 +1,92 @@
 package com.example.footballapi.view.activities;
 
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.footballapi.R;
+import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
-    // Id de la compétition
-    private int idCompet = -1;
+    private DrawerLayout dl;
+    private NavigationView nv;
 
-    // Persistance courte de idCompet
-    private final static String PCidCompet = "idCompet";
-
-    // Clef données transmission
     final static String CLE_DONNEES_ID_COMPET = "idCompet";
-
-    @Override
-    protected void onSaveInstanceState (@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt(PCidCompet, idCompet);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // On change le title de l'actionBar
-        this.setTitle("Compétitions");
+        dl = findViewById(R.id.drawer_layout);
 
-        // Récupérer les buttons
-        // Boutons de l'écran
-        ImageButton btnBundesliga = findViewById(R.id.btnBundesliga);
-        ImageButton btnPrimeraDivision = findViewById(R.id.btnPrimeraDivision);
-        ImageButton btnSerieA = findViewById(R.id.btnSerieA);
-        ImageButton btnLigue1 = findViewById(R.id.btnLigue1);
-        ImageButton btnPremierLeague = findViewById(R.id.btnPremierLeague);
-        ImageButton btnLiguaNOS = findViewById(R.id.btnLiguaNOS);
-        ImageButton btnNetherlands = findViewById(R.id.btnNetherlands);
-        ImageButton btnBresil = findViewById(R.id.btnBresil);
+        Fragment fragment = new CompetitionFragment(); // Fragment displayed by default
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Bundle bundle = new Bundle();
+        bundle.putInt(CLE_DONNEES_ID_COMPET, 2002);
+        fragment.setArguments(bundle);
+        ft.replace(R.id.fragment_hoster, fragment);
+        ft.commit();
 
-        // Ecouteurs sur les boutons
-        btnBundesliga.setOnClickListener(this);
-        btnPrimeraDivision.setOnClickListener(this);
-        btnSerieA.setOnClickListener(this);
-        btnLigue1.setOnClickListener(this);
-        btnPremierLeague.setOnClickListener(this);
-        btnLiguaNOS.setOnClickListener(this);
-        btnNetherlands.setOnClickListener(this);
-        btnBresil.setOnClickListener(this);
+        nv = findViewById(R.id.nav_view);//Mise en place du NavigationDrawer
+        nv.getHeaderView(0).setBackgroundColor(Color.parseColor("#FF69B4"));
+        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
 
-        // Persistance courte
-        if (savedInstanceState != null) {
-            idCompet = savedInstanceState.getInt(PCidCompet);
-        }
-    }
+                Fragment fragment = new CompetitionFragment();
+                int idCompet;
+                switch(id)
+                {
+                    case R.id.itemBundesliga:
+                        idCompet = 2002;
+                        break;
+                    case R.id.itemEredivisie:
+                        idCompet = 2003;
+                        break;
+                    case R.id.itemLigaBresil:
+                        idCompet = 2013;
+                        break;
+                    case R.id.itemLigaEspagne:
+                        idCompet = 2014;
+                        break;
+                    case R.id.itemLigaNOS:
+                        idCompet = 2017;
+                        break;
+                    case R.id.itemLigue1:
+                        idCompet = 2015;
+                        break;
+                    case R.id.itemPremierLeague:
+                        idCompet = 2021;
+                        break;
+                    case R.id.itemSerieA:
+                        idCompet = 2019;
+                        break;
+                    default:
+                        return true;
+                }
 
-    public void onClick(View v) {
-        if (v.getId() == R.id.btnBundesliga) idCompet = 2002;
-        else if (v.getId() == R.id.btnSerieA) idCompet = 2019;
-        else if (v.getId() == R.id.btnPremierLeague) idCompet = 2021;
-        else if (v.getId() == R.id.btnPrimeraDivision) idCompet = 2014;
-        else if (v.getId() == R.id.btnLigue1) idCompet = 2015;
-        else if (v.getId() == R.id.btnLiguaNOS) idCompet = 2017;
-        else if (v.getId() == R.id.btnNetherlands) idCompet = 2003;
-        else if (v.getId() == R.id.btnBresil) idCompet = 2013;
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                Bundle bundle = new Bundle();
+                bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                fragment.setArguments(bundle);
+                ft.replace(R.id.fragment_hoster, fragment);
+                ft.commit();
 
-        Intent intent = new Intent(this, CompetitionActivity.class);
-        intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-    }
+                DrawerLayout drawer = findViewById(R.id.drawer_layout);//Fin de la mise en place du Drawer, et
+                drawer.closeDrawer(GravityCompat.START);//activation du Drawer
 
-    // Affichage du menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    // Écouteur sur le menu
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // L’item sur lequel l’utilisateur a cliqué
-        int id = item.getItemId();
-        // Afficher le fragment des préférences
-        if (id == R.id.pref) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-            return true;
-        }
-        else if (id == R.id.credits) {
-            Intent intent = new Intent(this, CreditsActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-            return true;
-        }
-        else if (id == R.id.search) {
-            Intent intent = new Intent(this, SearchTeamActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+                return true;
+            }
+        });
     }
 }

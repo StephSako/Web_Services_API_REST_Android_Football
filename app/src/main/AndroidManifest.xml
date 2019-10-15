@@ -26,7 +26,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.activities.MainActivity" />
         <activity android:name=".view.activities.CompetitionActivity" />
         <activity android:name=".view.activities.TeamActivity" />
         <activity android:name=".view.activities.PlayerActivity" />
@@ -36,6 +35,7 @@
         <activity android:name=".view.activities.MatchActivity" />
         <activity android:name=".view.activities.ConnexionActivity" />
         <activity android:name=".view.activities.InscriptionActivity" />
+        <activity android:name=".view.activities.MainActivity" />
 
         <service android:name=".services.FootLiteFirebaseMessagingService">
             <intent-filter>
