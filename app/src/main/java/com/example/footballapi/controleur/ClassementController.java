@@ -43,6 +43,8 @@ public class ClassementController {
                     Classement classement = response.body();
                     assert classement != null;
 
+                    Objects.requireNonNull(fragment.getActivity()).setTitle(classement.getCompetition().getName());
+
                     List<TeamModel> listFinal = new ArrayList<>();
                     @SuppressLint("UseSparseArrays") HashMap<Integer, String> teamsNameCrests = new HashMap<>();
 

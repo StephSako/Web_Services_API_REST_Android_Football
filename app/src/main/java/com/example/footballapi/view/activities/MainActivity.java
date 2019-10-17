@@ -23,11 +23,8 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DrawerLayout dl;
     private NavigationView nv;
     private ActionBarDrawerToggle t;
-    private TextView tvSupporterName;
-    private TextView tvSupporterFavoriteTeam;
 
     final static String CLE_DONNEES_ID_COMPET = "idCompet";
 
@@ -36,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dl = findViewById(R.id.drawer_layout);
+        DrawerLayout dl = findViewById(R.id.drawer_layout);
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
 
         dl.addDrawerListener(t);
@@ -53,59 +50,94 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
 
         nv = findViewById(R.id.nav_view);//Mise en place du NavigationDrawer
+
+        View v = nv.inflateHeaderView(R.layout.nav_header);
+        TextView tvSupporterName = v.findViewById(R.id.tvSupporterName);
+        TextView tvSupporterFavoriteTeam = v.findViewById(R.id.tvSupporterFavoriteTeam);
+
+        tvSupporterName.setText(new SessionManagerPreferences(this).getSupporterName());
+        tvSupporterFavoriteTeam.setText(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
+
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
 
                 Fragment fragment = new CompetitionFragment();
-                int idCompet = -1;
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                Bundle bundle = new Bundle();
+                int idCompet;
                 switch(id)
                 {
                     case R.id.itemBundesliga:
                         idCompet = 2002;
+                        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                        fragment.setArguments(bundle);
+                        ft.replace(R.id.fragment_hoster, fragment);
+                        ft.commit();
                         break;
                     case R.id.itemEredivisie:
                         idCompet = 2003;
+                        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                        fragment.setArguments(bundle);
+                        ft.replace(R.id.fragment_hoster, fragment);
+                        ft.commit();
                         break;
                     case R.id.itemLigaBresil:
                         idCompet = 2013;
+                        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                        fragment.setArguments(bundle);
+                        ft.replace(R.id.fragment_hoster, fragment);
+                        ft.commit();
                         break;
                     case R.id.itemLigaEspagne:
                         idCompet = 2014;
+                        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                        fragment.setArguments(bundle);
+                        ft.replace(R.id.fragment_hoster, fragment);
+                        ft.commit();
                         break;
                     case R.id.itemLigaNOS:
                         idCompet = 2017;
+                        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                        fragment.setArguments(bundle);
+                        ft.replace(R.id.fragment_hoster, fragment);
+                        ft.commit();
                         break;
                     case R.id.itemLigue1:
                         idCompet = 2015;
+                        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                        fragment.setArguments(bundle);
+                        ft.replace(R.id.fragment_hoster, fragment);
+                        ft.commit();
                         break;
                     case R.id.itemPremierLeague:
                         idCompet = 2021;
+                        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                        fragment.setArguments(bundle);
+                        ft.replace(R.id.fragment_hoster, fragment);
+                        ft.commit();
                         break;
                     case R.id.itemSerieA:
                         idCompet = 2019;
+                        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                        fragment.setArguments(bundle);
+                        ft.replace(R.id.fragment_hoster, fragment);
+                        ft.commit();
                         break;
 
                     case R.id.logout:
                         logout();
                         break;
                     case R.id.pref:
-
+                        launch_pref();
                         break;
                     case R.id.credits:
-
+                        launch_credits();
                         break;
                     default:
                         return true;
                 }
-
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                Bundle bundle = new Bundle();
-                bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
-                fragment.setArguments(bundle);
-                ft.replace(R.id.fragment_hoster, fragment);
-                ft.commit();
 
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
@@ -113,13 +145,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-        View v = nv.inflateHeaderView(R.layout.nav_header);
-        this.tvSupporterName = v.findViewById(R.id.tvSupporterName);
-        this.tvSupporterFavoriteTeam = v.findViewById(R.id.tvSupporterFavoriteTeam);
-
-        this.tvSupporterName.setText(new SessionManagerPreferences(this).getSupporterName());
-        this.tvSupporterFavoriteTeam.setText(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
     }
 
     @Override
@@ -127,6 +152,14 @@ public class MainActivity extends AppCompatActivity {
         if(t.onOptionsItemSelected(item))
             return true;
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
     }
 
     private void logout(){
@@ -139,11 +172,15 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent a = new Intent(Intent.ACTION_MAIN);
-        a.addCategory(Intent.CATEGORY_HOME);
-        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(a);
+    private void launch_credits() {
+        Intent intent = new Intent(this, CreditsActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+
+    private void launch_pref(){
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 }
