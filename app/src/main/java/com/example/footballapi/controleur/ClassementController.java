@@ -1,5 +1,7 @@
 package com.example.footballapi.controleur;
 
+import android.annotation.SuppressLint;
+
 import androidx.annotation.NonNull;
 
 import com.example.footballapi.model.model_dao.DataBase;
@@ -31,8 +33,8 @@ public class ClassementController {
      * Affiche le classement d'une compétition
      * @param token token de connexion
      */
-    public void onCreate(String token) {
-        Call<Classement> call = RestFootballData.get().competitions(token, fragment.idCompet);
+    public void onCreate(String token, int idCompet) {
+        Call<Classement> call = RestFootballData.get().competitions(token, idCompet);
         call.enqueue(new Callback<Classement>() {
 
             @Override
@@ -42,7 +44,7 @@ public class ClassementController {
                     assert classement != null;
 
                     List<TeamModel> listFinal = new ArrayList<>();
-                    HashMap<Integer, String> teamsNameCrests = new HashMap<>();
+                    @SuppressLint("UseSparseArrays") HashMap<Integer, String> teamsNameCrests = new HashMap<>();
 
                     // On remplit les lignes (le classement d'id 0 représente le classement total du championnat)
                     for (int i = 1; i <= classement.getStandings().get(0).getTable().size(); i++) {

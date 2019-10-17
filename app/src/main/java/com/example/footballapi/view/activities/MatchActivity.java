@@ -19,7 +19,7 @@ import com.example.footballapi.R;
 import com.example.footballapi.controleur.BetController;
 import com.example.footballapi.controleur.MatchController;
 import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
-import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
+import com.example.footballapi.services.SessionManagerPreferences;
 import com.example.footballapi.view.fragments.CompetitionFragment;
 
 public class MatchActivity extends AppCompatActivity implements View.OnClickListener {

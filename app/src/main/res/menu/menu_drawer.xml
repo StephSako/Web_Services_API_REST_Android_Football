@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-<item android:title="Championnats">
+<item android:title="@string/tvGroupChampionnats">
         <menu>
             <item
                 android:id="@+id/itemBundesliga"
@@ -30,19 +30,19 @@
         </menu>
     </item>
 
-    <item android:title="Paramètres">
+    <item android:title="@string/tvGroupSettings">
         <menu>
             <item
                 android:id="@+id/logout"
-                android:title="A propos"
+                android:title="@string/tvDeconnexion"
                 android:icon="@drawable/ic_logout"/>
             <item
                 android:id="@+id/pref"
-                android:title="Préférences"
+                android:title="@string/tvPreferences"
                 android:icon="@drawable/ic_preferences"/>
             <item
                 android:id="@+id/credits"
-                android:title="A propos"
+                android:title="@string/tvAPropos"
                 android:icon="@drawable/ic_about"/>
         </menu>
     </item>

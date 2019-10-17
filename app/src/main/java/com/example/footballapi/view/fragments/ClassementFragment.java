@@ -43,7 +43,7 @@ public class ClassementFragment extends Fragment {
         rvClassement = v.findViewById(R.id.rvClassement);
 
         if(getArguments() != null) this.idCompet = getArguments().getInt(KEY_COMPET, -1);
-        classementcontroller.onCreate(getString(R.string.token));
+        classementcontroller.onCreate(getString(R.string.token), this.idCompet);
 
         return v;
     }

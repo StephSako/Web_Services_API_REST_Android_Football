@@ -1,11 +1,11 @@
 package com.example.footballapi.controleur;
 
 import androidx.annotation.NonNull;
-import android.widget.Toast;
 
 import com.example.footballapi.model.model_retrofit.competition.Classement;
 import com.example.footballapi.model.model_retrofit.restService.football_data.RestFootballData;
 import com.example.footballapi.view.activities.SplashScreen;
+import com.google.android.material.snackbar.Snackbar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,8 +21,8 @@ public class DataBaseController {
 
     /**
      * Met à jour le classement identifié dans la base de données locale pour la persistance longue
-     * @param idCompet
-     * @param token
+     * @param idCompet id de la compétition à mettre à jour
+     * @param token token de connexion
      */
     public void updateAllCompet(final int idCompet, String token) {
         Call<Classement> call = RestFootballData.get().competitions(token, idCompet);
@@ -43,12 +43,14 @@ public class DataBaseController {
                         activity.getDataBase().insertClassement(idTeam, idCompet, classement.getCompetition().getName(), position, club_name, diff, points);
                     }
                 } else {
-                    Toast.makeText(activity, "Classement introuvable", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(activity.contextView, "Classement introuvable", Snackbar.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<Classement> call, @NonNull Throwable t) { }
+            public void onFailure(@NonNull Call<Classement> call, @NonNull Throwable t) {
+                Snackbar.make(activity.contextView, "Erreur", Snackbar.LENGTH_SHORT).show();
+            }
         });
     }
 }

@@ -1,5 +1,6 @@
 package com.example.footballapi.view.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.footballapi.R;
-import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
+import com.example.footballapi.services.SessionManagerPreferences;
 import com.example.footballapi.view.fragments.CompetitionFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.logout:
-                        //new SessionManagerPreferences(this).logout();
+                        logout();
                         break;
                     case R.id.pref:
 
@@ -126,5 +127,23 @@ public class MainActivity extends AppCompatActivity {
         if(t.onOptionsItemSelected(item))
             return true;
         return super.onOptionsItemSelected(item);
+    }
+
+    private void logout(){
+        new SessionManagerPreferences(this).logout();
+
+        Intent intent = new Intent(this, ConnexionActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
     }
 }

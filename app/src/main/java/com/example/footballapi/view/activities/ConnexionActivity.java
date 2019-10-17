@@ -1,5 +1,6 @@
 package com.example.footballapi.view.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -23,7 +24,8 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     public EditText etPassword;
     public Button btnConnexion;
     public Button btnInscription;
-    public View contextView;
+    @SuppressLint("StaticFieldLeak")
+    public static View contextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
         this.etPassword = findViewById(R.id.etPassword);
         this.btnConnexion = findViewById(R.id.btnConnexion);
         this.btnInscription = findViewById(R.id.btnInscription);
-        this.contextView = findViewById(R.id.connexion_activity);
+        contextView = findViewById(R.id.connexion_activity);
 
         btnConnexion.setOnClickListener(this);
         btnInscription.setOnClickListener(this);
@@ -47,7 +49,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
                 connexionController.onCreate(this.etPseudo.getText().toString(), this.etPassword.getText().toString());
             }
             else {
-                Snackbar.make(this.contextView, "Remplissez tous les champs", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(contextView, "Remplissez tous les champs", Snackbar.LENGTH_SHORT).show();
             }
         }
         else if (v.getId() == R.id.btnInscription){
@@ -55,6 +57,14 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
             startActivity(intent);
             overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
     }
 
 }

@@ -60,4 +60,9 @@
     <string name="Open">Open</string>
     <string name="Close">Close</string>
     <string name="imgVDescFT">Navigation drawer</string>
+    <string name="tvDeconnexion">Deconnexion</string>
+    <string name="tvPreferences">Préférences</string>
+    <string name="tvAPropos">A propos</string>
+    <string name="tvGroupSettings">Paramètres</string>
+    <string name="tvGroupChampionnats">Championnats</string>
 </resources>

@@ -1,8 +1,8 @@
 package com.example.footballapi.controleur;
 
 import android.annotation.SuppressLint;
+
 import androidx.annotation.NonNull;
-import android.widget.Toast;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;

@@ -1,4 +1,4 @@
-package com.example.footballapi.model.model_session_manager;
+package com.example.footballapi.services;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,6 +10,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -56,7 +57,7 @@ public class SessionManagerPreferences {
         this.editor.commit();
     }
 
-    public HashMap<String, String> getSupporter(){
+    private HashMap<String, String> getSupporter(){
         HashMap<String, String> supporter = new HashMap<>();
         supporter.put("idSupporter", String.valueOf(this.sharedPreferences.getInt("idSupporter", -1)));
         supporter.put("pseudo", this.sharedPreferences.getString("pseudo", ""));
@@ -81,10 +82,10 @@ public class SessionManagerPreferences {
     }
 
     public boolean isConnected(){
-        return (!this.getSupporter().get("idSupporter").equals("-1"));
+        return (!Objects.equals(this.getSupporter().get("idSupporter"), "-1"));
     }
 
-    public List<Bet> getBets(){
+    private List<Bet> getBets(){
         return new Gson().fromJson(this.sharedPreferences.getString("bets", ""), new TypeToken<List<Bet>>() {}.getType());
     }
 
