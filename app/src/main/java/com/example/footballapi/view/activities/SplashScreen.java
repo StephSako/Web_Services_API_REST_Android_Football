@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -13,13 +14,14 @@ import android.widget.ImageView;
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.DataBaseController;
 import com.example.footballapi.model.model_dao.DataBase;
-import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
+import com.example.footballapi.services.SessionManagerPreferences;
 
 public class SplashScreen extends Activity {
 
     private final int[] tabIdCompet = {2002, 2019, 2021, 2014, 2015, 2017, 2003, 2013};
     private DataBase database;
     private DataBaseController databaseupdatercompet = new DataBaseController(this);
+    public View contextView;
 
     public DataBase getDataBase(){ return database; }
 
@@ -28,6 +30,8 @@ public class SplashScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
+
+        this.contextView = findViewById(R.id.splash_screen);
 
         int SPLASH_TIME_OUT = 2050;
         ImageView logo = findViewById(R.id.ivSplashscreen);
@@ -46,7 +50,7 @@ public class SplashScreen extends Activity {
             }
         }
 
-        if (new SessionManagerPreferences(this).getSupporter() != null){
+        if (new SessionManagerPreferences(this).isConnected()){
             new Handler().postDelayed(new Runnable(){
                 @Override
                 public void run(){

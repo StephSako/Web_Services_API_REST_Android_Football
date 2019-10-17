@@ -33,8 +33,8 @@ public class ClassementController {
      * Affiche le classement d'une compétition
      * @param token token de connexion
      */
-    public void onCreate(String token) {
-        Call<Classement> call = RestFootballData.get().competitions(token, fragment.idCompet);
+    public void onCreate(String token, int idCompet) {
+        Call<Classement> call = RestFootballData.get().competitions(token, idCompet);
         call.enqueue(new Callback<Classement>() {
 
             @Override
@@ -43,8 +43,10 @@ public class ClassementController {
                     Classement classement = response.body();
                     assert classement != null;
 
+                    Objects.requireNonNull(fragment.getActivity()).setTitle(classement.getCompetition().getName());
+
                     List<TeamModel> listFinal = new ArrayList<>();
-                    HashMap<Integer, String> teamsNameCrests = new HashMap<>();
+                    @SuppressLint("UseSparseArrays") HashMap<Integer, String> teamsNameCrests = new HashMap<>();
 
                     // On remplit les lignes (le classement d'id 0 représente le classement total du championnat)
                     for (int i = 1; i <= classement.getStandings().get(0).getTable().size(); i++) {
@@ -89,7 +91,7 @@ public class ClassementController {
                         listFinal.add(model);
                     }
 
-                    // booléen qui active ou désactive les écouteurs sur les item de la recyclerview en cas de connexion_activity oun non à internet
+                    // booléen qui active ou désactive les écouteurs sur les item de la recyclerview en cas de activity_connexion oun non à internet
                     fragment.showList(listFinal, false, null);
                 }
                 Snackbar.make(Objects.requireNonNull(fragment.getView()), "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();

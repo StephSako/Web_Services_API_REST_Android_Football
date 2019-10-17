@@ -1,15 +1,16 @@
 package com.example.footballapi.controleur;
 
 import androidx.annotation.NonNull;
-import android.widget.Toast;
 
-import com.example.footballapi.model.model_retrofit.team.Team;
 import com.example.footballapi.model.model_recyclerview.matches.MatchesModel;
 import com.example.footballapi.model.model_retrofit.restService.football_data.RestFootballData;
+import com.example.footballapi.model.model_retrofit.team.Team;
 import com.example.footballapi.view.fragments.MatchesFragment;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,10 +26,10 @@ public class MatchesTeamController {
 
     /**
      * Affiche la liste des matches d'une équipe
-     * @param token
+     * @param token token de connexion
      */
-    public void onCreate(final String token) {
-        Call<Team> call = RestFootballData.get().matchesTeam(token, fragment.id);
+    public void onCreate(final String token, int idTeam) {
+        Call<Team> call = RestFootballData.get().matchesTeam(token, idTeam);
         call.enqueue(new Callback<Team>() {
             @Override
             public void onResponse(@NonNull Call<Team> call, @NonNull Response<Team> response) {
@@ -67,13 +68,13 @@ public class MatchesTeamController {
                     fragment.list = listFinal; // Appelée et affichée si le fragment existe déjà
                     fragment.showList(listFinal);
                 } else {
-                    Toast.makeText(fragment.getActivity(), "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(Objects.requireNonNull(fragment.getView()), "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<Team> call, @NonNull Throwable t) {
-                Toast.makeText(fragment.getActivity(), "Vérifiez votre connexion_activity Internet", Toast.LENGTH_SHORT).show();
+                Snackbar.make(Objects.requireNonNull(fragment.getView()), "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
     }

@@ -35,12 +35,13 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     public Button btnInscription;
     public Spinner spinnerFavoriteTeam;
     public int favoriteTeamId;
+    public String favoriteTeamName;
     public View contextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.inscription_activity);
+        setContentView(R.layout.activity_inscription);
         inscriptionController = new InscriptionController(this);
 
         this.etPseudo = findViewById(R.id.etPseudo);
@@ -55,6 +56,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 favoriteTeamId = ((FavoriteTeam) parent.getSelectedItem()).getIdTeam();
+                favoriteTeamName = ((FavoriteTeam) parent.getSelectedItem()).getClub_name();
             }
 
             @Override
@@ -85,7 +87,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
                 if (!this.etPassword.getText().toString().equals(this.etPasswordVerif.getText().toString())){
                     Snackbar.make(this.contextView, "Les mots de passe ne correspondent pas", Snackbar.LENGTH_SHORT).show();
                 }else{
-                    inscriptionController.onCreate(this.etPseudo.getText().toString(), this.etPassword.getText().toString(), this.favoriteTeamId);
+                    inscriptionController.onCreate(this.etPseudo.getText().toString(), this.etPassword.getText().toString(), this.favoriteTeamId, this.favoriteTeamName);
                 }
             }
         }
@@ -94,6 +96,14 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
             startActivity(intent);
             overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
     }
 
 }

@@ -5,15 +5,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.view.activities.MatchActivity;
+import com.example.footballapi.view.fragments.CompetitionFragment;
+import com.example.footballapi.view.fragments.MatchesFragment;
 
 import java.util.List;
 
@@ -25,12 +30,18 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
     public static final String CLE_DONNEES_STATUS= "status";
 
     private List<MatchesModel> values;
+    private MatchesFragment fragment;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvMatchday;
         TextView tvHomeTeam;
         TextView tvScore;
         TextView tvAwayTeam;
+        private ImageView ivLogoClubHome;
+        private ImageView ivLogoClubAway;
+
+        ImageView ivLogoClubHome(){ return this.ivLogoClubHome;}
+        ImageView ivLogoClubAway(){ return this.ivLogoClubAway;}
 
         public View layout;
 
@@ -41,11 +52,14 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
             tvHomeTeam = v.findViewById(R.id.tvHomeTeam);
             tvScore = v.findViewById(R.id.tvScore);
             tvAwayTeam = v.findViewById(R.id.tvAwayTeam);
+            ivLogoClubHome = v.findViewById(R.id.ivLogoHome);
+            ivLogoClubAway = v.findViewById(R.id.ivLogoAway);
         }
     }
 
-    public AdapterRV_Matches(List<MatchesModel> myDataset) {
+    public AdapterRV_Matches(List<MatchesModel> myDataset, MatchesFragment fragment) {
         this.values = myDataset;
+        this.fragment = fragment;
     }
 
     @NonNull
@@ -63,6 +77,46 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         holder.tvAwayTeam.setText(values.get(position).getAwayTeam());
         holder.tvScore.setText(values.get(position).getScore());
         holder.tvHomeTeam.setText(values.get(position).getHomeTeam());
+
+        String crestHome = (CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamHome())) != null) ? CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamHome())) : "" ;
+        String crestAway = (CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())) != null) ? CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())) : "" ;
+
+        if (!crestHome.equals("")) {
+            switch (crestHome.substring(crestHome.length() - 3)){
+                case "svg":
+                    SvgLoader.pluck()
+                            .with(this.fragment.getActivity())
+                            .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                            .load(CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamHome())), holder.ivLogoClubHome())
+                            .close();
+                    break;
+                case "gif":
+                    // Display with androidgif
+                    break;
+                case "png":
+                    // Display with Picasso
+                    break;
+            }
+        }
+
+        if (!crestAway.equals("")) {
+
+            switch (crestAway.substring(crestAway.length() - 3)){
+                case "svg":
+                    SvgLoader.pluck()
+                            .with(this.fragment.getActivity())
+                            .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                            .load(CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())), holder.ivLogoClubAway())
+                            .close();
+                    break;
+                case "gif":
+
+                    break;
+                case "png":
+
+                    break;
+            }
+        }
 
         if (values.get(position).getWinner() != null) {
             switch (values.get(position).getWinner()) {
@@ -106,8 +160,7 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
             }
         });
 
-        String a = values.get(position).getStatus();
-        switch (a) {
+        switch (values.get(position).getStatus()) {
             case "LIVE":
             case "IN_PLAY":
                 holder.itemView.setBackgroundResource(R.drawable.live);

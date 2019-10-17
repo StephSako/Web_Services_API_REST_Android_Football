@@ -19,11 +19,8 @@ import java.util.List;
 public class SquadFragment extends Fragment {
 
     public int idTeam = -1;
-    public String crestURLPlayer = "";
 
-    public RecyclerView rvSquad;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView rvSquad;
 
     private static final String KEY_ID = "idTeam";
 
@@ -53,9 +50,9 @@ public class SquadFragment extends Fragment {
 
     public void showList(List<SquadModel> list){
         if (list != null && list.size() > 0) {
-            layoutManager = new LinearLayoutManager(getContext());
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
             rvSquad.setLayoutManager(layoutManager);
-            mAdapter = new AdapterRV_Squad(list);
+            RecyclerView.Adapter mAdapter = new AdapterRV_Squad(list);
             rvSquad.setAdapter(mAdapter);
         }
     }

@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 
 import com.example.footballapi.model.model_retrofit.supporter.Supporter;
 import com.example.footballapi.model.model_retrofit.restService.always_data.RestAlwaysData;
-import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
+import com.example.footballapi.services.SessionManagerPreferences;
 import com.example.footballapi.view.activities.ConnexionActivity;
 import com.example.footballapi.view.activities.MainActivity;
 import com.google.android.material.snackbar.Snackbar;
@@ -40,10 +40,10 @@ public class ConnexionController {
                     assert supporter != null;
 
                     if (supporter.getIdSupporter() == -1){
-                        Snackbar.make(activity.contextView, "Les informations sont incorrectes", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(ConnexionActivity.contextView, "Les informations sont incorrectes", Snackbar.LENGTH_SHORT).show();
                     }else{
                         // Ajouter les données dans les SharedPreferences
-                        SessionManagerPreferences.getSettings(activity.getApplicationContext()).sign_in(supporter.getIdSupporter(), supporter.getPseudo(), supporter.getPassword(), supporter.getFavoriteTeam(), supporter.getTab_bets());
+                        SessionManagerPreferences.getSettings(activity.getApplicationContext()).sign_in(supporter.getIdSupporter(), supporter.getPseudo(), supporter.getPassword(), supporter.getFavoriteTeam(), supporter.getFavoriteTeamName(), supporter.getTab_bets());
                         Intent intent = new Intent(activity, MainActivity.class);
                         activity.startActivity(intent);
                         activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -53,7 +53,7 @@ public class ConnexionController {
 
             @Override
             public void onFailure(@NonNull Call<Supporter> call, @NonNull Throwable t) {
-                Snackbar.make(activity.contextView, "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(ConnexionActivity.contextView, "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
     }

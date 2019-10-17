@@ -1,15 +1,16 @@
 package com.example.footballapi.controleur;
 
 import androidx.annotation.NonNull;
-import android.widget.Toast;
 
 import com.example.footballapi.model.model_recyclerview.matches.MatchesModel;
 import com.example.footballapi.model.model_retrofit.competition.Classement;
 import com.example.footballapi.model.model_retrofit.restService.football_data.RestFootballData;
 import com.example.footballapi.view.fragments.MatchesFragment;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,8 +28,8 @@ public class MatchesCompetController {
      * Affiche la liste des matches d'une compétition
      * @param token token de la connexion
      */
-    public void onCreate(final String token) {
-        Call<Classement> call = RestFootballData.get().matchesCompetition(token, fragment.id);
+    public void onCreate(final String token, int idCompet) {
+        Call<Classement> call = RestFootballData.get().matchesCompetition(token, idCompet);
         call.enqueue(new Callback<Classement>() {
             @Override
             public void onResponse(@NonNull Call<Classement> call, @NonNull Response<Classement> response) {
@@ -67,13 +68,13 @@ public class MatchesCompetController {
                     fragment.list = listFinal; // Appelée et affichée si le fragment existe déjà
                     fragment.showList(listFinal);
                 } else {
-                    Toast.makeText(fragment.getActivity(), "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(Objects.requireNonNull(fragment.getView()), "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<Classement> call, @NonNull Throwable t) {
-                Toast.makeText(fragment.getActivity(), "Vérifiez votre connexion_activity Internet", Toast.LENGTH_SHORT).show();
+                Snackbar.make(Objects.requireNonNull(fragment.getView()), "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
     }

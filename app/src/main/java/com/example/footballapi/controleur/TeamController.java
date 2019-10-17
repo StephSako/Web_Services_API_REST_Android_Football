@@ -1,12 +1,11 @@
 package com.example.footballapi.controleur;
 
 import androidx.annotation.NonNull;
-import android.widget.Toast;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
-import com.example.footballapi.model.model_retrofit.team.Team;
 import com.example.footballapi.model.model_retrofit.restService.football_data.RestFootballData;
+import com.example.footballapi.model.model_retrofit.team.Team;
 import com.example.footballapi.view.activities.TeamActivity;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -26,7 +25,7 @@ public class TeamController {
 
     /**
      * Affiche les détails d'une équipe
-     * @param token
+     * @param token token de connexion
      * */
     public void onCreate(final String token) {
         Call<Team> call = RestFootballData.get().teamsDetails(token, activity.idTeam);

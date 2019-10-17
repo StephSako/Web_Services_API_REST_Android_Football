@@ -3,9 +3,8 @@ package com.example.footballapi.controleur;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import androidx.annotation.NonNull;
-import android.widget.Toast;
 
-import com.example.footballapi.model.model_session_manager.SessionManagerPreferences;
+import com.example.footballapi.services.SessionManagerPreferences;
 import com.example.footballapi.model.model_retrofit.supporter.Supporter;
 import com.example.footballapi.model.model_retrofit.restService.always_data.RestAlwaysData;
 import com.example.footballapi.view.activities.InscriptionActivity;
@@ -29,8 +28,8 @@ public class InscriptionController {
      * @param pseudo pseudo du supporter
      * @param password mot de passe du supporter
      */
-    public void onCreate(String pseudo, String password, int favoriteTeamId) {
-        Call<Supporter> call = RestAlwaysData.get().inscription(pseudo, password, favoriteTeamId);
+    public void onCreate(String pseudo, String password, int favoriteTeamId, String favoriteTeamName) {
+        Call<Supporter> call = RestAlwaysData.get().inscription(pseudo, password, favoriteTeamId, favoriteTeamName);
         call.enqueue(new Callback<Supporter>() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -43,7 +42,7 @@ public class InscriptionController {
                         Snackbar.make(activity.contextView, "Ce pseudo est déjà pris", Snackbar.LENGTH_SHORT).show();
                     }else {
                         // Ajouter les données dans les SharedPreferences
-                        SessionManagerPreferences.getSettings(activity.getApplicationContext()).sign_in(supporter.getIdSupporter(), supporter.getPseudo(), supporter.getPassword(), supporter.getFavoriteTeam(), supporter.getTab_bets());
+                        SessionManagerPreferences.getSettings(activity.getApplicationContext()).sign_in(supporter.getIdSupporter(), supporter.getPseudo(), supporter.getPassword(), supporter.getFavoriteTeam(), supporter.getFavoriteTeamName(), supporter.getTab_bets());
                         Intent intent = new Intent(activity, MainActivity.class);
                         activity.startActivity(intent);
                         activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

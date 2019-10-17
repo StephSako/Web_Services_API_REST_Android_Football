@@ -13,7 +13,6 @@ import com.example.footballapi.R;
 import com.example.footballapi.controleur.ClassementController;
 import com.example.footballapi.model.model_recyclerview.classement.AdapterRV_Classement;
 import com.example.footballapi.model.model_recyclerview.classement.TeamModel;
-import com.example.footballapi.view.activities.CompetitionActivity;
 
 import java.util.HashMap;
 import java.util.List;
@@ -44,13 +43,13 @@ public class ClassementFragment extends Fragment {
         rvClassement = v.findViewById(R.id.rvClassement);
 
         if(getArguments() != null) this.idCompet = getArguments().getInt(KEY_COMPET, -1);
-        classementcontroller.onCreate(getString(R.string.token));
+        classementcontroller.onCreate(getString(R.string.token), this.idCompet);
 
         return v;
     }
 
     public void showList(List<TeamModel> list, boolean netaccess, HashMap<Integer, String> teamNameCrest){
-        if (teamNameCrest != null) CompetitionActivity.setTeamsNameCrests(teamNameCrest);
+        if (teamNameCrest != null) CompetitionFragment.setTeamsNameCrests(teamNameCrest);
 
         layoutManager = new LinearLayoutManager(getContext());
         rvClassement.setLayoutManager(layoutManager);

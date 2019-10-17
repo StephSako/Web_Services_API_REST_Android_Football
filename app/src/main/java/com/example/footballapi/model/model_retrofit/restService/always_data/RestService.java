@@ -1,10 +1,7 @@
 package com.example.footballapi.model.model_retrofit.restService.always_data;
 
-import com.example.footballapi.model.model_retrofit.supporter.Bet;
 import com.example.footballapi.model.model_retrofit.supporter.ListBet;
 import com.example.footballapi.model.model_retrofit.supporter.Supporter;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -21,7 +18,7 @@ public interface RestService {
 
     @FormUrlEncoded
     @POST("supporter/sign_up.php")
-    Call<Supporter> inscription(@Field("pseudo") String pseudo, @Field("password") String password, @Field("favoriteTeam") int favoriteTeam);
+    Call<Supporter> inscription(@Field("pseudo") String pseudo, @Field("password") String password, @Field("favoriteTeam") int favoriteTeam, @Field("favoriteTeamName") String favoriteTeamName);
 
     @FormUrlEncoded
     @POST("supporter/sign_in.php")

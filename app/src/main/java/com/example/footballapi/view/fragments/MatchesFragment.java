@@ -1,14 +1,14 @@
 package com.example.footballapi.view.fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.MatchesCompetController;
@@ -20,12 +20,13 @@ import java.util.List;
 
 public class MatchesFragment extends Fragment {
 
-    public int id;
-    public String type;
+    private int idForMatches = -1;
+    private String type = "";
 
-    public RecyclerView rvMatches;
+    private RecyclerView rvMatches;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    public View contextView;
 
     private static final String KEY_ID = "idTeam";
     private static final String KEY_TYPE = "typeMatches";
@@ -47,14 +48,12 @@ public class MatchesFragment extends Fragment {
         rvMatches = v.findViewById(R.id.rvMatches);
 
         if(getArguments() != null){
-            this.id = getArguments().getInt(KEY_ID, -1);
+            this.idForMatches = getArguments().getInt(KEY_ID, -1);
             this.type = getArguments().getString(KEY_TYPE, "");
         }
 
-        if (this.type.equals("team")) new MatchesTeamController(this).onCreate(getString(R.string.token));
-        else if (this.type.equals("competition")) new MatchesCompetController(this).onCreate(getString(R.string.token));
-
-        Toast.makeText(this.getActivity(), "matches", Toast.LENGTH_SHORT).show();
+        if (this.type.equals("team")) new MatchesTeamController(this).onCreate(getString(R.string.token), this.idForMatches);
+        else if (this.type.equals("competition")) new MatchesCompetController(this).onCreate(getString(R.string.token), this.idForMatches);
 
         return v;
     }
@@ -63,7 +62,7 @@ public class MatchesFragment extends Fragment {
         if (list != null && list.size() > 0) {
             layoutManager = new LinearLayoutManager(getContext());
             rvMatches.setLayoutManager(layoutManager);
-            mAdapter = new AdapterRV_Matches(list);
+            mAdapter = new AdapterRV_Matches(list, this);
             rvMatches.setAdapter(mAdapter);
         }
     }

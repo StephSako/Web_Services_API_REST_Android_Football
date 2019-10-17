@@ -1,4 +1,4 @@
-package com.example.footballapi.service;
+package com.example.footballapi.services;
 
 import android.util.Log;
 
