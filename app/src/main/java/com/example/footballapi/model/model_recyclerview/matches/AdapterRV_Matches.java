@@ -138,8 +138,6 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
                             .close();
                     break;
                 case "gif":
-                    // Display with androidgif
-                    break;
                 case "png":
                     Picasso.get()
                             .load(crestHome)

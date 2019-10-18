@@ -106,9 +106,8 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
                             .close();
                     break;
                 case "gif":
-                    // Display with androidgif
-                    break;
                 case "png":
+                    // Display with androidgif
                     Picasso.get()
                             .load(crest)
                             .error(R.drawable.ic_logo_foreground)
