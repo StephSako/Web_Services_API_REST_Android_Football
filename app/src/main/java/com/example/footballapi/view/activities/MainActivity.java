@@ -23,7 +23,6 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    private NavigationView nv;
     private ActionBarDrawerToggle t;
 
     final static String CLE_DONNEES_ID_COMPET = "idCompet";
@@ -41,15 +40,21 @@ public class MainActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
+        // On récupère l'id de la competition depuis l'activite mère
+        Intent intent = getIntent();
+        int idCompet;
+        if ((idCompet = intent.getIntExtra(CLE_DONNEES_ID_COMPET, -1)) == -1)
+            idCompet = 2002;
+
         Fragment fragment = new CompetitionFragment(); // Fragment displayed by default
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Bundle bundle = new Bundle();
-        bundle.putInt(CLE_DONNEES_ID_COMPET, 2002);
+        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
         fragment.setArguments(bundle);
         ft.replace(R.id.fragment_hoster, fragment);
         ft.commit();
 
-        nv = findViewById(R.id.nav_view);//Mise en place du NavigationDrawer
+        NavigationView nv = findViewById(R.id.nav_view);//Mise en place du NavigationDrawer
 
         View v = nv.inflateHeaderView(R.layout.nav_header);
         TextView tvSupporterName = v.findViewById(R.id.tvSupporterName);
@@ -66,61 +71,52 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment = new CompetitionFragment();
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 Bundle bundle = new Bundle();
-                int idCompet;
                 switch(id)
                 {
                     case R.id.itemBundesliga:
-                        idCompet = 2002;
-                        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                        bundle.putInt(CLE_DONNEES_ID_COMPET, 2002);
                         fragment.setArguments(bundle);
                         ft.replace(R.id.fragment_hoster, fragment);
                         ft.commit();
                         break;
                     case R.id.itemEredivisie:
-                        idCompet = 2003;
-                        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                        bundle.putInt(CLE_DONNEES_ID_COMPET, 2003);
                         fragment.setArguments(bundle);
                         ft.replace(R.id.fragment_hoster, fragment);
                         ft.commit();
                         break;
                     case R.id.itemLigaBresil:
-                        idCompet = 2013;
-                        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                        bundle.putInt(CLE_DONNEES_ID_COMPET, 2013);
                         fragment.setArguments(bundle);
                         ft.replace(R.id.fragment_hoster, fragment);
                         ft.commit();
                         break;
                     case R.id.itemLigaEspagne:
-                        idCompet = 2014;
-                        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                        bundle.putInt(CLE_DONNEES_ID_COMPET, 2014);
                         fragment.setArguments(bundle);
                         ft.replace(R.id.fragment_hoster, fragment);
                         ft.commit();
                         break;
                     case R.id.itemLigaNOS:
-                        idCompet = 2017;
-                        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                        bundle.putInt(CLE_DONNEES_ID_COMPET, 2017);
                         fragment.setArguments(bundle);
                         ft.replace(R.id.fragment_hoster, fragment);
                         ft.commit();
                         break;
                     case R.id.itemLigue1:
-                        idCompet = 2015;
-                        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                        bundle.putInt(CLE_DONNEES_ID_COMPET, 2015);
                         fragment.setArguments(bundle);
                         ft.replace(R.id.fragment_hoster, fragment);
                         ft.commit();
                         break;
                     case R.id.itemPremierLeague:
-                        idCompet = 2021;
-                        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                        bundle.putInt(CLE_DONNEES_ID_COMPET, 2021);
                         fragment.setArguments(bundle);
                         ft.replace(R.id.fragment_hoster, fragment);
                         ft.commit();
                         break;
                     case R.id.itemSerieA:
-                        idCompet = 2019;
-                        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+                        bundle.putInt(CLE_DONNEES_ID_COMPET, 2019);
                         fragment.setArguments(bundle);
                         ft.replace(R.id.fragment_hoster, fragment);
                         ft.commit();
@@ -130,10 +126,13 @@ public class MainActivity extends AppCompatActivity {
                         logout();
                         break;
                     case R.id.pref:
-                        launch_pref();
+                        launch_item_class(SettingsActivity.class);
                         break;
                     case R.id.credits:
-                        launch_credits();
+                        launch_item_class(CreditsActivity.class);
+                        break;
+                    case R.id.itemSearch:
+                        launch_item_class(SearchTeamActivity.class);
                         break;
                     default:
                         return true;
@@ -172,14 +171,8 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
-    private void launch_credits() {
-        Intent intent = new Intent(this, CreditsActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-    }
-
-    private void launch_pref(){
-        Intent intent = new Intent(this, SettingsActivity.class);
+    private void launch_item_class(Class class_){
+        Intent intent = new Intent(this, class_);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }

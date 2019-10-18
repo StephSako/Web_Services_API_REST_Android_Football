@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.footballapi.R;
+import com.example.footballapi.view.activities.MainActivity;
 import com.example.footballapi.view.activities.TeamActivity;
 import com.example.footballapi.view.fragments.CompetitionFragment;
 
@@ -20,8 +21,8 @@ import java.util.List;
 
 public class AdapterRV_Search extends RecyclerView.Adapter<AdapterRV_Search.ViewHolder> {
 
-    public static final String CLE_DONNEES_ID_TEAM = "idTeam";
-    public final static String CLE_DONNEES_ID_COMPET = "idCompet";
+    private static final String CLE_DONNEES_ID_TEAM = "idTeam";
+    private final static String CLE_DONNEES_ID_COMPET = "idCompet";
 
     private List<TeamDAO> listSearch;
 
@@ -62,21 +63,11 @@ public class AdapterRV_Search extends RecyclerView.Adapter<AdapterRV_Search.View
 
         holder.tvClubname.setText(String.valueOf(listSearch.get(position).getClub_name()));
 
-        holder.tvClubname.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, TeamActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_TEAM, listSearch.get(position).getIdTeam());
-                context.startActivity(intent);
-            }
-        });
-
         holder.btnCompetSearch.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-                Intent intent = new Intent(context, CompetitionFragment.class);
+                Intent intent = new Intent(context, MainActivity.class);
                 intent.putExtra(CLE_DONNEES_ID_COMPET, listSearch.get(position).getIdCompet());
                 context.startActivity(intent);
             }

@@ -53,6 +53,7 @@
     <string name="DescriptionAPropos">L\'application FootLite permet de récupérer des données au format JSON envoyées via des\nrequêtes HTTP depuis une API REST concernant des compétitions, équipes, matches et joueurs de football des huit principaux championnats :\n\n- la Bundesliga (Allemagne)\n- la Ligue 1 (France)\n- la Primera Division (Espagne)\n- la Premier League (Angleterre)\n- la Serie A (Brésil et Italie)\n- l\'Eredivisie (Pays-Bas)\n- la Primereira Liga (ou \"Liga NOS\", Portugal).</string>
     <string name="descrTvLogoClubClassement">Logo club classement</string>
     <string name="btnTeamSearchTitle">Team</string>
+    <string name="tvSearch">Rechercher</string>
     <string name="btnCompetSearchTitle">Champ</string>
     <string name="txtCreditTitle">Qu\'est ce que FootLite ?</string>
     <string name="txtTitleApiUsed">API utilisée</string>
@@ -65,4 +66,5 @@
     <string name="tvAPropos">A propos</string>
     <string name="tvGroupSettings">Paramètres</string>
     <string name="tvGroupChampionnats">Championnats</string>
+    <string name="tvMainActivityMenu">Menu principal</string>
 </resources>

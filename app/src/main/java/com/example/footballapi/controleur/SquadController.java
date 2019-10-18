@@ -45,20 +45,23 @@ public class SquadController {
                                 SquadModel model = new SquadModel();
                                 model.setPlayerName(String.valueOf(team.getSquad().get(i).getName()));
 
-                                switch (team.getSquad().get(i).getPosition()) {
-                                    case "Goalkeeper":
-                                        model.setPlayerPosition("Gardien");
-                                        break;
-                                    case "Defender":
-                                        model.setPlayerPosition("Défenseur");
-                                        break;
-                                    case "Midfielder":
-                                        model.setPlayerPosition("Milieu");
-                                        break;
-                                    case "Attacker":
-                                        model.setPlayerPosition("Attaquant");
-                                        break;
+                                if (team.getSquad().get(i).getPosition() != null) {
+                                    switch (team.getSquad().get(i).getPosition()) {
+                                        case "Goalkeeper":
+                                            model.setPlayerPosition("Gardien");
+                                            break;
+                                        case "Defender":
+                                            model.setPlayerPosition("Défenseur");
+                                            break;
+                                        case "Midfielder":
+                                            model.setPlayerPosition("Milieu");
+                                            break;
+                                        case "Attacker":
+                                            model.setPlayerPosition("Attaquant");
+                                            break;
+                                    }
                                 }
+                                else model.setPlayerPosition("");
 
                                 model.setPlayerNationality(team.getSquad().get(i).getNationality());
                                 model.setPlayerId(String.valueOf(team.getSquad().get(i).getId()));
