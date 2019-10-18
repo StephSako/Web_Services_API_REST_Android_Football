@@ -19,6 +19,7 @@ import com.example.footballapi.R;
 import com.example.footballapi.view.activities.MatchActivity;
 import com.example.footballapi.view.fragments.CompetitionFragment;
 import com.example.footballapi.view.fragments.MatchesFragment;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -39,9 +40,6 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         TextView tvAwayTeam;
         private ImageView ivLogoClubHome;
         private ImageView ivLogoClubAway;
-
-        ImageView ivLogoClubHome(){ return this.ivLogoClubHome;}
-        ImageView ivLogoClubAway(){ return this.ivLogoClubAway;}
 
         public View layout;
 
@@ -81,20 +79,74 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         String crestHome = (CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamHome())) != null) ? CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamHome())) : "" ;
         String crestAway = (CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())) != null) ? CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())) : "" ;
 
+        // Problèmes logos Ligue 1
+        switch (values.get(position).getHomeTeam()) {
+            case "FC Nantes":
+                crestHome = "https://upload.wikimedia.org/wikipedia/commons/5/5c/FC_Nantes_2019_logo.svg";
+                break;
+            case "Nîmes Olympique":
+                crestHome = "https://upload.wikimedia.org/wikipedia/fr/f/f0/N%C3%AEmes_Olympique_logo_2018.svg";
+                break;
+            case "Toulouse FC":
+                crestHome = "https://upload.wikimedia.org/wikipedia/fr/8/8b/Logo_Toulouse_FC_2018.svg";
+                break;
+            case "Stade Brestois 29":
+                crestHome = "https://upload.wikimedia.org/wikipedia/fr/1/14/Logo_Stade_Brestois.svg";
+                break;
+            case "Amiens SC":
+                crestHome = "https://upload.wikimedia.org/wikipedia/fr/e/ec/Logo_Amiens_SC_1998.svg";
+                break;
+            case "Stade de Reims":
+                crestHome = "https://upload.wikimedia.org/wikipedia/fr/0/02/Logo_Stade_Reims_1999.svg";
+                break;
+            case "Lille OSC":
+                crestHome = "https://upload.wikimedia.org/wikipedia/fr/6/62/Logo_LOSC_Lille_2018.svg";
+                break;
+        }
+
+        switch (values.get(position).getAwayTeam()) {
+            case "FC Nantes":
+                crestAway = "https://upload.wikimedia.org/wikipedia/commons/5/5c/FC_Nantes_2019_logo.svg";
+                break;
+            case "Nîmes Olympique":
+                crestAway = "https://upload.wikimedia.org/wikipedia/fr/f/f0/N%C3%AEmes_Olympique_logo_2018.svg";
+                break;
+            case "Toulouse FC":
+                crestAway = "https://upload.wikimedia.org/wikipedia/fr/8/8b/Logo_Toulouse_FC_2018.svg";
+                break;
+            case "Stade Brestois 29":
+                crestAway = "https://upload.wikimedia.org/wikipedia/fr/1/14/Logo_Stade_Brestois.svg";
+                break;
+            case "Amiens SC":
+                crestAway = "https://upload.wikimedia.org/wikipedia/fr/e/ec/Logo_Amiens_SC_1998.svg";
+                break;
+            case "Stade de Reims":
+                crestAway = "https://upload.wikimedia.org/wikipedia/fr/0/02/Logo_Stade_Reims_1999.svg";
+                break;
+            case "Lille OSC":
+                crestAway = "https://upload.wikimedia.org/wikipedia/fr/6/62/Logo_LOSC_Lille_2018.svg";
+                break;
+        }
+
         if (!crestHome.equals("")) {
             switch (crestHome.substring(crestHome.length() - 3)){
                 case "svg":
                     SvgLoader.pluck()
                             .with(this.fragment.getActivity())
                             .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                            .load(CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamHome())), holder.ivLogoClubHome())
+                            .load(crestHome, holder.ivLogoClubHome)
                             .close();
                     break;
                 case "gif":
                     // Display with androidgif
                     break;
                 case "png":
-                    // Display with Picasso
+                    Picasso.get()
+                            .load(crestHome)
+                            .error(R.drawable.ic_logo_foreground)
+                            .resize(50, 50)
+                            .centerCrop()
+                            .into(holder.ivLogoClubHome);
                     break;
             }
         }
@@ -106,14 +158,19 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
                     SvgLoader.pluck()
                             .with(this.fragment.getActivity())
                             .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                            .load(CompetitionFragment.getTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())), holder.ivLogoClubAway())
+                            .load(crestAway, holder.ivLogoClubAway)
                             .close();
                     break;
                 case "gif":
 
                     break;
                 case "png":
-
+                    Picasso.get()
+                            .load(crestAway)
+                            .error(R.drawable.ic_logo_foreground)
+                            .resize(50, 50)
+                            .centerCrop()
+                            .into(holder.ivLogoClubAway);
                     break;
             }
         }

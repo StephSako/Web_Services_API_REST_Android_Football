@@ -16,6 +16,7 @@ import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.view.fragments.ClassementFragment;
 import com.example.footballapi.view.activities.TeamActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -33,8 +34,6 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
         private TextView tvDiff;
         private TextView tvPoints;
         private ImageView ivLogoClubClassement;
-
-        ImageView getivLogoClubClassement(){ return this.ivLogoClubClassement;}
 
         public View layout;
 
@@ -70,13 +69,54 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
         holder.tvDiff.setText(values.get(position).getDiff());
         holder.tvPoints.setText(values.get(position).getPoints());
 
-        // On affiche l'image SVG pour afficher le logo du club
-        if (values.get(position).getCrestURL() != null) {
-            SvgLoader.pluck()
-                    .with(this.fragment.getActivity())
-                    .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                    .load(values.get(position).getCrestURL(), holder.getivLogoClubClassement())
-                    .close();
+        String crest = values.get(position).getCrestURL();
+
+        // Problèmes logos Ligue 1
+        switch (values.get(position).getName()) {
+            case "FC Nantes":
+                crest = "https://upload.wikimedia.org/wikipedia/commons/5/5c/FC_Nantes_2019_logo.svg";
+                break;
+            case "Nîmes Olympique":
+                crest = "https://upload.wikimedia.org/wikipedia/fr/f/f0/N%C3%AEmes_Olympique_logo_2018.svg";
+                break;
+            case "Toulouse FC":
+                crest = "https://upload.wikimedia.org/wikipedia/fr/8/8b/Logo_Toulouse_FC_2018.svg";
+                break;
+            case "Stade Brestois 29":
+                crest = "https://upload.wikimedia.org/wikipedia/fr/1/14/Logo_Stade_Brestois.svg";
+                break;
+            case "Amiens SC":
+                crest = "https://upload.wikimedia.org/wikipedia/fr/e/ec/Logo_Amiens_SC_1998.svg";
+                break;
+            case "Stade de Reims":
+                crest = "https://upload.wikimedia.org/wikipedia/fr/0/02/Logo_Stade_Reims_1999.svg";
+                break;
+            case "Lille OSC":
+                crest = "https://upload.wikimedia.org/wikipedia/fr/6/62/Logo_LOSC_Lille_2018.svg";
+                break;
+        }
+
+        if (!crest.equals("")) {
+            switch (crest.substring(crest.length() - 3)){
+                case "svg":
+                    SvgLoader.pluck()
+                            .with(this.fragment.getActivity())
+                            .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                            .load(crest, holder.ivLogoClubClassement)
+                            .close();
+                    break;
+                case "gif":
+                    // Display with androidgif
+                    break;
+                case "png":
+                    Picasso.get()
+                            .load(crest)
+                            .error(R.drawable.ic_logo_foreground)
+                            .resize(50, 50)
+                            .centerCrop()
+                            .into(holder.ivLogoClubClassement);
+                    break;
+            }
         }
 
         // On active les listener en cas de activity_connexion à Internet, on les désactive sinon

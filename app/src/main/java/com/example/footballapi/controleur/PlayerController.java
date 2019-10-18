@@ -65,20 +65,24 @@ public class PlayerController {
                     if (player.getShirtNumber() != -1)
                         activity.tvShirtNumberPlayer.setText(String.valueOf(player.getShirtNumber()));
 
-                    switch (player.getPosition()) {
-                        case "Goalkeeper":
-                            activity.tvPostePlayer.setText("Gardien");
-                            break;
-                        case "Defender":
-                            activity.tvPostePlayer.setText("Défenseur");
-                            break;
-                        case "Midfielder":
-                            activity.tvPostePlayer.setText("Milieu");
-                            break;
-                        case "Attacker":
-                            activity.tvPostePlayer.setText("Attaquant");
-                            break;
+                    if (player.getPosition() != null) {
+                        switch (player.getPosition()) {
+                            case "Goalkeeper":
+                                activity.tvPostePlayer.setText("Gardien");
+                                break;
+                            case "Defender":
+                                activity.tvPostePlayer.setText("Défenseur");
+                                break;
+                            case "Midfielder":
+                                activity.tvPostePlayer.setText("Milieu");
+                                break;
+                            case "Attacker":
+                                activity.tvPostePlayer.setText("Attaquant");
+                                break;
+                        }
                     }
+                    else activity.tvPostePlayer.setText("");
+
                 } else {
                     Snackbar.make(activity.contextView, "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();
                 }
