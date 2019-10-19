@@ -18,9 +18,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.BetController;
 import com.example.footballapi.controleur.MatchController;
+import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
 import com.example.footballapi.services.SessionManagerPreferences;
-import com.example.footballapi.view.fragments.CompetitionFragment;
 
 public class MatchActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -100,7 +100,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
             }
         }
 
-        matchController.onCreate(getString(R.string.token), this.idMatch, CompetitionFragment.getTeamCrest(this.idHome), CompetitionFragment.getTeamCrest(this.idAway));
+        matchController.onCreate(getString(R.string.token), this.idMatch, new DataBase(this).findTeamCrest(this.idHome), new DataBase(this).findTeamCrest(this.idAway));
     }
 
     @Override

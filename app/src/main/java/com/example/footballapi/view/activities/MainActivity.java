@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,11 +15,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
+import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.services.SessionManagerPreferences;
 import com.example.footballapi.view.fragments.CompetitionFragment;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -58,9 +62,33 @@ public class MainActivity extends AppCompatActivity {
         View v = nv.inflateHeaderView(R.layout.nav_header);
         TextView tvSupporterName = v.findViewById(R.id.tvSupporterName);
         TextView tvSupporterFavoriteTeam = v.findViewById(R.id.tvSupporterFavoriteTeam);
+        ImageView ivFavoriteTeam = v.findViewById(R.id.ivFavoriteTeam);
 
         tvSupporterName.setText(new SessionManagerPreferences(this).getSupporterName());
         tvSupporterFavoriteTeam.setText(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
+
+        String crest = new DataBase(this).findTeamCrest(idTeam);
+        if (!crest.equals("")) {
+            switch (crest.substring(crest.length() - 3)){
+                case "svg":
+                    SvgLoader.pluck()
+                            .with(this)
+                            .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                            .load(crest, ivFavoriteTeam)
+                            .close();
+                    break;
+                case "gif":
+                case "png":
+                    // Display with androidgif
+                    Picasso.get()
+                            .load(crest)
+                            .error(R.drawable.ic_logo_foreground)
+                            .resize(50, 50)
+                            .centerCrop()
+                            .into(ivFavoriteTeam);
+                    break;
+            }
+        }
 
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

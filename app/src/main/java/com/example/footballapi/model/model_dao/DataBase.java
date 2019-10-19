@@ -68,7 +68,7 @@ public class DataBase extends SQLiteOpenHelper {
         return classement;
     }
 
-    // Méthode permettant de récupérer les équipes like ce qu'a saisi l'utulisateur dans la search view
+    // Méthode permettant de récupérer les équipes correspondates à ce qu'a saisi l'utilisateur dans la searchView
     public List<TeamDAO> findTeamByName(String nomClub){
         List<TeamDAO> classement = new ArrayList<>();
         String sqlSearchClassment = "SELECT idTeam, idCompet, nomTeam, crest FROM EQUIPES where nomTeam LIKE '%" + nomClub + "%' order by nomTeam";
@@ -107,9 +107,9 @@ public class DataBase extends SQLiteOpenHelper {
     }
 
     // Méthode permettant de récupérer le crest d'une équipe passée en paramètres
-    public String findTeamCrest(String teamName){
+    public String findTeamCrest(int idTeam){
         String crest = "";
-        String sqlSearchTeams = "select crest from EQUIPES where nomTeam = '" + teamName +"' ";
+        String sqlSearchTeams = "select crest from EQUIPES where idTeam = " + idTeam +" ";
 
         // Résultat du SELECT
         @SuppressLint("Recycle") Cursor cursor = this.getReadableDatabase().rawQuery(sqlSearchTeams, null);

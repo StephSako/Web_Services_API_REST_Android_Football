@@ -62,7 +62,7 @@ public class ClassementController {
                         teamsNameCrests.put(classement.getStandings().get(0).getTable().get(i - 1).getTeam().getId(), classement.getStandings().get(0).getTable().get(i - 1).getTeam().getCrestUrl());
                     }
 
-                    fragment.showList(listFinal, true, teamsNameCrests);
+                    fragment.showList(listFinal, true);
                 } else {
                     Snackbar.make(Objects.requireNonNull(fragment.getView()), "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();
                 }
@@ -92,7 +92,7 @@ public class ClassementController {
                     }
 
                     // booléen qui active ou désactive les écouteurs sur les item de la recyclerview en cas de activity_connexion oun non à internet
-                    fragment.showList(listFinal, false, null);
+                    fragment.showList(listFinal, false);
                 }
                 Snackbar.make(Objects.requireNonNull(fragment.getView()), "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
