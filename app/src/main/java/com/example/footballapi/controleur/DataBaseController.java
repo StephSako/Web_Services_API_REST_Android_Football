@@ -39,8 +39,9 @@ public class DataBaseController {
                         int points = classement.getStandings().get(0).getTable().get(i - 1).getPoints();
                         int diff = classement.getStandings().get(0).getTable().get(i - 1).getGoalDifference();
                         int idTeam = classement.getStandings().get(0).getTable().get(i - 1).getTeam().getId();
+                        String crest = (classement.getStandings().get(0).getTable().get(i - 1).getTeam().getCrestUrl() != null) ? classement.getStandings().get(0).getTable().get(i - 1).getTeam().getCrestUrl() : "" ;
 
-                        activity.getDataBase().insertClassement(idTeam, idCompet, classement.getCompetition().getName(), position, club_name, diff, points);
+                        activity.getDataBase().insertClassement(idTeam, idCompet, classement.getCompetition().getName(), position, club_name, diff, points, crest);
                     }
                 } else {
                     Snackbar.make(activity.contextView, "Classement introuvable", Snackbar.LENGTH_SHORT).show();

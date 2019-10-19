@@ -12,7 +12,7 @@ import java.util.List;
 public class DataBase extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Classement.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     public DataBase(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -26,7 +26,8 @@ public class DataBase extends SQLiteOpenHelper {
                             + "position integer not null,"
                             + "nomTeam text not null,"
                             + "diff integer not null,"
-                            + "points integer not null)";
+                            + "points integer not null,"
+                            + "crest text)";
         db.execSQL(sqlCreate);
     }
 
@@ -37,19 +38,19 @@ public class DataBase extends SQLiteOpenHelper {
         this.onCreate(db);
     }
 
-    public void insertClassement(int idTeam, int idCompet, String nomCompet, int position, String nomTeam, int diff, int points){
+    public void insertClassement(int idTeam, int idCompet, String nomCompet, int position, String nomTeam, int diff, int points, String crest){
         nomTeam = nomTeam.replace("'", "''");
 
         // Si l'équipe existe déjà, on met à jour, sinon on l'insère
-        String sqlInsert = "insert or replace into EQUIPES (idTeam, idCompet, nomCompet, position, nomTeam, diff, points) values ("
-                            + idTeam + ", " + idCompet + ", '" + nomCompet + "', " + position + ", '" + nomTeam + "', " + diff + ", " + points + ")";
+        String sqlInsert = "insert or replace into EQUIPES (idTeam, idCompet, nomCompet, position, nomTeam, diff, points, crest) values ("
+                            + idTeam + ", " + idCompet + ", '" + nomCompet + "', " + position + ", '" + nomTeam + "', " + diff + ", " + points + ", '" + crest + "')";
         this.getWritableDatabase().execSQL(sqlInsert);
     }
 
     // Méthode permettant de récupérer le classement d'une compétition dont l'id est passé en paramètre
     public List<TeamDAO> findClassementById(int idCompet){
         List<TeamDAO> classement = new ArrayList<>();
-        String sqlSearchClassment = "select idTeam, position, nomTeam, diff, points, nomCompet from EQUIPES where idCompet = '"
+        String sqlSearchClassment = "select idTeam, position, nomTeam, diff, points, nomCompet, crest from EQUIPES where idCompet = '"
                                 + idCompet + "' order by position";
 
         // Résultat du SELECT
@@ -59,7 +60,7 @@ public class DataBase extends SQLiteOpenHelper {
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
             TeamDAO teamDAO = new TeamDAO(cursor.getInt(0),cursor.getInt(1),
-                    cursor.getString(2), cursor.getInt(3), cursor.getInt(4), cursor.getString(5));
+                    cursor.getString(2), cursor.getInt(3), cursor.getInt(4), cursor.getString(5), cursor.getString(6));
             classement.add(teamDAO);
             cursor.moveToNext();
         }
@@ -70,7 +71,7 @@ public class DataBase extends SQLiteOpenHelper {
     // Méthode permettant de récupérer les équipes like ce qu'a saisi l'utulisateur dans la search view
     public List<TeamDAO> findTeamByName(String nomClub){
         List<TeamDAO> classement = new ArrayList<>();
-        String sqlSearchClassment = "SELECT idTeam, idCompet, nomTeam FROM EQUIPES where nomTeam LIKE '%" + nomClub + "%' order by nomTeam";
+        String sqlSearchClassment = "SELECT idTeam, idCompet, nomTeam, crest FROM EQUIPES where nomTeam LIKE '%" + nomClub + "%' order by nomTeam";
 
         // Résultat du SELECT
         @SuppressLint("Recycle") Cursor cursor = this.getReadableDatabase().rawQuery(sqlSearchClassment, null);
@@ -78,7 +79,7 @@ public class DataBase extends SQLiteOpenHelper {
         // On parcours le curseur
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
-            TeamDAO teamDAO = new TeamDAO(cursor.getInt(0), cursor.getInt(1), cursor.getString(2));
+            TeamDAO teamDAO = new TeamDAO(cursor.getInt(0), cursor.getInt(1), cursor.getString(2), cursor.getString(3));
             classement.add(teamDAO);
             cursor.moveToNext();
         }
@@ -89,7 +90,7 @@ public class DataBase extends SQLiteOpenHelper {
     // Méthode permettant de récupérer toutes les équipes
     public List<TeamDAO> findAllTeams(){
         List<TeamDAO> teams = new ArrayList<>();
-        String sqlSearchTeams = "select idTeam, idCompet, nomTeam from EQUIPES order by nomTeam";
+        String sqlSearchTeams = "select idTeam, idCompet, nomTeam, crest from EQUIPES order by nomTeam";
 
         // Résultat du SELECT
         @SuppressLint("Recycle") Cursor cursor = this.getReadableDatabase().rawQuery(sqlSearchTeams, null);
@@ -97,11 +98,29 @@ public class DataBase extends SQLiteOpenHelper {
         // On parcours le curseur
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
-            TeamDAO teamDAO = new TeamDAO(cursor.getInt(0),cursor.getInt(1), cursor.getString(2));
+            TeamDAO teamDAO = new TeamDAO(cursor.getInt(0),cursor.getInt(1), cursor.getString(2), cursor.getString(3));
             teams.add(teamDAO);
             cursor.moveToNext();
         }
 
         return teams;
+    }
+
+    // Méthode permettant de récupérer le crest d'une équipe passée en paramètres
+    public String findTeamCrest(String teamName){
+        String crest = "";
+        String sqlSearchTeams = "select crest from EQUIPES where nomTeam = '" + teamName +"' ";
+
+        // Résultat du SELECT
+        @SuppressLint("Recycle") Cursor cursor = this.getReadableDatabase().rawQuery(sqlSearchTeams, null);
+
+        // On parcours le curseur
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            crest = cursor.getString(0);
+            cursor.moveToNext();
+        }
+
+        return crest;
     }
 }

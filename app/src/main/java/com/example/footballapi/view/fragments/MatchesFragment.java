@@ -51,6 +51,11 @@ public class MatchesFragment extends Fragment {
             this.idForMatches = getArguments().getInt(KEY_ID, -1);
             this.type = getArguments().getString(KEY_TYPE, "");
         }
+        /*else {
+            Intent intent = getIntent();
+            this.idForMatches = new SessionManagerPreferences(Objects.requireNonNull(this.getContext())).getFavoriteTeamIdSupporter();
+            this.type = "team";
+        }*/
 
         if (this.type.equals("team")) new MatchesTeamController(this).onCreate(getString(R.string.token), this.idForMatches);
         else if (this.type.equals("competition")) new MatchesCompetController(this).onCreate(getString(R.string.token), this.idForMatches);
