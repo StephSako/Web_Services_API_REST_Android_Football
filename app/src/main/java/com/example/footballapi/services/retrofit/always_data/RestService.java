@@ -1,7 +1,8 @@
-package com.example.footballapi.model.model_retrofit.restService.always_data;
+package com.example.footballapi.services.retrofit.always_data;
 
 import com.example.footballapi.model.model_retrofit.supporter.ListBet;
 import com.example.footballapi.model.model_retrofit.supporter.Supporter;
+import com.example.footballapi.model.model_retrofit.team.PourcentBet;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -27,5 +28,9 @@ public interface RestService {
     @FormUrlEncoded
     @POST("bet/bet.php")
     Call<ListBet> bet(@Field("idMatch") int idMatch, @Field("idSupporter") int idSupporter, @Field("idWinner") int idWinner);
+
+    @FormUrlEncoded
+    @POST("bet/pourcent.php")
+    Call<PourcentBet> pourcent(@Field("idMatch") int idMatch, @Field("idHome") int idHome, @Field("idAway") int idAway);
 
 }

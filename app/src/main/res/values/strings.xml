@@ -67,4 +67,13 @@
     <string name="tvGroupSettings">Paramètres</string>
     <string name="tvGroupChampionnats">Championnats</string>
     <string name="tvMainActivityMenu">Menu principal</string>
+    <string name="logoclubhome">LogoClubHome</string>
+    <string name="tvTiret">-</string>
+    <string name="logoclubaway">LogoClubAway</string>
+    <string name="date">Date</string>
+    <string name="matches_totaux">Matches totaux</string>
+    <string name="buts_totaux">Buts totaux</string>
+    <string name="victoires">Victoires</string>
+    <string name="d_faites">Défaites</string>
+    <string name="nuls">Nuls</string>
 </resources>

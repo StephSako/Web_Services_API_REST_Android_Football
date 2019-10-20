@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.example.footballapi.model.model_recyclerview.matches.MatchesModel;
 import com.example.footballapi.model.model_retrofit.competition.Classement;
-import com.example.footballapi.model.model_retrofit.restService.football_data.RestFootballData;
+import com.example.footballapi.services.retrofit.football_data.RestFootballData;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.google.android.material.snackbar.Snackbar;
 

@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.BetController;
 import com.example.footballapi.controleur.MatchController;
+import com.example.footballapi.controleur.PourcentBetController;
 import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
 import com.example.footballapi.services.SessionManagerPreferences;
@@ -35,6 +36,8 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
     public ImageView logo_club_away;
     public TextView tvVictoiresHome;
     public TextView tvVictoiresAway;
+    public TextView tvPourcentHome;
+    public TextView tvPourcentAway;
     public TextView tvDefaitesHome;
     public TextView tvDefaitesAway;
     public TextView tvNuls;
@@ -55,6 +58,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
 
         MatchController matchController = new MatchController(this);
         betController = new BetController(this);
+        PourcentBetController pourcentBetController = new PourcentBetController(this);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         this.loadingPicsPlayer = sharedPref.getBoolean("logosPlayer", true);
@@ -72,6 +76,8 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
         this.btnWinnerHome = findViewById(R.id.btnWinnerHome);
         this.btnWinnerAway = findViewById(R.id.btnWinnerAway);
         this.contextView = findViewById(R.id.match_activity);
+        this.tvPourcentAway = findViewById(R.id.tvPourcentAway);
+        this.tvPourcentHome = findViewById(R.id.tvPourcentHome);
         this.layoutBetButtons = findViewById(R.id.layoutBetButtons);
 
         this.btnWinnerHome.setOnClickListener(this);
@@ -101,6 +107,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
         }
 
         matchController.onCreate(getString(R.string.token), this.idMatch, new DataBase(this).findTeamCrest(this.idHome), new DataBase(this).findTeamCrest(this.idAway));
+        pourcentBetController.onCreate(this.idMatch, this.idHome, this.idAway);
     }
 
     @Override

@@ -20,24 +20,24 @@
             android:id="@+id/ivLogoClubHome"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginRight="20dp"
-            android:contentDescription="LogoClubHome"
+            android:layout_marginEnd="20dp"
+            android:contentDescription="@string/logoclubhome"
             android:gravity="center" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="-"
+            android:text="@string/tvTiret"
             android:textColor="@color/green"
             android:textStyle="bold"
             tools:ignore="NestedWeights" />
         <ImageView
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:id="@+id/ivLogoClubAway"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:contentDescription="LogoClubAway"
+            android:contentDescription="@string/logoclubaway"
             android:gravity="center" />
     </LinearLayout>
 
@@ -51,7 +51,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Date"
+            android:text="@string/date"
             android:textColor="@color/green"
             android:textStyle="bold"
             android:gravity="center"
@@ -60,6 +60,33 @@
         <TextView
             android:id="@+id/tvMatchDate"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="1dp"
+        android:layout_weight="1"
+        android:background="@drawable/degradesplashscreen"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tvPourcentHome"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:background="@drawable/llshape"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            tools:ignore="NestedWeights" />
+        <TextView
+            android:id="@+id/tvPourcentAway"
+            android:background="@drawable/llshape"
+            android:layout_width="0dp"
+            android:textAlignment="center"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:layout_weight="1"/>
@@ -79,10 +106,8 @@
             android:layout_width="160dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:background="@color/green"
-            android:text="Parier home"
             android:textColor="@color/black"
             android:textSize="14sp"
             tools:ignore="ButtonStyle"
@@ -93,9 +118,7 @@
             android:layout_width="160dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
             android:background="@color/green"
-            android:text="Parier away"
             android:textColor="@color/black"
             android:textSize="14sp"
             tools:ignore="ButtonStyle"
@@ -112,7 +135,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Matches totaux"
+            android:text="@string/matches_totaux"
             android:textColor="@color/green"
             android:textStyle="bold"
             android:gravity="center"
@@ -135,7 +158,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Buts totaux"
+            android:text="@string/buts_totaux"
             android:textColor="@color/green"
             android:textStyle="bold"
             android:gravity="center"
@@ -161,11 +184,12 @@
             android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Victoires"
+            android:text="@string/victoires"
             android:gravity="center"
             android:textColor="@color/green"
             android:textStyle="bold"
@@ -192,11 +216,12 @@
             android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Défaites"
+            android:text="@string/d_faites"
             android:gravity="center"
             android:textColor="@color/green"
             android:textStyle="bold"
@@ -220,7 +245,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Nuls"
+            android:text="@string/nuls"
             android:gravity="center"
             android:textColor="@color/green"
             android:textStyle="bold"
