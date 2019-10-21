@@ -3,6 +3,7 @@ package com.example.footballapi.view.activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +28,7 @@ import com.example.footballapi.services.SessionManagerPreferences;
 public class MatchActivity extends AppCompatActivity implements View.OnClickListener {
 
     private BetController betController;
+    private PourcentBetController pourcentBetController;
 
     public int idMatch = -1;
     public int idHome = -1;
@@ -48,6 +51,10 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
     public Button btnWinnerHome;
     public Button btnWinnerAway;
     public LinearLayout layoutBetButtons;
+    public ProgressBar pbVictoriesHome;
+    public ProgressBar pbVictoriesAway;
+    public ProgressBar pbDefeatsHome;
+    public ProgressBar pbDefeatsAway;
 
     public boolean loadingPicsPlayer;
 
@@ -58,7 +65,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
 
         MatchController matchController = new MatchController(this);
         betController = new BetController(this);
-        PourcentBetController pourcentBetController = new PourcentBetController(this);
+        pourcentBetController = new PourcentBetController(this);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         this.loadingPicsPlayer = sharedPref.getBoolean("logosPlayer", true);
@@ -72,6 +79,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
         this.tvNuls = findViewById(R.id.tvNuls);
         this.tvTotaux = findViewById(R.id.tvMatchesTotaux);
         this.tvMatchDate = findViewById(R.id.tvMatchDate);
+        this.tvMatchDate.setTypeface(null, Typeface.BOLD);
         this.tvButsTotaux = findViewById(R.id.tvButsTotaux);
         this.btnWinnerHome = findViewById(R.id.btnWinnerHome);
         this.btnWinnerAway = findViewById(R.id.btnWinnerAway);
@@ -79,6 +87,18 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
         this.tvPourcentAway = findViewById(R.id.tvPourcentAway);
         this.tvPourcentHome = findViewById(R.id.tvPourcentHome);
         this.layoutBetButtons = findViewById(R.id.layoutBetButtons);
+
+        this.pbVictoriesHome = findViewById(R.id.pbVictoriesHome);
+        this.pbVictoriesHome.setRotation(180);
+        this.pbVictoriesAway = findViewById(R.id.pbVictoriesAway);
+        this.pbVictoriesHome.getProgressDrawable().setColorFilter(Color.rgb(70,149,22), android.graphics.PorterDuff.Mode.SRC_IN);
+        this.pbVictoriesAway.getProgressDrawable().setColorFilter(Color.rgb(70,149,22), android.graphics.PorterDuff.Mode.SRC_IN);
+
+        this.pbDefeatsHome = findViewById(R.id.pbDefeatsHome);
+        this.pbDefeatsHome.setRotation(180);
+        this.pbDefeatsAway = findViewById(R.id.pbDefeatsAway);
+        this.pbDefeatsHome.getProgressDrawable().setColorFilter(Color.rgb(202,44,30), android.graphics.PorterDuff.Mode.SRC_IN);
+        this.pbDefeatsAway.getProgressDrawable().setColorFilter(Color.rgb(202,44,30), android.graphics.PorterDuff.Mode.SRC_IN);
 
         this.btnWinnerHome.setOnClickListener(this);
         this.btnWinnerAway.setOnClickListener(this);
@@ -90,7 +110,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
         this.status = intent.getStringExtra(AdapterRV_Matches.CLE_DONNEES_STATUS);
 
         assert this.status != null;
-        if (this.status.equals("LIVE") || this.status.equals("IN_PLAY") || this.status.equals("FINISHED") || this.status.equals("PAUSED") || this.status.equals("SUSPENDED"))
+        if (this.status.equals("LIVE") || this.status.equals("IN_PLAY") || this.status.equals("FINISHED") || this.status.equals("PAUSED") || this.status.equals("SUSPENDED") || new SessionManagerPreferences(this).isBet(this.idMatch) != -1)
             this.layoutBetButtons.setVisibility(LinearLayout.GONE);
 
         // On bloque les boutons selon les paris existants
@@ -141,14 +161,18 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
 
     public void onClick(View v) {
         if (v.getId() == R.id.btnWinnerHome){
+            this.layoutBetButtons.setVisibility(LinearLayout.GONE);
             this.btnWinnerHome.setEnabled(false);
             this.btnWinnerAway.setEnabled(true);
             betController.onCreate(idMatch, new SessionManagerPreferences(this).getIdSupporter(), idHome);
+            pourcentBetController.onCreate(this.idMatch, this.idHome, this.idAway);
         }
         else if (v.getId() == R.id.btnWinnerAway){
+            this.layoutBetButtons.setVisibility(LinearLayout.GONE);
             this.btnWinnerAway.setEnabled(false);
             this.btnWinnerHome.setEnabled(true);
             betController.onCreate(idMatch, new SessionManagerPreferences(this).getIdSupporter(), idAway);
+            pourcentBetController.onCreate(this.idMatch, this.idHome, this.idAway);
         }
     }
 }

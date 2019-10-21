@@ -78,10 +78,20 @@ public class MatchController {
                         activity.tvVictoiresHome.setText(String.valueOf(oneMatch.getHead2head().getHomeTeam().getWins()));
                         activity.tvDefaitesHome.setText(String.valueOf(oneMatch.getHead2head().getHomeTeam().getLosses()));
 
-                        activity.tvVictoiresAway.setText(String.valueOf((oneMatch.getHead2head().getNumberOfMatches())-(oneMatch.getHead2head().getHomeTeam().getWins() + oneMatch.getHead2head().getHomeTeam().getDraws())));
-                        activity.tvDefaitesAway.setText(String.valueOf((oneMatch.getHead2head().getNumberOfMatches())-(oneMatch.getHead2head().getHomeTeam().getLosses() + oneMatch.getHead2head().getHomeTeam().getDraws())));
+                        activity.tvVictoiresAway.setText(String.valueOf(oneMatch.getHead2head().getAwayTeam().getWins()));
+                        activity.tvDefaitesAway.setText(String.valueOf(oneMatch.getHead2head().getAwayTeam().getLosses()));
 
                         activity.tvTotaux.setText(String.valueOf(oneMatch.getHead2head().getNumberOfMatches()));
+
+                        activity.pbVictoriesHome.setMax(oneMatch.getHead2head().getHomeTeam().getWins() + oneMatch.getHead2head().getAwayTeam().getWins());
+                        activity.pbVictoriesAway.setMax(oneMatch.getHead2head().getHomeTeam().getWins() + oneMatch.getHead2head().getAwayTeam().getWins());
+                        activity.pbVictoriesHome.setProgress(oneMatch.getHead2head().getHomeTeam().getWins());
+                        activity.pbVictoriesAway.setProgress(oneMatch.getHead2head().getAwayTeam().getWins());
+
+                        activity.pbDefeatsHome.setMax(oneMatch.getHead2head().getHomeTeam().getLosses() + oneMatch.getHead2head().getAwayTeam().getLosses());
+                        activity.pbDefeatsAway.setMax(oneMatch.getHead2head().getHomeTeam().getLosses() + oneMatch.getHead2head().getAwayTeam().getLosses());
+                        activity.pbDefeatsHome.setProgress(oneMatch.getHead2head().getHomeTeam().getLosses());
+                        activity.pbDefeatsAway.setProgress(oneMatch.getHead2head().getAwayTeam().getLosses());
                     }
 
                     activity.btnWinnerHome.setText(String.valueOf(oneMatch.getMatch().getHomeTeam().getName()));

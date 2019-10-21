@@ -5,10 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/match_activity"
     android:orientation="vertical"
+    android:background="#EAEAEA"
     tools:context="com.example.footballapi.view.activities.MatchActivity"
     tools:ignore="ExtraText">
 
     <LinearLayout
+        android:layout_marginTop="4sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -25,13 +27,14 @@
             android:gravity="center" />
 
         <TextView
+            android:id="@+id/tvMatchDate"
+            android:text="24/09"
+            android:fontFamily=""
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/tvTiret"
-            android:textColor="@color/green"
-            android:textStyle="bold"
-            tools:ignore="NestedWeights" />
+            android:textAlignment="center"
+            android:textColor="@color/black" />
         <ImageView
             android:layout_marginStart="20dp"
             android:id="@+id/ivLogoClubAway"
@@ -49,47 +52,21 @@
         android:gravity="center"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/date"
-            android:textColor="@color/green"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_weight="1"
-            tools:ignore="NestedWeights" />
-        <TextView
-            android:id="@+id/tvMatchDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_weight="1"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="1dp"
-        android:layout_weight="1"
-        android:background="@drawable/degradesplashscreen"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <TextView
             android:id="@+id/tvPourcentHome"
-            android:layout_width="20dp"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
             android:textColor="@color/black"
             android:background="@drawable/llshape"
-            android:layout_weight="1"
+            android:layout_marginEnd="110sp"
             android:textAlignment="center"
             tools:ignore="NestedWeights" />
         <TextView
             android:id="@+id/tvPourcentAway"
             android:background="@drawable/llshape"
-            android:layout_width="0dp"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
             android:textAlignment="center"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_weight="1"/>
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <LinearLayout
@@ -116,6 +93,7 @@
         <Button
             android:id="@+id/btnWinnerAway"
             android:layout_width="160dp"
+            android:textAlignment="center"
             android:layout_height="80dp"
             android:layout_gravity="center"
             android:background="@color/green"
@@ -143,6 +121,7 @@
             tools:ignore="NestedWeights" />
         <TextView
             android:id="@+id/tvMatchesTotaux"
+            android:textAlignment="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -166,6 +145,7 @@
             tools:ignore="NestedWeights" />
         <TextView
             android:id="@+id/tvButsTotaux"
+            android:textAlignment="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -180,12 +160,21 @@
         android:orientation="horizontal">
         <TextView
             android:id="@+id/tvVictoiresHome"
+            android:textAlignment="center"
             android:autoLink="web"
             android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             tools:ignore="NestedWeights" />
+
+        <ProgressBar
+            android:id="@+id/pbVictoriesHome"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -193,10 +182,19 @@
             android:gravity="center"
             android:textColor="@color/green"
             android:textStyle="bold"
-            android:layout_weight="1"
+            android:layout_weight="2"
             tools:ignore="NestedWeights" />
+
+        <ProgressBar
+            android:id="@+id/pbVictoriesAway"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
+
         <TextView
             android:id="@+id/tvVictoiresAway"
+            android:textAlignment="center"
             android:autoLink="web"
             android:textColor="@color/black"
             android:layout_width="0dp"
@@ -210,14 +208,22 @@
         android:gravity="center"
         android:layout_weight="1"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/tvDefaitesHome"
-            android:autoLink="web"
-            android:textColor="@color/black"
+            android:textAlignment="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:autoLink="web"
+            android:textColor="@color/black"
             tools:ignore="NestedWeights" />
+        <ProgressBar
+            android:id="@+id/pbDefeatsHome"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -225,10 +231,17 @@
             android:gravity="center"
             android:textColor="@color/green"
             android:textStyle="bold"
-            android:layout_weight="1"
+            android:layout_weight="2"
             tools:ignore="NestedWeights" />
+        <ProgressBar
+            android:id="@+id/pbDefeatsAway"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
         <TextView
             android:id="@+id/tvDefaitesAway"
+            android:textAlignment="center"
             android:autoLink="web"
             android:textColor="@color/black"
             android:layout_width="0dp"
@@ -253,6 +266,7 @@
             tools:ignore="NestedWeights" />
         <TextView
             android:id="@+id/tvNuls"
+            android:textAlignment="center"
             android:autoLink="web"
             android:textColor="@color/black"
             android:layout_width="0dp"

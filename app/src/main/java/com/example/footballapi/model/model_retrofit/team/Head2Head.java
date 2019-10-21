@@ -32,9 +32,32 @@ public class Head2Head {
         }
     }
 
+    public class AwayTeam {
+
+        @SerializedName("wins")
+        @Expose
+        private int wins = -1;
+
+        @SerializedName("losses")
+        @Expose
+        private int losses = -1;
+
+        public int getWins() {
+            return wins;
+        }
+
+        public int getLosses() {
+            return losses;
+        }
+    }
+
     @SerializedName("homeTeam")
     @Expose
     private HomeTeam homeTeam = new HomeTeam();
+
+    @SerializedName("awayTeam")
+    @Expose
+    private AwayTeam awayTeam = new AwayTeam();
 
     @SerializedName("numberOfMatches")
     @Expose
@@ -54,5 +77,9 @@ public class Head2Head {
 
     public int getTotalGoals() {
         return totalGoals;
+    }
+
+    public AwayTeam getAwayTeam() {
+        return awayTeam;
     }
 }
