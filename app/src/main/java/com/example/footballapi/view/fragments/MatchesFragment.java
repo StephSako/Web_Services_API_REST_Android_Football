@@ -17,15 +17,19 @@ import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matche
 import com.example.footballapi.model.model_recyclerview.matches.MatchesModel;
 
 import java.util.List;
+import java.util.Objects;
 
 public class MatchesFragment extends Fragment {
 
     private int idForMatches = -1;
+    private int positionDay = 0;
     private String type = "";
 
+    public void incrPositionDay(){
+        this.positionDay++;
+    }
+
     private RecyclerView rvMatches;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
     public View contextView;
 
     private static final String KEY_ID = "idTeam";
@@ -51,11 +55,6 @@ public class MatchesFragment extends Fragment {
             this.idForMatches = getArguments().getInt(KEY_ID, -1);
             this.type = getArguments().getString(KEY_TYPE, "");
         }
-        /*else {
-            Intent intent = getIntent();
-            this.idForMatches = new SessionManagerPreferences(Objects.requireNonNull(this.getContext())).getFavoriteTeamIdSupporter();
-            this.type = "team";
-        }*/
 
         if (this.type.equals("team")) new MatchesTeamController(this).onCreate(getString(R.string.token), this.idForMatches);
         else if (this.type.equals("competition")) new MatchesCompetController(this).onCreate(getString(R.string.token), this.idForMatches);
@@ -65,10 +64,13 @@ public class MatchesFragment extends Fragment {
 
     public void showList(List<MatchesModel> list){
         if (list != null && list.size() > 0) {
-            layoutManager = new LinearLayoutManager(getContext());
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
             rvMatches.setLayoutManager(layoutManager);
-            mAdapter = new AdapterRV_Matches(list, this);
+            RecyclerView.Adapter mAdapter = new AdapterRV_Matches(list, this);
             rvMatches.setAdapter(mAdapter);
+
+            if ((positionDay-5) < 0) positionDay = 0;
+            Objects.requireNonNull(rvMatches.getLayoutManager()).scrollToPosition(positionDay-5);
         }
     }
 }

@@ -76,8 +76,6 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         holder.tvScore.setText(values.get(position).getScore());
         holder.tvHomeTeam.setText(values.get(position).getHomeTeam());
 
-
-
         String crestHome = (new DataBase(fragment.getActivity()).findTeamCrest(Integer.valueOf(values.get(position).getIdTeamHome())) != null) ? new DataBase(fragment.getActivity()).findTeamCrest(Integer.valueOf(values.get(position).getIdTeamHome())) : "" ;
         String crestAway = (new DataBase(fragment.getActivity()).findTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())) != null) ? new DataBase(fragment.getActivity()).findTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())) : "" ;
 

@@ -3,8 +3,8 @@ package com.example.footballapi.controleur;
 import androidx.annotation.NonNull;
 
 import com.example.footballapi.model.model_recyclerview.matches.MatchesModel;
-import com.example.footballapi.services.retrofit.football_data.RestFootballData;
 import com.example.footballapi.model.model_retrofit.team.Team;
+import com.example.footballapi.services.retrofit.football_data.RestFootballData;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -49,19 +49,17 @@ public class MatchesTeamController {
                         model.setIdTeamHome(String.valueOf(team.getMatches().get(i).getHomeTeam().getId()));
                         model.setIdMatch(String.valueOf(team.getMatches().get(i).getId()));
                         model.setStatus(String.valueOf(team.getMatches().get(i).getStatus()));
+                        model.setUtcDate(String.valueOf(team.getMatches().get(i).getUtcDate()));
+
+                        String date = team.getMatches().get(i).getUtcDate().split("T")[0]; // Day
+                        String[] dateDay = date.split("-");
+
+                        if(team.getMatches().get(i).getStatus().equals("FINISHED")) fragment.incrPositionDay();
 
                         // On vérifie si le match a déjà été joué ou pas
                         if (team.getMatches().get(i).getStatus().equals("FINISHED"))
                             model.setScore(team.getMatches().get(i).getScore().getFullTime().getHomeTeam() + " - " + team.getMatches().get(i).getScore().getFullTime().getAwayTeam());
-                        else{
-                            String[] parts = team.getMatches().get(i).getUtcDate().split("T");
-                            String date = parts[0]; // Day
-                            String[] dateDay = date.split("-");
-                            String day = dateDay[2];
-                            String month = dateDay[1];
-
-                            model.setScore(day + "/" + month);
-                        }
+                        else model.setScore(dateDay[2] + "/" + dateDay[1]);
 
                         listFinal.add(model);
                     }

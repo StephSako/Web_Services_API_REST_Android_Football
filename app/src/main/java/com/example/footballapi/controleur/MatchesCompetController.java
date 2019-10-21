@@ -49,19 +49,17 @@ public class MatchesCompetController {
                         model.setIdTeamHome(String.valueOf(classement.getMatches().get(i).getHomeTeam().getId()));
                         model.setIdMatch(String.valueOf(classement.getMatches().get(i).getId()));
                         model.setStatus(String.valueOf(classement.getMatches().get(i).getStatus()));
+                        model.setUtcDate(String.valueOf(classement.getMatches().get(i).getUtcDate()));
+
+                        String date = classement.getMatches().get(i).getUtcDate().split("T")[0]; // Day
+                        String[] dateDay = date.split("-");
+
+                        if(classement.getMatches().get(i).getStatus().equals("FINISHED")) fragment.incrPositionDay();
 
                         // On vérifie si le match a déjà été joué ou pas
                         if (classement.getMatches().get(i).getStatus().equals("FINISHED"))
                             model.setScore(classement.getMatches().get(i).getScore().getFullTime().getHomeTeam() + " - " + classement.getMatches().get(i).getScore().getFullTime().getAwayTeam());
-                        else{
-                            String[] parts = classement.getMatches().get(i).getUtcDate().split("T");
-                            String date = parts[0]; // Day
-                            String[] dateDay = date.split("-");
-                            String day = dateDay[2];
-                            String month = dateDay[1];
-
-                            model.setScore(day + "/" + month);
-                        }
+                        else model.setScore(dateDay[2] + "/" + dateDay[1]);
 
                         listFinal.add(model);
                     }
