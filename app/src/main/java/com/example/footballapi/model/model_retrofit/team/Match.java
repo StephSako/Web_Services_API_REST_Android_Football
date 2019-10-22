@@ -130,6 +130,14 @@ public class Match {
     @Expose
     private String utcDate = "";
 
+    public String getVenue() {
+        return venue;
+    }
+
+    @SerializedName("venue")
+    @Expose
+    private String venue = "";
+
     public String getUtcDate() { return utcDate; }
 
     public String getStatus() { return status; }

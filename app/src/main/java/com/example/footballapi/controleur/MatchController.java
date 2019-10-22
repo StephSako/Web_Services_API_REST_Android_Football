@@ -96,6 +96,17 @@ public class MatchController {
 
                     activity.btnWinnerHome.setText(String.valueOf(oneMatch.getMatch().getHomeTeam().getName()));
                     activity.btnWinnerAway.setText(String.valueOf(oneMatch.getMatch().getAwayTeam().getName()));
+
+                    activity.tvVenue.setText(oneMatch.getMatch().getVenue());
+
+                    activity.tvGoalHomeFT.setText(String.valueOf(oneMatch.getMatch().getScore().getFullTime().getHomeTeam()));
+                    activity.tvGoalAwayFT.setText(String.valueOf(oneMatch.getMatch().getScore().getFullTime().getAwayTeam()));
+
+                    activity.tvGoalHomeHT.setText(String.valueOf(oneMatch.getMatch().getScore().getHalfTime().getHomeTeam()));
+                    activity.tvGoalAwayHT.setText(String.valueOf(oneMatch.getMatch().getScore().getHalfTime().getAwayTeam()));
+
+                    activity.tvNameHome.setText(String.valueOf(oneMatch.getMatch().getHomeTeam().getName()));
+                    activity.tvNameAway.setText(String.valueOf(oneMatch.getMatch().getAwayTeam().getName()));
                 } else {
                     Snackbar.make(activity.contextView, "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();
                 }

@@ -55,6 +55,13 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
     public ProgressBar pbVictoriesAway;
     public ProgressBar pbDefeatsHome;
     public ProgressBar pbDefeatsAway;
+    public TextView tvGoalHomeHT;
+    public TextView tvGoalAwayHT;
+    public TextView tvGoalHomeFT;
+    public TextView tvGoalAwayFT;
+    public TextView tvVenue;
+    public TextView tvNameHome;
+    public TextView tvNameAway;
 
     public boolean loadingPicsPlayer;
 
@@ -79,14 +86,20 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
         this.tvNuls = findViewById(R.id.tvNuls);
         this.tvTotaux = findViewById(R.id.tvMatchesTotaux);
         this.tvMatchDate = findViewById(R.id.tvMatchDate);
-        this.tvMatchDate.setTypeface(null, Typeface.BOLD);
         this.tvButsTotaux = findViewById(R.id.tvButsTotaux);
         this.btnWinnerHome = findViewById(R.id.btnWinnerHome);
         this.btnWinnerAway = findViewById(R.id.btnWinnerAway);
         this.contextView = findViewById(R.id.match_activity);
         this.tvPourcentAway = findViewById(R.id.tvPourcentAway);
         this.tvPourcentHome = findViewById(R.id.tvPourcentHome);
+        this.tvGoalHomeHT = findViewById(R.id.tvGoalHomeHT);
+        this.tvGoalAwayHT = findViewById(R.id.tvGoalAwayHT);
+        this.tvGoalHomeFT = findViewById(R.id.tvGoalHomeFT);
+        this.tvGoalAwayFT = findViewById(R.id.tvGoalAwayFT);
+        this.tvVenue = findViewById(R.id.tvVenue);
         this.layoutBetButtons = findViewById(R.id.layoutBetButtons);
+        this.tvNameHome = findViewById(R.id.tvNameHome);
+        this.tvNameAway = findViewById(R.id.tvNameAway);
 
         this.pbVictoriesHome = findViewById(R.id.pbVictoriesHome);
         this.pbVictoriesHome.setRotation(180);
@@ -109,6 +122,15 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
         this.idAway = intent.getIntExtra(AdapterRV_Matches.CLE_DONNEES_ID_AWAY, -1);
         this.status = intent.getStringExtra(AdapterRV_Matches.CLE_DONNEES_STATUS);
 
+        this.tvMatchDate.setTypeface(null, Typeface.BOLD);
+        this.tvVenue.setTypeface(null, Typeface.BOLD);
+        this.tvPourcentHome.setTypeface(null, Typeface.BOLD);
+        this.tvPourcentAway.setTypeface(null, Typeface.BOLD);
+        this.tvGoalAwayFT.setTypeface(null, Typeface.BOLD);
+        this.tvGoalAwayHT.setTypeface(null, Typeface.BOLD);
+        this.tvGoalHomeFT.setTypeface(null, Typeface.BOLD);
+        this.tvGoalHomeHT.setTypeface(null, Typeface.BOLD);
+
         assert this.status != null;
         if (this.status.equals("LIVE") || this.status.equals("IN_PLAY") || this.status.equals("FINISHED") || this.status.equals("PAUSED") || this.status.equals("SUSPENDED") || new SessionManagerPreferences(this).isBet(this.idMatch) != -1)
             this.layoutBetButtons.setVisibility(LinearLayout.GONE);
@@ -116,13 +138,11 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
         // On bloque les boutons selon les paris existants
         if (new SessionManagerPreferences(this).isBet(this.idMatch) != -1){
             if (new SessionManagerPreferences(this).isBet(this.idMatch) == idHome){
-                this.btnWinnerHome.setBackgroundColor(Color.WHITE);
                 this.btnWinnerHome.setEnabled(false);
                 this.btnWinnerAway.setEnabled(true);
             }else if (new SessionManagerPreferences(this).isBet(this.idMatch) == idAway){
                 this.btnWinnerHome.setEnabled(true);
                 this.btnWinnerAway.setEnabled(false);
-                this.btnWinnerAway.setBackgroundColor(Color.WHITE);
             }
         }
 
@@ -162,15 +182,11 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         if (v.getId() == R.id.btnWinnerHome){
             this.layoutBetButtons.setVisibility(LinearLayout.GONE);
-            this.btnWinnerHome.setEnabled(false);
-            this.btnWinnerAway.setEnabled(true);
             betController.onCreate(idMatch, new SessionManagerPreferences(this).getIdSupporter(), idHome);
             pourcentBetController.onCreate(this.idMatch, this.idHome, this.idAway);
         }
         else if (v.getId() == R.id.btnWinnerAway){
             this.layoutBetButtons.setVisibility(LinearLayout.GONE);
-            this.btnWinnerAway.setEnabled(false);
-            this.btnWinnerHome.setEnabled(true);
             betController.onCreate(idMatch, new SessionManagerPreferences(this).getIdSupporter(), idAway);
             pourcentBetController.onCreate(this.idMatch, this.idHome, this.idAway);
         }
