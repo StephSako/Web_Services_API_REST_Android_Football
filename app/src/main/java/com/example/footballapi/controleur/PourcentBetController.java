@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 
 import androidx.annotation.NonNull;
 
-import com.example.footballapi.model.model_retrofit.team.PourcentBet;
+import com.example.footballapi.model.model_retrofit.supporter.PourcentBet;
 import com.example.footballapi.services.retrofit.always_data.RestAlwaysData;
 import com.example.footballapi.view.activities.MatchActivity;
 import com.google.android.material.snackbar.Snackbar;
@@ -39,6 +39,10 @@ public class PourcentBetController {
 
                     activity.tvPourcentHome.setText(pourcentbets.getPourcentHome() + "%");
                     activity.tvPourcentAway.setText(pourcentbets.getPourcentAway() + "%");
+
+                    if (pourcentbets.getNbParieurs() > 0) activity.tvNbParieurs.setText(pourcentbets.getNbParieurs() + " parieurs pour ce match");
+                    else if (pourcentbets.getNbParieurs() == 1) activity.tvNbParieurs.setText(pourcentbets.getNbParieurs() + " parieur pour ce match");
+                    else activity.tvNbParieurs.setText("Aucun pari pour ce match");
                 }
             }
 

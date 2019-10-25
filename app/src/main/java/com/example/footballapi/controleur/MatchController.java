@@ -99,11 +99,18 @@ public class MatchController {
 
                     activity.tvVenue.setText(oneMatch.getMatch().getVenue());
 
-                    activity.tvGoalHomeFT.setText(String.valueOf(oneMatch.getMatch().getScore().getFullTime().getHomeTeam()));
-                    activity.tvGoalAwayFT.setText(String.valueOf(oneMatch.getMatch().getScore().getFullTime().getAwayTeam()));
-
-                    activity.tvGoalHomeHT.setText(String.valueOf(oneMatch.getMatch().getScore().getHalfTime().getHomeTeam()));
-                    activity.tvGoalAwayHT.setText(String.valueOf(oneMatch.getMatch().getScore().getHalfTime().getAwayTeam()));
+                    if(oneMatch.getMatch().getStatus().equals("FINISHED")) {
+                        activity.tvGoalHomeFT.setText(String.valueOf(oneMatch.getMatch().getScore().getFullTime().getHomeTeam()));
+                        activity.tvGoalAwayFT.setText(String.valueOf(oneMatch.getMatch().getScore().getFullTime().getAwayTeam()));
+                        activity.tvGoalHomeHT.setText(String.valueOf(oneMatch.getMatch().getScore().getHalfTime().getHomeTeam()));
+                        activity.tvGoalAwayHT.setText(String.valueOf(oneMatch.getMatch().getScore().getHalfTime().getAwayTeam()));
+                    }
+                    else{
+                        activity.tvGoalHomeFT.setText("-");
+                        activity.tvGoalAwayFT.setText("-");
+                        activity.tvGoalHomeHT.setText("-");
+                        activity.tvGoalAwayHT.setText("-");
+                    }
 
                     activity.tvNameHome.setText(String.valueOf(oneMatch.getMatch().getHomeTeam().getName()));
                     activity.tvNameAway.setText(String.valueOf(oneMatch.getMatch().getAwayTeam().getName()));

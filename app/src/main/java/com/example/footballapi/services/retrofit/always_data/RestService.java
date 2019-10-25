@@ -2,7 +2,7 @@ package com.example.footballapi.services.retrofit.always_data;
 
 import com.example.footballapi.model.model_retrofit.supporter.ListBet;
 import com.example.footballapi.model.model_retrofit.supporter.Supporter;
-import com.example.footballapi.model.model_retrofit.team.PourcentBet;
+import com.example.footballapi.model.model_retrofit.supporter.PourcentBet;
 
 import retrofit2.Call;
 import retrofit2.http.Field;

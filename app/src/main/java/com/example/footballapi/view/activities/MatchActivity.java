@@ -62,6 +62,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
     public TextView tvVenue;
     public TextView tvNameHome;
     public TextView tvNameAway;
+    public TextView tvNbParieurs;
 
     public boolean loadingPicsPlayer;
 
@@ -100,6 +101,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
         this.layoutBetButtons = findViewById(R.id.layoutBetButtons);
         this.tvNameHome = findViewById(R.id.tvNameHome);
         this.tvNameAway = findViewById(R.id.tvNameAway);
+        this.tvNbParieurs = findViewById(R.id.tvNbParieurs);
 
         this.pbVictoriesHome = findViewById(R.id.pbVictoriesHome);
         this.pbVictoriesHome.setRotation(180);
@@ -130,6 +132,7 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
         this.tvGoalAwayHT.setTypeface(null, Typeface.BOLD);
         this.tvGoalHomeFT.setTypeface(null, Typeface.BOLD);
         this.tvGoalHomeHT.setTypeface(null, Typeface.BOLD);
+        this.tvNbParieurs.setTypeface(null, Typeface.BOLD);
 
         assert this.status != null;
         if (this.status.equals("LIVE") || this.status.equals("IN_PLAY") || this.status.equals("FINISHED") || this.status.equals("PAUSED") || this.status.equals("SUSPENDED") || new SessionManagerPreferences(this).isBet(this.idMatch) != -1)
