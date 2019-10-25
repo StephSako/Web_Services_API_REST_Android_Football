@@ -40,8 +40,8 @@ public class PourcentBetController {
                     activity.tvPourcentHome.setText(pourcentbets.getPourcentHome() + "%");
                     activity.tvPourcentAway.setText(pourcentbets.getPourcentAway() + "%");
 
-                    if (pourcentbets.getNbParieurs() > 0) activity.tvNbParieurs.setText(pourcentbets.getNbParieurs() + " parieurs pour ce match");
-                    else if (pourcentbets.getNbParieurs() == 1) activity.tvNbParieurs.setText(pourcentbets.getNbParieurs() + " parieur pour ce match");
+                    if (pourcentbets.getNbParieurs() == 1) activity.tvNbParieurs.setText(pourcentbets.getNbParieurs() + " parieur pour ce match");
+                    else if (pourcentbets.getNbParieurs() > 0) activity.tvNbParieurs.setText(pourcentbets.getNbParieurs() + " parieurs pour ce match");
                     else activity.tvNbParieurs.setText("Aucun pari pour ce match");
                 }
             }
