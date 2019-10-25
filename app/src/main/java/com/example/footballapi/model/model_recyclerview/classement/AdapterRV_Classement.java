@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
+import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.view.fragments.ClassementFragment;
 import com.example.footballapi.view.activities.TeamActivity;
 import com.squareup.picasso.Picasso;
@@ -70,6 +71,7 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
         holder.tvPoints.setText(values.get(position).getPoints());
 
         String crest = values.get(position).getCrestURL();
+        String crest2 = new DataBase(fragment.getActivity()).findTeamCrest(Integer.valueOf(values.get(position).getIdTeam()));
 
         // Problèmes logos Ligue 1
         switch (values.get(position).getName()) {

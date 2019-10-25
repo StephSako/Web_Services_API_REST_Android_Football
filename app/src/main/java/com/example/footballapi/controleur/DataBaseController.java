@@ -3,7 +3,7 @@ package com.example.footballapi.controleur;
 import androidx.annotation.NonNull;
 
 import com.example.footballapi.model.model_retrofit.competition.Classement;
-import com.example.footballapi.model.model_retrofit.restService.football_data.RestFootballData;
+import com.example.footballapi.services.retrofit.football_data.RestFootballData;
 import com.example.footballapi.view.activities.SplashScreen;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -39,8 +39,9 @@ public class DataBaseController {
                         int points = classement.getStandings().get(0).getTable().get(i - 1).getPoints();
                         int diff = classement.getStandings().get(0).getTable().get(i - 1).getGoalDifference();
                         int idTeam = classement.getStandings().get(0).getTable().get(i - 1).getTeam().getId();
+                        String crest = (classement.getStandings().get(0).getTable().get(i - 1).getTeam().getCrestUrl() != null) ? classement.getStandings().get(0).getTable().get(i - 1).getTeam().getCrestUrl() : "" ;
 
-                        activity.getDataBase().insertClassement(idTeam, idCompet, classement.getCompetition().getName(), position, club_name, diff, points);
+                        activity.getDataBase().insertClassement(idTeam, idCompet, classement.getCompetition().getName(), position, club_name, diff, points, crest);
                     }
                 } else {
                     Snackbar.make(activity.contextView, "Classement introuvable", Snackbar.LENGTH_SHORT).show();

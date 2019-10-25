@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,10 +15,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
+import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.services.SessionManagerPreferences;
 import com.example.footballapi.view.fragments.CompetitionFragment;
+import com.example.footballapi.view.fragments.MatchesFragment;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -25,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle t;
 
+    final static String KEY_ID = "idTeam";
     final static String CLE_DONNEES_ID_COMPET = "idCompet";
+    private static final String KEY_TYPE = "typeMatches";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,28 +47,48 @@ public class MainActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        // On récupère l'id de la competition depuis l'activite mère
-        Intent intent = getIntent();
-        int idCompet;
-        if ((idCompet = intent.getIntExtra(CLE_DONNEES_ID_COMPET, -1)) == -1)
-            idCompet = 2002;
-
-        Fragment fragment = new CompetitionFragment(); // Fragment displayed by default
+        int idTeam = new SessionManagerPreferences(this).getFavoriteTeamIdSupporter();
+        Fragment fragment = new MatchesFragment(); // Fragment displayed by default
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Bundle bundle = new Bundle();
-        bundle.putInt(CLE_DONNEES_ID_COMPET, idCompet);
+        bundle.putInt(KEY_ID, idTeam);
+        bundle.putString(KEY_TYPE, "team");
         fragment.setArguments(bundle);
         ft.replace(R.id.fragment_hoster, fragment);
         ft.commit();
 
-        NavigationView nv = findViewById(R.id.nav_view);//Mise en place du NavigationDrawer
+        NavigationView nv = findViewById(R.id.nav_view); // Mise en place du NavigationDrawer
 
         View v = nv.inflateHeaderView(R.layout.nav_header);
         TextView tvSupporterName = v.findViewById(R.id.tvSupporterName);
         TextView tvSupporterFavoriteTeam = v.findViewById(R.id.tvSupporterFavoriteTeam);
+        ImageView ivFavoriteTeam = v.findViewById(R.id.ivFavoriteTeam);
 
         tvSupporterName.setText(new SessionManagerPreferences(this).getSupporterName());
         tvSupporterFavoriteTeam.setText(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
+
+        String crest = new DataBase(this).findTeamCrest(idTeam);
+        if (!crest.equals("")) {
+            switch (crest.substring(crest.length() - 3)){
+                case "svg":
+                    SvgLoader.pluck()
+                            .with(this)
+                            .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                            .load(crest, ivFavoriteTeam)
+                            .close();
+                    break;
+                case "gif":
+                case "png":
+                    // Display with androidgif
+                    Picasso.get()
+                            .load(crest)
+                            .error(R.drawable.ic_logo_foreground)
+                            .resize(50, 50)
+                            .centerCrop()
+                            .into(ivFavoriteTeam);
+                    break;
+            }
+        }
 
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

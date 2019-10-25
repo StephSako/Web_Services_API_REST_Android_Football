@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 
 import androidx.annotation.NonNull;
 
-import com.example.footballapi.model.model_retrofit.restService.always_data.RestAlwaysData;
+import com.example.footballapi.services.retrofit.always_data.RestAlwaysData;
 import com.example.footballapi.model.model_retrofit.supporter.ListBet;
 import com.example.footballapi.services.SessionManagerPreferences;
 import com.example.footballapi.view.activities.MatchActivity;

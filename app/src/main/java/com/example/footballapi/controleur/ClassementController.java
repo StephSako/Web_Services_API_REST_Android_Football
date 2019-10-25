@@ -8,7 +8,7 @@ import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.model.model_dao.TeamDAO;
 import com.example.footballapi.model.model_recyclerview.classement.TeamModel;
 import com.example.footballapi.model.model_retrofit.competition.Classement;
-import com.example.footballapi.model.model_retrofit.restService.football_data.RestFootballData;
+import com.example.footballapi.services.retrofit.football_data.RestFootballData;
 import com.example.footballapi.view.fragments.ClassementFragment;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -62,7 +62,7 @@ public class ClassementController {
                         teamsNameCrests.put(classement.getStandings().get(0).getTable().get(i - 1).getTeam().getId(), classement.getStandings().get(0).getTable().get(i - 1).getTeam().getCrestUrl());
                     }
 
-                    fragment.showList(listFinal, true, teamsNameCrests);
+                    fragment.showList(listFinal, true);
                 } else {
                     Snackbar.make(Objects.requireNonNull(fragment.getView()), "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();
                 }
@@ -92,7 +92,7 @@ public class ClassementController {
                     }
 
                     // booléen qui active ou désactive les écouteurs sur les item de la recyclerview en cas de activity_connexion oun non à internet
-                    fragment.showList(listFinal, false, null);
+                    fragment.showList(listFinal, false);
                 }
                 Snackbar.make(Objects.requireNonNull(fragment.getView()), "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }

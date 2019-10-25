@@ -1,6 +1,5 @@
 package com.example.footballapi.view.fragments;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,23 +13,10 @@ import com.example.footballapi.R;
 import com.example.footballapi.model.model_viewpager.competition.Adapter_ViewPagerCompetition;
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.HashMap;
-
 public class CompetitionFragment extends Fragment {
 
     public int idCompet = -1;
-    final static String CLE_DONNEES_ID_COMPET = "idCompet";
-
-    @SuppressLint("UseSparseArrays")
-    public static HashMap<Integer, String> teamsNameCrests = new HashMap<>();
-
-    public static void setTeamsNameCrests(HashMap<Integer, String> teams){
-        teamsNameCrests = teams;
-    }
-
-    public static String getTeamCrest(int team){
-        return teamsNameCrests.get(team);
-    }
+    private final static String CLE_DONNEES_ID_COMPET = "idCompet";
 
     public CompetitionFragment() { }
 

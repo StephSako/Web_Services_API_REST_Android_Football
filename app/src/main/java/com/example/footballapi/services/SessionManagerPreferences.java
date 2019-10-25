@@ -81,6 +81,10 @@ public class SessionManagerPreferences {
         return this.sharedPreferences.getString("favoriteTeamName", "");
     }
 
+    public int getFavoriteTeamIdSupporter(){
+        return this.sharedPreferences.getInt("favoriteTeam", -1);
+    }
+
     public boolean isConnected(){
         return (!Objects.equals(this.getSupporter().get("idSupporter"), "-1"));
     }

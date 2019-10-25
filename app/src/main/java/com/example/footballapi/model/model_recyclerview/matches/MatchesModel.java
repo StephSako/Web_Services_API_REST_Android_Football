@@ -11,14 +11,15 @@ public class MatchesModel {
     private String idTeamAway;
     private String idMatch;
     private String status;
+    private String utcDate;
 
-    public String getIdTeamHome() { return idTeamHome; }
+    String getIdTeamHome() { return idTeamHome; }
 
     public void setIdTeamHome(String idTeamHome) {
         this.idTeamHome = idTeamHome;
     }
 
-    public String getIdTeamAway() {
+    String getIdTeamAway() {
         return idTeamAway;
     }
 
@@ -26,11 +27,11 @@ public class MatchesModel {
         this.idTeamAway = idTeamAway;
     }
 
-    public String getWinner() { return winner; }
+    String getWinner() { return winner; }
 
     public void setWinner(String winner) { this.winner = winner; }
 
-    public String getMatchDay() {
+    String getMatchDay() {
         return matchDay;
     }
 
@@ -38,7 +39,7 @@ public class MatchesModel {
         this.matchDay = matchDay;
     }
 
-    public String getHomeTeam() {
+    String getHomeTeam() {
         return homeTeam;
     }
 
@@ -46,7 +47,7 @@ public class MatchesModel {
         this.homeTeam = homeTeam;
     }
 
-    public String getScore() {
+    String getScore() {
         return score;
     }
 
@@ -54,7 +55,7 @@ public class MatchesModel {
         this.score = score;
     }
 
-    public String getAwayTeam() {
+    String getAwayTeam() {
         return awayTeam;
     }
 
@@ -62,7 +63,7 @@ public class MatchesModel {
         this.awayTeam = awayTeam;
     }
 
-    public String getIdMatch() {
+    String getIdMatch() {
         return idMatch;
     }
 
@@ -70,7 +71,15 @@ public class MatchesModel {
         this.idMatch = idMatch;
     }
 
-    public String getStatus() { return status; }
+    String getStatus() { return status; }
 
     public void setStatus(String status) { this.status = status; }
+
+    public void setUtcDate(String utcDate) {
+        this.utcDate = utcDate;
+    }
+
+    public String getUtcDate() {
+        return utcDate;
+    }
 }

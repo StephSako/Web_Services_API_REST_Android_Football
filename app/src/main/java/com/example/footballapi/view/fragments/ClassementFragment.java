@@ -48,9 +48,7 @@ public class ClassementFragment extends Fragment {
         return v;
     }
 
-    public void showList(List<TeamModel> list, boolean netaccess, HashMap<Integer, String> teamNameCrest){
-        if (teamNameCrest != null) CompetitionFragment.setTeamsNameCrests(teamNameCrest);
-
+    public void showList(List<TeamModel> list, boolean netaccess){
         layoutManager = new LinearLayoutManager(getContext());
         rvClassement.setLayoutManager(layoutManager);
         mAdapter = new AdapterRV_Classement(list, this, netaccess);
