@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case "gif":
                 case "png":
-                    // Display with androidgif
                     Picasso.get()
                             .load(crest)
                             .error(R.drawable.ic_logo_foreground)

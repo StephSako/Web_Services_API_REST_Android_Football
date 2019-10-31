@@ -178,6 +178,12 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
             overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
             return true;
         }
+        else if (item.getItemId() == R.id.search) {
+            Intent intent = new Intent(this, SearchTeamActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
