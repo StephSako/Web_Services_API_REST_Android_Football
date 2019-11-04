@@ -3,8 +3,6 @@ package com.example.footballapi.model.model_dao;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.footballapi.R;
 import com.example.footballapi.view.activities.MainActivity;
 import com.example.footballapi.view.activities.TeamActivity;
-import com.example.footballapi.view.fragments.CompetitionFragment;
 
 import java.util.List;
 
