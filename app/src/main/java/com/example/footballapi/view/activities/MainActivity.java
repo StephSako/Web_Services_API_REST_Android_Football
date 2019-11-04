@@ -18,7 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.model.model_dao.DataBase;
-import com.example.footballapi.services.SessionManagerPreferences;
+import com.example.footballapi.controleur.SessionManagerPreferences;
 import com.example.footballapi.view.fragments.CompetitionFragment;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.google.android.material.navigation.NavigationView;

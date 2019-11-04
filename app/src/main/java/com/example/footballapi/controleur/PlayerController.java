@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.model.model_retrofit.player.Player;
-import com.example.footballapi.services.retrofit.football_data.RestFootballData;
+import com.example.footballapi.model.model_retrofit.retrofit.football_data.RestFootballData;
 import com.example.footballapi.view.activities.PlayerActivity;
 import com.google.android.material.snackbar.Snackbar;
 

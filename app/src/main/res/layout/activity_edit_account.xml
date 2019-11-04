@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/edit_account_activity"
+    android:orientation="vertical"
+    tools:context="com.example.footballapi.view.activities.EditAccountActivity"
+    android:background="@drawable/degradesplashscreen"
+    tools:ignore="ExtraText">
+
+    <ImageView
+        android:id="@+id/ivSplashscreen"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/ivLogoSplashScreen"
+        android:src="@drawable/ic_logo_splashscreen_foreground" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:padding="10px"
+        android:background="@drawable/llshape">
+        <EditText
+            android:id="@+id/etPseudo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Pseudo"
+            android:inputType="textEmailAddress"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_account"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/black"
+            android:text="Equipe supportée"
+            android:layout_marginTop="20dp"
+            />
+        <Spinner
+            android:id="@+id/EditfavoriteTeam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnEditAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/background_light"
+        android:text="Modifier les informations"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:targetApi="lollipop" />
+
+    <LinearLayout
+        android:layout_marginTop="20sp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:padding="10px"
+        android:background="@drawable/llshape">
+        <EditText
+            android:id="@+id/editEtPasswordOld"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Ancien mot de passe"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_password"/>
+        <EditText
+            android:id="@+id/editEtPasswordNew"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Nouveau mot de passe"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_password"/>
+        <EditText
+            android:id="@+id/editEtPasswordNewVerif"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Ressaisissez"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_password"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnEditPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/background_light"
+        android:text="Modifier le mot de passe"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:targetApi="lollipop" />
+
+</LinearLayout>

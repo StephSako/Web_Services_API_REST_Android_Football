@@ -4,9 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 
-import com.example.footballapi.services.SessionManagerPreferences;
 import com.example.footballapi.model.model_retrofit.supporter.Supporter;
-import com.example.footballapi.services.retrofit.always_data.RestAlwaysData;
+import com.example.footballapi.model.model_retrofit.retrofit.always_data.RestAlwaysData;
 import com.example.footballapi.view.activities.InscriptionActivity;
 import com.example.footballapi.view.activities.MainActivity;
 import com.google.android.material.snackbar.Snackbar;

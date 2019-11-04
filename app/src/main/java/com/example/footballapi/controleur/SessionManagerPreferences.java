@@ -1,4 +1,4 @@
-package com.example.footballapi.services;
+package com.example.footballapi.controleur;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -47,6 +47,22 @@ public class SessionManagerPreferences {
 
         String betsSerialized = new Gson().toJson(bets);
         this.editor.putString("bets", betsSerialized);
+
+        this.editor.apply();
+        this.editor.commit();
+    }
+
+    public void updateSupporter(String pseudo, int favoriteTeam, String favoriteTeamName){
+        this.editor.putString("pseudo", pseudo);
+        this.editor.putInt("favoriteTeam", favoriteTeam);
+        this.editor.putString("favoriteTeamName", favoriteTeamName);
+
+        this.editor.apply();
+        this.editor.commit();
+    }
+
+    public void updatePasswordSupporter(String password){
+        this.editor.putString("password", password);
 
         this.editor.apply();
         this.editor.commit();

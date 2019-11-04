@@ -3,7 +3,7 @@ package com.example.footballapi.controleur;
 import androidx.annotation.NonNull;
 
 import com.example.footballapi.model.model_retrofit.competition.Classement;
-import com.example.footballapi.services.retrofit.football_data.RestFootballData;
+import com.example.footballapi.model.model_retrofit.retrofit.football_data.RestFootballData;
 import com.example.footballapi.view.activities.SplashScreen;
 import com.google.android.material.snackbar.Snackbar;
 

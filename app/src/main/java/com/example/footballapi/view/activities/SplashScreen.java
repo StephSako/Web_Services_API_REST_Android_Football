@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.DataBaseController;
 import com.example.footballapi.model.model_dao.DataBase;
-import com.example.footballapi.services.SessionManagerPreferences;
+import com.example.footballapi.controleur.SessionManagerPreferences;
 
 public class SplashScreen extends Activity {
 

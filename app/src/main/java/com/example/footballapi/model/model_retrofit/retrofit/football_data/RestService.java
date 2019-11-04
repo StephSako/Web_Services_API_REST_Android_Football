@@ -1,4 +1,4 @@
-package com.example.footballapi.services.retrofit.football_data;
+package com.example.footballapi.model.model_retrofit.retrofit.football_data;
 
 import com.example.footballapi.model.model_retrofit.competition.Classement;
 import com.example.footballapi.model.model_retrofit.player.Player;
