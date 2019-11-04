@@ -1,6 +1,7 @@
 package com.example.footballapi.view.activities;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,13 +33,14 @@ public class EditAccountActivity extends AppCompatActivity implements View.OnCli
     private EditAccountController editAccountController;
     private EditPasswordController editPasswordController;
 
-    public EditText etPseudo;
+    public EditText editEtPseudo;
     public EditText etPasswordOld;
     public EditText etPasswordNew;
     public EditText etPasswordNewVerif;
+    public TextView tvTitreEdit;
     public Button btnEditAccount;
     public Button btnEditPassword;
-    public Spinner spinnerFavoriteTeam;
+    public Spinner editSpinnerFavoriteTeam;
     public int favoriteTeamId;
     public String favoriteTeamName;
     public View contextView;
@@ -49,16 +52,22 @@ public class EditAccountActivity extends AppCompatActivity implements View.OnCli
         editAccountController = new EditAccountController(this);
         editPasswordController = new EditPasswordController(this);
 
-        this.etPseudo = findViewById(R.id.etPseudo);
+        this.editEtPseudo = findViewById(R.id.editEtPseudo);
+        String a = new SessionManagerPreferences(this).getSupporterName();
+        this.editEtPseudo.setText(new SessionManagerPreferences(this).getSupporterName());
+
         this.etPasswordOld = findViewById(R.id.editEtPasswordOld);
         this.etPasswordNew = findViewById(R.id.editEtPasswordNew);
         this.etPasswordNewVerif = findViewById(R.id.editEtPasswordNewVerif);
+        this.tvTitreEdit = findViewById(R.id.tvTitreEdit);
         this.btnEditAccount = findViewById(R.id.btnConnexion);
         this.btnEditPassword = findViewById(R.id.btnInscription);
         this.contextView = findViewById(R.id.inscription_activity);
 
-        this.spinnerFavoriteTeam = findViewById(R.id.favoriteTeam);
-        this.spinnerFavoriteTeam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        this.tvTitreEdit.setTypeface(null, Typeface.BOLD);
+
+        this.editSpinnerFavoriteTeam = findViewById(R.id.favoriteTeam);
+        this.editSpinnerFavoriteTeam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 favoriteTeamId = ((FavoriteTeam) parent.getSelectedItem()).getIdTeam();
@@ -81,7 +90,7 @@ public class EditAccountActivity extends AppCompatActivity implements View.OnCli
         }
 
         ArrayAdapter<FavoriteTeam> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, teamsList);
-        this.spinnerFavoriteTeam.setAdapter(adapter);
+        this.editSpinnerFavoriteTeam.setAdapter(adapter);
     }
 
     public void onClick(View v) {
@@ -99,7 +108,7 @@ public class EditAccountActivity extends AppCompatActivity implements View.OnCli
         }
         else if (v.getId() == R.id.btnEditAccount){
             if (!TextUtils.isEmpty(this.etPasswordOld.getText().toString())) {
-                this.editAccountController.onCreate(String.valueOf(this.etPseudo.getText()), this.favoriteTeamId, this.favoriteTeamName);
+                this.editAccountController.onCreate(String.valueOf(this.editEtPseudo.getText()), this.favoriteTeamId, this.favoriteTeamName);
             } else {
                 Snackbar.make(this.contextView, "Remplissez le champ du pseudo", Snackbar.LENGTH_SHORT).show();
             }

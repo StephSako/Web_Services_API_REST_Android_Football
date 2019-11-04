@@ -160,6 +160,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.itemSearch:
                         launch_item_class(SearchTeamActivity.class);
                         break;
+                    case R.id.edit:
+                        launch_item_class(EditAccountActivity.class);
+                        break;
                     default:
                         return true;
                 }

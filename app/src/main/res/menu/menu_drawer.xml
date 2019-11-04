@@ -36,13 +36,17 @@
     <item android:title="@string/tvGroupSettings">
         <menu>
             <item
-                android:id="@+id/logout"
-                android:title="@string/tvDeconnexion"
-                android:icon="@drawable/ic_logout"/>
+                android:id="@+id/edit"
+                android:title="Compte"
+                android:icon="@drawable/ic_account"/>
             <item
                 android:id="@+id/pref"
                 android:title="@string/tvPreferences"
                 android:icon="@drawable/ic_preferences"/>
+            <item
+                android:id="@+id/logout"
+                android:title="@string/tvDeconnexion"
+                android:icon="@drawable/ic_logout"/>
             <item
                 android:id="@+id/credits"
                 android:title="@string/tvAPropos"

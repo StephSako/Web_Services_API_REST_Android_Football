@@ -79,4 +79,8 @@
     <string name="fin">FIN</string>
     <string name="mt">MT</string>
     <string name="espaceTiret">-</string>
+    <string name="tvEditAccount">Modifier le compte</string>
+    <string name="etPseudo">Pseudo</string>
+    <string name="etPassword">Mot de passe</string>
+    <string name="tvFavoriteTeam">Equipe supportée</string>
 </resources>

@@ -10,13 +10,17 @@
     android:background="@drawable/degradesplashscreen"
     tools:ignore="ExtraText">
 
-    <ImageView
-        android:id="@+id/ivSplashscreen"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_gravity="center"
-        android:contentDescription="@string/ivLogoSplashScreen"
-        android:src="@drawable/ic_logo_splashscreen_foreground" />
+    <TextView
+        android:id="@+id/tvTitreEdit"
+        android:layout_width="wrap_content"
+        android:paddingTop="70sp"
+        android:paddingBottom="30sp"
+        android:layout_height="wrap_content"
+        android:text="@string/tvEditAccount"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:layout_gravity="center" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -25,27 +29,29 @@
         android:layout_gravity="center"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:padding="10px"
+        android:padding="10dp"
         android:background="@drawable/llshape">
         <EditText
-            android:id="@+id/etPseudo"
+            android:id="@+id/editEtPseudo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Pseudo"
+            android:hint="@string/etPseudo"
             android:inputType="textEmailAddress"
             android:drawablePadding="10dp"
-            android:drawableStart="@drawable/ic_account"/>
+            android:drawableStart="@drawable/ic_account"
+            android:autofillHints=""
+            tools:targetApi="o" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:textColor="@color/black"
-            android:text="Equipe supportée"
+            android:text="@string/tvFavoriteTeam"
             android:layout_marginTop="20dp"
             />
         <Spinner
-            android:id="@+id/EditfavoriteTeam"
+            android:id="@+id/editFavoriteTeam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -70,13 +76,13 @@
         android:layout_gravity="center"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:padding="10px"
+        android:padding="10dp"
         android:background="@drawable/llshape">
         <EditText
             android:id="@+id/editEtPasswordOld"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Ancien mot de passe"
+            android:hint="Actuel mot de passe"
             android:ems="10"
             android:inputType="textPassword"
             android:drawablePadding="10dp"

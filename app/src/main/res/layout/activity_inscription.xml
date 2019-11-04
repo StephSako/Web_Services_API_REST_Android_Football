@@ -25,14 +25,14 @@
         android:layout_gravity="center"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:padding="10px"
+        android:padding="10dp"
         android:background="@drawable/llshape">
         <EditText
             android:id="@+id/etPseudo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Pseudo"
+            android:hint="@string/etPseudo"
             android:inputType="textEmailAddress"
             android:drawablePadding="10dp"
             android:drawableStart="@drawable/ic_account"/>
@@ -40,7 +40,7 @@
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Mot de passe"
+            android:hint="@string/etPassword"
             android:ems="10"
             android:inputType="textPassword"
             android:drawablePadding="10dp"
@@ -60,7 +60,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:textColor="@color/black"
-            android:text="Equipe supportée"
+            android:text="@string/tvFavoriteTeam"
             android:layout_marginTop="20dp"
             />
         <Spinner
