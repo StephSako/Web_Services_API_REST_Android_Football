@@ -36,7 +36,11 @@ public interface RestService {
 
     @FormUrlEncoded
     @POST("supporter/edit.php")
-    Call<ResponseBody> editAccount(@Field("pseudo") String pseudo, @Field("favoriteTeam") int favoriteTeam, @Field("favoriteTeamName") String favoriteTeamName, @Field("idSupporter") int idSupporter);
+    Call<ResponseBody> editPseudo(@Field("pseudo") String pseudo, @Field("idSupporter") int idSupporter);
+
+    @FormUrlEncoded
+    @POST("supporter/edit.php")
+    Call<ResponseBody> editFavoriteTeam(@Field("favoriteTeam") int favoriteTeam, @Field("favoriteTeamName") String favoriteTeamName, @Field("idSupporter") int idSupporter);
 
     @FormUrlEncoded
     @POST("supporter/edit.php")

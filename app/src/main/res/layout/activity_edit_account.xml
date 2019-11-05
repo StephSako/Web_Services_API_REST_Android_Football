@@ -13,8 +13,8 @@
     <TextView
         android:id="@+id/tvTitreEdit"
         android:layout_width="wrap_content"
-        android:paddingTop="70sp"
-        android:paddingBottom="30sp"
+        android:paddingTop="20sp"
+        android:paddingBottom="10sp"
         android:layout_height="wrap_content"
         android:text="@string/tvEditAccount"
         android:textAlignment="center"
@@ -31,42 +31,73 @@
         android:layout_marginRight="25dp"
         android:padding="10dp"
         android:background="@drawable/llshape">
-        <EditText
-            android:id="@+id/editEtPseudo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/etPseudo"
-            android:inputType="textEmailAddress"
-            android:drawablePadding="10dp"
-            android:drawableStart="@drawable/ic_account"
-            android:autofillHints=""
-            tools:targetApi="o" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/black"
-            android:text="@string/tvFavoriteTeam"
-            android:layout_marginTop="20dp"
-            />
-        <Spinner
-            android:id="@+id/editFavoriteTeam"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
 
-    <Button
-        android:id="@+id/btnEditAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@android:color/background_light"
-        android:text="Modifier les informations"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        tools:targetApi="lollipop" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editEtPseudo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:autofillHints=""
+                android:drawableStart="@drawable/ic_account"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="@string/etPseudo"
+                android:inputType="textEmailAddress"
+                tools:targetApi="o" />
+            <ImageButton
+                android:id="@+id/btnEditPseudo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:textColor="@color/black"
+                android:src="@drawable/ic_edit"
+                tools:targetApi="lollipop"
+                android:background="@drawable/terminated"
+                android:contentDescription="editPseudoButton" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/black"
+                    android:text="@string/tvFavoriteTeam"
+                    android:layout_marginTop="20dp"
+                    />
+                <Spinner
+                    android:id="@+id/editFavoriteTeam"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btnEditTeam"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="6"
+                android:background="@drawable/terminated"
+                android:contentDescription="editPseudoButton"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:src="@drawable/ic_edit"
+                android:textColor="@color/black"
+                tools:targetApi="lollipop" />
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_marginTop="20sp"

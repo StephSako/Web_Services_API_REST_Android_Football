@@ -52,8 +52,14 @@ public class SessionManagerPreferences {
         this.editor.commit();
     }
 
-    public void updateSupporter(String pseudo, int favoriteTeam, String favoriteTeamName){
+    public void updateSupporter(String pseudo){
         this.editor.putString("pseudo", pseudo);
+
+        this.editor.apply();
+        this.editor.commit();
+    }
+
+    public void updateFavoriteTeamSupporter(int favoriteTeam, String favoriteTeamName){
         this.editor.putInt("favoriteTeam", favoriteTeam);
         this.editor.putString("favoriteTeamName", favoriteTeamName);
 
