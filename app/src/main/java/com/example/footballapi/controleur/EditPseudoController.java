@@ -32,7 +32,7 @@ public class EditPseudoController {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Snackbar.make(activity.contextView, "Votre compte a bien été modifié", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(activity.contextView, "Votre pseudo a bien été modifié", Snackbar.LENGTH_SHORT).show();
                     new SessionManagerPreferences(activity).updateSupporter(pseudo);
 
                 } else {

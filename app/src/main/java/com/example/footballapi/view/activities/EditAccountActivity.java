@@ -1,6 +1,5 @@
 package com.example.footballapi.view.activities;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,9 +15,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.footballapi.R;
-import com.example.footballapi.controleur.EditPseudoController;
 import com.example.footballapi.controleur.EditFavoriteTeamController;
 import com.example.footballapi.controleur.EditPasswordController;
+import com.example.footballapi.controleur.EditPseudoController;
 import com.example.footballapi.controleur.SessionManagerPreferences;
 import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.model.model_dao.TeamDAO;
@@ -67,7 +66,7 @@ public class EditAccountActivity extends AppCompatActivity implements View.OnCli
         this.btnEditPseudo = findViewById(R.id.btnEditPseudo);
         this.btnEditTeam = findViewById(R.id.btnEditTeam);
         this.btnEditPassword = findViewById(R.id.btnEditPassword);
-        this.contextView = findViewById(R.id.inscription_activity);
+        this.contextView = findViewById(R.id.edit_account_activity);
 
         this.tvTitreEdit.setTypeface(null, Typeface.BOLD);
 
@@ -105,31 +104,30 @@ public class EditAccountActivity extends AppCompatActivity implements View.OnCli
                 Snackbar.make(this.contextView, "Remplissez tous les champs", Snackbar.LENGTH_SHORT).show();
             }
             else{
-                if (!this.etPasswordNew.getText().toString().equals(this.etPasswordNewVerif.getText().toString())){
-                    Snackbar.make(this.contextView, "Les nouveaux mots de passe ne correspondent pas", Snackbar.LENGTH_SHORT).show();
-                }else{
-                    editPasswordController.onCreate(this.etPasswordNew.getText().toString());
+                if (!this.etPasswordOld.getText().toString().equals(new SessionManagerPreferences(this).getPasswordSupporter())) {
+                    Snackbar.make(this.contextView, "Le mot de passe actuel n'est pas celui renseigné", Snackbar.LENGTH_SHORT).show();
+                } else {
+                    if (!this.etPasswordNew.getText().toString().equals(this.etPasswordNewVerif.getText().toString())) {
+                        Snackbar.make(this.contextView, "Les nouveaux mots de passe ne correspondent pas", Snackbar.LENGTH_SHORT).show();
+                    } else {
+                        editPasswordController.onCreate(this.etPasswordNew.getText().toString());
+                        this.etPasswordOld.setText("");
+                        this.etPasswordNew.setText("");
+                        this.etPasswordNewVerif.setText("");
+                    }
                 }
             }
         }
         else if (v.getId() == R.id.btnEditPseudo){
-            if (!TextUtils.isEmpty(this.etPasswordOld.getText().toString())) {
-                this.editPseudoController.onCreate(String.valueOf(this.editEtPseudo.getText()));
-            } else {
+            if (TextUtils.isEmpty(this.editEtPseudo.getText().toString())) {
                 Snackbar.make(this.contextView, "Remplissez le champ du pseudo", Snackbar.LENGTH_SHORT).show();
+            } else {
+                this.editPseudoController.onCreate(String.valueOf(this.editEtPseudo.getText()));
             }
         }
         else if (v.getId() == R.id.btnEditTeam){
             this.editFavoriteTeamController.onCreate(this.favoriteTeamId, this.favoriteTeamName);
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent a = new Intent(Intent.ACTION_MAIN);
-        a.addCategory(Intent.CATEGORY_HOME);
-        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(a);
     }
 
 }

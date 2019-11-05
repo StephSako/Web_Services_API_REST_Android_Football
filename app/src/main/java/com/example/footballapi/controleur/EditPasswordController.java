@@ -26,13 +26,13 @@ public class EditPasswordController {
      * @param password pseudo du supporter
      */
     public void onCreate(final String password) {
-        Call<ResponseBody> call = RestAlwaysData.get().editPassword(password);
+        Call<ResponseBody> call = RestAlwaysData.get().editPassword(password, new SessionManagerPreferences(activity).getIdSupporter());
         call.enqueue(new Callback<ResponseBody>() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Snackbar.make(activity.contextView, "Votre compte a bien été modifié", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(activity.contextView, "Votre mot de passe a bien été modifié", Snackbar.LENGTH_SHORT).show();
                     new SessionManagerPreferences(activity).updatePasswordSupporter(password);
 
                 } else {

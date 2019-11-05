@@ -33,7 +33,7 @@ public class EditFavoriteTeamController {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Snackbar.make(activity.contextView, "Votre compte a bien été modifié", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(activity.contextView, "Votre équipe a bien été modifiée", Snackbar.LENGTH_SHORT).show();
                     new SessionManagerPreferences(activity).updateFavoriteTeamSupporter(favoriteTeamId, favoriteTeamName);
 
                 } else {

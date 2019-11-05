@@ -35,15 +35,15 @@ public interface RestService {
     Call<PourcentBet> pourcent(@Field("idMatch") int idMatch, @Field("idHome") int idHome, @Field("idAway") int idAway);
 
     @FormUrlEncoded
-    @POST("supporter/edit.php")
+    @POST("supporter/editPseudo.php")
     Call<ResponseBody> editPseudo(@Field("pseudo") String pseudo, @Field("idSupporter") int idSupporter);
 
     @FormUrlEncoded
-    @POST("supporter/edit.php")
+    @POST("supporter/editFavoriteTeam.php")
     Call<ResponseBody> editFavoriteTeam(@Field("favoriteTeam") int favoriteTeam, @Field("favoriteTeamName") String favoriteTeamName, @Field("idSupporter") int idSupporter);
 
     @FormUrlEncoded
-    @POST("supporter/edit.php")
-    Call<ResponseBody> editPassword(@Field("password") String password);
+    @POST("supporter/editPassword.php")
+    Call<ResponseBody> editPassword(@Field("password") String password, @Field("idSupporter") int idSupporter);
 
 }

@@ -95,6 +95,10 @@ public class SessionManagerPreferences {
         return this.sharedPreferences.getInt("idSupporter", -1);
     }
 
+    public String getPasswordSupporter(){
+        return this.sharedPreferences.getString("password", "");
+    }
+
     public String getSupporterName(){
         return this.sharedPreferences.getString("pseudo", "");
     }
