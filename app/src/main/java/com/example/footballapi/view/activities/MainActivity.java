@@ -34,24 +34,27 @@ public class MainActivity extends AppCompatActivity {
     final static String CLE_DONNEES_ID_COMPET = "idCompet";
     private static final String KEY_TYPE = "typeMatches";
 
+    private TextView tvSupporterName;
+    private TextView tvSupporterFavoriteTeam;
+    private ImageView ivFavoriteTeam;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         DrawerLayout dl = findViewById(R.id.drawer_layout);
-        t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
+        t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
 
         dl.addDrawerListener(t);
         t.syncState();
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        int idTeam = new SessionManagerPreferences(this).getFavoriteTeamIdSupporter();
         Fragment fragment = new MatchesFragment(); // Fragment displayed by default
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Bundle bundle = new Bundle();
-        bundle.putInt(KEY_ID, idTeam);
+        bundle.putInt(KEY_ID, new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
         bundle.putString(KEY_TYPE, "team");
         fragment.setArguments(bundle);
         ft.replace(R.id.fragment_hoster, fragment);
@@ -60,21 +63,21 @@ public class MainActivity extends AppCompatActivity {
         NavigationView nv = findViewById(R.id.nav_view); // Mise en place du NavigationDrawer
 
         View v = nv.inflateHeaderView(R.layout.nav_header);
-        TextView tvSupporterName = v.findViewById(R.id.tvSupporterName);
-        TextView tvSupporterFavoriteTeam = v.findViewById(R.id.tvSupporterFavoriteTeam);
-        ImageView ivFavoriteTeam = v.findViewById(R.id.ivFavoriteTeam);
+        this.tvSupporterName = v.findViewById(R.id.tvSupporterName);
+        this.tvSupporterFavoriteTeam = v.findViewById(R.id.tvSupporterFavoriteTeam);
+        this.ivFavoriteTeam = v.findViewById(R.id.ivFavoriteTeam);
 
-        tvSupporterName.setText(new SessionManagerPreferences(this).getSupporterName());
-        tvSupporterFavoriteTeam.setText(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
+        this.tvSupporterName.setText(new SessionManagerPreferences(this).getSupporterName());
+        this.tvSupporterFavoriteTeam.setText(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
 
-        String crest = new DataBase(this).findTeamCrest(idTeam);
+        String crest = new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
         if (!crest.equals("")) {
-            switch (crest.substring(crest.length() - 3)){
+            switch (crest.substring(crest.length() - 3)) {
                 case "svg":
                     SvgLoader.pluck()
                             .with(this)
                             .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                            .load(crest, ivFavoriteTeam)
+                            .load(crest, this.ivFavoriteTeam)
                             .close();
                     break;
                 case "gif":
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                             .error(R.drawable.ic_logo_foreground)
                             .resize(50, 50)
                             .centerCrop()
-                            .into(ivFavoriteTeam);
+                            .into(this.ivFavoriteTeam);
                     break;
             }
         }
@@ -97,8 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment = new CompetitionFragment();
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 Bundle bundle = new Bundle();
-                switch(id)
-                {
+                switch (id) {
                     case R.id.itemBundesliga:
                         bundle.putInt(CLE_DONNEES_ID_COMPET, 2002);
                         fragment.setArguments(bundle);
@@ -177,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) { // Displaying Drawer
-        if(t.onOptionsItemSelected(item))
+        if (t.onOptionsItemSelected(item))
             return true;
         return super.onOptionsItemSelected(item);
     }
@@ -190,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(a);
     }
 
-    private void logout(){
+    private void logout() {
         new SessionManagerPreferences(this).logout();
 
         Intent intent = new Intent(this, ConnexionActivity.class);
@@ -200,9 +202,38 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
-    private void launch_item_class(Class class_){
+    private void launch_item_class(Class class_) {
         Intent intent = new Intent(this, class_);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        this.tvSupporterName.setText(new SessionManagerPreferences(this).getSupporterName());
+        this.tvSupporterFavoriteTeam.setText(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
+
+        String crest = new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
+        if (!crest.equals("")) {
+            switch (crest.substring(crest.length() - 3)) {
+                case "svg":
+                    SvgLoader.pluck()
+                            .with(this)
+                            .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                            .load(crest, this.ivFavoriteTeam)
+                            .close();
+                    break;
+                case "gif":
+                case "png":
+                    Picasso.get()
+                            .load(crest)
+                            .error(R.drawable.ic_logo_foreground)
+                            .resize(50, 50)
+                            .centerCrop()
+                            .into(this.ivFavoriteTeam);
+                    break;
+            }
+        }
     }
 }
