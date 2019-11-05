@@ -1,9 +1,9 @@
-package com.example.footballapi.services.retrofit.football_data;
+package com.example.footballapi.model.model_retrofit.retrofit.football_data;
 
 import android.os.Build;
 import android.util.Log;
 
-import com.example.footballapi.services.retrofit.TLSSocketFactory;
+import com.example.footballapi.model.model_retrofit.retrofit.TLSSocketFactory;
 
 import java.security.KeyStore;
 import java.util.ArrayList;

@@ -23,7 +23,7 @@ import com.example.footballapi.controleur.MatchController;
 import com.example.footballapi.controleur.PourcentBetController;
 import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
-import com.example.footballapi.services.SessionManagerPreferences;
+import com.example.footballapi.controleur.SessionManagerPreferences;
 
 public class MatchActivity extends AppCompatActivity implements View.OnClickListener {
 

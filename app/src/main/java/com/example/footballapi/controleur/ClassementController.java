@@ -8,7 +8,7 @@ import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.model.model_dao.TeamDAO;
 import com.example.footballapi.model.model_recyclerview.classement.TeamModel;
 import com.example.footballapi.model.model_retrofit.competition.Classement;
-import com.example.footballapi.services.retrofit.football_data.RestFootballData;
+import com.example.footballapi.model.model_retrofit.retrofit.football_data.RestFootballData;
 import com.example.footballapi.view.fragments.ClassementFragment;
 import com.google.android.material.snackbar.Snackbar;
 

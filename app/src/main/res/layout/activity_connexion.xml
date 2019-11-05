@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Pseudo"
+                android:hint="@string/etPseudo"
                 android:inputType="textEmailAddress"
                 android:drawablePadding="10dp"
                 android:drawableStart="@drawable/ic_account"/>
@@ -40,7 +40,7 @@
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Mot de passe"
+                android:hint="@string/etPassword"
                 android:ems="10"
                 android:inputType="textPassword"
                 android:drawablePadding="10dp"

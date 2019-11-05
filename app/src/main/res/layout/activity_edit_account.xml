@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/edit_account_activity"
+    android:orientation="vertical"
+    tools:context="com.example.footballapi.view.activities.EditAccountActivity"
+    android:background="@drawable/degradesplashscreen"
+    tools:ignore="ExtraText">
+
+    <TextView
+        android:id="@+id/tvTitreEdit"
+        android:layout_width="wrap_content"
+        android:paddingTop="20sp"
+        android:paddingBottom="10sp"
+        android:layout_height="wrap_content"
+        android:text="@string/tvEditAccount"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:layout_gravity="center" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:padding="10dp"
+        android:background="@drawable/llshape">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editEtPseudo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:autofillHints=""
+                android:drawableStart="@drawable/ic_account"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:hint="@string/etPseudo"
+                android:inputType="textEmailAddress"
+                tools:targetApi="o" />
+            <ImageButton
+                android:id="@+id/btnEditPseudo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:textColor="@color/black"
+                android:src="@drawable/ic_edit"
+                tools:targetApi="lollipop"
+                android:background="@drawable/terminated"
+                android:contentDescription="editPseudoButton" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/black"
+                    android:text="@string/tvFavoriteTeam"
+                    android:layout_marginTop="20dp"
+                    />
+                <Spinner
+                    android:id="@+id/editFavoriteTeam"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btnEditTeam"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="6"
+                android:background="@drawable/terminated"
+                android:contentDescription="editPseudoButton"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:src="@drawable/ic_edit"
+                android:textColor="@color/black"
+                tools:targetApi="lollipop" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20sp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:padding="10dp"
+        android:background="@drawable/llshape">
+        <EditText
+            android:id="@+id/editEtPasswordOld"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Actuel mot de passe"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_password"/>
+        <EditText
+            android:id="@+id/editEtPasswordNew"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Nouveau mot de passe"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_password"/>
+        <EditText
+            android:id="@+id/editEtPasswordNewVerif"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Ressaisissez"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_password"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnEditPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/background_light"
+        android:text="Modifier le mot de passe"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:targetApi="lollipop" />
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.footballapi.services;
+package com.example.footballapi.controleur;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -52,6 +52,28 @@ public class SessionManagerPreferences {
         this.editor.commit();
     }
 
+    public void updateSupporter(String pseudo){
+        this.editor.putString("pseudo", pseudo);
+
+        this.editor.apply();
+        this.editor.commit();
+    }
+
+    public void updateFavoriteTeamSupporter(int favoriteTeam, String favoriteTeamName){
+        this.editor.putInt("favoriteTeam", favoriteTeam);
+        this.editor.putString("favoriteTeamName", favoriteTeamName);
+
+        this.editor.apply();
+        this.editor.commit();
+    }
+
+    public void updatePasswordSupporter(String password){
+        this.editor.putString("password", password);
+
+        this.editor.apply();
+        this.editor.commit();
+    }
+
     public void logout() {
         this.editor.clear();
         this.editor.commit();
@@ -71,6 +93,10 @@ public class SessionManagerPreferences {
 
     public int getIdSupporter(){
         return this.sharedPreferences.getInt("idSupporter", -1);
+    }
+
+    public String getPasswordSupporter(){
+        return this.sharedPreferences.getString("password", "");
     }
 
     public String getSupporterName(){
