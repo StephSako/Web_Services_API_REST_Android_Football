@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
+import com.example.footballapi.controleur.CrestGenerator;
 import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.controleur.SessionManagerPreferences;
 import com.example.footballapi.view.fragments.CompetitionFragment;
@@ -70,26 +71,26 @@ public class MainActivity extends AppCompatActivity {
         this.tvSupporterName.setText(new SessionManagerPreferences(this).getSupporterName());
         this.tvSupporterFavoriteTeam.setText(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
 
-        String crest = new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
-        if (!crest.equals("")) {
-            switch (crest.substring(crest.length() - 3)) {
-                case "svg":
-                    SvgLoader.pluck()
-                            .with(this)
-                            .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                            .load(crest, this.ivFavoriteTeam)
-                            .close();
-                    break;
-                case "gif":
-                case "png":
-                    Picasso.get()
-                            .load(crest)
-                            .error(R.drawable.ic_logo_foreground)
-                            .resize(50, 50)
-                            .centerCrop()
-                            .into(this.ivFavoriteTeam);
-                    break;
-            }
+        String crestBD = (new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) != null) ? new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) : "" ;
+        String crest = (new CrestGenerator().crestGenerator(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter()).equals("")) ? crestBD : new CrestGenerator().crestGenerator(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
+
+        switch (crest.substring(crest.length() - 3)) {
+            case "svg":
+                SvgLoader.pluck()
+                        .with(this)
+                        .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                        .load(crest, this.ivFavoriteTeam)
+                        .close();
+                break;
+            case "gif":
+            case "png":
+                Picasso.get()
+                        .load(crest)
+                        .error(R.drawable.ic_logo_foreground)
+                        .resize(50, 50)
+                        .centerCrop()
+                        .into(this.ivFavoriteTeam);
+                break;
         }
 
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -214,7 +215,9 @@ public class MainActivity extends AppCompatActivity {
         this.tvSupporterName.setText(new SessionManagerPreferences(this).getSupporterName());
         this.tvSupporterFavoriteTeam.setText(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
 
-        String crest = new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
+        String crestBD = (new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) != null) ? new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) : "" ;
+        String crest = (new CrestGenerator().crestGenerator(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter()).equals("")) ? crestBD : new CrestGenerator().crestGenerator(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
+
         if (!crest.equals("")) {
             switch (crest.substring(crest.length() - 3)) {
                 case "svg":

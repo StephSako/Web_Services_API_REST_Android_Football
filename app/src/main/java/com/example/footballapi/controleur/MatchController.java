@@ -10,6 +10,7 @@ import com.example.footballapi.model.model_retrofit.retrofit.football_data.RestF
 import com.example.footballapi.model.model_retrofit.team.OneMatch;
 import com.example.footballapi.view.activities.MatchActivity;
 import com.google.android.material.snackbar.Snackbar;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -45,24 +46,48 @@ public class MatchController {
 
                     Objects.requireNonNull(activity).setTitle("Match");
 
-                    if (!crestHome.equals(""))
-                        SvgLoader.pluck()
-                                .with(activity)
-                                .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                                .load(crestHome, activity.logo_club_home)
-                                .close();
-                    else activity.logo_club_home.setImageResource(R.drawable.ic_logo_foreground);
+                    String crestHomeFinal = (new CrestGenerator().crestGenerator(oneMatch.getMatch().getHomeTeam().getName()).equals("")) ? crestHome : new CrestGenerator().crestGenerator(oneMatch.getMatch().getHomeTeam().getName());
+                    String crestAwayFinal = (new CrestGenerator().crestGenerator(oneMatch.getMatch().getAwayTeam().getName()).equals("")) ? crestAway : new CrestGenerator().crestGenerator(oneMatch.getMatch().getAwayTeam().getName());
 
-                    if (!crestAway.equals("") && activity.loadingPicsPlayer)
-                        SvgLoader.pluck()
-                                .with(activity)
-                                .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                                .load(crestAway, activity.logo_club_away)
-                                .close();
-                    else activity.logo_club_away.setImageResource(R.drawable.ic_logo_foreground);
+                    switch (crestHomeFinal.substring(crestHomeFinal.length() - 3)){
+                        case "svg":
+                            SvgLoader.pluck()
+                                    .with(activity)
+                                    .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                                    .load(crestHomeFinal, activity.logo_club_home)
+                                    .close();
+                            break;
+                        case "gif":
+                        case "png":
+                            // Display with androidgif
+                            Picasso.get()
+                                    .load(crestHomeFinal)
+                                    .error(R.drawable.ic_logo_foreground)
+                                    .resize(50, 50)
+                                    .centerCrop()
+                                    .into(activity.logo_club_home);
+                            break;
+                    }
 
-                    activity.logo_club_away.setImageResource(R.drawable.ic_logo_foreground);
-                    activity.logo_club_home.setImageResource(R.drawable.ic_logo_foreground);
+                    switch (crestAwayFinal.substring(crestAwayFinal.length() - 3)){
+                        case "svg":
+                            SvgLoader.pluck()
+                                    .with(activity)
+                                    .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                                    .load(crestAwayFinal, activity.logo_club_away)
+                                    .close();
+                            break;
+                        case "gif":
+                        case "png":
+                            // Display with androidgif
+                            Picasso.get()
+                                    .load(crestAwayFinal)
+                                    .error(R.drawable.ic_logo_foreground)
+                                    .resize(50, 50)
+                                    .centerCrop()
+                                    .into(activity.logo_club_away);
+                            break;
+                    }
 
                     String[] parts = oneMatch.getMatch().getUtcDate().split("T");
                     String date = parts[0]; // Day
