@@ -2,6 +2,7 @@ package com.example.footballapi.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -151,13 +152,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) { // Displaying Drawer
-        if (t.onOptionsItemSelected(item))
-            return true;
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.CrestGenerator;
-import com.example.footballapi.view.activities.TeamActivity;
+import com.example.footballapi.view.fragments.TeamFragment;
 import com.example.footballapi.view.fragments.ClassementFragment;
 import com.squareup.picasso.Picasso;
 
@@ -24,7 +24,7 @@ import java.util.List;
 
 public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classement.ViewHolder> {
 
-    public static final String CLE_DONNEES_ID_TEAM = "idTeam";
+    private static final String CLE_DONNEES_ID_TEAM = "idTeam";
 
     private List<TeamModel> values;
     private ClassementFragment fragment;
@@ -101,7 +101,7 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
-                    Intent intent = new Intent(context, TeamActivity.class);
+                    Intent intent = new Intent(context, TeamFragment.class);
                     intent.putExtra(CLE_DONNEES_ID_TEAM, Integer.parseInt(values.get(position).getIdTeam()));
                     context.startActivity(intent);
                 }

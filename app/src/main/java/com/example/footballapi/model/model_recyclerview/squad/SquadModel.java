@@ -7,6 +7,8 @@ public class SquadModel {
     private String playerPosition;
     private String playerNationality;
     private String playerId;
+    private String teamName;
+    private String teamCrest;
 
     public String getPlayerId() {
         return playerId;
@@ -46,5 +48,21 @@ public class SquadModel {
 
     public void setPlayerNationality(String playerNationality) {
         this.playerNationality = playerNationality;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public String getTeamCrest() {
+        return teamCrest;
+    }
+
+    public void setTeamCrest(String teamCrest) {
+        this.teamCrest = teamCrest;
     }
 }

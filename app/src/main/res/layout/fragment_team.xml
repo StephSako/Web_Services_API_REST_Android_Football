@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/team_activity"
+    android:id="@+id/fragment_team"
     android:orientation="vertical"
-    tools:context="com.example.footballapi.view.activities.TeamActivity"
+    tools:context="com.example.footballapi.view.fragments.TeamFragment"
     tools:ignore="ExtraText">
 
     <LinearLayout
@@ -102,7 +102,7 @@
             android:layout_weight="2"/>
     </LinearLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">

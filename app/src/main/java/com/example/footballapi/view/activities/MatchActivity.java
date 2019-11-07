@@ -6,8 +6,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,9 +19,9 @@ import com.example.footballapi.R;
 import com.example.footballapi.controleur.BetController;
 import com.example.footballapi.controleur.MatchController;
 import com.example.footballapi.controleur.PourcentBetController;
+import com.example.footballapi.controleur.SessionManagerPreferences;
 import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
-import com.example.footballapi.controleur.SessionManagerPreferences;
 
 public class MatchActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -160,32 +158,6 @@ public class MatchActivity extends AppCompatActivity implements View.OnClickList
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         // Préférences du switch pour afficher les logos
         this.loadingPicsPlayer = sharedPref.getBoolean("logosPlayer", true);
-    }
-
-    // Affichage du menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    // Écouteur sur le menu
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.home) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
-            return true;
-        }
-        else if (item.getItemId() == R.id.search) {
-            Intent intent = new Intent(this, SearchTeamActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void onClick(View v) {

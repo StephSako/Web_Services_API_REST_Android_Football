@@ -115,6 +115,14 @@ public class SessionManagerPreferences {
         return (!Objects.equals(this.getSupporter().get("idSupporter"), "-1"));
     }
 
+    public boolean cacheActivated(){
+        return this.sharedPreferences.getBoolean("cache", true);
+    }
+
+    public boolean logosDisplayed(){
+        return this.sharedPreferences.getBoolean("logosTeam", true);
+    }
+
     private List<Bet> getBets(){
         return new Gson().fromJson(this.sharedPreferences.getString("bets", ""), new TypeToken<List<Bet>>() {}.getType());
     }

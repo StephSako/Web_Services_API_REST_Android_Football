@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.footballapi.R;
 import com.example.footballapi.view.activities.MainActivity;
-import com.example.footballapi.view.activities.TeamActivity;
+import com.example.footballapi.view.fragments.TeamFragment;
 
 import java.util.List;
 
@@ -77,7 +77,7 @@ public class AdapterRV_Search extends RecyclerView.Adapter<AdapterRV_Search.View
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-                Intent intent = new Intent(context, TeamActivity.class);
+                Intent intent = new Intent(context, TeamFragment.class);
                 intent.putExtra(CLE_DONNEES_ID_TEAM, listSearch.get(position).getIdTeam());
                 context.startActivity(intent);
             }
