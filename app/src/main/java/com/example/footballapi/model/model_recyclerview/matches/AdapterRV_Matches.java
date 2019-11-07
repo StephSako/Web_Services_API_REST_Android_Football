@@ -83,44 +83,50 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         String crestAwayBD = (new DataBase(fragment.getActivity()).findTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())) != null) ? new DataBase(fragment.getActivity()).findTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())) : "" ;
         String crestAway = (new CrestGenerator().crestGenerator(values.get(position).getAwayTeam()).equals("")) ? crestAwayBD : new CrestGenerator().crestGenerator(values.get(position).getAwayTeam());
 
-        switch (crestHome.substring(crestHome.length() - 3)){
-            case "svg":
-                SvgLoader.pluck()
-                        .with(this.fragment.getActivity())
-                        .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                        .load(crestHome, holder.ivLogoClubHome)
-                        .close();
-                break;
-            case "gif":
-            case "png":
-                Picasso.get()
-                        .load(crestHome)
-                        .error(R.drawable.ic_logo_foreground)
-                        .resize(50, 50)
-                        .centerCrop()
-                        .into(holder.ivLogoClubHome);
-                break;
+        if (crestHome.length() >= 4) {
+            switch (crestHome.substring(crestHome.length() - 3)) {
+                case "svg":
+                    SvgLoader.pluck()
+                            .with(this.fragment.getActivity())
+                            .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                            .load(crestHome, holder.ivLogoClubHome)
+                            .close();
+                    break;
+                case "gif":
+                case "png":
+                    Picasso.get()
+                            .load(crestHome)
+                            .error(R.drawable.ic_logo_foreground)
+                            .resize(50, 50)
+                            .centerCrop()
+                            .into(holder.ivLogoClubHome);
+                    break;
+            }
+        } else {
+            holder.ivLogoClubHome.setImageResource(R.drawable.ic_logo_foreground);
         }
 
-        switch (crestAway.substring(crestAway.length() - 3)){
-            case "svg":
-                SvgLoader.pluck()
-                        .with(this.fragment.getActivity())
-                        .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                        .load(crestAway, holder.ivLogoClubAway)
-                        .close();
-                break;
-            case "gif":
+        if (crestAway.length() >= 4) {
+            switch (crestAway.substring(crestAway.length() - 3)) {
+                case "svg":
+                    SvgLoader.pluck()
+                            .with(this.fragment.getActivity())
+                            .load(crestAway, holder.ivLogoClubAway)
+                            .close();
+                    break;
+                case "gif":
 
-                break;
-            case "png":
-                Picasso.get()
-                        .load(crestAway)
-                        .error(R.drawable.ic_logo_foreground)
-                        .resize(50, 50)
-                        .centerCrop()
-                        .into(holder.ivLogoClubAway);
-                break;
+                    break;
+                case "png":
+                    Picasso.get()
+                            .load(crestAway)
+                            .resize(50, 50)
+                            .centerCrop()
+                            .into(holder.ivLogoClubAway);
+                    break;
+            }
+        } else {
+            holder.ivLogoClubHome.setImageResource(R.drawable.ic_logo_foreground);
         }
 
         if (values.get(position).getWinner() != null) {

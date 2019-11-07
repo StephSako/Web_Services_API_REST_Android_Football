@@ -68,31 +68,6 @@ public class MainActivity extends AppCompatActivity {
         this.tvSupporterFavoriteTeam = v.findViewById(R.id.tvSupporterFavoriteTeam);
         this.ivFavoriteTeam = v.findViewById(R.id.ivFavoriteTeam);
 
-        this.tvSupporterName.setText(new SessionManagerPreferences(this).getSupporterName());
-        this.tvSupporterFavoriteTeam.setText(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
-
-        String crestBD = (new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) != null) ? new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) : "" ;
-        String crest = (new CrestGenerator().crestGenerator(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter()).equals("")) ? crestBD : new CrestGenerator().crestGenerator(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
-
-        switch (crest.substring(crest.length() - 3)) {
-            case "svg":
-                SvgLoader.pluck()
-                        .with(this)
-                        .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                        .load(crest, this.ivFavoriteTeam)
-                        .close();
-                break;
-            case "gif":
-            case "png":
-                Picasso.get()
-                        .load(crest)
-                        .error(R.drawable.ic_logo_foreground)
-                        .resize(50, 50)
-                        .centerCrop()
-                        .into(this.ivFavoriteTeam);
-                break;
-        }
-
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -218,12 +193,11 @@ public class MainActivity extends AppCompatActivity {
         String crestBD = (new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) != null) ? new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) : "" ;
         String crest = (new CrestGenerator().crestGenerator(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter()).equals("")) ? crestBD : new CrestGenerator().crestGenerator(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
 
-        if (!crest.equals("")) {
+        if (crest.length() >= 4) {
             switch (crest.substring(crest.length() - 3)) {
                 case "svg":
                     SvgLoader.pluck()
                             .with(this)
-                            .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
                             .load(crest, this.ivFavoriteTeam)
                             .close();
                     break;
@@ -231,12 +205,13 @@ public class MainActivity extends AppCompatActivity {
                 case "png":
                     Picasso.get()
                             .load(crest)
-                            .error(R.drawable.ic_logo_foreground)
                             .resize(50, 50)
                             .centerCrop()
                             .into(this.ivFavoriteTeam);
                     break;
             }
+        } else {
+            this.ivFavoriteTeam.setImageResource(R.drawable.ic_logo_foreground);
         }
     }
 }

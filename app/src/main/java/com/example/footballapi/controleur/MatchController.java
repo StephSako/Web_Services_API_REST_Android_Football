@@ -49,44 +49,48 @@ public class MatchController {
                     String crestHomeFinal = (new CrestGenerator().crestGenerator(oneMatch.getMatch().getHomeTeam().getName()).equals("")) ? crestHome : new CrestGenerator().crestGenerator(oneMatch.getMatch().getHomeTeam().getName());
                     String crestAwayFinal = (new CrestGenerator().crestGenerator(oneMatch.getMatch().getAwayTeam().getName()).equals("")) ? crestAway : new CrestGenerator().crestGenerator(oneMatch.getMatch().getAwayTeam().getName());
 
-                    switch (crestHomeFinal.substring(crestHomeFinal.length() - 3)){
-                        case "svg":
-                            SvgLoader.pluck()
-                                    .with(activity)
-                                    .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                                    .load(crestHomeFinal, activity.logo_club_home)
-                                    .close();
-                            break;
-                        case "gif":
-                        case "png":
-                            // Display with androidgif
-                            Picasso.get()
-                                    .load(crestHomeFinal)
-                                    .error(R.drawable.ic_logo_foreground)
-                                    .resize(50, 50)
-                                    .centerCrop()
-                                    .into(activity.logo_club_home);
-                            break;
+                    if (crestHomeFinal.length() >= 4) {
+                        switch (crestHomeFinal.substring(crestHomeFinal.length() - 3)) {
+                            case "svg":
+                                SvgLoader.pluck()
+                                        .with(activity)
+                                        .load(crestHomeFinal, activity.logo_club_home)
+                                        .close();
+                                break;
+                            case "gif":
+                            case "png":
+                                // Display with androidgif
+                                Picasso.get()
+                                        .load(crestHomeFinal)
+                                        .resize(50, 50)
+                                        .centerCrop()
+                                        .into(activity.logo_club_home);
+                                break;
+                        }
+                    }else {
+                        activity.logo_club_home.setImageResource(R.drawable.ic_logo_foreground);
                     }
 
-                    switch (crestAwayFinal.substring(crestAwayFinal.length() - 3)){
-                        case "svg":
-                            SvgLoader.pluck()
-                                    .with(activity)
-                                    .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                                    .load(crestAwayFinal, activity.logo_club_away)
-                                    .close();
-                            break;
-                        case "gif":
-                        case "png":
-                            // Display with androidgif
-                            Picasso.get()
-                                    .load(crestAwayFinal)
-                                    .error(R.drawable.ic_logo_foreground)
-                                    .resize(50, 50)
-                                    .centerCrop()
-                                    .into(activity.logo_club_away);
-                            break;
+                    if (crestAwayFinal.length() >= 4) {
+                        switch (crestAwayFinal.substring(crestAwayFinal.length() - 3)){
+                            case "svg":
+                                SvgLoader.pluck()
+                                        .with(activity)
+                                        .load(crestAwayFinal, activity.logo_club_away)
+                                        .close();
+                                break;
+                            case "gif":
+                            case "png":
+                                // Display with androidgif
+                                Picasso.get()
+                                        .load(crestAwayFinal)
+                                        .resize(50, 50)
+                                        .centerCrop()
+                                        .into(activity.logo_club_away);
+                                break;
+                        }
+                    } else {
+                        activity.logo_club_away.setImageResource(R.drawable.ic_logo_foreground);
                     }
 
                     String[] parts = oneMatch.getMatch().getUtcDate().split("T");

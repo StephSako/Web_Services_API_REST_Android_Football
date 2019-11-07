@@ -69,12 +69,11 @@ public class TeamController {
 
                     String crest = (new CrestGenerator().crestGenerator(team.getName()).equals("")) ?team.getCrestUrl() : new CrestGenerator().crestGenerator(team.getName());
 
-                    if (!crest.equals("") && activity.loadingPicsTeam) {
+                    if (crest.length() >= 4 && activity.loadingPicsTeam) {
                         switch (crest.substring(crest.length() - 3)){
                             case "svg":
                                 SvgLoader.pluck()
                                         .with(activity)
-                                        .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
                                         .load(crest, activity.logo_club)
                                         .close();
                                 break;
@@ -82,15 +81,14 @@ public class TeamController {
                             case "png":
                                 Picasso.get()
                                         .load(crest)
-                                        .error(R.drawable.ic_logo_foreground)
                                         .resize(50, 50)
                                         .centerCrop()
                                         .into(activity.logo_club);
                                 break;
                         }
+                    } else {
+                        activity.logo_club.setImageResource(R.drawable.ic_logo_foreground);
                     }
-
-                    else activity.logo_club.setImageResource(R.drawable.ic_logo_foreground);
 
                 } else {
                     Snackbar.make(activity.contextView, "Le nombre d'appels est dépassé", Snackbar.LENGTH_SHORT).show();
