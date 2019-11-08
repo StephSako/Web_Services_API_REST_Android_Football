@@ -1,10 +1,9 @@
 package com.example.footballapi.model.model_recyclerview.matches;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.CrestGenerator;
 import com.example.footballapi.model.model_dao.DataBase;
-import com.example.footballapi.view.activities.MatchActivity;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.squareup.picasso.Picasso;
 
@@ -161,13 +161,17 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, MatchActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_MATCH, Integer.parseInt(values.get(position).getIdMatch()));
-                intent.putExtra(CLE_DONNEES_ID_HOME, Integer.parseInt(values.get(position).getIdTeamHome()));
-                intent.putExtra(CLE_DONNEES_ID_AWAY, Integer.parseInt(values.get(position).getIdTeamAway()));
-                intent.putExtra(CLE_DONNEES_STATUS, values.get(position).getStatus());
-                context.startActivity(intent);
+                Fragment matchesFragment = new MatchesFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt(CLE_DONNEES_ID_MATCH, Integer.parseInt(values.get(position).getIdMatch()));
+                bundle.putInt(CLE_DONNEES_ID_HOME, Integer.parseInt(values.get(position).getIdTeamHome()));
+                bundle.putInt(CLE_DONNEES_ID_AWAY, Integer.parseInt(values.get(position).getIdTeamAway()));
+                bundle.putString(CLE_DONNEES_STATUS, values.get(position).getStatus());
+                matchesFragment.setArguments(bundle);
+
+                AppCompatActivity activity = (AppCompatActivity) fragment.getContext();
+                if (activity != null)  activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, matchesFragment).commit();
+
             }
         });
 

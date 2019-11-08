@@ -63,8 +63,6 @@ public class ClassementController {
                     }
 
                     fragment.showList(listFinal, true);
-                } else {
-                    Snackbar.make(Objects.requireNonNull(fragment.getView()), "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();
                 }
             }
 

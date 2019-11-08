@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.footballapi.model.model_retrofit.retrofit.always_data.RestAlwaysData;
 import com.example.footballapi.model.model_retrofit.supporter.ListBet;
-import com.example.footballapi.view.activities.MatchActivity;
+import com.example.footballapi.view.activities.MatchFragment;
 import com.google.android.material.snackbar.Snackbar;
 
 import retrofit2.Call;
@@ -15,10 +15,10 @@ import retrofit2.Response;
 
 public class BetController {
 
-    private MatchActivity activity;
+    private MatchFragment fragment;
 
-    public BetController(MatchActivity activity) {
-        this.activity = activity;
+    public BetController(MatchFragment fragment) {
+        this.fragment = fragment;
     }
 
     /**
@@ -38,14 +38,14 @@ public class BetController {
                     assert bets != null;
 
                     // Mettre à jour les paris dans les SharedPreferences
-                    SessionManagerPreferences.getSettings(activity.getApplicationContext()).updateBets(bets.getTab_bets());
-                    Snackbar.make(activity.contextView, "Paris effectué", Snackbar.LENGTH_SHORT).show();
+                    SessionManagerPreferences.getSettings(fragment.getActivity()).updateBets(bets.getTab_bets());
+                    Snackbar.make(fragment.contextView, "Paris effectué", Snackbar.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ListBet> call, @NonNull Throwable t) {
-                Snackbar.make(activity.contextView, "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(fragment.contextView, "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
     }

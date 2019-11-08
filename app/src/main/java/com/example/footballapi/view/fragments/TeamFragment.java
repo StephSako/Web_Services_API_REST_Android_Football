@@ -25,8 +25,6 @@ import java.util.Objects;
 @SuppressLint("Registered")
 public class TeamFragment extends Fragment {
 
-    private static final String CLE_DONNEES_ID_TEAM = "idTeam";
-
     // Variables qui seront transmises dans la vue Player
     public int idTeam = -1;
     public String nomClub = "";
@@ -41,29 +39,30 @@ public class TeamFragment extends Fragment {
 
     public boolean loadingPicsTeam;
 
+    private static final String KEY_ID = "idTeam";
+
+    public TeamFragment() { }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_team, container, false);
 
         TeamController teamcontroller = new TeamController(this);
 
-        // Récupérer les valeurs choisies
-        // Préférences du switch pour afficher les logos
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
-        // Préférences du switch pour afficher les logos
         this.loadingPicsTeam = sharedPref.getBoolean("logosTeam", true);
 
         this.tvWebSite = v.findViewById(R.id.tvWebsite);
         this.tvStade = v.findViewById(R.id.tvStade);
         this.tvActiveCompetitions = v.findViewById(R.id.tvActiveCompetitions);
         this.tvEntraineur = v.findViewById(R.id.tvEntraineur);
-        this.contextView = v.findViewById(R.id.team_activity);
+        this.contextView = v.findViewById(R.id.team_fragment);
 
         logo_club = v.findViewById(R.id.logo_club);
 
         // On récupère l'id de l'équipe venant du classement
         Bundle bundle = this.getArguments();
-        if (bundle != null) this.idTeam = bundle.getInt(CLE_DONNEES_ID_TEAM, -1);
+        if (bundle != null) this.idTeam = bundle.getInt(KEY_ID, -1);
 
         teamcontroller.onCreate(getString(R.string.token), this.idTeam);
 
@@ -79,7 +78,7 @@ public class TeamFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        // Préférences du switch pour afficher les logos
-        this.loadingPicsTeam = new SessionManagerPreferences(Objects.requireNonNull(this.getContext())).logosDisplayed();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
+        this.loadingPicsTeam = sharedPref.getBoolean("logosTeam", true);
     }
 }

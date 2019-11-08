@@ -3,10 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_team"
     android:orientation="vertical"
-    tools:context="com.example.footballapi.view.fragments.TeamFragment"
-    tools:ignore="ExtraText">
+    tools:context="com.example.footballapi.view.fragments.TeamFragment" >
 
     <LinearLayout
         android:layout_width="match_parent"

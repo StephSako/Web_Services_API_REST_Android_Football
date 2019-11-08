@@ -2,7 +2,6 @@ package com.example.footballapi.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,8 +18,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.CrestGenerator;
-import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.controleur.SessionManagerPreferences;
+import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.view.fragments.CompetitionFragment;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -207,5 +206,12 @@ public class MainActivity extends AppCompatActivity {
         } else {
             this.ivFavoriteTeam.setImageResource(R.drawable.ic_logo_foreground);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { // Displaying Drawer
+        if (t.onOptionsItemSelected(item))
+            return true;
+        return super.onOptionsItemSelected(item);
     }
 }
