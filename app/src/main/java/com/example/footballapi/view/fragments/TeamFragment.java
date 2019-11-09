@@ -2,6 +2,7 @@ package com.example.footballapi.view.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -18,6 +21,8 @@ import com.example.footballapi.R;
 import com.example.footballapi.controleur.TeamController;
 import com.example.footballapi.model.model_viewpager.team.Adapter_ViewPagerTeam;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.Objects;
 
 @SuppressLint("Registered")
 public class TeamFragment extends Fragment {
@@ -77,5 +82,12 @@ public class TeamFragment extends Fragment {
         super.onResume();
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
         this.loadingPicsTeam = sharedPref.getBoolean("logosTeam", true);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        ActionBar bar = ((AppCompatActivity) Objects.requireNonNull(this.getActivity())).getSupportActionBar();
+        Objects.requireNonNull(bar).setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorClair)));
     }
 }

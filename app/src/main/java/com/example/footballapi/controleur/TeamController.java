@@ -1,6 +1,11 @@
 package com.example.footballapi.controleur;
 
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
@@ -89,6 +94,12 @@ public class TeamController {
                     } else {
                         fragment.logo_club.setImageResource(R.drawable.ic_logo_foreground);
                     }
+
+                    String[] colorsClub = team.getClubColors().split(" / ");
+                    int[] colors = {Color.parseColor(colorsClub[0].toLowerCase()), Color.parseColor(colorsClub[1].toLowerCase())};
+                    GradientDrawable gradient = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, colors);
+                    ActionBar bar = ((AppCompatActivity) fragment.getActivity()).getSupportActionBar();
+                    Objects.requireNonNull(bar).setBackgroundDrawable(gradient);
 
                 } else {
                     Snackbar.make(fragment.contextView, "Le nombre d'appels est dépassé", Snackbar.LENGTH_SHORT).show();
