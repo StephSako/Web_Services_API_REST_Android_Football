@@ -35,6 +35,7 @@ public class EditFavoriteTeamController {
                 if (response.isSuccessful()) {
                     Snackbar.make(activity.contextView, "Votre équipe a bien été modifiée", Snackbar.LENGTH_SHORT).show();
                     new SessionManagerPreferences(activity).updateFavoriteTeamSupporter(favoriteTeamId, favoriteTeamName);
+                    activity.lockFieldAndButtons(true);
 
                 } else {
                     Snackbar.make(activity.contextView, "Erreur lors du traitement", Snackbar.LENGTH_SHORT).show();

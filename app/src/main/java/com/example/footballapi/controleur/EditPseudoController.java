@@ -34,6 +34,7 @@ public class EditPseudoController {
                 if (response.isSuccessful()) {
                     Snackbar.make(activity.contextView, "Votre pseudo a bien été modifié", Snackbar.LENGTH_SHORT).show();
                     new SessionManagerPreferences(activity).updateSupporter(pseudo);
+                    activity.lockFieldAndButtons(true);
 
                 } else {
                     Snackbar.make(activity.contextView, "Erreur lors du traitement", Snackbar.LENGTH_SHORT).show();
