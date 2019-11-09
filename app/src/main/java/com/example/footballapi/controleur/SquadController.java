@@ -44,6 +44,8 @@ public class SquadController {
                             if (team.getSquad().get(i).getRole().equals("PLAYER")) {
                                 SquadModel model = new SquadModel();
                                 model.setPlayerName(String.valueOf(team.getSquad().get(i).getName()));
+                                model.setTeamName(String.valueOf(team.getName()));
+                                model.setTeamCrest(String.valueOf(team.getCrestUrl()));
 
                                 if (team.getSquad().get(i).getPosition() != null) {
                                     switch (team.getSquad().get(i).getPosition()) {

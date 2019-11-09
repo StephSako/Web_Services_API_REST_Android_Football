@@ -3,20 +3,19 @@ package com.example.footballapi.model.model_recyclerview.squad;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.footballapi.R;
 import com.example.footballapi.view.activities.PlayerActivity;
-import com.example.footballapi.view.activities.TeamActivity;
 
 import java.util.List;
-import java.util.Objects;
 
 public class AdapterRV_Squad extends RecyclerView.Adapter<AdapterRV_Squad.ViewHolder> {
 
@@ -70,8 +69,8 @@ public class AdapterRV_Squad extends RecyclerView.Adapter<AdapterRV_Squad.ViewHo
                 Context context = v.getContext();
                 Intent intent = new Intent(context, PlayerActivity.class);
                 intent.putExtra(CLE_DONNEES_ID_PLAYER, Integer.parseInt(values.get(position).getPlayerId()));
-                intent.putExtra(CLE_DONNEES_NOM_CLUB, ((TeamActivity) Objects.requireNonNull(context)).nomClub);
-                intent.putExtra(CLE_DONNEES_CRUST_URL, ((TeamActivity) Objects.requireNonNull(context)).crestURLPlayer);
+                intent.putExtra(CLE_DONNEES_NOM_CLUB, values.get(position).getTeamName());
+                intent.putExtra(CLE_DONNEES_CRUST_URL, values.get(position).getTeamCrest());
                 context.startActivity(intent);
             }
         });

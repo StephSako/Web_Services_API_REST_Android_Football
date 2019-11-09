@@ -34,6 +34,10 @@ public class Team {
     @Expose
     private String venue = "";
 
+    @SerializedName("clubColors")
+    @Expose
+    private String clubColors = "";
+
     @SerializedName("squad")
     @Expose
     private List<Player> squad  = Collections.emptyList();
@@ -74,4 +78,7 @@ public class Team {
         return matches;
     }
 
+    public String getClubColors() {
+        return clubColors;
+    }
 }

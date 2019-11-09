@@ -34,6 +34,7 @@ public class EditPasswordController {
                 if (response.isSuccessful()) {
                     Snackbar.make(activity.contextView, "Votre mot de passe a bien été modifié", Snackbar.LENGTH_SHORT).show();
                     new SessionManagerPreferences(activity).updatePasswordSupporter(password);
+                    activity.lockFieldAndButtons(true);
 
                 } else {
                     Snackbar.make(activity.contextView, "Erreur lors du traitement", Snackbar.LENGTH_SHORT).show();

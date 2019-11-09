@@ -8,7 +8,7 @@ import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.model.model_retrofit.retrofit.football_data.RestFootballData;
 import com.example.footballapi.model.model_retrofit.team.OneMatch;
-import com.example.footballapi.view.activities.MatchActivity;
+import com.example.footballapi.view.fragments.MatchFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
@@ -20,10 +20,10 @@ import retrofit2.Response;
 
 public class MatchController {
 
-    private MatchActivity activity;
+    private MatchFragment fragment;
 
-    public MatchController(MatchActivity activity) {
-        this.activity = activity;
+    public MatchController(MatchFragment fragment) {
+        this.fragment = fragment;
     }
 
     /**
@@ -44,49 +44,53 @@ public class MatchController {
                     final OneMatch oneMatch = response.body();
                     assert oneMatch != null;
 
-                    Objects.requireNonNull(activity).setTitle("Match");
+                    Objects.requireNonNull(fragment.getActivity()).setTitle("Match");
 
                     String crestHomeFinal = (new CrestGenerator().crestGenerator(oneMatch.getMatch().getHomeTeam().getName()).equals("")) ? crestHome : new CrestGenerator().crestGenerator(oneMatch.getMatch().getHomeTeam().getName());
                     String crestAwayFinal = (new CrestGenerator().crestGenerator(oneMatch.getMatch().getAwayTeam().getName()).equals("")) ? crestAway : new CrestGenerator().crestGenerator(oneMatch.getMatch().getAwayTeam().getName());
 
-                    switch (crestHomeFinal.substring(crestHomeFinal.length() - 3)){
-                        case "svg":
-                            SvgLoader.pluck()
-                                    .with(activity)
-                                    .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                                    .load(crestHomeFinal, activity.logo_club_home)
-                                    .close();
-                            break;
-                        case "gif":
-                        case "png":
-                            // Display with androidgif
-                            Picasso.get()
-                                    .load(crestHomeFinal)
-                                    .error(R.drawable.ic_logo_foreground)
-                                    .resize(50, 50)
-                                    .centerCrop()
-                                    .into(activity.logo_club_home);
-                            break;
+                    if (crestHomeFinal.length() >= 4) {
+                        switch (crestHomeFinal.substring(crestHomeFinal.length() - 3)) {
+                            case "svg":
+                                SvgLoader.pluck()
+                                        .with(fragment.getActivity())
+                                        .load(crestHomeFinal, fragment.logo_club_home)
+                                        .close();
+                                break;
+                            case "gif":
+                            case "png":
+                                // Display with androidgif
+                                Picasso.get()
+                                        .load(crestHomeFinal)
+                                        .resize(50, 50)
+                                        .centerCrop()
+                                        .into(fragment.logo_club_home);
+                                break;
+                        }
+                    }else {
+                        fragment.logo_club_home.setImageResource(R.drawable.ic_logo_foreground);
                     }
 
-                    switch (crestAwayFinal.substring(crestAwayFinal.length() - 3)){
-                        case "svg":
-                            SvgLoader.pluck()
-                                    .with(activity)
-                                    .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                                    .load(crestAwayFinal, activity.logo_club_away)
-                                    .close();
-                            break;
-                        case "gif":
-                        case "png":
-                            // Display with androidgif
-                            Picasso.get()
-                                    .load(crestAwayFinal)
-                                    .error(R.drawable.ic_logo_foreground)
-                                    .resize(50, 50)
-                                    .centerCrop()
-                                    .into(activity.logo_club_away);
-                            break;
+                    if (crestAwayFinal.length() >= 4) {
+                        switch (crestAwayFinal.substring(crestAwayFinal.length() - 3)){
+                            case "svg":
+                                SvgLoader.pluck()
+                                        .with(fragment.getActivity())
+                                        .load(crestAwayFinal, fragment.logo_club_away)
+                                        .close();
+                                break;
+                            case "gif":
+                            case "png":
+                                // Display with androidgif
+                                Picasso.get()
+                                        .load(crestAwayFinal)
+                                        .resize(50, 50)
+                                        .centerCrop()
+                                        .into(fragment.logo_club_away);
+                                break;
+                        }
+                    } else {
+                        fragment.logo_club_away.setImageResource(R.drawable.ic_logo_foreground);
                     }
 
                     String[] parts = oneMatch.getMatch().getUtcDate().split("T");
@@ -94,59 +98,59 @@ public class MatchController {
                     String[] dateDay = date.split("-");
                     String day = dateDay[2];
                     String month = dateDay[1];
-                    activity.tvMatchDate.setText(day + "/" + month);
+                    fragment.tvMatchDate.setText(day + "/" + month);
 
                     if (oneMatch.getHead2head() != null){
-                        activity.tvNuls.setText(String.valueOf(oneMatch.getHead2head().getHomeTeam().getDraws()));
-                        activity.tvButsTotaux.setText(String.valueOf(oneMatch.getHead2head().getTotalGoals()));
+                        fragment.tvNuls.setText(String.valueOf(oneMatch.getHead2head().getHomeTeam().getDraws()));
+                        fragment.tvButsTotaux.setText(String.valueOf(oneMatch.getHead2head().getTotalGoals()));
 
-                        activity.tvVictoiresHome.setText(String.valueOf(oneMatch.getHead2head().getHomeTeam().getWins()));
-                        activity.tvDefaitesHome.setText(String.valueOf(oneMatch.getHead2head().getHomeTeam().getLosses()));
+                        fragment.tvVictoiresHome.setText(String.valueOf(oneMatch.getHead2head().getHomeTeam().getWins()));
+                        fragment.tvDefaitesHome.setText(String.valueOf(oneMatch.getHead2head().getHomeTeam().getLosses()));
 
-                        activity.tvVictoiresAway.setText(String.valueOf(oneMatch.getHead2head().getAwayTeam().getWins()));
-                        activity.tvDefaitesAway.setText(String.valueOf(oneMatch.getHead2head().getAwayTeam().getLosses()));
+                        fragment.tvVictoiresAway.setText(String.valueOf(oneMatch.getHead2head().getAwayTeam().getWins()));
+                        fragment.tvDefaitesAway.setText(String.valueOf(oneMatch.getHead2head().getAwayTeam().getLosses()));
 
-                        activity.tvTotaux.setText(String.valueOf(oneMatch.getHead2head().getNumberOfMatches()));
+                        fragment.tvTotaux.setText(String.valueOf(oneMatch.getHead2head().getNumberOfMatches()));
 
-                        activity.pbVictoriesHome.setMax(oneMatch.getHead2head().getHomeTeam().getWins() + oneMatch.getHead2head().getAwayTeam().getWins());
-                        activity.pbVictoriesAway.setMax(oneMatch.getHead2head().getHomeTeam().getWins() + oneMatch.getHead2head().getAwayTeam().getWins());
-                        activity.pbVictoriesHome.setProgress(oneMatch.getHead2head().getHomeTeam().getWins());
-                        activity.pbVictoriesAway.setProgress(oneMatch.getHead2head().getAwayTeam().getWins());
+                        fragment.pbVictoriesHome.setMax(oneMatch.getHead2head().getHomeTeam().getWins() + oneMatch.getHead2head().getAwayTeam().getWins());
+                        fragment.pbVictoriesAway.setMax(oneMatch.getHead2head().getHomeTeam().getWins() + oneMatch.getHead2head().getAwayTeam().getWins());
+                        fragment.pbVictoriesHome.setProgress(oneMatch.getHead2head().getHomeTeam().getWins());
+                        fragment.pbVictoriesAway.setProgress(oneMatch.getHead2head().getAwayTeam().getWins());
 
-                        activity.pbDefeatsHome.setMax(oneMatch.getHead2head().getHomeTeam().getLosses() + oneMatch.getHead2head().getAwayTeam().getLosses());
-                        activity.pbDefeatsAway.setMax(oneMatch.getHead2head().getHomeTeam().getLosses() + oneMatch.getHead2head().getAwayTeam().getLosses());
-                        activity.pbDefeatsHome.setProgress(oneMatch.getHead2head().getHomeTeam().getLosses());
-                        activity.pbDefeatsAway.setProgress(oneMatch.getHead2head().getAwayTeam().getLosses());
+                        fragment.pbDefeatsHome.setMax(oneMatch.getHead2head().getHomeTeam().getLosses() + oneMatch.getHead2head().getAwayTeam().getLosses());
+                        fragment.pbDefeatsAway.setMax(oneMatch.getHead2head().getHomeTeam().getLosses() + oneMatch.getHead2head().getAwayTeam().getLosses());
+                        fragment.pbDefeatsHome.setProgress(oneMatch.getHead2head().getHomeTeam().getLosses());
+                        fragment.pbDefeatsAway.setProgress(oneMatch.getHead2head().getAwayTeam().getLosses());
                     }
 
-                    activity.btnWinnerHome.setText(String.valueOf(oneMatch.getMatch().getHomeTeam().getName()));
-                    activity.btnWinnerAway.setText(String.valueOf(oneMatch.getMatch().getAwayTeam().getName()));
+                    fragment.btnWinnerHome.setText(String.valueOf(oneMatch.getMatch().getHomeTeam().getName()));
+                    fragment.btnWinnerAway.setText(String.valueOf(oneMatch.getMatch().getAwayTeam().getName()));
 
-                    activity.tvVenue.setText(oneMatch.getMatch().getVenue());
+                    fragment.tvVenue.setText(oneMatch.getMatch().getVenue());
 
                     if(oneMatch.getMatch().getStatus().equals("FINISHED")) {
-                        activity.tvGoalHomeFT.setText(String.valueOf(oneMatch.getMatch().getScore().getFullTime().getHomeTeam()));
-                        activity.tvGoalAwayFT.setText(String.valueOf(oneMatch.getMatch().getScore().getFullTime().getAwayTeam()));
-                        activity.tvGoalHomeHT.setText(String.valueOf(oneMatch.getMatch().getScore().getHalfTime().getHomeTeam()));
-                        activity.tvGoalAwayHT.setText(String.valueOf(oneMatch.getMatch().getScore().getHalfTime().getAwayTeam()));
+                        fragment.tvGoalHomeFT.setText(String.valueOf(oneMatch.getMatch().getScore().getFullTime().getHomeTeam()));
+                        fragment.tvGoalAwayFT.setText(String.valueOf(oneMatch.getMatch().getScore().getFullTime().getAwayTeam()));
+                        fragment.tvGoalHomeHT.setText(String.valueOf(oneMatch.getMatch().getScore().getHalfTime().getHomeTeam()));
+                        fragment.tvGoalAwayHT.setText(String.valueOf(oneMatch.getMatch().getScore().getHalfTime().getAwayTeam()));
                     }
                     else{
-                        activity.tvGoalHomeFT.setText("-");
-                        activity.tvGoalAwayFT.setText("-");
-                        activity.tvGoalHomeHT.setText("-");
-                        activity.tvGoalAwayHT.setText("-");
+                        fragment.tvGoalHomeFT.setText("-");
+                        fragment.tvGoalAwayFT.setText("-");
+                        fragment.tvGoalHomeHT.setText("-");
+                        fragment.tvGoalAwayHT.setText("-");
                     }
 
-                    activity.tvNameHome.setText(String.valueOf(oneMatch.getMatch().getHomeTeam().getName()));
-                    activity.tvNameAway.setText(String.valueOf(oneMatch.getMatch().getAwayTeam().getName()));
+                    fragment.tvNameHome.setText(String.valueOf(oneMatch.getMatch().getHomeTeam().getName()));
+                    fragment.tvNameAway.setText(String.valueOf(oneMatch.getMatch().getAwayTeam().getName()));
                 } else {
-                    Snackbar.make(activity.contextView, "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(fragment.contextView, "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<OneMatch> call, @NonNull Throwable t) {
-                Snackbar.make(activity.contextView, "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(fragment.contextView, "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
     }

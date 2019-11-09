@@ -110,6 +110,7 @@ public class EditAccountActivity extends AppCompatActivity implements View.OnCli
                     if (!this.etPasswordNew.getText().toString().equals(this.etPasswordNewVerif.getText().toString())) {
                         Snackbar.make(this.contextView, "Les nouveaux mots de passe ne correspondent pas", Snackbar.LENGTH_SHORT).show();
                     } else {
+                        lockFieldAndButtons(false);
                         editPasswordController.onCreate(this.etPasswordNew.getText().toString());
                         this.etPasswordOld.setText("");
                         this.etPasswordNew.setText("");
@@ -122,12 +123,24 @@ public class EditAccountActivity extends AppCompatActivity implements View.OnCli
             if (TextUtils.isEmpty(this.editEtPseudo.getText().toString())) {
                 Snackbar.make(this.contextView, "Remplissez le champ du pseudo", Snackbar.LENGTH_SHORT).show();
             } else {
+                lockFieldAndButtons(false);
                 this.editPseudoController.onCreate(String.valueOf(this.editEtPseudo.getText()));
             }
         }
         else if (v.getId() == R.id.btnEditTeam){
+            lockFieldAndButtons(false);
             this.editFavoriteTeamController.onCreate(this.favoriteTeamId, this.favoriteTeamName);
         }
+    }
+
+    public void lockFieldAndButtons(boolean enabled){
+        this.editSpinnerFavoriteTeam.setEnabled(enabled);
+        this.etPasswordNewVerif.setEnabled(enabled);
+        this.etPasswordNew.setEnabled(enabled);
+        this.etPasswordOld.setEnabled(enabled);
+        this.btnEditPassword.setEnabled(enabled);
+        this.btnEditPseudo.setEnabled(enabled);
+        this.btnEditTeam.setEnabled(enabled);
     }
 
 }

@@ -1,10 +1,9 @@
 package com.example.footballapi.model.model_recyclerview.matches;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +11,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.CrestGenerator;
 import com.example.footballapi.model.model_dao.DataBase;
-import com.example.footballapi.view.activities.MatchActivity;
+import com.example.footballapi.view.fragments.MatchFragment;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.squareup.picasso.Picasso;
 
@@ -26,10 +27,10 @@ import java.util.List;
 
 public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.ViewHolder> {
 
-    public static final String CLE_DONNEES_ID_MATCH= "idMatch";
-    public static final String CLE_DONNEES_ID_HOME= "idHome";
-    public static final String CLE_DONNEES_ID_AWAY= "idAway";
-    public static final String CLE_DONNEES_STATUS= "status";
+    private static final String CLE_DONNEES_ID_MATCH= "idMatch";
+    private static final String CLE_DONNEES_ID_HOME= "idHome";
+    private static final String CLE_DONNEES_ID_AWAY= "idAway";
+    private static final String CLE_DONNEES_STATUS= "status";
 
     private List<MatchesModel> values;
     private MatchesFragment fragment;
@@ -83,44 +84,50 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         String crestAwayBD = (new DataBase(fragment.getActivity()).findTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())) != null) ? new DataBase(fragment.getActivity()).findTeamCrest(Integer.valueOf(values.get(position).getIdTeamAway())) : "" ;
         String crestAway = (new CrestGenerator().crestGenerator(values.get(position).getAwayTeam()).equals("")) ? crestAwayBD : new CrestGenerator().crestGenerator(values.get(position).getAwayTeam());
 
-        switch (crestHome.substring(crestHome.length() - 3)){
-            case "svg":
-                SvgLoader.pluck()
-                        .with(this.fragment.getActivity())
-                        .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                        .load(crestHome, holder.ivLogoClubHome)
-                        .close();
-                break;
-            case "gif":
-            case "png":
-                Picasso.get()
-                        .load(crestHome)
-                        .error(R.drawable.ic_logo_foreground)
-                        .resize(50, 50)
-                        .centerCrop()
-                        .into(holder.ivLogoClubHome);
-                break;
+        if (crestHome.length() >= 4) {
+            switch (crestHome.substring(crestHome.length() - 3)) {
+                case "svg":
+                    SvgLoader.pluck()
+                            .with(this.fragment.getActivity())
+                            .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                            .load(crestHome, holder.ivLogoClubHome)
+                            .close();
+                    break;
+                case "gif":
+                case "png":
+                    Picasso.get()
+                            .load(crestHome)
+                            .error(R.drawable.ic_logo_foreground)
+                            .resize(50, 50)
+                            .centerCrop()
+                            .into(holder.ivLogoClubHome);
+                    break;
+            }
+        } else {
+            holder.ivLogoClubHome.setImageResource(R.drawable.ic_logo_foreground);
         }
 
-        switch (crestAway.substring(crestAway.length() - 3)){
-            case "svg":
-                SvgLoader.pluck()
-                        .with(this.fragment.getActivity())
-                        .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                        .load(crestAway, holder.ivLogoClubAway)
-                        .close();
-                break;
-            case "gif":
+        if (crestAway.length() >= 4) {
+            switch (crestAway.substring(crestAway.length() - 3)) {
+                case "svg":
+                    SvgLoader.pluck()
+                            .with(this.fragment.getActivity())
+                            .load(crestAway, holder.ivLogoClubAway)
+                            .close();
+                    break;
+                case "gif":
 
-                break;
-            case "png":
-                Picasso.get()
-                        .load(crestAway)
-                        .error(R.drawable.ic_logo_foreground)
-                        .resize(50, 50)
-                        .centerCrop()
-                        .into(holder.ivLogoClubAway);
-                break;
+                    break;
+                case "png":
+                    Picasso.get()
+                            .load(crestAway)
+                            .resize(50, 50)
+                            .centerCrop()
+                            .into(holder.ivLogoClubAway);
+                    break;
+            }
+        } else {
+            holder.ivLogoClubHome.setImageResource(R.drawable.ic_logo_foreground);
         }
 
         if (values.get(position).getWinner() != null) {
@@ -155,13 +162,17 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, MatchActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_MATCH, Integer.parseInt(values.get(position).getIdMatch()));
-                intent.putExtra(CLE_DONNEES_ID_HOME, Integer.parseInt(values.get(position).getIdTeamHome()));
-                intent.putExtra(CLE_DONNEES_ID_AWAY, Integer.parseInt(values.get(position).getIdTeamAway()));
-                intent.putExtra(CLE_DONNEES_STATUS, values.get(position).getStatus());
-                context.startActivity(intent);
+                Fragment matchesFragment = new MatchFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt(CLE_DONNEES_ID_MATCH, Integer.parseInt(values.get(position).getIdMatch()));
+                bundle.putInt(CLE_DONNEES_ID_HOME, Integer.parseInt(values.get(position).getIdTeamHome()));
+                bundle.putInt(CLE_DONNEES_ID_AWAY, Integer.parseInt(values.get(position).getIdTeamAway()));
+                bundle.putString(CLE_DONNEES_STATUS, values.get(position).getStatus());
+                matchesFragment.setArguments(bundle);
+
+                AppCompatActivity activity = (AppCompatActivity) fragment.getContext();
+                if (activity != null)  activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, matchesFragment).commit();
+
             }
         });
 

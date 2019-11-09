@@ -1,12 +1,17 @@
 package com.example.footballapi.controleur;
 
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.model.model_retrofit.retrofit.football_data.RestFootballData;
 import com.example.footballapi.model.model_retrofit.team.Team;
-import com.example.footballapi.view.activities.TeamActivity;
+import com.example.footballapi.view.fragments.TeamFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
@@ -18,18 +23,18 @@ import retrofit2.Response;
 
 public class TeamController {
 
-    private TeamActivity activity;
+    private TeamFragment fragment;
 
-    public TeamController(TeamActivity activity) {
-        this.activity = activity;
+    public TeamController(TeamFragment fragment) {
+        this.fragment = fragment;
     }
 
     /**
      * Affiche les détails d'une équipe
      * @param token token de connexion
      * */
-    public void onCreate(final String token) {
-        Call<Team> call = RestFootballData.get().teamsDetails(token, activity.idTeam);
+    public void onCreate(final String token, int idTeam) {
+        Call<Team> call = RestFootballData.get().teamsDetails(token, idTeam);
         call.enqueue(new Callback<Team>() {
             @Override
             public void onResponse(@NonNull Call<Team> call, @NonNull Response<Team> response) {
@@ -37,15 +42,15 @@ public class TeamController {
                     Team team = response.body();
                     assert team != null;
 
-                    activity.crestURLPlayer = team.getCrestUrl();
+                    fragment.crestURLPlayer = team.getCrestUrl();
 
-                    activity.nomClub = team.getName();
+                    fragment.nomClub = team.getName();
 
                     // On change le title de l'actionBar par le nom du club
-                    Objects.requireNonNull(activity).setTitle(team.getName());
+                    Objects.requireNonNull(fragment.getActivity()).setTitle(team.getName());
 
-                    activity.tvWebSite.setText(team.getWebSite());
-                    activity.tvStade.setText(team.getVenue());
+                    fragment.tvWebSite.setText(team.getWebSite());
+                    fragment.tvStade.setText(team.getVenue());
 
                     StringBuilder activeCompetitions = new StringBuilder();
 
@@ -64,42 +69,46 @@ public class TeamController {
                         }
                     }
 
-                    activity.tvActiveCompetitions.setText(activeCompetitions.toString());
-                    activity.tvEntraineur.setText(entraineur.toString());
+                    fragment.tvActiveCompetitions.setText(activeCompetitions.toString());
+                    fragment.tvEntraineur.setText(entraineur.toString());
 
                     String crest = (new CrestGenerator().crestGenerator(team.getName()).equals("")) ?team.getCrestUrl() : new CrestGenerator().crestGenerator(team.getName());
 
-                    if (!crest.equals("") && activity.loadingPicsTeam) {
+                    if (crest.length() >= 4 && fragment.loadingPicsTeam) {
                         switch (crest.substring(crest.length() - 3)){
                             case "svg":
                                 SvgLoader.pluck()
-                                        .with(activity)
-                                        .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                                        .load(crest, activity.logo_club)
+                                        .with(fragment.getActivity())
+                                        .load(crest, fragment.logo_club)
                                         .close();
                                 break;
                             case "gif":
                             case "png":
                                 Picasso.get()
                                         .load(crest)
-                                        .error(R.drawable.ic_logo_foreground)
                                         .resize(50, 50)
                                         .centerCrop()
-                                        .into(activity.logo_club);
+                                        .into(fragment.logo_club);
                                 break;
                         }
+                    } else {
+                        fragment.logo_club.setImageResource(R.drawable.ic_logo_foreground);
                     }
 
-                    else activity.logo_club.setImageResource(R.drawable.ic_logo_foreground);
+                    String[] colorsClub = team.getClubColors().split(" / ");
+                    int[] colors = {Color.parseColor(colorsClub[0].toLowerCase()), Color.parseColor(colorsClub[1].toLowerCase())};
+                    GradientDrawable gradient = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, colors);
+                    ActionBar bar = ((AppCompatActivity) fragment.getActivity()).getSupportActionBar();
+                    Objects.requireNonNull(bar).setBackgroundDrawable(gradient);
 
                 } else {
-                    Snackbar.make(activity.contextView, "Le nombre d'appels est dépassé", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(fragment.contextView, "Le nombre d'appels est dépassé", Snackbar.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<Team> call, @NonNull Throwable t) {
-                Snackbar.make(activity.contextView, "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(fragment.contextView, "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
     }
