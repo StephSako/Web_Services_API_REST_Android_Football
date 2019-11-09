@@ -19,6 +19,7 @@ import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.CrestGenerator;
 import com.example.footballapi.model.model_dao.DataBase;
+import com.example.footballapi.view.fragments.MatchFragment;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.squareup.picasso.Picasso;
 
@@ -26,10 +27,10 @@ import java.util.List;
 
 public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.ViewHolder> {
 
-    public static final String CLE_DONNEES_ID_MATCH= "idMatch";
-    public static final String CLE_DONNEES_ID_HOME= "idHome";
-    public static final String CLE_DONNEES_ID_AWAY= "idAway";
-    public static final String CLE_DONNEES_STATUS= "status";
+    private static final String CLE_DONNEES_ID_MATCH= "idMatch";
+    private static final String CLE_DONNEES_ID_HOME= "idHome";
+    private static final String CLE_DONNEES_ID_AWAY= "idAway";
+    private static final String CLE_DONNEES_STATUS= "status";
 
     private List<MatchesModel> values;
     private MatchesFragment fragment;
@@ -161,7 +162,7 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment matchesFragment = new MatchesFragment();
+                Fragment matchesFragment = new MatchFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt(CLE_DONNEES_ID_MATCH, Integer.parseInt(values.get(position).getIdMatch()));
                 bundle.putInt(CLE_DONNEES_ID_HOME, Integer.parseInt(values.get(position).getIdTeamHome()));

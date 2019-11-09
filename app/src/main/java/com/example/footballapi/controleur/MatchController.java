@@ -8,7 +8,7 @@ import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.model.model_retrofit.retrofit.football_data.RestFootballData;
 import com.example.footballapi.model.model_retrofit.team.OneMatch;
-import com.example.footballapi.view.activities.MatchFragment;
+import com.example.footballapi.view.fragments.MatchFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 

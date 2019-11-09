@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.footballapi.model.model_retrofit.retrofit.always_data.RestAlwaysData;
 import com.example.footballapi.model.model_retrofit.supporter.PourcentBet;
-import com.example.footballapi.view.activities.MatchFragment;
+import com.example.footballapi.view.fragments.MatchFragment;
 import com.google.android.material.snackbar.Snackbar;
 
 import retrofit2.Call;

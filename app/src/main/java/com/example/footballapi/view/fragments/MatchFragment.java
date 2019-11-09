@@ -1,10 +1,8 @@
-package com.example.footballapi.view.activities;
+package com.example.footballapi.view.fragments;
 
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +21,6 @@ import com.example.footballapi.controleur.MatchController;
 import com.example.footballapi.controleur.PourcentBetController;
 import com.example.footballapi.controleur.SessionManagerPreferences;
 import com.example.footballapi.model.model_dao.DataBase;
-import com.example.footballapi.model.model_recyclerview.matches.AdapterRV_Matches;
 
 import java.util.Objects;
 
@@ -32,15 +29,15 @@ public class MatchFragment extends Fragment implements View.OnClickListener {
     private BetController betController;
     private PourcentBetController pourcentBetController;
 
-    public int idMatch = -1;
-    public int idHome = -1;
-    public int idAway = -1;
-    public String status = "";
+    private int idMatch = -1;
+    private int idHome = -1;
+    private int idAway = -1;
+    private String status = "";
 
-    public static final String CLE_DONNEES_ID_MATCH= "idMatch";
-    public static final String CLE_DONNEES_ID_HOME= "idHome";
-    public static final String CLE_DONNEES_ID_AWAY= "idAway";
-    public static final String CLE_DONNEES_STATUS= "status";
+    private static final String CLE_DONNEES_ID_MATCH= "idMatch";
+    private static final String CLE_DONNEES_ID_HOME= "idHome";
+    private static final String CLE_DONNEES_ID_AWAY= "idAway";
+    private static final String CLE_DONNEES_STATUS= "status";
 
     public ImageView logo_club_home;
     public ImageView logo_club_away;
@@ -71,8 +68,6 @@ public class MatchFragment extends Fragment implements View.OnClickListener {
     public TextView tvNameAway;
     public TextView tvNbParieurs;
 
-    public boolean loadingPicsPlayer;
-
     public MatchFragment(){}
 
     @Override
@@ -82,9 +77,6 @@ public class MatchFragment extends Fragment implements View.OnClickListener {
         MatchController matchController = new MatchController(this);
         betController = new BetController(this);
         pourcentBetController = new PourcentBetController(this);
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
-        this.loadingPicsPlayer = sharedPref.getBoolean("logosPlayer", true);
 
         this.logo_club_home = v.findViewById(R.id.ivLogoClubHome);
         this.logo_club_away = v.findViewById(R.id.ivLogoClubAway);
@@ -129,9 +121,9 @@ public class MatchFragment extends Fragment implements View.OnClickListener {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             this.idMatch = bundle.getInt(CLE_DONNEES_ID_MATCH, -1);
-            this.idHome = bundle.getInt(AdapterRV_Matches.CLE_DONNEES_ID_HOME, -1);
-            this.idAway = bundle.getInt(AdapterRV_Matches.CLE_DONNEES_ID_AWAY, -1);
-            this.status = bundle.getString(AdapterRV_Matches.CLE_DONNEES_STATUS, "");
+            this.idHome = bundle.getInt(CLE_DONNEES_ID_HOME, -1);
+            this.idAway = bundle.getInt(CLE_DONNEES_ID_AWAY, -1);
+            this.status = bundle.getString(CLE_DONNEES_STATUS, "");
         }
 
         this.tvMatchDate.setTypeface(null, Typeface.BOLD);
@@ -163,12 +155,6 @@ public class MatchFragment extends Fragment implements View.OnClickListener {
         pourcentBetController.onCreate(this.idMatch, this.idHome, this.idAway);
 
         return v;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        this.loadingPicsPlayer = new SessionManagerPreferences(Objects.requireNonNull(this.getActivity())).logosPlayerDisplayed();
     }
 
     public void onClick(View v) {

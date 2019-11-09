@@ -15,12 +15,9 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.footballapi.R;
-import com.example.footballapi.controleur.SessionManagerPreferences;
 import com.example.footballapi.controleur.TeamController;
 import com.example.footballapi.model.model_viewpager.team.Adapter_ViewPagerTeam;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.Objects;
 
 @SuppressLint("Registered")
 public class TeamFragment extends Fragment {
