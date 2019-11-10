@@ -6,13 +6,16 @@ import android.graphics.drawable.GradientDrawable;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.model.model_retrofit.retrofit.football_data.RestFootballData;
 import com.example.footballapi.model.model_retrofit.team.Team;
+import com.example.footballapi.model.model_viewpager.team.Adapter_ViewPagerTeam;
 import com.example.footballapi.view.fragments.TeamFragment;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
@@ -43,8 +46,8 @@ public class TeamController {
                     assert team != null;
 
                     fragment.crestURLPlayer = team.getCrestUrl();
-
                     fragment.nomClub = team.getName();
+                    fragment.address = team.getAddress();
 
                     // On change le title de l'actionBar par le nom du club
                     Objects.requireNonNull(fragment.getActivity()).setTitle(team.getName());
@@ -101,6 +104,11 @@ public class TeamController {
                     ActionBar bar = ((AppCompatActivity) fragment.getActivity()).getSupportActionBar();
                     Objects.requireNonNull(bar).setBackgroundDrawable(gradient);
 
+                    ViewPager viewPager = fragment.v.findViewById(R.id.pagerteam);
+                    Adapter_ViewPagerTeam myPagerAdapter = new Adapter_ViewPagerTeam(fragment.getFragmentManager(), team.getId(), "team", team.getName(), team.getAddress());
+                    viewPager.setAdapter(myPagerAdapter);
+                    TabLayout tabLayout = fragment.v.findViewById(R.id.tablayoutteam);
+                    tabLayout.setupWithViewPager(viewPager);
                 } else {
                     Snackbar.make(fragment.contextView, "Le nombre d'appels est dépassé", Snackbar.LENGTH_SHORT).show();
                 }

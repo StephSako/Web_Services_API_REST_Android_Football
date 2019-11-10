@@ -26,6 +26,10 @@ public class Team {
     @Expose
     private String crestUrl = "";
 
+    @SerializedName("address")
+    @Expose
+    private String address = "";
+
     @SerializedName("website")
     @Expose
     private String website = "";
@@ -80,5 +84,9 @@ public class Team {
 
     public String getClubColors() {
         return clubColors;
+    }
+
+    public String getAddress() {
+        return address;
     }
 }
