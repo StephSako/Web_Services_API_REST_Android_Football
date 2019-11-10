@@ -21,16 +21,19 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 @SuppressLint("Registered")
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
+    private SupportMapFragment mapFragment;
 
     private static final String ADDRESS = "teamAddress";
     private static final String TEAMNAME = "teamName";
     private String address = "";
     private String teamName = "";
+    private LatLng latLng;
+    private boolean created;
 
     public static MapFragment newInstance(String teamName, String address) {
         MapFragment frag = new MapFragment();
@@ -50,12 +53,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             this.teamName = getArguments().getString(TEAMNAME, "");
         }
 
-        assert getFragmentManager() != null;
-        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-        assert mapFragment != null;
-        mapFragment.getMapAsync(this);
+        this.mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        Objects.requireNonNull(mapFragment).getMapAsync(this);
 
-        String location = address;
+        String location = this.address;
         List<Address> addressList = null;
 
         Geocoder geocoder = new Geocoder(this.getContext());
@@ -66,10 +67,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
         assert addressList != null;
         Address address = addressList.get(0);
-        /*LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-        mMap.addMarker(new MarkerOptions().position(latLng).title(teamName));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-        mapFragment.getMapAsync(this);*/
+        this.latLng = new LatLng(address.getLatitude(), address.getLongitude());
+        created = false;
 
         return v;
     }
@@ -77,10 +76,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        LatLng latLng = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(latLng).title(teamName));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        if (!created) {
+            created = true;
+            googleMap.addMarker(new MarkerOptions().position(this.latLng).title(teamName));
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(this.latLng,8));
+            mapFragment.getMapAsync(this);
+        }
     }
 }
