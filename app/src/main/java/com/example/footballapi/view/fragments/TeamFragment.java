@@ -30,6 +30,7 @@ public class TeamFragment extends Fragment {
     // Variables qui seront transmises dans la vue Player
     public int idTeam = -1;
     public String nomClub = "";
+    public String address = "";
     public String crestURLPlayer = "";
 
     public TextView tvWebSite;
@@ -69,7 +70,7 @@ public class TeamFragment extends Fragment {
         teamcontroller.onCreate(getString(R.string.token), this.idTeam);
 
         ViewPager viewPager = v.findViewById(R.id.pagerteam);
-        Adapter_ViewPagerTeam myPagerAdapter = new Adapter_ViewPagerTeam(getFragmentManager(), this.idTeam, "team");
+        Adapter_ViewPagerTeam myPagerAdapter = new Adapter_ViewPagerTeam(getFragmentManager(), this.idTeam, "team", nomClub, address);
         viewPager.setAdapter(myPagerAdapter);
         TabLayout tabLayout = v.findViewById(R.id.tablayoutteam);
         tabLayout.setupWithViewPager(viewPager);

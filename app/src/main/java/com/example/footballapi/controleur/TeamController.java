@@ -43,8 +43,8 @@ public class TeamController {
                     assert team != null;
 
                     fragment.crestURLPlayer = team.getCrestUrl();
-
                     fragment.nomClub = team.getName();
+                    fragment.address = team.getAddress();
 
                     // On change le title de l'actionBar par le nom du club
                     Objects.requireNonNull(fragment.getActivity()).setTitle(team.getName());
@@ -100,7 +100,6 @@ public class TeamController {
                     GradientDrawable gradient = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, colors);
                     ActionBar bar = ((AppCompatActivity) fragment.getActivity()).getSupportActionBar();
                     Objects.requireNonNull(bar).setBackgroundDrawable(gradient);
-
                 } else {
                     Snackbar.make(fragment.contextView, "Le nombre d'appels est dépassé", Snackbar.LENGTH_SHORT).show();
                 }
