@@ -15,12 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.TeamController;
-import com.example.footballapi.model.model_viewpager.team.Adapter_ViewPagerTeam;
-import com.google.android.material.tabs.TabLayout;
 
 import java.util.Objects;
 
@@ -44,11 +41,13 @@ public class TeamFragment extends Fragment {
 
     private static final String KEY_ID = "idTeam";
 
+    public View v;
+
     public TeamFragment() { }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View v = inflater.inflate(R.layout.fragment_team, container, false);
+        v = inflater.inflate(R.layout.fragment_team, container, false);
 
         TeamController teamcontroller = new TeamController(this);
 
@@ -68,12 +67,6 @@ public class TeamFragment extends Fragment {
         if (bundle != null) this.idTeam = bundle.getInt(KEY_ID, -1);
 
         teamcontroller.onCreate(getString(R.string.token), this.idTeam);
-
-        ViewPager viewPager = v.findViewById(R.id.pagerteam);
-        Adapter_ViewPagerTeam myPagerAdapter = new Adapter_ViewPagerTeam(getFragmentManager(), this.idTeam, "team", nomClub, address);
-        viewPager.setAdapter(myPagerAdapter);
-        TabLayout tabLayout = v.findViewById(R.id.tablayoutteam);
-        tabLayout.setupWithViewPager(viewPager);
 
         return v;
     }

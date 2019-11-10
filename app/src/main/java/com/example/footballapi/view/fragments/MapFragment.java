@@ -51,7 +51,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
 
         assert getFragmentManager() != null;
-        SupportMapFragment mapFragment = (SupportMapFragment) getFragmentManager().findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
 
@@ -66,20 +66,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
         assert addressList != null;
         Address address = addressList.get(0);
-        LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+        /*LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
         mMap.addMarker(new MarkerOptions().position(latLng).title(teamName));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-        mapFragment.getMapAsync(this);
+        mapFragment.getMapAsync(this);*/
 
         return v;
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng latLng = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(latLng).title(teamName));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
     }
 }
