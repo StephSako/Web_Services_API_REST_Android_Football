@@ -58,7 +58,7 @@ public class TeamFragment extends Fragment {
         this.tvStade = v.findViewById(R.id.tvStade);
         this.tvActiveCompetitions = v.findViewById(R.id.tvActiveCompetitions);
         this.tvEntraineur = v.findViewById(R.id.tvEntraineur);
-        this.contextView = v.findViewById(R.id.team_fragment);
+        this.contextView = v.findViewById(R.id.team_fragment_info);
 
         logo_club = v.findViewById(R.id.logo_club);
 

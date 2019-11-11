@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:id="@+id/team_fragment_info"
     tools:context="com.example.footballapi.view.fragments.TeamFragment" >
 
     <LinearLayout

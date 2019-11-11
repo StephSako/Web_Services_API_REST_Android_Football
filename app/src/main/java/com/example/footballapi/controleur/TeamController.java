@@ -99,6 +99,16 @@ public class TeamController {
                     }
 
                     String[] colorsClub = team.getClubColors().split(" / ");
+
+                    // For unknow colors
+                    for (int i=0; i < colorsClub.length; i++) {
+                        colorsClub[i] = colorsClub[i].replaceAll("Navy Blue", "Navy");
+                        colorsClub[i] = colorsClub[i].replaceAll("Claret", "#722F37");
+                        colorsClub[i] = colorsClub[i].replaceAll("Sky Blue", "#87CEEB");
+                        colorsClub[i] = colorsClub[i].replaceAll("Royal Blue", "#4169E1");
+                        colorsClub[i] = colorsClub[i].replaceAll("Gold", "#FFD700");
+                    }
+
                     int[] colors = {Color.parseColor(colorsClub[0].toLowerCase()), Color.parseColor(colorsClub[1].toLowerCase())};
                     GradientDrawable gradient = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, colors);
                     ActionBar bar = ((AppCompatActivity) fragment.getActivity()).getSupportActionBar();
