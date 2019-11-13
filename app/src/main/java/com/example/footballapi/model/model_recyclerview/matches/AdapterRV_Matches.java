@@ -171,7 +171,7 @@ public class AdapterRV_Matches extends RecyclerView.Adapter<AdapterRV_Matches.Vi
                 matchesFragment.setArguments(bundle);
 
                 AppCompatActivity activity = (AppCompatActivity) fragment.getContext();
-                if (activity != null)  activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, matchesFragment).commit();
+                if (activity != null) activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, matchesFragment).addToBackStack(null).commit();
 
             }
         });

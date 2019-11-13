@@ -63,8 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bundle.putInt(KEY_ID, new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
         bundle.putString(KEY_TYPE, "team");
         fragment.setArguments(bundle);
-        ft.replace(R.id.fragment_hoster, fragment);
-        ft.commit();
+        ft.add(R.id.fragment_hoster, fragment).addToBackStack(null).commit();
 
         NavigationView nv = findViewById(R.id.nav_view); // Mise en place du NavigationDrawer
 
@@ -189,14 +188,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (t.onOptionsItemSelected(item))
             return true;
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent a = new Intent(Intent.ACTION_MAIN);
-        a.addCategory(Intent.CATEGORY_HOME);
-        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(a);
     }
 
     private void logout() {

@@ -54,9 +54,7 @@ public class TeamFragment extends Fragment {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
         this.loadingPicsTeam = sharedPref.getBoolean("logosTeam", true);
 
-        this.tvWebSite = v.findViewById(R.id.tvWebsite);
         this.tvStade = v.findViewById(R.id.tvStade);
-        this.tvActiveCompetitions = v.findViewById(R.id.tvActiveCompetitions);
         this.tvEntraineur = v.findViewById(R.id.tvEntraineur);
         this.contextView = v.findViewById(R.id.team_fragment_info);
 

@@ -52,9 +52,6 @@ public class TeamController {
                     // On change le title de l'actionBar par le nom du club
                     Objects.requireNonNull(fragment.getActivity()).setTitle(team.getName());
 
-                    fragment.tvWebSite.setText(team.getWebSite());
-                    fragment.tvStade.setText(team.getVenue());
-
                     StringBuilder activeCompetitions = new StringBuilder();
 
                     for (int i = 0; i < team.getActiveCompetitions().size(); i++){
@@ -72,7 +69,7 @@ public class TeamController {
                         }
                     }
 
-                    fragment.tvActiveCompetitions.setText(activeCompetitions.toString());
+                    fragment.tvStade.setText(team.getVenue());
                     fragment.tvEntraineur.setText(entraineur.toString());
 
                     String crest = (new CrestGenerator().crestGenerator(team.getName()).equals("")) ?team.getCrestUrl() : new CrestGenerator().crestGenerator(team.getName());
@@ -115,7 +112,7 @@ public class TeamController {
                     Objects.requireNonNull(bar).setBackgroundDrawable(gradient);
 
                     ViewPager viewPager = fragment.v.findViewById(R.id.pagerteam);
-                    Adapter_ViewPagerTeam myPagerAdapter = new Adapter_ViewPagerTeam(fragment.getFragmentManager(), team.getId(), "team", team.getName(), team.getAddress());
+                    Adapter_ViewPagerTeam myPagerAdapter = new Adapter_ViewPagerTeam(fragment.getFragmentManager(), team.getId(), "team", team.getName(), team.getAddress(), team.getWebSite());
                     viewPager.setAdapter(myPagerAdapter);
                     TabLayout tabLayout = fragment.v.findViewById(R.id.tablayoutteam);
                     tabLayout.setupWithViewPager(viewPager);

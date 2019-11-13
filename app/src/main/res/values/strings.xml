@@ -29,13 +29,11 @@
     <string name="tvPosteTitle">Poste</string>
     <string name="tvNumeroTitle">N°</string>
     <string name="ivLogoSplashScreen">Logo application SplashScreen</string>
-    <string name="tvStadeTitle">Stade :</string>
-    <string name="tvActiveCompetTitle">Compétitions :</string>
+    <string name="tvStadeTitle">Stade</string>
     <string name="btMatchesTitle">Matches</string>
     <string name="btnSquadTitle">Equipe</string>
-    <string name="tvWebSiteTitle">WebSite : </string>
     <string name="ivLogoClub">LogoClub</string>
-    <string name="tvEntraineursTitle">Entraîneur(s) :</string>
+    <string name="tvEntraineursTitle">Entraîneur</string>
     <string name="tvNomPlayerTitle">Nom :</string>
     <string name="tvBirthdayTitle">Date de naissance :</string>
     <string name="tvNationalityTitle">Pays d\'origine :</string>
