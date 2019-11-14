@@ -17,6 +17,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
@@ -29,17 +30,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private SupportMapFragment mapFragment;
 
     private static final String ADDRESS = "teamAddress";
-    private static final String TEAMNAME = "teamName";
+    private static final String TEAMVENUE = "teamVenue";
     private String address = "";
-    private String teamName = "";
+    private String teamVenue= "";
     private LatLng latLng;
     private boolean created;
 
-    public static MapFragment newInstance(String teamName, String address) {
+    public static MapFragment newInstance(String teamVenue, String address) {
         MapFragment frag = new MapFragment();
         Bundle args = new Bundle();
         args.putString(ADDRESS, address);
-        args.putString(TEAMNAME, teamName);
+        args.putString(TEAMVENUE, teamVenue);
         frag.setArguments(args);
         return(frag);
     }
@@ -50,7 +51,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         if(getArguments() != null){
             this.address = getArguments().getString(ADDRESS, "");
-            this.teamName = getArguments().getString(TEAMNAME, "");
+            this.teamVenue = getArguments().getString(TEAMVENUE, "");
         }
 
         this.mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
@@ -78,7 +79,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         if (!created) {
             created = true;
-            googleMap.addMarker(new MarkerOptions().position(this.latLng).title(teamName));
+            Marker marker = googleMap.addMarker(new MarkerOptions().position(this.latLng).title(teamVenue));
+            marker.showInfoWindow();
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(this.latLng,8));
             mapFragment.getMapAsync(this);
         }

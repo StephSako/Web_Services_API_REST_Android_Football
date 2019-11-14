@@ -15,14 +15,14 @@ public class Adapter_ViewPagerTeam extends FragmentStatePagerAdapter {
     private int id;
     private String type;
     private String address;
-    private String teamName;
+    private String teamVenue;
     private String teamURL;
 
-    public Adapter_ViewPagerTeam(FragmentManager fm, int id, String type, String teamName, String address, String teamURL) {
+    public Adapter_ViewPagerTeam(FragmentManager fm, int id, String type, String teamVenue, String address, String teamURL) {
         super(fm, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.id = id;
         this.type = type;
-        this.teamName = teamName;
+        this.teamVenue = teamVenue;
         this.address = address;
         this.teamURL = teamURL;
     }
@@ -33,7 +33,7 @@ public class Adapter_ViewPagerTeam extends FragmentStatePagerAdapter {
         switch (position){
             case 0: return MatchesFragment.newInstance(this.id, this.type);
             case 1: return SquadFragment.newInstance(this.id);
-            case 2: return MapFragment.newInstance(this.teamName, this.address);
+            case 2: return MapFragment.newInstance(this.teamVenue, this.address);
             case 3: return TeamWebFragment.newInstance(this.teamURL);
         }
         return null;
