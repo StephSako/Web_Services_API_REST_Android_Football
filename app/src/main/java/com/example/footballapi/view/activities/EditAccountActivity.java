@@ -135,6 +135,7 @@ public class EditAccountActivity extends AppCompatActivity implements View.OnCli
 
     public void lockFieldAndButtons(boolean enabled){
         this.editSpinnerFavoriteTeam.setEnabled(enabled);
+        this.editEtPseudo.setEnabled(enabled);
         this.etPasswordNewVerif.setEnabled(enabled);
         this.etPasswordNew.setEnabled(enabled);
         this.etPasswordOld.setEnabled(enabled);

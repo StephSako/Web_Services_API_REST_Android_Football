@@ -79,7 +79,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         if (!created) {
             created = true;
             googleMap.addMarker(new MarkerOptions().position(this.latLng).title(teamName));
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(this.latLng,8));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(this.latLng,8));
             mapFragment.getMapAsync(this);
         }
     }
