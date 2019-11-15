@@ -67,7 +67,7 @@ public class SquadController {
 
                                 model.setPlayerNationality(team.getSquad().get(i).getNationality());
                                 model.setPlayerId(String.valueOf(team.getSquad().get(i).getId()));
-                            } else if (team.getSquad().get(i).getRole().equals("COACH")) {
+                            } else {
                                 model.setPlayerName(String.valueOf(team.getSquad().get(i).getName()));
                                 model.setTeamName(String.valueOf(team.getName()));
                                 model.setTeamCrest(String.valueOf(team.getCrestUrl()));

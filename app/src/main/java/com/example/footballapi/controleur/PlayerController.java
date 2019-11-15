@@ -78,7 +78,9 @@ public class PlayerController {
                                 break;
                         }
                     }
-                    else activity.tvPostePlayer.setText("Entraineur");
+                    else {
+                        activity.tvPostePlayer.setText("Entraineur");
+                    }
 
                 } else {
                     Snackbar.make(activity.contextView, "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();

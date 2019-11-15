@@ -34,12 +34,11 @@
     <string name="btnSquadTitle">Equipe</string>
     <string name="ivLogoClub">LogoClub</string>
     <string name="tvEntraineursTitle">Entraîneur</string>
-    <string name="tvNomPlayerTitle">Nom :</string>
-    <string name="tvBirthdayTitle">Date de naissance :</string>
-    <string name="tvNationalityTitle">Pays d\'origine :</string>
-    <string name="tvPostePlayerTitle">Poste :</string>
-    <string name="tvShirtNumberPlayerTitle">Numéro de maillot :</string>
-    <string name="tvClubNamePlayerTitle">Equipe :</string>
+    <string name="tvNomPlayerTitle">Nom</string>
+    <string name="tvBirthdayTitle">Date de naissance</string>
+    <string name="tvNationalityTitle">Pays d\'origine</string>
+    <string name="tvPostePlayerTitle">Poste</string>
+    <string name="tvClubNamePlayerTitle">Equipe</string>
     <string name="tvDeveloppeurTitle">Développeur</string>
     <string name="DevelopperName">Stephen Sakovitch</string>
     <string name="tvPromotionTitle">Promotion</string>
