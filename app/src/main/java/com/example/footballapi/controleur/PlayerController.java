@@ -62,9 +62,6 @@ public class PlayerController {
                     activity.tvNationality.setText(player.getNationality());
                     activity.tvPlayerName.setText(player.getName());
 
-                    if (player.getShirtNumber() != -1)
-                        activity.tvShirtNumberPlayer.setText(String.valueOf(player.getShirtNumber()));
-
                     if (player.getPosition() != null) {
                         switch (player.getPosition()) {
                             case "Goalkeeper":
@@ -81,7 +78,9 @@ public class PlayerController {
                                 break;
                         }
                     }
-                    else activity.tvPostePlayer.setText("");
+                    else {
+                        activity.tvPostePlayer.setText("Entraineur");
+                    }
 
                 } else {
                     Snackbar.make(activity.contextView, "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();

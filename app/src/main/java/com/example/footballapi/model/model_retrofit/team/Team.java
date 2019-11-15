@@ -1,6 +1,5 @@
 package com.example.footballapi.model.model_retrofit.team;
 
-import com.example.footballapi.model.model_retrofit.competition.Classement;
 import com.example.footballapi.model.model_retrofit.player.Player;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -13,10 +12,6 @@ public class Team {
     @SerializedName("id")
     @Expose
     private int id = -1;
-
-    @SerializedName("activeCompetitions")
-    @Expose
-    private List<Classement.Competition> activeCompetitions = Collections.emptyList();
 
     @SerializedName("name")
     @Expose
@@ -58,10 +53,6 @@ public class Team {
 
     public int getId() {
         return id;
-    }
-
-    public List<Classement.Competition> getActiveCompetitions() {
-        return activeCompetitions;
     }
 
     public String getName() {return name; }

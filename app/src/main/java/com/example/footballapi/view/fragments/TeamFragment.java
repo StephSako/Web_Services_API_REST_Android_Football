@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -30,10 +29,6 @@ public class TeamFragment extends Fragment {
     public String address = "";
     public String crestURLPlayer = "";
 
-    public TextView tvWebSite;
-    public TextView tvStade;
-    public TextView tvActiveCompetitions;
-    public TextView tvEntraineur;
     public ImageView logo_club;
     public View contextView;
 
@@ -53,14 +48,8 @@ public class TeamFragment extends Fragment {
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
         this.loadingPicsTeam = sharedPref.getBoolean("logosTeam", true);
-
-        this.tvWebSite = v.findViewById(R.id.tvWebsite);
-        this.tvStade = v.findViewById(R.id.tvStade);
-        this.tvActiveCompetitions = v.findViewById(R.id.tvActiveCompetitions);
-        this.tvEntraineur = v.findViewById(R.id.tvEntraineur);
-        this.contextView = v.findViewById(R.id.team_fragment);
-
-        logo_club = v.findViewById(R.id.logo_club);
+        this.contextView = v.findViewById(R.id.team_fragment_info);
+        this.logo_club = v.findViewById(R.id.logo_club);
 
         // On récupère l'id de l'équipe venant du classement
         Bundle bundle = this.getArguments();

@@ -59,7 +59,6 @@ public class MatchController {
                                 break;
                             case "gif":
                             case "png":
-                                // Display with androidgif
                                 Picasso.get()
                                         .load(crestHomeFinal)
                                         .resize(50, 50)
@@ -81,7 +80,6 @@ public class MatchController {
                                 break;
                             case "gif":
                             case "png":
-                                // Display with androidgif
                                 Picasso.get()
                                         .load(crestAwayFinal)
                                         .resize(50, 50)

@@ -28,7 +28,6 @@ public class AdapterRV_Squad extends RecyclerView.Adapter<AdapterRV_Squad.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvPlayerName;
-        TextView tvShirtNumber;
         TextView tvNationality;
         TextView tvPosition;
 
@@ -38,7 +37,6 @@ public class AdapterRV_Squad extends RecyclerView.Adapter<AdapterRV_Squad.ViewHo
             super(v);
             layout = v;
             tvPlayerName = v.findViewById(R.id.tvPlayerName);
-            tvShirtNumber = v.findViewById(R.id.tvShirtNumber);
             tvNationality = v.findViewById(R.id.tvNationality);
             tvPosition = v.findViewById(R.id.tvPosition);
         }
@@ -61,7 +59,6 @@ public class AdapterRV_Squad extends RecyclerView.Adapter<AdapterRV_Squad.ViewHo
         holder.tvPosition.setText(values.get(position).getPlayerPosition());
         holder.tvPlayerName.setText(values.get(position).getPlayerName());
         holder.tvNationality.setText(values.get(position).getPlayerNationality());
-        holder.tvShirtNumber.setText(values.get(position).getPlayerShirtNumber());
 
         holder.itemView.setOnClickListener(new OnClickListener() {
             @Override

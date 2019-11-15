@@ -25,10 +25,6 @@ public class Player {
     @Expose
     private String dateOfBirth = "";
 
-    @SerializedName("shirtNumber")
-    @Expose
-    private int shirtNumber = -1;
-
     @SerializedName("role")
     @Expose
     private String role = "";
@@ -50,9 +46,4 @@ public class Player {
     public String getPosition() {
         return position;
     }
-
-    public int getShirtNumber() {
-        return shirtNumber;
-    }
-
 }

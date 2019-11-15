@@ -41,8 +41,8 @@ public class SquadController {
 
                     for (int i = 0; i < team.getSquad().size(); i++) {
                         if (team.getSquad().size() > 0) {
+                            SquadModel model = new SquadModel();
                             if (team.getSquad().get(i).getRole().equals("PLAYER")) {
-                                SquadModel model = new SquadModel();
                                 model.setPlayerName(String.valueOf(team.getSquad().get(i).getName()));
                                 model.setTeamName(String.valueOf(team.getName()));
                                 model.setTeamCrest(String.valueOf(team.getCrestUrl()));
@@ -67,17 +67,17 @@ public class SquadController {
 
                                 model.setPlayerNationality(team.getSquad().get(i).getNationality());
                                 model.setPlayerId(String.valueOf(team.getSquad().get(i).getId()));
-
-                                if (team.getSquad().get(i).getShirtNumber() != -1)
-                                    model.setPlayerShirtNumber(String.valueOf(team.getSquad().get(i).getShirtNumber()));
-                                else model.setPlayerShirtNumber("");
-
-                                fragment.list = listFinal;
-                                listFinal.add(model);
+                            } else {
+                                model.setPlayerName(String.valueOf(team.getSquad().get(i).getName()));
+                                model.setTeamName(String.valueOf(team.getName()));
+                                model.setTeamCrest(String.valueOf(team.getCrestUrl()));
+                                model.setPlayerNationality(team.getSquad().get(i).getNationality());
+                                model.setPlayerId(String.valueOf(team.getSquad().get(i).getId()));
+                                model.setPlayerPosition("Entraineur");
                             }
+                            listFinal.add(model);
                         }
                     }
-
                     fragment.showList(listFinal);
                 } else {
                     Snackbar.make(Objects.requireNonNull(fragment.getView()), "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();

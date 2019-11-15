@@ -106,7 +106,7 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
                     teamFragment.setArguments(bundle);
 
                     AppCompatActivity activity = (AppCompatActivity) fragment.getContext();
-                    if (activity != null) activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, teamFragment).commit();
+                    if (activity != null) activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, teamFragment).addToBackStack(null).commit();
                 }
             });
         }

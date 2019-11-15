@@ -34,15 +34,16 @@ public class EditPseudoController {
                 if (response.isSuccessful()) {
                     Snackbar.make(activity.contextView, "Votre pseudo a bien été modifié", Snackbar.LENGTH_SHORT).show();
                     new SessionManagerPreferences(activity).updateSupporter(pseudo);
-                    activity.lockFieldAndButtons(true);
 
                 } else {
                     Snackbar.make(activity.contextView, "Erreur lors du traitement", Snackbar.LENGTH_SHORT).show();
                 }
+                activity.lockFieldAndButtons(true);
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                activity.lockFieldAndButtons(true);
                 Snackbar.make(activity.contextView, "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
