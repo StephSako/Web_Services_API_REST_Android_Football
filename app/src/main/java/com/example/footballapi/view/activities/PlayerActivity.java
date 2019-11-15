@@ -19,8 +19,6 @@ public class PlayerActivity extends AppCompatActivity {
 
     public PlayerActivity(){ }
 
-    private PlayerController playercontroller;
-
     public int idPlayer = -1;
     public String nomClub = "";
     public String crestURLPlayer = "";
@@ -31,7 +29,6 @@ public class PlayerActivity extends AppCompatActivity {
     public TextView tvBirthday;
     public TextView tvNationality;
     public TextView tvPostePlayer;
-    public TextView tvShirtNumberPlayer;
     public View contextView;
 
     public boolean loadingPicsPlayer;
@@ -40,7 +37,7 @@ public class PlayerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
-        playercontroller = new PlayerController(this);
+        PlayerController playercontroller = new PlayerController(this);
 
         // Récupérer les valeurs choisies
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -53,7 +50,6 @@ public class PlayerActivity extends AppCompatActivity {
         this.tvBirthday = findViewById(R.id.tvBirthday);
         this.tvNationality = findViewById(R.id.tvNationality);
         this.tvPostePlayer = findViewById(R.id.tvPostePlayer);
-        this.tvShirtNumberPlayer = findViewById(R.id.tvShirtNumberPlayer);
         this.contextView = findViewById(R.id.player_activity);
 
         // On récupère l'id du joueur depuis le fragment père de la squad

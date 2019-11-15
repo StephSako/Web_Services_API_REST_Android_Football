@@ -8,13 +8,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.footballapi.R;
 import com.example.footballapi.view.activities.MainActivity;
-import com.example.footballapi.view.fragments.TeamFragment;
 
 import java.util.List;
 
@@ -26,6 +26,7 @@ public class AdapterRV_Search extends RecyclerView.Adapter<AdapterRV_Search.View
     private List<TeamDAO> listSearch;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView tvClubname;
         private Button btnCompetSearch;
         private Button btnTeamSearch;
 
@@ -34,6 +35,7 @@ public class AdapterRV_Search extends RecyclerView.Adapter<AdapterRV_Search.View
         ViewHolder(View v) {
             super(v);
             layout = v;
+            tvClubname = v.findViewById(R.id.nomClub_search);
             btnCompetSearch = v.findViewById(R.id.btnCompetSearch);
             btnTeamSearch = v.findViewById(R.id.btnTeamSearch);
         }
@@ -53,6 +55,8 @@ public class AdapterRV_Search extends RecyclerView.Adapter<AdapterRV_Search.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+        holder.tvClubname.setText(String.valueOf(listSearch.get(position).getClub_name()));
+
         holder.btnCompetSearch.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +71,7 @@ public class AdapterRV_Search extends RecyclerView.Adapter<AdapterRV_Search.View
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-                Intent intent = new Intent(context, TeamFragment.class);
+                Intent intent = new Intent(context, MainActivity.class);
                 intent.putExtra(CLE_DONNEES_ID_TEAM, listSearch.get(position).getIdTeam());
                 context.startActivity(intent);
             }

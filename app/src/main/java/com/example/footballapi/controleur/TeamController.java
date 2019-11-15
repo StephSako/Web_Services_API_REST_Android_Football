@@ -49,28 +49,7 @@ public class TeamController {
                     fragment.nomClub = team.getName();
                     fragment.address = team.getAddress();
 
-                    // On change le title de l'actionBar par le nom du club
                     Objects.requireNonNull(fragment.getActivity()).setTitle(team.getName());
-
-                    StringBuilder activeCompetitions = new StringBuilder();
-
-                    for (int i = 0; i < team.getActiveCompetitions().size(); i++){
-                        if (i == team.getActiveCompetitions().size() - 1) activeCompetitions.append(team.getActiveCompetitions().get(i).getName());
-                        else activeCompetitions.append(team.getActiveCompetitions().get(i).getName()).append(", ");
-                    }
-
-                    StringBuilder entraineur = new StringBuilder();
-                    for (int i = 0; i < team.getSquad().size(); i++) {
-                        if (team.getSquad().get(i).getRole().equals("COACH")) {
-                            if (i == team.getSquad().size() - 1)
-                                entraineur.append(team.getSquad().get(i).getName());
-                            else
-                                entraineur.append(team.getSquad().get(i).getName()).append("\n");
-                        }
-                    }
-
-                    fragment.tvStade.setText(team.getVenue());
-                    fragment.tvEntraineur.setText(entraineur.toString());
 
                     String crest = (new CrestGenerator().crestGenerator(team.getName()).equals("")) ?team.getCrestUrl() : new CrestGenerator().crestGenerator(team.getName());
 

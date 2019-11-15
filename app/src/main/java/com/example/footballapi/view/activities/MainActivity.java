@@ -18,8 +18,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.CrestGenerator;
-import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.controleur.SessionManagerPreferences;
+import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.view.fragments.CompetitionFragment;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.example.footballapi.view.fragments.TeamFragment;
@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
-    final static String CLE_DONNEES_ID_TEAM = "idTeam";
-    final static String CLE_DONNEES_ID_COMPET = "idCompet";
+    private static final String CLE_DONNEES_ID_TEAM = "idTeam";
+    private static final String CLE_DONNEES_ID_COMPET = "idCompet";
     private static final String KEY_TYPE = "typeMatches";
 
     private TextView tvSupporterName;
@@ -84,13 +84,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
 
-        Fragment fragment = new MatchesFragment(); // Fragment displayed by default
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        Bundle bundle = new Bundle();
-        bundle.putInt(CLE_DONNEES_ID_TEAM, new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
-        bundle.putString(KEY_TYPE, "team");
-        fragment.setArguments(bundle);
-        ft.add(R.id.fragment_hoster, fragment).addToBackStack(null).commit();
+        if (getIntent().getExtras() != null) {
+            if (Objects.requireNonNull(getIntent().getExtras()).containsKey(CLE_DONNEES_ID_TEAM)) {
+                Fragment teamFragment = new TeamFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt(CLE_DONNEES_ID_TEAM, getIntent().getIntExtra(CLE_DONNEES_ID_TEAM, -1));
+                teamFragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, teamFragment).addToBackStack(null).commit();
+            } else if (Objects.requireNonNull(getIntent().getExtras()).containsKey(CLE_DONNEES_ID_COMPET)) {
+                Fragment fragment = new CompetitionFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt(CLE_DONNEES_ID_COMPET, getIntent().getIntExtra(CLE_DONNEES_ID_COMPET, -1));
+                fragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, fragment).addToBackStack(null).commit();
+            }
+        } else {
+            // Fragment des matches de l'équipe favorite affichée par défaut
+            Fragment fragment = new MatchesFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(CLE_DONNEES_ID_TEAM, new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
+            bundle.putString(KEY_TYPE, "team");
+            fragment.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, fragment).addToBackStack(null).commit();
+        }
     }
 
     @Override

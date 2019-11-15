@@ -38,14 +38,6 @@
             android:layout_weight="3"
             android:gravity="center"
             android:padding="4dp"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/tvNumeroTitle"
-            android:textColor="@color/green"
-            android:textStyle="bold"
-            android:layout_weight="1"
-            android:gravity="center" />
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSquad"

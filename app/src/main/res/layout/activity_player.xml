@@ -41,6 +41,7 @@
         <TextView
             android:id="@+id/tvClubname"
             android:layout_width="0dp"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:layout_weight="1"/>
@@ -66,6 +67,7 @@
             android:autoLink="web"
             android:textColor="@color/black"
             android:layout_width="0dp"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
     </LinearLayout>
@@ -88,6 +90,7 @@
         <TextView
             android:id="@+id/tvBirthday"
             android:layout_width="0dp"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:layout_weight="1"/>
@@ -111,6 +114,7 @@
         <TextView
             android:id="@+id/tvNationality"
             android:layout_width="0dp"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:layout_weight="1"/>
@@ -134,29 +138,7 @@
         <TextView
             android:id="@+id/tvPostePlayer"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_weight="1"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="1dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/tvShirtNumberPlayerTitle"
-            android:textColor="@color/green"
-            android:textStyle="bold"
             android:gravity="center"
-            android:layout_weight="1"
-            tools:ignore="NestedWeights" />
-        <TextView
-            android:id="@+id/tvShirtNumberPlayer"
-            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:layout_weight="1"/>

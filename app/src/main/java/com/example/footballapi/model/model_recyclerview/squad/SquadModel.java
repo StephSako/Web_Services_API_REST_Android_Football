@@ -3,14 +3,13 @@ package com.example.footballapi.model.model_recyclerview.squad;
 public class SquadModel {
 
     private String playerName;
-    private String playerShirtNumber;
     private String playerPosition;
     private String playerNationality;
     private String playerId;
     private String teamName;
     private String teamCrest;
 
-    public String getPlayerId() {
+    String getPlayerId() {
         return playerId;
     }
 
@@ -18,7 +17,7 @@ public class SquadModel {
         this.playerId = playerId;
     }
 
-    public String getPlayerName() {
+    String getPlayerName() {
         return playerName;
     }
 
@@ -26,15 +25,7 @@ public class SquadModel {
         this.playerName = playerName;
     }
 
-    public String getPlayerShirtNumber() {
-        return playerShirtNumber;
-    }
-
-    public void setPlayerShirtNumber(String playerShirtNumber) {
-        this.playerShirtNumber = playerShirtNumber;
-    }
-
-    public String getPlayerPosition() {
+    String getPlayerPosition() {
         return playerPosition;
     }
 
@@ -42,7 +33,7 @@ public class SquadModel {
         this.playerPosition = playerPosition;
     }
 
-    public String getPlayerNationality() {
+    String getPlayerNationality() {
         return playerNationality;
     }
 
@@ -50,7 +41,7 @@ public class SquadModel {
         this.playerNationality = playerNationality;
     }
 
-    public String getTeamName() {
+    String getTeamName() {
         return teamName;
     }
 
@@ -58,7 +49,7 @@ public class SquadModel {
         this.teamName = teamName;
     }
 
-    public String getTeamCrest() {
+    String getTeamCrest() {
         return teamCrest;
     }
 

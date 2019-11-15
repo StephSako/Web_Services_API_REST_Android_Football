@@ -26,8 +26,6 @@ public class SquadFragment extends Fragment {
 
     private SquadController squadcontroller = new SquadController(this);
 
-    public List<SquadModel> list;
-
     public static SquadFragment newInstance(int id) {
         SquadFragment frag = new SquadFragment();
         Bundle args = new Bundle();
