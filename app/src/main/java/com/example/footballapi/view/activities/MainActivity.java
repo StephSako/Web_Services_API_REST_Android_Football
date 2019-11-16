@@ -118,42 +118,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.itemBundesliga:
                 bundle.putInt(CLE_DONNEES_ID_COMPET, 2002);
                 fragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, fragment).commit();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemEredivisie:
                 bundle.putInt(CLE_DONNEES_ID_COMPET, 2003);
                 fragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, fragment).commit();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemLigaBresil:
                 bundle.putInt(CLE_DONNEES_ID_COMPET, 2013);
                 fragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, fragment).commit();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemLigaEspagne:
                 bundle.putInt(CLE_DONNEES_ID_COMPET, 2014);
                 fragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, fragment).commit();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemLigaNOS:
                 bundle.putInt(CLE_DONNEES_ID_COMPET, 2017);
                 fragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, fragment).commit();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemLigue1:
                 bundle.putInt(CLE_DONNEES_ID_COMPET, 2015);
                 fragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, fragment).commit();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemPremierLeague:
                 bundle.putInt(CLE_DONNEES_ID_COMPET, 2021);
                 fragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, fragment).commit();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemSerieA:
                 bundle.putInt(CLE_DONNEES_ID_COMPET, 2019);
                 fragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, fragment).commit();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.logout:
                 logout();
@@ -162,13 +162,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 launch_item_class(SettingsActivity.class);
                 break;
             case R.id.credits:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, new CreditsFragment()).commit();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, new CreditsFragment()).commit();
                 break;
             case R.id.itemSearch:
                 launch_item_class(SearchTeamActivity.class);
                 break;
             case R.id.edit:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, new EditAccountFragment()).commit();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, new EditAccountFragment()).commit();
                 break;
             default:
                 return true;
