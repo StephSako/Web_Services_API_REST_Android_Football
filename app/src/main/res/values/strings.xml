@@ -80,4 +80,11 @@
     <string name="etPseudo">Pseudo</string>
     <string name="etPassword">Mot de passe</string>
     <string name="tvFavoriteTeam">Equipe supportée</string>
+    <string name="se_connecter">Se connecter</string>
+    <string name="s_inscrire">S\'inscrire</string>
+    <string name="editpseudobutton">editPseudoButton</string>
+    <string name="nouveau_mot_de_passe">Nouveau mot de passe</string>
+    <string name="mot_de_passe_actuel">Mot de passe actuel</string>
+    <string name="ressaisissez">Ressaisissez</string>
+    <string name="modifier_le_mot_de_passe">Modifier le mot de passe</string>
 </resources>

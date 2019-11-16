@@ -33,13 +33,11 @@
         </activity>
 
         <activity android:name=".view.activities.PlayerActivity" />
-        <activity android:name=".view.activities.CreditsActivity" />
         <activity android:name=".view.activities.SettingsActivity" />
         <activity android:name=".view.activities.SearchTeamActivity" />
         <activity android:name=".view.activities.ConnexionActivity" />
         <activity android:name=".view.activities.InscriptionActivity" />
         <activity android:name=".view.activities.MainActivity" />
-        <activity android:name=".view.activities.EditAccountActivity" />
 
     </application>
 

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/credits"
     android:orientation="vertical"
-    tools:context="com.example.footballapi.view.activities.CreditsActivity"
+    tools:context="com.example.footballapi.view.fragments.CreditsFragment"
     tools:ignore="ExtraText">
 
     <TextView
