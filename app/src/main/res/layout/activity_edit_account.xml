@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/edit_account_activity"
     android:orientation="vertical"
-    tools:context="com.example.footballapi.view.activities.EditAccountActivity"
+    tools:context="com.example.footballapi.view.fragments.EditAccountFragment"
     android:background="@drawable/degradesplashscreen"
     tools:ignore="ExtraText">
 
@@ -60,7 +60,7 @@
                 android:src="@drawable/ic_edit"
                 tools:targetApi="lollipop"
                 android:background="@drawable/terminated"
-                android:contentDescription="editPseudoButton" />
+                android:contentDescription="@string/editpseudobutton" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -92,7 +92,7 @@
                 android:layout_height="45dp"
                 android:layout_weight="6"
                 android:background="@drawable/terminated"
-                android:contentDescription="editPseudoButton"
+                android:contentDescription="@string/editpseudobutton"
                 android:drawableStart="@android:drawable/ic_menu_search"
                 android:src="@drawable/ic_edit"
                 android:textColor="@color/black"
@@ -114,29 +114,32 @@
             android:id="@+id/editEtPasswordOld"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Mot de passe actuel"
+            android:hint="@string/mot_de_passe_actuel"
             android:ems="10"
             android:inputType="textPassword"
             android:drawablePadding="10dp"
-            android:drawableStart="@drawable/ic_password"/>
+            android:drawableStart="@drawable/ic_password"
+            android:importantForAutofill="no" />
         <EditText
             android:id="@+id/editEtPasswordNew"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Nouveau mot de passe"
+            android:hint="@string/nouveau_mot_de_passe"
             android:ems="10"
             android:inputType="textPassword"
             android:drawablePadding="10dp"
-            android:drawableStart="@drawable/ic_password"/>
+            android:drawableStart="@drawable/ic_password"
+            android:importantForAutofill="no" />
         <EditText
             android:id="@+id/editEtPasswordNewVerif"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Ressaisissez"
+            android:hint="@string/ressaisissez"
             android:ems="10"
             android:inputType="textPassword"
             android:drawablePadding="10dp"
-            android:drawableStart="@drawable/ic_password"/>
+            android:drawableStart="@drawable/ic_password"
+            android:importantForAutofill="no" />
     </LinearLayout>
 
     <Button
@@ -146,7 +149,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:backgroundTint="@android:color/background_light"
-        android:text="Modifier le mot de passe"
+        android:text="@string/modifier_le_mot_de_passe"
         android:textColor="@color/black"
         android:textSize="18sp"
         tools:targetApi="lollipop" />

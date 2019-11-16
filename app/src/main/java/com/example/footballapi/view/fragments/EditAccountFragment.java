@@ -1,9 +1,11 @@
-package com.example.footballapi.view.activities;
+package com.example.footballapi.view.fragments;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,7 +14,8 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.EditFavoriteTeamController;
@@ -26,51 +29,52 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class EditAccountActivity extends AppCompatActivity implements View.OnClickListener{
+public class EditAccountFragment extends Fragment implements View.OnClickListener{
 
-    public EditAccountActivity(){ }
+    public EditAccountFragment(){ }
 
     private EditPseudoController editPseudoController;
     private EditPasswordController editPasswordController;
     private EditFavoriteTeamController editFavoriteTeamController;
 
-    public EditText editEtPseudo;
-    public EditText etPasswordOld;
-    public EditText etPasswordNew;
-    public EditText etPasswordNewVerif;
-    public TextView tvTitreEdit;
-    public ImageButton btnEditPseudo;
-    public ImageButton btnEditTeam;
-    public Button btnEditPassword;
-    public Spinner editSpinnerFavoriteTeam;
-    public int favoriteTeamId;
-    public String favoriteTeamName;
+    private EditText editEtPseudo;
+    private EditText etPasswordOld;
+    private EditText etPasswordNew;
+    private EditText etPasswordNewVerif;
+    private ImageButton btnEditPseudo;
+    private ImageButton btnEditTeam;
+    private Button btnEditPassword;
+    private Spinner editSpinnerFavoriteTeam;
+    private int favoriteTeamId;
+    private String favoriteTeamName;
     public View contextView;
+    public View v;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_account);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        v = inflater.inflate(R.layout.activity_edit_account, container, false);
+
         editPseudoController = new EditPseudoController(this);
         editPasswordController = new EditPasswordController(this);
         editFavoriteTeamController = new EditFavoriteTeamController(this);
 
-        this.editEtPseudo = findViewById(R.id.editEtPseudo);
-        this.editEtPseudo.setText(new SessionManagerPreferences(this).getSupporterName());
+        this.editEtPseudo = v.findViewById(R.id.editEtPseudo);
+        this.editEtPseudo.setText(new SessionManagerPreferences(Objects.requireNonNull(this.getContext())).getSupporterName());
 
-        this.etPasswordOld = findViewById(R.id.editEtPasswordOld);
-        this.etPasswordNew = findViewById(R.id.editEtPasswordNew);
-        this.etPasswordNewVerif = findViewById(R.id.editEtPasswordNewVerif);
-        this.tvTitreEdit = findViewById(R.id.tvTitreEdit);
-        this.btnEditPseudo = findViewById(R.id.btnEditPseudo);
-        this.btnEditTeam = findViewById(R.id.btnEditTeam);
-        this.btnEditPassword = findViewById(R.id.btnEditPassword);
-        this.contextView = findViewById(R.id.edit_account_activity);
+        this.etPasswordOld = v.findViewById(R.id.editEtPasswordOld);
+        this.etPasswordNew = v.findViewById(R.id.editEtPasswordNew);
+        this.etPasswordNewVerif = v.findViewById(R.id.editEtPasswordNewVerif);
+        TextView tvTitreEdit = v.findViewById(R.id.tvTitreEdit);
+        this.btnEditPseudo = v.findViewById(R.id.btnEditPseudo);
+        this.btnEditTeam = v.findViewById(R.id.btnEditTeam);
+        this.btnEditPassword = v.findViewById(R.id.btnEditPassword);
+        this.contextView = v.findViewById(R.id.edit_account_activity);
 
-        this.tvTitreEdit.setTypeface(null, Typeface.BOLD);
+        tvTitreEdit.setTypeface(null, Typeface.BOLD);
 
-        this.editSpinnerFavoriteTeam = findViewById(R.id.editFavoriteTeam);
+        this.editSpinnerFavoriteTeam = v.findViewById(R.id.editFavoriteTeam);
         this.editSpinnerFavoriteTeam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -86,7 +90,7 @@ public class EditAccountActivity extends AppCompatActivity implements View.OnCli
         btnEditTeam.setOnClickListener(this);
         btnEditPassword.setOnClickListener(this);
 
-        DataBase database = new DataBase(this);
+        DataBase database = new DataBase(this.getContext());
         List<TeamDAO> teams = database.findAllTeams();
         ArrayList<FavoriteTeam> teamsList = new ArrayList<>();
 
@@ -94,8 +98,10 @@ public class EditAccountActivity extends AppCompatActivity implements View.OnCli
             teamsList.add(new FavoriteTeam(teams.get(i).getIdTeam(), teams.get(i).getClub_name(), teams.get(i).getIdCompet()));
         }
 
-        ArrayAdapter<FavoriteTeam> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, teamsList);
+        ArrayAdapter adapter = new ArrayAdapter<>(this.getContext(), android.R.layout.simple_spinner_dropdown_item, teamsList);
         this.editSpinnerFavoriteTeam.setAdapter(adapter);
+
+        return v;
     }
 
     public void onClick(View v) {
@@ -104,7 +110,7 @@ public class EditAccountActivity extends AppCompatActivity implements View.OnCli
                 Snackbar.make(this.contextView, "Remplissez tous les champs", Snackbar.LENGTH_SHORT).show();
             }
             else{
-                if (!this.etPasswordOld.getText().toString().equals(new SessionManagerPreferences(this).getPasswordSupporter())) {
+                if (!this.etPasswordOld.getText().toString().equals(new SessionManagerPreferences(Objects.requireNonNull(this.getContext())).getPasswordSupporter())) {
                     Snackbar.make(this.contextView, "Le mot de passe actuel n'est pas celui renseigné", Snackbar.LENGTH_SHORT).show();
                 } else {
                     if (!this.etPasswordNew.getText().toString().equals(this.etPasswordNewVerif.getText().toString())) {

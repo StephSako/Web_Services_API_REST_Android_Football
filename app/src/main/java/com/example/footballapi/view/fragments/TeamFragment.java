@@ -29,13 +29,11 @@ public class TeamFragment extends Fragment {
     public String address = "";
     public String crestURLPlayer = "";
 
-    public ImageView logo_club;
-    public View contextView;
-
     public boolean loadingPicsTeam;
-
     private static final String KEY_ID = "idTeam";
 
+    public ImageView logo_club;
+    public View contextView;
     public View v;
 
     public TeamFragment() { }

@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
@@ -21,6 +20,8 @@ import com.example.footballapi.controleur.CrestGenerator;
 import com.example.footballapi.controleur.SessionManagerPreferences;
 import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.view.fragments.CompetitionFragment;
+import com.example.footballapi.view.fragments.CreditsFragment;
+import com.example.footballapi.view.fragments.EditAccountFragment;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.example.footballapi.view.fragments.TeamFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -112,58 +113,48 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment fragment = new CompetitionFragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Bundle bundle = new Bundle();
         switch (item.getItemId()) {
             case R.id.itemBundesliga:
                 bundle.putInt(CLE_DONNEES_ID_COMPET, 2002);
                 fragment.setArguments(bundle);
-                ft.replace(R.id.fragment_hoster, fragment);
-                ft.commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemEredivisie:
                 bundle.putInt(CLE_DONNEES_ID_COMPET, 2003);
                 fragment.setArguments(bundle);
-                ft.replace(R.id.fragment_hoster, fragment);
-                ft.commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemLigaBresil:
                 bundle.putInt(CLE_DONNEES_ID_COMPET, 2013);
                 fragment.setArguments(bundle);
-                ft.replace(R.id.fragment_hoster, fragment);
-                ft.commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemLigaEspagne:
                 bundle.putInt(CLE_DONNEES_ID_COMPET, 2014);
                 fragment.setArguments(bundle);
-                ft.replace(R.id.fragment_hoster, fragment);
-                ft.commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemLigaNOS:
                 bundle.putInt(CLE_DONNEES_ID_COMPET, 2017);
                 fragment.setArguments(bundle);
-                ft.replace(R.id.fragment_hoster, fragment);
-                ft.commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemLigue1:
                 bundle.putInt(CLE_DONNEES_ID_COMPET, 2015);
                 fragment.setArguments(bundle);
-                ft.replace(R.id.fragment_hoster, fragment);
-                ft.commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemPremierLeague:
                 bundle.putInt(CLE_DONNEES_ID_COMPET, 2021);
                 fragment.setArguments(bundle);
-                ft.replace(R.id.fragment_hoster, fragment);
-                ft.commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemSerieA:
                 bundle.putInt(CLE_DONNEES_ID_COMPET, 2019);
                 fragment.setArguments(bundle);
-                ft.replace(R.id.fragment_hoster, fragment);
-                ft.commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, fragment).commit();
                 break;
-
             case R.id.logout:
                 logout();
                 break;
@@ -171,13 +162,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 launch_item_class(SettingsActivity.class);
                 break;
             case R.id.credits:
-                launch_item_class(CreditsActivity.class);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, new CreditsFragment()).commit();
                 break;
             case R.id.itemSearch:
                 launch_item_class(SearchTeamActivity.class);
                 break;
             case R.id.edit:
-                launch_item_class(EditAccountActivity.class);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, new EditAccountFragment()).commit();
                 break;
             default:
                 return true;
