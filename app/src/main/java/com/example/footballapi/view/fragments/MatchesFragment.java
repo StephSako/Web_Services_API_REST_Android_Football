@@ -24,6 +24,7 @@ public class MatchesFragment extends Fragment {
     private int idForMatches = -1;
     private int positionDay = 0;
     private String type = "";
+    private boolean isAlreadyCreated = false; // Ne pas recharger le controlleur au replace du fragment
 
     public void incrPositionDay(){
         this.positionDay++;
@@ -32,7 +33,7 @@ public class MatchesFragment extends Fragment {
     private RecyclerView rvMatches;
     public View contextView;
 
-    private static final String KEY_ID = "idTeam";
+    private static final String KEY_ID = "idForMatches";
     private static final String KEY_TYPE = "typeMatches";
 
     public List<MatchesModel> list;
@@ -57,7 +58,13 @@ public class MatchesFragment extends Fragment {
         }
 
         if (this.type.equals("team")) new MatchesTeamController(this).onCreate(getString(R.string.token), this.idForMatches);
-        else if (this.type.equals("competition")) new MatchesCompetController(this).onCreate(getString(R.string.token), this.idForMatches);
+        else if (this.type.equals("competition")) {
+            if (!isAlreadyCreated){
+                new MatchesCompetController(this).onCreate(getString(R.string.token), this.idForMatches);
+                isAlreadyCreated = true;
+            }
+            else showList(list); // On ne fais pas d'appel si le fragment existe déjà
+        }
 
         return v;
     }

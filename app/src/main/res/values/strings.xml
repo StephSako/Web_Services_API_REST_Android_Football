@@ -42,7 +42,7 @@
     <string name="tvDeveloppeurTitle">Développeur</string>
     <string name="DevelopperName">Stephen Sakovitch</string>
     <string name="tvPromotionTitle">Promotion</string>
-    <string name="Promotion">ESIEA 3A 2018–2019</string>
+    <string name="Promotion">ESIEA 4A 2019–2020</string>
     <string name="tvEmailTitle">Email</string>
     <string name="EmailDevelopper">steph.sako@gmail.com</string>
     <string name="tvGitTitle">Git</string>
@@ -87,4 +87,6 @@
     <string name="mot_de_passe_actuel">Mot de passe actuel</string>
     <string name="ressaisissez">Ressaisissez</string>
     <string name="modifier_le_mot_de_passe">Modifier le mot de passe</string>
+    <string name="classement">Classement</string>
+    <string name="matches">Matches</string>
 </resources>
