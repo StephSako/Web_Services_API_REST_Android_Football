@@ -28,7 +28,7 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
     private List<TeamModel> values;
     private ClassementFragment fragment;
     private boolean netaccess;
-    private static final String KEY_ID = "idTeam";
+    private static final String KEY_ID = "idForMatches";
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvPosition;
