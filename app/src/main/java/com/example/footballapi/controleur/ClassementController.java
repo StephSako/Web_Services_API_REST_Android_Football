@@ -62,6 +62,7 @@ public class ClassementController {
                         teamsNameCrests.put(classement.getStandings().get(0).getTable().get(i - 1).getTeam().getId(), classement.getStandings().get(0).getTable().get(i - 1).getTeam().getCrestUrl());
                     }
 
+                    fragment.list = listFinal; // Appelée et affichée si le fragment existe déjà
                     fragment.showList(listFinal, true);
                 }
             }

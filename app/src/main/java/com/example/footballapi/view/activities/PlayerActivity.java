@@ -4,12 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.appcompat.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.footballapi.R;
 import com.example.footballapi.controleur.PlayerController;
@@ -68,31 +67,5 @@ public class PlayerActivity extends AppCompatActivity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         // Préférences du switch pour afficher les logos
         this.loadingPicsPlayer = sharedPref.getBoolean("logosPlayer", true);
-    }
-
-    // Affichage du menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    // Écouteur sur le menu
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.home) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
-            return true;
-        }
-        else if (item.getItemId() == R.id.search) {
-            Intent intent = new Intent(this, SearchTeamActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

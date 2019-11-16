@@ -33,8 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
-    private static final String CLE_DONNEES_ID_TEAM = "idTeam";
-    private static final String CLE_DONNEES_ID_COMPET = "idCompet";
+    private static final String KEY_ID = "idForMatches";
     private static final String KEY_TYPE = "typeMatches";
 
     private TextView tvSupporterName;
@@ -86,16 +85,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if (getIntent().getExtras() != null) {
-            if (Objects.requireNonNull(getIntent().getExtras()).containsKey(CLE_DONNEES_ID_TEAM)) {
+            if (Objects.requireNonNull(getIntent().getExtras()).containsKey(KEY_ID)) {
                 Fragment teamFragment = new TeamFragment();
                 Bundle bundle = new Bundle();
-                bundle.putInt(CLE_DONNEES_ID_TEAM, getIntent().getIntExtra(CLE_DONNEES_ID_TEAM, -1));
+                bundle.putInt(KEY_ID, getIntent().getIntExtra(KEY_ID, -1));
                 teamFragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, teamFragment).addToBackStack(null).commit();
-            } else if (Objects.requireNonNull(getIntent().getExtras()).containsKey(CLE_DONNEES_ID_COMPET)) {
+            } else if (Objects.requireNonNull(getIntent().getExtras()).containsKey(KEY_ID)) {
                 Fragment fragment = new CompetitionFragment();
                 Bundle bundle = new Bundle();
-                bundle.putInt(CLE_DONNEES_ID_COMPET, getIntent().getIntExtra(CLE_DONNEES_ID_COMPET, -1));
+                bundle.putInt(KEY_ID, getIntent().getIntExtra(KEY_ID, -1));
                 fragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, fragment).addToBackStack(null).commit();
             }
@@ -103,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             // Fragment des matches de l'équipe favorite affichée par défaut
             Fragment fragment = new MatchesFragment();
             Bundle bundle = new Bundle();
-            bundle.putInt(CLE_DONNEES_ID_TEAM, new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
+            bundle.putInt(KEY_ID, new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
             bundle.putString(KEY_TYPE, "team");
             fragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, fragment).addToBackStack(null).commit();
@@ -116,42 +115,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Bundle bundle = new Bundle();
         switch (item.getItemId()) {
             case R.id.itemBundesliga:
-                bundle.putInt(CLE_DONNEES_ID_COMPET, 2002);
+                bundle.putInt(KEY_ID, 2002);
                 fragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemEredivisie:
-                bundle.putInt(CLE_DONNEES_ID_COMPET, 2003);
+                bundle.putInt(KEY_ID, 2003);
                 fragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemLigaBresil:
-                bundle.putInt(CLE_DONNEES_ID_COMPET, 2013);
+                bundle.putInt(KEY_ID, 2013);
                 fragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemLigaEspagne:
-                bundle.putInt(CLE_DONNEES_ID_COMPET, 2014);
+                bundle.putInt(KEY_ID, 2014);
                 fragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemLigaNOS:
-                bundle.putInt(CLE_DONNEES_ID_COMPET, 2017);
+                bundle.putInt(KEY_ID, 2017);
                 fragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemLigue1:
-                bundle.putInt(CLE_DONNEES_ID_COMPET, 2015);
+                bundle.putInt(KEY_ID, 2015);
                 fragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemPremierLeague:
-                bundle.putInt(CLE_DONNEES_ID_COMPET, 2021);
+                bundle.putInt(KEY_ID, 2021);
                 fragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
                 break;
             case R.id.itemSerieA:
-                bundle.putInt(CLE_DONNEES_ID_COMPET, 2019);
+                bundle.putInt(KEY_ID, 2019);
                 fragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
                 break;
@@ -238,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             this.dl.closeDrawer(GravityCompat.START);
             Fragment teamFragment = new TeamFragment();
             Bundle bundle = new Bundle();
-            bundle.putInt(CLE_DONNEES_ID_TEAM, new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
+            bundle.putInt(KEY_ID, new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
             teamFragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, teamFragment).commit();
         }
