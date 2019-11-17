@@ -21,12 +21,10 @@ public class ClassementFragment extends Fragment {
 
     public int idCompet = -1;
     private static final String KEY_ID = "idForMatches";
-    private boolean isAlreadyCreated = false; // Ne pas recharger le controlleur au replace du fragment
-    public List<TeamModel> list;
 
     private RecyclerView rvClassement;
 
-    static ClassementFragment newInstance(int id) {
+    public static ClassementFragment newInstance(int id) {
         ClassementFragment frag = new ClassementFragment();
         Bundle args = new Bundle();
         args.putInt(KEY_ID, id);
@@ -42,12 +40,7 @@ public class ClassementFragment extends Fragment {
         rvClassement = v.findViewById(R.id.rvClassement);
 
         if(getArguments() != null) this.idCompet = getArguments().getInt(KEY_ID, -1);
-
-        if (!isAlreadyCreated){
-            classementcontroller.onCreate(getString(R.string.token), this.idCompet);
-            isAlreadyCreated = true;
-        }
-        else showList(list, true); // On ne fais pas d'appel si le fragment existe déjà
+        classementcontroller.onCreate(getString(R.string.token), this.idCompet);
 
         return v;
     }

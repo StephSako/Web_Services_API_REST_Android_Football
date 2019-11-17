@@ -63,7 +63,6 @@ public class MatchesCompetController {
 
                         listFinal.add(model);
                     }
-                    fragment.list = listFinal; // Appelée et affichée si le fragment existe déjà
                     fragment.showList(listFinal);
                 } else {
                     Snackbar.make(Objects.requireNonNull(fragment.getView()), "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();

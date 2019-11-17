@@ -51,7 +51,7 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
     }
 
     public AdapterRV_Classement(List<TeamModel> myDataset, ClassementFragment fragment, boolean netaccess) {
-        values = myDataset;
+        this.values = myDataset;
         this.fragment = fragment;
         this.netaccess = netaccess;
     }

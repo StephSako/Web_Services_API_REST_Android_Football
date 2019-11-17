@@ -61,8 +61,6 @@ public class ClassementController {
 
                         teamsNameCrests.put(classement.getStandings().get(0).getTable().get(i - 1).getTeam().getId(), classement.getStandings().get(0).getTable().get(i - 1).getTeam().getCrestUrl());
                     }
-
-                    fragment.list = listFinal; // Appelée et affichée si le fragment existe déjà
                     fragment.showList(listFinal, true);
                 }
             }
@@ -89,7 +87,6 @@ public class ClassementController {
                         model.setIdTeam(String.valueOf(classementDAO.get(i).getDiff()));
                         listFinal.add(model);
                     }
-
                     // booléen qui active ou désactive les écouteurs sur les item de la recyclerview en cas de activity_connexion oun non à internet
                     fragment.showList(listFinal, false);
                 }
