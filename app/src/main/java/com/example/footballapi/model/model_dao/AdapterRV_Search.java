@@ -20,8 +20,7 @@ import java.util.List;
 
 public class AdapterRV_Search extends RecyclerView.Adapter<AdapterRV_Search.ViewHolder> {
 
-    private static final String CLE_DONNEES_ID_TEAM = "idTeam";
-    private final static String CLE_DONNEES_ID_COMPET = "idCompet";
+    private static final String CLE_DONNEES_ID = "idForMatches";
 
     private List<TeamDAO> listSearch;
 
@@ -62,7 +61,7 @@ public class AdapterRV_Search extends RecyclerView.Adapter<AdapterRV_Search.View
             public void onClick(View v) {
                 Context context = v.getContext();
                 Intent intent = new Intent(context, MainActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_COMPET, listSearch.get(position).getIdCompet());
+                intent.putExtra(CLE_DONNEES_ID, listSearch.get(position).getIdCompet());
                 context.startActivity(intent);
             }
         });
@@ -72,7 +71,7 @@ public class AdapterRV_Search extends RecyclerView.Adapter<AdapterRV_Search.View
             public void onClick(View v) {
                 Context context = v.getContext();
                 Intent intent = new Intent(context, MainActivity.class);
-                intent.putExtra(CLE_DONNEES_ID_TEAM, listSearch.get(position).getIdTeam());
+                intent.putExtra(CLE_DONNEES_ID, listSearch.get(position).getIdTeam());
                 context.startActivity(intent);
             }
         });
