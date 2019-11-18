@@ -32,7 +32,7 @@
 
         </activity>
 
-        <activity android:name=".view.activities.PlayerActivity" />
+        <activity android:name=".view.fragments.PlayerFragment" />
         <activity android:name=".view.activities.SettingsActivity" />
         <activity android:name=".view.activities.SearchTeamActivity" />
         <activity android:name=".view.activities.ConnexionActivity" />

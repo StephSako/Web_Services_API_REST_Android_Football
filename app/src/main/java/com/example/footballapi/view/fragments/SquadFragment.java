@@ -50,7 +50,7 @@ public class SquadFragment extends Fragment {
         if (list != null && list.size() > 0) {
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
             rvSquad.setLayoutManager(layoutManager);
-            RecyclerView.Adapter mAdapter = new AdapterRV_Squad(list);
+            RecyclerView.Adapter mAdapter = new AdapterRV_Squad(list, this);
             rvSquad.setAdapter(mAdapter);
         }
     }
