@@ -189,7 +189,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void logout() {
         new SessionManagerPreferences(this).logout();
-
         Intent intent = new Intent(this, ConnexionActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

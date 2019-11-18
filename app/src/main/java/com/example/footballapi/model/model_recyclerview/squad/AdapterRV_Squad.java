@@ -63,6 +63,8 @@ public class AdapterRV_Squad extends RecyclerView.Adapter<AdapterRV_Squad.ViewHo
         holder.tvPlayerName.setText(values.get(position).getPlayerName());
         holder.tvNationality.setText(values.get(position).getPlayerNationality());
 
+        holder.itemView.setBackgroundResource(R.drawable.terminated);
+
         holder.itemView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

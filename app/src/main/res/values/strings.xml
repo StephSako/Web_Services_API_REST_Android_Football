@@ -46,15 +46,15 @@
     <string name="tvEmailTitle">Email</string>
     <string name="EmailDevelopper">steph.sako@gmail.com</string>
     <string name="tvGitTitle">Git</string>
-    <string name="LienGitProjet">https://github.com/StephSako/FootLite</string>
-    <string name="DescriptionAPropos">L\'application FootLite permet de récupérer des données au format JSON envoyées via des\nrequêtes HTTP depuis une API REST concernant des compétitions, équipes, matches et joueurs de football des huit principaux championnats :\n\n- la Bundesliga (Allemagne)\n- la Ligue 1 (France)\n- la Primera Division (Espagne)\n- la Premier League (Angleterre)\n- la Serie A (Brésil et Italie)\n- l\'Eredivisie (Pays-Bas)\n- la Primereira Liga (ou \"Liga NOS\", Portugal).</string>
+    <string name="LienGitProjet">/StephSako/FootLite</string>
+    <string name="DescriptionAPropos">L\'application FootLite permet de récupérer des données au format JSON envoyées via des\nrequêtes HTTP depuis une API REST concernant des compétitions, équipes, matches et joueurs de football des huit principaux championnats :\n\n- la Bundesliga (Allemagne)\n- la Ligue 1 (France)\n- la Primera Division (Espagne)\n- la Premier League (Angleterre)\n- la Serie A (Brésil et Italie)\n- l\'Eredivisie (Pays-Bas)\n- la Primereira Liga (ou \"Liga NOS\", Portugal).\n\nVous pouvez également vous connecter et vous inscrire à un compte afin de suivre et de parier sur les matches de votre équipe favorite !</string>
     <string name="descrTvLogoClubClassement">Logo club classement</string>
     <string name="btnTeamSearchTitle">Team</string>
     <string name="tvSearch">Rechercher</string>
     <string name="btnCompetSearchTitle">Champ</string>
     <string name="txtCreditTitle">Qu\'est ce que FootLite ?</string>
     <string name="txtTitleApiUsed">API utilisée</string>
-    <string name="txtApiLink">https://www.football-data.org/</string>
+    <string name="txtApiLink">football-data.org</string>
     <string name="Open">Open</string>
     <string name="Close">Close</string>
     <string name="imgVDescFT">Navigation drawer</string>
@@ -89,4 +89,6 @@
     <string name="modifier_le_mot_de_passe">Modifier le mot de passe</string>
     <string name="classement">Classement</string>
     <string name="matches">Matches</string>
+    <string name="serveur_comptes">Serveur comptes</string>
+    <string name="alwaysdata_com_fr">alwaysdata.com/fr/</string>
 </resources>

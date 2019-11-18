@@ -40,66 +40,20 @@
         android:layout_marginBottom="5dp"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/tvDeveloppeurTitle"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:textColor="@color/green"
-            android:textStyle="bold" />
-        <TextView
             android:text="@string/DevelopperName"
-            android:textColor="@color/black"
+            android:textColor="@color/green"
             android:gravity="center"
             android:layout_weight="1"
             android:textStyle="bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/tvPromotionTitle"
-            android:textColor="@color/green"
-            android:textStyle="bold" />
-        <TextView
-            android:text="@string/Promotion"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/tvEmailTitle"
-            android:textColor="@color/green"
-            android:textStyle="bold" />
         <TextView
             android:text="@string/EmailDevelopper"
             android:autoLink="email"
             android:layout_weight="1"
+            android:textStyle="bold"
             android:gravity="center"
+            android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -110,9 +64,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:orientation="horizontal">
-
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
@@ -122,7 +75,32 @@
         <TextView
             android:autoLink="web"
             android:text="@string/LienGitProjet"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/green"
+            android:gravity="center"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/txtTitleApiUsed"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/green"
+            android:textStyle="bold"/>
+        <TextView
+            android:autoLink="web"
+            android:text="@string/txtApiLink"
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_height="wrap_content"/>
@@ -135,18 +113,20 @@
         android:layout_marginBottom="35dp"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/txtTitleApiUsed"
-            android:gravity="center"
             android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/serveur_comptes"
             android:textColor="@color/green"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
         <TextView
             android:autoLink="web"
-            android:text="@string/txtApiLink"
-            android:layout_width="wrap_content"
+            android:text="@string/alwaysdata_com_fr"
+            android:layout_width="0dp"
             android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/green"
             android:gravity="center"
             android:layout_height="wrap_content"/>
     </LinearLayout>
