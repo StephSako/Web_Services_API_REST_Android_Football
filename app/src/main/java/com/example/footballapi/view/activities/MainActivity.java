@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private static final String KEY_ID = "idForMatches";
     private static final String KEY_TYPE = "typeMatches";
+    private static final String CLE_DONNEES_ID_COMPET = "idCompet";
+    private static final String CLE_DONNEES_ID_TEAM = "idTeam";
 
     private TextView tvSupporterName;
     private TextView tvSupporterFavoriteTeam;
@@ -85,16 +87,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if (getIntent().getExtras() != null) {
-            if (Objects.requireNonNull(getIntent().getExtras()).containsKey(KEY_ID)) {
+            if (Objects.requireNonNull(getIntent().getExtras()).containsKey(CLE_DONNEES_ID_TEAM)) {
                 Fragment teamFragment = new TeamFragment();
                 Bundle bundle = new Bundle();
-                bundle.putInt(KEY_ID, getIntent().getIntExtra(KEY_ID, -1));
+                bundle.putInt(KEY_ID, getIntent().getIntExtra(CLE_DONNEES_ID_TEAM, -1));
                 teamFragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, teamFragment).addToBackStack(null).commit();
-            } else if (Objects.requireNonNull(getIntent().getExtras()).containsKey(KEY_ID)) {
+            } else if (Objects.requireNonNull(getIntent().getExtras()).containsKey(CLE_DONNEES_ID_COMPET)) {
                 Fragment fragment = new CompetitionFragment();
                 Bundle bundle = new Bundle();
-                bundle.putInt(KEY_ID, getIntent().getIntExtra(KEY_ID, -1));
+                bundle.putInt(KEY_ID, getIntent().getIntExtra(CLE_DONNEES_ID_COMPET, -1));
                 fragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, fragment).addToBackStack(null).commit();
             }
@@ -201,9 +203,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    public void updateNavHeader() {
         this.tvSupporterName.setText(new SessionManagerPreferences(this).getSupporterName());
         this.tvSupporterFavoriteTeam.setText(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
 

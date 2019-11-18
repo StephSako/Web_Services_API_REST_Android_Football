@@ -40,7 +40,7 @@ public class PlayerFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.activity_player, container, false);
+        v = inflater.inflate(R.layout.fragment_player, container, false);
         PlayerController playercontroller = new PlayerController(this);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());

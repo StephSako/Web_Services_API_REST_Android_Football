@@ -1,6 +1,5 @@
 package com.example.footballapi.view.fragments;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -25,6 +23,7 @@ import com.example.footballapi.controleur.SessionManagerPreferences;
 import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.model.model_dao.TeamDAO;
 import com.example.footballapi.model.model_session_manager.FavoriteTeam;
+import com.example.footballapi.view.activities.MainActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -54,7 +53,9 @@ public class EditAccountFragment extends Fragment implements View.OnClickListene
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.activity_edit_account, container, false);
+        v = inflater.inflate(R.layout.fragment_edit_account, container, false);
+
+        Objects.requireNonNull(this.getActivity()).setTitle("Modifier le compte");
 
         editPseudoController = new EditPseudoController(this);
         editPasswordController = new EditPasswordController(this);
@@ -66,13 +67,10 @@ public class EditAccountFragment extends Fragment implements View.OnClickListene
         this.etPasswordOld = v.findViewById(R.id.editEtPasswordOld);
         this.etPasswordNew = v.findViewById(R.id.editEtPasswordNew);
         this.etPasswordNewVerif = v.findViewById(R.id.editEtPasswordNewVerif);
-        TextView tvTitreEdit = v.findViewById(R.id.tvTitreEdit);
         this.btnEditPseudo = v.findViewById(R.id.btnEditPseudo);
         this.btnEditTeam = v.findViewById(R.id.btnEditTeam);
         this.btnEditPassword = v.findViewById(R.id.btnEditPassword);
         this.contextView = v.findViewById(R.id.edit_account_activity);
-
-        tvTitreEdit.setTypeface(null, Typeface.BOLD);
 
         this.editSpinnerFavoriteTeam = v.findViewById(R.id.editFavoriteTeam);
         this.editSpinnerFavoriteTeam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -129,11 +127,13 @@ public class EditAccountFragment extends Fragment implements View.OnClickListene
             if (TextUtils.isEmpty(this.editEtPseudo.getText().toString())) {
                 Snackbar.make(this.contextView, "Remplissez le champ du pseudo", Snackbar.LENGTH_SHORT).show();
             } else {
+                ((MainActivity) Objects.requireNonNull(getActivity())).updateNavHeader();
                 lockFieldAndButtons(false);
                 this.editPseudoController.onCreate(String.valueOf(this.editEtPseudo.getText()));
             }
         }
         else if (v.getId() == R.id.btnEditTeam){
+            ((MainActivity) Objects.requireNonNull(getActivity())).updateNavHeader();
             lockFieldAndButtons(false);
             this.editFavoriteTeamController.onCreate(this.favoriteTeamId, this.favoriteTeamName);
         }
