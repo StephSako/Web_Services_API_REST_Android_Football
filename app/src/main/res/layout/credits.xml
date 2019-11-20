@@ -5,32 +5,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/credits"
     android:orientation="vertical"
-    tools:context="com.example.footballapi.view.fragments.CreditsFragment"
-    tools:ignore="ExtraText">
+    tools:context="com.example.footballapi.view.fragments.CreditsFragment" >
 
     <TextView
         android:id="@+id/tvTitleCredits"
         android:layout_width="match_parent"
         android:gravity="center"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:text="@string/txtCreditTitle"
         android:textColor="@color/green"
         android:textStyle="bold"
-        android:layout_marginTop = "45dp"
+        android:layout_marginTop = "16dp"
+        android:layout_marginBottom = "4dp"
         tools:ignore="RtlHardcoded"
         android:layout_height="25dp" />
     <TextView
         android:id="@+id/tvCredits"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:gravity="left"
         android:textColor="@color/green"
-        android:layout_weight="1"
         android:text="@string/DescriptionAPropos"
         android:textSize="16sp"
-        android:layout_marginTop = "30dp"
+        android:layout_marginTop = "15dp"
         android:layout_marginLeft = "10dp"
         android:layout_marginRight = "10dp"
+        android:layout_marginBottom="12dp"
         tools:ignore="RtlHardcoded" />
 
     <LinearLayout
