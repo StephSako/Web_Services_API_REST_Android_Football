@@ -21,7 +21,6 @@ import com.example.footballapi.controleur.SessionManagerPreferences;
 import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.view.fragments.CompetitionFragment;
 import com.example.footballapi.view.fragments.CreditsFragment;
-import com.example.footballapi.view.fragments.EditAccountFragment;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.example.footballapi.view.fragments.TeamFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -169,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 launch_item_class(SearchTeamActivity.class);
                 break;
             case R.id.edit:
-                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, new EditAccountFragment()).commit();
+                launch_item_class(EditAccountActivity.class);
                 break;
             default:
                 return true;
@@ -202,11 +201,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
-    public void updateNavHeader() {
+    @Override
+    public void onResume() {
+        super.onResume();
         this.tvSupporterName.setText(new SessionManagerPreferences(this).getSupporterName());
         this.tvSupporterFavoriteTeam.setText(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
 
-        String crestBD = (new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) != null) ? new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) : "" ;
+        String crestBD = (new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) != null) ? new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) : "";
         String crest = (new CrestGenerator().crestGenerator(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter()).equals("")) ? crestBD : new CrestGenerator().crestGenerator(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
 
         if (!crest.equals("")) {
