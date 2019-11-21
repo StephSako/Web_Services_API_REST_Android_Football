@@ -73,23 +73,27 @@ public class AdapterRV_Classement extends RecyclerView.Adapter<AdapterRV_Classem
 
         String crest = (new CrestGenerator().crestGenerator(values.get(position).getName()).equals("")) ? values.get(position).getCrestURL() : new CrestGenerator().crestGenerator(values.get(position).getName());
 
-        if (crest.length() >= 4) {
-            switch (crest.substring(crest.length() - 3)){
-                case "svg":
-                    SvgLoader.pluck()
-                            .with(this.fragment.getActivity())
-                            .load(crest, holder.ivLogoClubClassement)
-                            .close();
-                    break;
-                case "gif":
-                case "png":
-                    // Display with androidgif
-                    Picasso.get()
-                            .load(crest)
-                            .resize(50, 50)
-                            .centerCrop()
-                            .into(holder.ivLogoClubClassement);
-                    break;
+        if (crest != null) {
+            if (crest.length() >= 4) {
+                switch (crest.substring(crest.length() - 3)) {
+                    case "svg":
+                        SvgLoader.pluck()
+                                .with(this.fragment.getActivity())
+                                .load(crest, holder.ivLogoClubClassement)
+                                .close();
+                        break;
+                    case "gif":
+                    case "png":
+                        // Display with androidgif
+                        Picasso.get()
+                                .load(crest)
+                                .resize(50, 50)
+                                .centerCrop()
+                                .into(holder.ivLogoClubClassement);
+                        break;
+                }
+            } else {
+                holder.ivLogoClubClassement.setImageResource(R.drawable.ic_logo_foreground);
             }
         } else {
             holder.ivLogoClubClassement.setImageResource(R.drawable.ic_logo_foreground);

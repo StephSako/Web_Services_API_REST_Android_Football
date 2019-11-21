@@ -5,10 +5,10 @@
 
 Projet de développement mobile de 4ème année à l'ESIEA, utilisant le pattern MVC pour une application Android codée en Java.
 
-L'application **FootLite** traite des données reçues au format JSON récupérées via requêtes HTTP GET sécurisées depuis l'API REST de <a href="https://www.football-data.org/">football-data.org</a> relative à des compétitions, équipes, matches, historiques de rencontre et joueurs de football des huit principaux championnats européens, à savoir la **Bundesliga** (Allemagne), la **Ligue 1** (France), la **Primera Division** (Espagne), la **Premier League** (Angleterre), la **Serie A** (Brésil et Italie), l'**Eredivisie** (Pays-Bas), et enfin la **Primeira Liga** (ou "Liga NOS", Portugal).
+L'application **FootLite** traite des données reçues au format JSON récupérées via requêtes HTTP GET sécurisées depuis l'API REST de <a href="https://www.football-data.org/">football-data.org</a> relative à des compétitions, équipes, matches, historiques de rencontres et joueurs de football des huit principaux championnats européens, à savoir la **Bundesliga** (Allemagne), la **Ligue 1** (France), la **Primera Division** (Espagne), la **Premier League** (Angleterre), la **Serie A** (Brésil et Italie), l'**Eredivisie** (Pays-Bas) et enfin la **Primeira Liga** (ou "Liga NOS", Portugal).
 
 L'utilisateur a également la possibilité de s'inscrire et de se connecter à un compte dans lequel il renseignera son pseudo, mot de passe ainsi que le club qu'il supporte. De plus, il pourra parier sur les matches de son choix des 8 championnats.
-J'ai donc développé <a href="https://github.com/StephSako/FootLite-PHP-REST-API">mon API REST</a> implémentée en PHP sur un serveur mutualisé Linux grâce à l'hébergeur Web <a href="https://www.alwaysdata.com/fr/">always-data</a> dans le but de gérer ces comptes et ces paris.
+J'ai donc développé <a href="https://github.com/StephSako/FootLite-PHP-REST-API">mon API REST</a> implémentée en PHP sur un serveur mutualisé Linux grâce à l'hébergeur Web <a href="https://www.alwaysdata.com/fr/">always-data</a> dans le but de gérer des comptes et des paris.
 
 # Outils et technologies de développement
 
@@ -16,11 +16,11 @@ J'ai donc développé <a href="https://github.com/StephSako/FootLite-PHP-REST-AP
 
 - **<a href="https://developer.android.com/studio">Android Studio</a>** est un environnement de développement pour développer des applications mobiles Android.
 <br>
-<p align="center"><img src="https://huddle.eurostarsoftwaretesting.com/wp-content/uploads/2018/10/pm-logo-vert.png" width="16%"></p>
+<p align="center"><img src="https://miro.medium.com/max/1030/0*0RDQH_SlaGamudtr.jpg" width="16%"></p>
 
 - **<a href="https://square.github.io/retrofit/">Retrofit2</a>** est une librairie permettant de réaliser des appels à des webservices REST sur Android.
 <br>
-<p align="center"><img src="https://miro.medium.com/max/1030/0*0RDQH_SlaGamudtr.jpg" width="24%"></p>
+<p align="center"><img src="https://huddle.eurostarsoftwaretesting.com/wp-content/uploads/2018/10/pm-logo-vert.png" width="24%"></p>
 
 - **<a href="https://www.getpostman.com/">Postman</a>** est un envrionnement de développement permettant de visualiser les réponses d'API sous différents formats, pour différentes requêtes HTTP.
 <br>
@@ -41,7 +41,8 @@ J'ai donc développé <a href="https://github.com/StephSako/FootLite-PHP-REST-AP
    - SplashScreen au démarrage de l'application
    - GitFlow respecté (master → developp → features → #...)
    - Animations entre les écrans
-   - Option de recherche d'équipe dans la BDD locale
+   - Option de recherche d'équipes dans la BDD locale
+   - Utilisation du Material Design & migration vers androidx
    - Préférences SharedPreferences :
 		- Affichage des logos
 		- Activation de la mise en cache au démarrage de l'application
@@ -49,7 +50,7 @@ J'ai donc développé <a href="https://github.com/StephSako/FootLite-PHP-REST-AP
 ## Navigation dans l'application :
 L'application **FootLite** est composée des vues suivantes :
 * Activité principale composée d'une *Navigation Drawer* permettant la navigation entre chaque championnats et activités listés ci-dessous
-* Activité de connexion & d'inscription à un compte FootLite
+* Activités de connexion & d'inscription à un compte FootLite
 * Fragment principal listant les matches de la saison de l'équipe supportée
 * Fragment détaillant un match (boutons de paris, score, dates, historique des rencontres, ...)
 * Fragment d'une compétition composée d'un *ViewPager* de deux fragments :
@@ -75,7 +76,7 @@ Afin d'accéder aux services de l'API, nous devons créer un compte et ainsi obt
 
 Les contrôleurs sont basés sur le pattern de l'injection de dépendances.
 
-**_ATTENTON : cette API me restreint à 10 appels/min. Pour la première utilisation, la mise en cache est activée afin de remplir une première fois la base de données locale. Une fois l'application installée, désactivez-la dans les préférences pour ne plus utiliser 8 appels à chaque redémarrage de l'application._**
+**_ATTENTON : cette API restreint à 10 appels/min. Pour la première utilisation, la mise en cache est activée afin de remplir une première fois la base de données locale. Une fois l'application installée, désactivez-la dans les préférences pour ne plus utiliser 8 appels à chaque redémarrage de l'application._**
 
 <sup>1</sup> *token* : Jeton d'authentification, séquence de lettres et de chiffres en guise de mot de passe pour une authentification forte.
 
@@ -161,7 +162,7 @@ Le code est disponible <a href="https://github.com/StephSako/FootLite-PHP-REST-A
 ### SplashScreen
 En ouvrant l'application, un SplashScreen apparaît, laissant le temps au programme de mettre en cache<sup>2</sup> les classements et équipes des championnats. Une animation de rotation zoom-dézoom est lancée.
 
-<p align="center"><img src="https://media.giphy.com/media/13gvXfEVlxQjDO/giphy.gif" width="40%"></p>
+<p align="center"><img src="https://image.noelshack.com/fichiers/2019/47/4/1574369228-screenshot-20191121-214631-footlite.jpg" width="40%"></p>
 
 ### Connexion & inscription à son compte FootLite
 
@@ -169,7 +170,7 @@ Voici l'écran de connexion où doivent être renseignés le pseudo et le mot de
 
 <p align="center"><img src="https://image.noelshack.com/fichiers/2019/47/4/1574346856-screenshot-20191120-095852-footlite.jpg" width="40%"></p>
 
-* Cet écran apparaît lorsque l'utilisateur n'est pas connecté, donc lorsque les SharedPreferences relatives au compte sont vides. Après connexion, les données personnelles ainsi que l'ensemble de ses paris sont mis à jour dans les SharedPreferences (le tableau de paris est donc sérialisé).
+* Cet écran apparaît lorsque l'utilisateur n'est pas connecté, donc lorsque les SharedPreferences relatives au compte sont vides. Après connexion, ses données personnelles ainsi que l'ensemble de ses paris sont mis à jour dans les SharedPreferences (le tableau de paris est donc sérialisé).
 
 Voici l'écran d'inscription où doivent être renseignés le pseudo, le mot de passe et l'équipe supportée en la sélectionnant grâce à un Spinner (les équipes sont récupérées grâce aux données stockées dans la base de données locale SQLite) :
 
@@ -199,12 +200,12 @@ En cliquant sur une compétition, l'écran charge un ViewPager révélant le cla
 Afin de générer les différentes RecyclerView de l'application, j'ai utilisé un pattern Adapter.
 
 <p align="center"><img src="https://image.noelshack.com/fichiers/2019/47/4/1574352699-screenshot-20191120-095816-footlite.jpg" width="35%">
-    - 
+    -
 <img src="https://image.noelshack.com/fichiers/2019/47/4/1574352728-screenshot-20191121-145626-footlite.jpg" width="35%"></p>
 
 S'il n'y a pas de connexion Internet, les équipes dans le classement ne sont pas cliquables et un message d'avertissement apparaît.
 
-<p align="center"><img src="https://image.noelshack.com/fichiers/2019/14/2/1554218157-screenshot-20190402-171035-footlite.jpg" width="40%"></p>
+<p align="center"><img src="https://image.noelshack.com/fichiers/2019/47/4/1574370394-screenshot-20191121-220600-footlite.jpg" width="40%"></p>
 
 ## L'équipe
 
@@ -235,9 +236,8 @@ En cliquant sur un match depuis une RecyclerView, nous avons accès à la fiche 
 
 <p align="center"><img src="https://image.noelshack.com/fichiers/2019/47/4/1574353817-screenshot-20191120-184726-footlite.jpg" width="40%"></p>
 
-Le bandeau vert central permet au supporters de parier sur le match en cliquant sur le bouton associer à potentiel vainqueur. Le nombre de parieurs ainsi que les **côtes** sont renseignés et mis à jour dès le pari effectué.
-Il n'est pas possible de parier une seconde fois, ni lorsque le match a un autre statut que *programmé* (autrement dit, un match *suspendu*, *annulé*, *en live* ou *terminé* n'est plus susceptible d'être parié ... tel est le principe du pari sportif   
-😁).
+Le bandeau vert central permet au supporters de parier sur le match en cliquant sur le bouton associé à un potentiel vainqueur. Le nombre de parieurs ainsi que les **côtes** sont renseignés et mis à jour dès le pari effectué.
+Il n'est pas possible de parier une seconde fois, ni lorsque le match a un autre statut que *programmé* (autrement dit, un match *suspendu*, *annulé*, *en live* ou *terminé* n'est plus susceptible d'être parié ... tel est le principe du pari sportif 😁).
 
 <p align="center"><img src="https://image.noelshack.com/fichiers/2019/47/4/1574354182-screenshot-20191121-173556-footlite.jpg" width="40%"></p>
 
@@ -276,9 +276,9 @@ Le contrôleur/helper SessionManagerPreferences donne un accès aux données sto
 
 ### DAO (Data Access Object)
 
-L'API me renvoyant beaucoup de données que je traite dans mon application, à savoir 8 championnats composées d'une vingtaine d'équipes chacun, elles-mêmes composées de plus de 40 matches et d'une trentaine de joueurs chacune, j'ai décidé de stocker les classements de chaque championnat.
+L'API me renvoie beaucoup de données que je traite dans mon application, à savoir 8 championnats composés d'une vingtaine d'équipes chacun, elles-mêmes composées de plus de 40 matches et d'une trentaine de joueurs chacune; j'ai décidé de stocker les classements de chaque championnat.
 
-Afin d'assurer une persistance longue des classements, j'ai choisi d'opter pour la DAO qui permet de stocker des données dans une base de données locale SQLite. Voici sa construction :
+Afin d'assurer une persistance longue des classements, j'ai choisi d'opter pour la DAO qui permet de stocker des données dans une base de données locale SQLite. Voici sa structure :
 
 | Colonne       | Type    | Nullable | Description                                                        |
 |:-------------:|:-------:|:--------:|--------------------------------------------------------------------|
@@ -295,9 +295,9 @@ Au démarrage, s'il y a Internet et que l'utilisateur a activé cette fonctionna
 # Problèmes rencontrés
 
 ### API
-Des informations ne sont pas fournies par l'API comme certains URL d'images pour des équipes ainsi que pour les matches. Par conséquent, j'ai opté pour la création d'un helper qui fournit les URL d'images manquantes en passant le nom de l'équipe en paramètre.
-De plus, le championnat brésilien dure de mai à décembre; les matches ne sont plus disponibles en dehors de cette plage.
+Des informations ne sont pas fournies par l'API comme certaines URL d'images pour des équipes ainsi que pour les matches. Par conséquent, j'ai opté pour la création d'un helper qui fournit les URL d'images manquantes en passant le nom de l'équipe en paramètre.
+De plus, le championnat brésilien a lieu de Mai à Décembre; les matches ne sont plus consultables en dehors de cette plage.
 <br>
-### URL d'images 
+### URL d'images
 
-Charger des images au format SVG depuis une URL est une tâche compliquée. J'ai d'abord recherché du côté de Glide et de la librairie svg:android, mais les images ne s'affichaient pas correctement. J'ai enfin fini par trouvé une <a href="https://github.com/ar-android/AndroidSvgLoader">librairie</a> qui parse et affiche les images dans des ImageViews *relativement* correctement (il faut parfois faire des va-et-vient avec les RecyclerView pour les afficher).
+Charger des images au format SVG depuis une URL est une tâche compliquée. J'ai d'abord recherché du côté de Glide et de la librairie svg:android, mais les images ne s'affichaient pas correctement. J'ai finalement trouvé une <a href="https://github.com/ar-android/AndroidSvgLoader">librairie</a> qui parse et affiche les images dans des ImageView correctement (il faut parfois faire des va-et-vient avec les RecyclerView pour les afficher).
