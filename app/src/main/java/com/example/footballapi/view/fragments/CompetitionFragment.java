@@ -28,7 +28,7 @@ public class CompetitionFragment extends Fragment {
         if (bundle != null) idCompet = bundle.getInt(CLE_DONNEES_ID_COMPET, -1);
 
         ViewPager viewPager = v.findViewById(R.id.pagerCompet);
-        Adapter_ViewPagerCompetition myPagerAdapter = new Adapter_ViewPagerCompetition(getFragmentManager(), idCompet, "competition");
+        Adapter_ViewPagerCompetition myPagerAdapter = new Adapter_ViewPagerCompetition(getChildFragmentManager(), idCompet, "competition");
         viewPager.setAdapter(myPagerAdapter);
         TabLayout tabLayout = v.findViewById(R.id.tablayoutCompet);
         tabLayout.setupWithViewPager(viewPager);

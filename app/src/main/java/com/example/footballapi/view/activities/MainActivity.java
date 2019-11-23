@@ -91,13 +91,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Bundle bundle = new Bundle();
                 bundle.putInt(KEY_ID, getIntent().getIntExtra(CLE_DONNEES_ID_TEAM, -1));
                 teamFragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, teamFragment).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, teamFragment).commit();
             } else if (Objects.requireNonNull(getIntent().getExtras()).containsKey(CLE_DONNEES_ID_COMPET)) {
                 Fragment fragment = new CompetitionFragment();
                 Bundle bundle = new Bundle();
                 bundle.putInt(KEY_ID, getIntent().getIntExtra(CLE_DONNEES_ID_COMPET, -1));
                 fragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, fragment).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, fragment).commit();
             }
         } else {
             // Fragment des matches de l'équipe favorite affichée par défaut
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             bundle.putInt(KEY_ID, new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
             bundle.putString(KEY_TYPE, "team");
             fragment.setArguments(bundle);
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, fragment).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, fragment).commit();
         }
     }
 
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Bundle bundle = new Bundle();
             bundle.putInt(KEY_ID, new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
             teamFragment.setArguments(bundle);
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, teamFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, teamFragment).addToBackStack(null).commit();
         }
     }
 }
