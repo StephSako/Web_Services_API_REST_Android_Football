@@ -1,7 +1,7 @@
 
-
-
 # Description du projet
+
+<p align="center"><img src="https://image.noelshack.com/fichiers/2019/47/6/1574517326-20191123-144951.jpg" width="18%"><br><i><legend>Logo de l'application</legend></i></p>
 
 Projet de développement mobile de 4ème année à l'ESIEA, utilisant le pattern MVC pour une application Android codée en Java.
 
