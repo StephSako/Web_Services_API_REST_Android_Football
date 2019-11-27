@@ -55,6 +55,7 @@ public class MatchFragment extends Fragment implements View.OnClickListener {
     public Button btnWinnerHome;
     public Button btnWinnerAway;
     private LinearLayout layoutBetButtons;
+    private LinearLayout layoutCotes;
     public ProgressBar pbVictoriesHome;
     public ProgressBar pbVictoriesAway;
     public ProgressBar pbDefeatsHome;
@@ -99,6 +100,7 @@ public class MatchFragment extends Fragment implements View.OnClickListener {
         this.tvGoalAwayFT = v.findViewById(R.id.tvGoalAwayFT);
         this.tvVenue = v.findViewById(R.id.tvVenue);
         this.layoutBetButtons = v.findViewById(R.id.layoutBetButtons);
+        this.layoutCotes = v.findViewById(R.id.layoutCotes);
         this.tvNameHome = v.findViewById(R.id.tvNameHome);
         this.tvNameAway = v.findViewById(R.id.tvNameAway);
         this.tvNbParieurs = v.findViewById(R.id.tvNbParieurs);
@@ -118,12 +120,11 @@ public class MatchFragment extends Fragment implements View.OnClickListener {
         this.btnWinnerHome.setOnClickListener(this);
         this.btnWinnerAway.setOnClickListener(this);
 
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            this.idMatch = bundle.getInt(CLE_DONNEES_ID_MATCH, -1);
-            this.idHome = bundle.getInt(CLE_DONNEES_ID_HOME, -1);
-            this.idAway = bundle.getInt(CLE_DONNEES_ID_AWAY, -1);
-            this.status = bundle.getString(CLE_DONNEES_STATUS, "");
+        if (this.getArguments() != null) {
+            this.idMatch = this.getArguments().getInt(CLE_DONNEES_ID_MATCH, -1);
+            this.idHome = this.getArguments().getInt(CLE_DONNEES_ID_HOME, -1);
+            this.idAway = this.getArguments().getInt(CLE_DONNEES_ID_AWAY, -1);
+            this.status = this.getArguments().getString(CLE_DONNEES_STATUS, "");
         }
 
         this.tvMatchDate.setTypeface(null, Typeface.BOLD);
@@ -136,19 +137,15 @@ public class MatchFragment extends Fragment implements View.OnClickListener {
         this.tvGoalHomeHT.setTypeface(null, Typeface.BOLD);
         this.tvNbParieurs.setTypeface(null, Typeface.BOLD);
 
+
+        // On cache les botuons de paris si le match est déjà joué, annulé, ... ou déjà parié par l'utilisateur actif
         assert this.status != null;
         if (this.status.equals("LIVE") || this.status.equals("IN_PLAY") || this.status.equals("FINISHED") || this.status.equals("PAUSED") || this.status.equals("SUSPENDED") || new SessionManagerPreferences(Objects.requireNonNull(this.getActivity())).isBet(this.idMatch) != -1)
             this.layoutBetButtons.setVisibility(LinearLayout.GONE);
 
-        // On bloque les boutons selon les paris existants
-        if (new SessionManagerPreferences(Objects.requireNonNull(this.getActivity())).isBet(this.idMatch) != -1){
-            if (new SessionManagerPreferences(this.getActivity()).isBet(this.idMatch) == idHome){
-                this.btnWinnerHome.setEnabled(false);
-                this.btnWinnerAway.setEnabled(true);
-            }else if (new SessionManagerPreferences(this.getActivity()).isBet(this.idMatch) == idAway){
-                this.btnWinnerHome.setEnabled(true);
-                this.btnWinnerAway.setEnabled(false);
-            }
+        // On cache les côtes si le match n'a pas déjà été parié par l'utilisateur actif
+        if (new SessionManagerPreferences(Objects.requireNonNull(this.getActivity())).isBet(this.idMatch) == -1){
+            this.layoutCotes.setVisibility(LinearLayout.GONE);
         }
 
         matchController.onCreate(getString(R.string.token), this.idMatch, new DataBase(this.getActivity()).findTeamCrest(this.idHome), new DataBase(this.getActivity()).findTeamCrest(this.idAway));
@@ -158,15 +155,10 @@ public class MatchFragment extends Fragment implements View.OnClickListener {
     }
 
     public void onClick(View v) {
-        if (v.getId() == R.id.btnWinnerHome){
-            this.layoutBetButtons.setVisibility(LinearLayout.GONE);
-            betController.onCreate(idMatch, new SessionManagerPreferences(Objects.requireNonNull(this.getActivity())).getIdSupporter(), idHome);
-            pourcentBetController.onCreate(this.idMatch, this.idHome, this.idAway);
-        }
-        else if (v.getId() == R.id.btnWinnerAway){
-            this.layoutBetButtons.setVisibility(LinearLayout.GONE);
-            betController.onCreate(idMatch, new SessionManagerPreferences(Objects.requireNonNull(this.getActivity())).getIdSupporter(), idAway);
-            pourcentBetController.onCreate(this.idMatch, this.idHome, this.idAway);
-        }
+        this.layoutBetButtons.setVisibility(LinearLayout.GONE);
+        this.layoutCotes.setVisibility(LinearLayout.VISIBLE);
+        if (v.getId() == R.id.btnWinnerHome) betController.onCreate(idMatch, new SessionManagerPreferences(Objects.requireNonNull(this.getActivity())).getIdSupporter(), idHome);
+        else if (v.getId() == R.id.btnWinnerAway) betController.onCreate(idMatch, new SessionManagerPreferences(Objects.requireNonNull(this.getActivity())).getIdSupporter(), idAway);
+        pourcentBetController.onCreate(this.idMatch, this.idHome, this.idAway);
     }
 }
