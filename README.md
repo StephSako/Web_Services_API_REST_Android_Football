@@ -237,7 +237,7 @@ En cliquant sur un match depuis une RecyclerView, nous avons accès à la fiche 
 <p align="center"><img src="https://image.noelshack.com/fichiers/2019/47/4/1574353817-screenshot-20191120-184726-footlite.jpg" width="40%"></p>
 
 Le bandeau vert central permet au supporters de parier sur le match en cliquant sur le bouton associé à un potentiel vainqueur. Le nombre de parieurs ainsi que les **côtes** sont renseignés et mis à jour dès le pari effectué.
-Il n'est pas possible de parier une seconde fois, ni lorsque le match a un autre statut que *programmé* (autrement dit, un match *suspendu*, *annulé*, *en live* ou *terminé* n'est plus susceptible d'être parié ... tel est le principe du pari sportif 😁).
+Il n'est pas possible de parier une seconde fois, ni lorsque le match a un autre statut que *programmé* (autrement dit, un match *suspendu*, *annulé*, *en live* ou *terminé* n'est plus susceptible d'être parié ... tel est le principe du pari sportif 😁). De plus, les cotes ne seront affichées qu'une fois le pari effectué.
 
 <p align="center"><img src="https://image.noelshack.com/fichiers/2019/47/4/1574354182-screenshot-20191121-173556-footlite.jpg" width="40%"></p>
 
