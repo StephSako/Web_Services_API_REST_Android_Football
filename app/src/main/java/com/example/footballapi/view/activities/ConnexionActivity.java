@@ -32,6 +32,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connexion);
         connexionController = new ConnexionController(this);
+        this.setTitle("Connexion");
 
         this.etPseudo = findViewById(R.id.etPseudo);
         this.etPassword = findViewById(R.id.etPassword);

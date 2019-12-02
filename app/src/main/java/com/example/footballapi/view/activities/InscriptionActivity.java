@@ -43,6 +43,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
         inscriptionController = new InscriptionController(this);
+        this.setTitle("Inscription");
 
         this.etPseudo = findViewById(R.id.etPseudo);
         this.etPassword = findViewById(R.id.etPassword);

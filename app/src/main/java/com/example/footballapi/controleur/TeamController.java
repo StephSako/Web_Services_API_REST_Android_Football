@@ -91,7 +91,7 @@ public class TeamController {
                     Objects.requireNonNull(bar).setBackgroundDrawable(gradient);
 
                     ViewPager viewPager = fragment.v.findViewById(R.id.pagerteam);
-                    Adapter_ViewPagerTeam myPagerAdapter = new Adapter_ViewPagerTeam(fragment.getFragmentManager(), team.getId(), "team", team.getVenue(), team.getAddress(), team.getWebSite());
+                    Adapter_ViewPagerTeam myPagerAdapter = new Adapter_ViewPagerTeam(fragment.getChildFragmentManager(), team.getId(), "team", team.getVenue(), team.getAddress(), team.getWebSite());
                     viewPager.setAdapter(myPagerAdapter);
                     TabLayout tabLayout = fragment.v.findViewById(R.id.tablayoutteam);
                     tabLayout.setupWithViewPager(viewPager);

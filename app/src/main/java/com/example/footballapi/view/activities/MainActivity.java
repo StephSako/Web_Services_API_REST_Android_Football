@@ -21,7 +21,6 @@ import com.example.footballapi.controleur.SessionManagerPreferences;
 import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.view.fragments.CompetitionFragment;
 import com.example.footballapi.view.fragments.CreditsFragment;
-import com.example.footballapi.view.fragments.EditAccountFragment;
 import com.example.footballapi.view.fragments.MatchesFragment;
 import com.example.footballapi.view.fragments.TeamFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -35,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private static final String KEY_ID = "idForMatches";
     private static final String KEY_TYPE = "typeMatches";
+    private static final String CLE_DONNEES_ID_COMPET = "idCompet";
+    private static final String CLE_DONNEES_ID_TEAM = "idTeam";
 
     private TextView tvSupporterName;
     private TextView tvSupporterFavoriteTeam;
@@ -85,18 +86,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if (getIntent().getExtras() != null) {
-            if (Objects.requireNonNull(getIntent().getExtras()).containsKey(KEY_ID)) {
+            if (Objects.requireNonNull(getIntent().getExtras()).containsKey(CLE_DONNEES_ID_TEAM)) {
                 Fragment teamFragment = new TeamFragment();
                 Bundle bundle = new Bundle();
-                bundle.putInt(KEY_ID, getIntent().getIntExtra(KEY_ID, -1));
+                bundle.putInt(KEY_ID, getIntent().getIntExtra(CLE_DONNEES_ID_TEAM, -1));
                 teamFragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, teamFragment).addToBackStack(null).commit();
-            } else if (Objects.requireNonNull(getIntent().getExtras()).containsKey(KEY_ID)) {
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, teamFragment).commit();
+            } else if (Objects.requireNonNull(getIntent().getExtras()).containsKey(CLE_DONNEES_ID_COMPET)) {
                 Fragment fragment = new CompetitionFragment();
                 Bundle bundle = new Bundle();
-                bundle.putInt(KEY_ID, getIntent().getIntExtra(KEY_ID, -1));
+                bundle.putInt(KEY_ID, getIntent().getIntExtra(CLE_DONNEES_ID_COMPET, -1));
                 fragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, fragment).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, fragment).commit();
             }
         } else {
             // Fragment des matches de l'équipe favorite affichée par défaut
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             bundle.putInt(KEY_ID, new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
             bundle.putString(KEY_TYPE, "team");
             fragment.setArguments(bundle);
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, fragment).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, fragment).commit();
         }
     }
 
@@ -167,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 launch_item_class(SearchTeamActivity.class);
                 break;
             case R.id.edit:
-                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, new EditAccountFragment()).commit();
+                launch_item_class(EditAccountActivity.class);
                 break;
             default:
                 return true;
@@ -187,7 +188,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void logout() {
         new SessionManagerPreferences(this).logout();
-
         Intent intent = new Intent(this, ConnexionActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.tvSupporterName.setText(new SessionManagerPreferences(this).getSupporterName());
         this.tvSupporterFavoriteTeam.setText(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
 
-        String crestBD = (new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) != null) ? new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) : "" ;
+        String crestBD = (new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) != null) ? new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) : "";
         String crest = (new CrestGenerator().crestGenerator(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter()).equals("")) ? crestBD : new CrestGenerator().crestGenerator(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
 
         if (!crest.equals("")) {
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Bundle bundle = new Bundle();
             bundle.putInt(KEY_ID, new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
             teamFragment.setArguments(bundle);
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, teamFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, teamFragment).addToBackStack(null).commit();
         }
     }
 }
