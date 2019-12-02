@@ -2,114 +2,244 @@ package com.example.footballapi.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+
+import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
+import com.example.footballapi.controleur.CrestGenerator;
+import com.example.footballapi.controleur.SessionManagerPreferences;
+import com.example.footballapi.model.model_dao.DataBase;
+import com.example.footballapi.view.fragments.CompetitionFragment;
+import com.example.footballapi.view.fragments.CreditsFragment;
+import com.example.footballapi.view.fragments.MatchesFragment;
+import com.example.footballapi.view.fragments.TeamFragment;
+import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.Objects;
 
-    // Id de la compétition
-    private int idCompet = -1;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
 
-    // Persistance courte de idCompet
-    private final static String PCidCompet = "idCompet";
+    private ActionBarDrawerToggle actionBarDrawerToggle;
 
-    // Clef données transmission
-    final static String CLE_DONNEES_ID_COMPET = "idCompet";
+    private static final String KEY_ID = "idForMatches";
+    private static final String KEY_TYPE = "typeMatches";
+    private static final String CLE_DONNEES_ID_COMPET = "idCompet";
+    private static final String CLE_DONNEES_ID_TEAM = "idTeam";
 
-    @Override
-    protected void onSaveInstanceState (Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt(PCidCompet, idCompet);
-    }
+    private TextView tvSupporterName;
+    private TextView tvSupporterFavoriteTeam;
+    private ImageView ivFavoriteTeam;
+    DrawerLayout dl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        setContentView(R.layout.activity_main);
 
-        // On change le title de l'actionBar
-        this.setTitle("Compétitions");
+        NavigationView nv = findViewById(R.id.nav_view);
+        View v = nv.inflateHeaderView(R.layout.nav_header);
+        this.dl = findViewById(R.id.drawer_layout);
+        this.actionBarDrawerToggle = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
+        this.dl.addDrawerListener(this.actionBarDrawerToggle);
+        this.actionBarDrawerToggle.syncState();
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        // Récupérer les buttons
-        // Boutons de l'écran
-        ImageButton btnBundesliga = findViewById(R.id.btnBundesliga);
-        ImageButton btnPrimeraDivision = findViewById(R.id.btnPrimeraDivision);
-        ImageButton btnSerieA = findViewById(R.id.btnSerieA);
-        ImageButton btnLigue1 = findViewById(R.id.btnLigue1);
-        ImageButton btnPremierLeague = findViewById(R.id.btnPremierLeague);
-        ImageButton btnLiguaNOS = findViewById(R.id.btnLiguaNOS);
-        ImageButton btnNetherlands = findViewById(R.id.btnNetherlands);
-        ImageButton btnBresil = findViewById(R.id.btnBresil);
+        this.tvSupporterName = v.findViewById(R.id.tvSupporterName);
+        this.tvSupporterFavoriteTeam = v.findViewById(R.id.tvSupporterFavoriteTeam);
+        this.tvSupporterName.setText(new SessionManagerPreferences(this).getSupporterName());
+        this.tvSupporterFavoriteTeam.setText(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
+        this.ivFavoriteTeam = v.findViewById(R.id.ivFavoriteTeam);
 
-        // Ecouteurs sur les boutons
-        btnBundesliga.setOnClickListener(this);
-        btnPrimeraDivision.setOnClickListener(this);
-        btnSerieA.setOnClickListener(this);
-        btnLigue1.setOnClickListener(this);
-        btnPremierLeague.setOnClickListener(this);
-        btnLiguaNOS.setOnClickListener(this);
-        btnNetherlands.setOnClickListener(this);
-        btnBresil.setOnClickListener(this);
+        ivFavoriteTeam.setOnClickListener(this);
+        nv.setNavigationItemSelectedListener(this);
 
-        // Persistance courte
-        if (savedInstanceState != null) {
-            idCompet = savedInstanceState.getInt(PCidCompet);
+        String crestBD = (new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) != null) ? new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) : "";
+        String crest = (new CrestGenerator().crestGenerator(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter()).equals("")) ? crestBD : new CrestGenerator().crestGenerator(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
+        switch (crest.substring(crest.length() - 3)) {
+            case "svg":
+                SvgLoader.pluck()
+                        .with(this)
+                        .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                        .load(crest, this.ivFavoriteTeam)
+                        .close();
+                break;
+            case "gif":
+            case "png":
+                Picasso.get()
+                        .load(crest)
+                        .error(R.drawable.ic_logo_foreground)
+                        .resize(50, 50)
+                        .centerCrop()
+                        .into(this.ivFavoriteTeam);
+                break;
+        }
+
+        if (getIntent().getExtras() != null) {
+            if (Objects.requireNonNull(getIntent().getExtras()).containsKey(CLE_DONNEES_ID_TEAM)) {
+                Fragment teamFragment = new TeamFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt(KEY_ID, getIntent().getIntExtra(CLE_DONNEES_ID_TEAM, -1));
+                teamFragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, teamFragment).commit();
+            } else if (Objects.requireNonNull(getIntent().getExtras()).containsKey(CLE_DONNEES_ID_COMPET)) {
+                Fragment fragment = new CompetitionFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt(KEY_ID, getIntent().getIntExtra(CLE_DONNEES_ID_COMPET, -1));
+                fragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, fragment).commit();
+            }
+        } else {
+            // Fragment des matches de l'équipe favorite affichée par défaut
+            Fragment fragment = new MatchesFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(KEY_ID, new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
+            bundle.putString(KEY_TYPE, "team");
+            fragment.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_hoster, fragment).commit();
         }
     }
 
-    public void onClick(View v) {
-        if (v.getId() == R.id.btnBundesliga) idCompet = 2002;
-        else if (v.getId() == R.id.btnSerieA) idCompet = 2019;
-        else if (v.getId() == R.id.btnPremierLeague) idCompet = 2021;
-        else if (v.getId() == R.id.btnPrimeraDivision) idCompet = 2014;
-        else if (v.getId() == R.id.btnLigue1) idCompet = 2015;
-        else if (v.getId() == R.id.btnLiguaNOS) idCompet = 2017;
-        else if (v.getId() == R.id.btnNetherlands) idCompet = 2003;
-        else if (v.getId() == R.id.btnBresil) idCompet = 2013;
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Fragment fragment = new CompetitionFragment();
+        Bundle bundle = new Bundle();
+        switch (item.getItemId()) {
+            case R.id.itemBundesliga:
+                bundle.putInt(KEY_ID, 2002);
+                fragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
+                break;
+            case R.id.itemEredivisie:
+                bundle.putInt(KEY_ID, 2003);
+                fragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
+                break;
+            case R.id.itemLigaBresil:
+                bundle.putInt(KEY_ID, 2013);
+                fragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
+                break;
+            case R.id.itemLigaEspagne:
+                bundle.putInt(KEY_ID, 2014);
+                fragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
+                break;
+            case R.id.itemLigaNOS:
+                bundle.putInt(KEY_ID, 2017);
+                fragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
+                break;
+            case R.id.itemLigue1:
+                bundle.putInt(KEY_ID, 2015);
+                fragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
+                break;
+            case R.id.itemPremierLeague:
+                bundle.putInt(KEY_ID, 2021);
+                fragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
+                break;
+            case R.id.itemSerieA:
+                bundle.putInt(KEY_ID, 2019);
+                fragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, fragment).commit();
+                break;
+            case R.id.logout:
+                logout();
+                break;
+            case R.id.pref:
+                launch_item_class(SettingsActivity.class);
+                break;
+            case R.id.credits:
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_from_right, R.anim.slide_to_left).replace(R.id.fragment_hoster, new CreditsFragment()).commit();
+                break;
+            case R.id.itemSearch:
+                launch_item_class(SearchTeamActivity.class);
+                break;
+            case R.id.edit:
+                launch_item_class(EditAccountActivity.class);
+                break;
+            default:
+                return true;
+        }
 
-        Intent intent = new Intent(this, ClassementActivity.class);
-        intent.putExtra(CLE_DONNEES_ID_COMPET, idCompet);
+        this.dl.closeDrawer(GravityCompat.START);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { // Displaying Drawer
+        if (this.actionBarDrawerToggle.onOptionsItemSelected(item))
+            return true;
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void logout() {
+        new SessionManagerPreferences(this).logout();
+        Intent intent = new Intent(this, ConnexionActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+
+    private void launch_item_class(Class class_) {
+        Intent intent = new Intent(this, class_);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
-    // Affichage du menu
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main_activity, menu);
-        return true;
+    public void onResume() {
+        super.onResume();
+        this.tvSupporterName.setText(new SessionManagerPreferences(this).getSupporterName());
+        this.tvSupporterFavoriteTeam.setText(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
+
+        String crestBD = (new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) != null) ? new DataBase(this).findTeamCrest(new SessionManagerPreferences(this).getFavoriteTeamIdSupporter()) : "";
+        String crest = (new CrestGenerator().crestGenerator(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter()).equals("")) ? crestBD : new CrestGenerator().crestGenerator(new SessionManagerPreferences(this).getFavoriteTeamNameSupporter());
+
+        if (!crest.equals("")) {
+            switch (crest.substring(crest.length() - 3)) {
+                case "svg":
+                    SvgLoader.pluck()
+                            .with(this)
+                            .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
+                            .load(crest, this.ivFavoriteTeam)
+                            .close();
+                    break;
+                case "gif":
+                case "png":
+                    Picasso.get()
+                            .load(crest)
+                            .error(R.drawable.ic_logo_foreground)
+                            .resize(50, 50)
+                            .centerCrop()
+                            .into(this.ivFavoriteTeam);
+                    break;
+            }
+        }
     }
 
-    // Écouteur sur le menu
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // L’item sur lequel l’utilisateur a cliqué
-        int id = item.getItemId();
-        // Afficher le fragment des préférences
-        if (id == R.id.pref) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-            return true;
+    public void onClick(View v) {
+        if (v.getId() == R.id.ivFavoriteTeam) {
+            this.dl.closeDrawer(GravityCompat.START);
+            Fragment teamFragment = new TeamFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(KEY_ID, new SessionManagerPreferences(this).getFavoriteTeamIdSupporter());
+            teamFragment.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_hoster, teamFragment).addToBackStack(null).commit();
         }
-        else if (id == R.id.credits) {
-            Intent intent = new Intent(this, CreditsActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-            return true;
-        }
-        else if (id == R.id.search) {
-            Intent intent = new Intent(this, SearchTeamActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

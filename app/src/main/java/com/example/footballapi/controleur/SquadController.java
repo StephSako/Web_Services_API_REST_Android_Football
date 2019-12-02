@@ -1,15 +1,16 @@
 package com.example.footballapi.controleur;
 
-import android.support.annotation.NonNull;
-import android.widget.Toast;
+import androidx.annotation.NonNull;
 
-import com.example.footballapi.model.model_retrofit.team.Team;
 import com.example.footballapi.model.model_recyclerview.squad.SquadModel;
-import com.example.footballapi.model.model_retrofit.restService.RestUser;
+import com.example.footballapi.model.model_retrofit.retrofit.football_data.RestFootballData;
+import com.example.footballapi.model.model_retrofit.team.Team;
 import com.example.footballapi.view.fragments.SquadFragment;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,10 +26,10 @@ public class SquadController {
 
     /**
      * Affiche la liste des joueurs d'une équipe
-     * @param token
+     * @param token token de connexion
      */
     public void onCreate(final String token) {
-        Call<Team> call = RestUser.get().teamSquad(token, fragment.idTeam);
+        Call<Team> call = RestFootballData.get().teamSquad(token, fragment.idTeam);
         call.enqueue(new Callback<Team>() {
             @Override
             public void onResponse(@NonNull Call<Team> call, @NonNull Response<Team> response) {
@@ -40,47 +41,52 @@ public class SquadController {
 
                     for (int i = 0; i < team.getSquad().size(); i++) {
                         if (team.getSquad().size() > 0) {
+                            SquadModel model = new SquadModel();
                             if (team.getSquad().get(i).getRole().equals("PLAYER")) {
-                                SquadModel model = new SquadModel();
                                 model.setPlayerName(String.valueOf(team.getSquad().get(i).getName()));
+                                model.setTeamName(String.valueOf(team.getName()));
+                                model.setTeamCrest(String.valueOf(team.getCrestUrl()));
 
-                                switch (team.getSquad().get(i).getPosition()) {
-                                    case "Goalkeeper":
-                                        model.setPlayerPosition("Gardien");
-                                        break;
-                                    case "Defender":
-                                        model.setPlayerPosition("Défenseur");
-                                        break;
-                                    case "Midfielder":
-                                        model.setPlayerPosition("Milieu");
-                                        break;
-                                    case "Attacker":
-                                        model.setPlayerPosition("Attaquant");
-                                        break;
+                                if (team.getSquad().get(i).getPosition() != null) {
+                                    switch (team.getSquad().get(i).getPosition()) {
+                                        case "Goalkeeper":
+                                            model.setPlayerPosition("Gardien");
+                                            break;
+                                        case "Defender":
+                                            model.setPlayerPosition("Défenseur");
+                                            break;
+                                        case "Midfielder":
+                                            model.setPlayerPosition("Milieu");
+                                            break;
+                                        case "Attacker":
+                                            model.setPlayerPosition("Attaquant");
+                                            break;
+                                    }
                                 }
+                                else model.setPlayerPosition("");
 
                                 model.setPlayerNationality(team.getSquad().get(i).getNationality());
                                 model.setPlayerId(String.valueOf(team.getSquad().get(i).getId()));
-
-                                if (team.getSquad().get(i).getShirtNumber() != -1)
-                                    model.setPlayerShirtNumber(String.valueOf(team.getSquad().get(i).getShirtNumber()));
-                                else model.setPlayerShirtNumber("");
-
-                                fragment.list = listFinal;
-                                listFinal.add(model);
+                            } else {
+                                model.setPlayerName(String.valueOf(team.getSquad().get(i).getName()));
+                                model.setTeamName(String.valueOf(team.getName()));
+                                model.setTeamCrest(String.valueOf(team.getCrestUrl()));
+                                model.setPlayerNationality(team.getSquad().get(i).getNationality());
+                                model.setPlayerId(String.valueOf(team.getSquad().get(i).getId()));
+                                model.setPlayerPosition("Entraineur");
                             }
+                            listFinal.add(model);
                         }
                     }
-
                     fragment.showList(listFinal);
                 } else {
-                    Toast.makeText(fragment.getContext(), "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(Objects.requireNonNull(fragment.getView()), "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<Team> call, @NonNull Throwable t) {
-                Toast.makeText(fragment.getContext(), "Vérifiez votre connexion_activity Internet", Toast.LENGTH_SHORT).show();
+                Snackbar.make(Objects.requireNonNull(fragment.getView()), "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
     }

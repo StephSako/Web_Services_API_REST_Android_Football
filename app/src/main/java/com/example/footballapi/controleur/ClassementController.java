@@ -1,16 +1,19 @@
 package com.example.footballapi.controleur;
 
-import android.support.annotation.NonNull;
-import android.widget.Toast;
+import android.annotation.SuppressLint;
 
-import com.example.footballapi.model.model_retrofit.competition.Classement;
+import androidx.annotation.NonNull;
+
 import com.example.footballapi.model.model_dao.DataBase;
 import com.example.footballapi.model.model_dao.TeamDAO;
 import com.example.footballapi.model.model_recyclerview.classement.TeamModel;
-import com.example.footballapi.model.model_retrofit.restService.RestUser;
-import com.example.footballapi.view.activities.ClassementActivity;
+import com.example.footballapi.model.model_retrofit.competition.Classement;
+import com.example.footballapi.model.model_retrofit.retrofit.football_data.RestFootballData;
+import com.example.footballapi.view.fragments.ClassementFragment;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,18 +23,18 @@ import retrofit2.Response;
 
 public class ClassementController {
 
-    private ClassementActivity activity;
+    private ClassementFragment fragment;
 
-    public ClassementController(ClassementActivity activity) {
-        this.activity = activity;
+    public ClassementController(ClassementFragment fragment) {
+        this.fragment = fragment;
     }
 
     /**
      * Affiche le classement d'une compétition
-     * @param token
+     * @param token token de connexion
      */
-    public void onCreate(String token) {
-        Call<Classement> call = RestUser.get().competitions(token, activity.idCompet);
+    public void onCreate(String token, int idCompet) {
+        Call<Classement> call = RestFootballData.get().competitions(token, idCompet);
         call.enqueue(new Callback<Classement>() {
 
             @Override
@@ -39,9 +42,11 @@ public class ClassementController {
                 if (response.isSuccessful()) {
                     Classement classement = response.body();
                     assert classement != null;
-                    Objects.requireNonNull(activity).setTitle(classement.getCompetition().getName());
+
+                    Objects.requireNonNull(fragment.getActivity()).setTitle(classement.getCompetition().getName());
 
                     List<TeamModel> listFinal = new ArrayList<>();
+                    @SuppressLint("UseSparseArrays") HashMap<Integer, String> teamsNameCrests = new HashMap<>();
 
                     // On remplit les lignes (le classement d'id 0 représente le classement total du championnat)
                     for (int i = 1; i <= classement.getStandings().get(0).getTable().size(); i++) {
@@ -53,11 +58,10 @@ public class ClassementController {
                         model.setIdTeam(String.valueOf(classement.getStandings().get(0).getTable().get(i - 1).getTeam().getId()));
                         model.setCrestURL(String.valueOf(classement.getStandings().get(0).getTable().get(i - 1).getTeam().getCrestUrl()));
                         listFinal.add(model);
-                    }
 
-                    activity.showList(listFinal, true);
-                } else {
-                    Toast.makeText(activity, "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
+                        teamsNameCrests.put(classement.getStandings().get(0).getTable().get(i - 1).getTeam().getId(), classement.getStandings().get(0).getTable().get(i - 1).getTeam().getCrestUrl());
+                    }
+                    fragment.showList(listFinal, true);
                 }
             }
 
@@ -65,12 +69,10 @@ public class ClassementController {
             public void onFailure(@NonNull Call<Classement> call, @NonNull Throwable t) {
 
                 // On affiche le classement récupéré depuis la base de données locale en mode hors ligne
-                DataBase database = new DataBase(activity);
-                List<TeamDAO> classementDAO = database.findClassementById(activity.idCompet);
+                DataBase database = new DataBase(fragment.getContext());
+                List<TeamDAO> classementDAO = database.findClassementById(fragment.idCompet);
 
                 if (classementDAO.size() > 0) { // Si la BD locale n'a jamais été initialisée
-
-                    Objects.requireNonNull(activity).setTitle(classementDAO.get(0).getNomCompet() + " - [Hors ligne]");
 
                     List<TeamModel> listFinal = new ArrayList<>();
 
@@ -85,11 +87,10 @@ public class ClassementController {
                         model.setIdTeam(String.valueOf(classementDAO.get(i).getDiff()));
                         listFinal.add(model);
                     }
-
-                    // booléen qui active ou désactive les écouteurs sur les item de la recyclerview en cas de connexion_activity oun non à internet
-                    activity.showList(listFinal, false);
+                    // booléen qui active ou désactive les écouteurs sur les item de la recyclerview en cas de activity_connexion oun non à internet
+                    fragment.showList(listFinal, false);
                 }
-                Toast.makeText(activity, "Classement non mis à jour.\nVérifiez votre connexion_activity.", Toast.LENGTH_SHORT).show();
+                Snackbar.make(Objects.requireNonNull(fragment.getView()), "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
     }

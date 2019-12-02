@@ -1,14 +1,15 @@
 package com.example.footballapi.controleur;
 
 import android.annotation.SuppressLint;
-import android.support.annotation.NonNull;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.footballapi.R;
 import com.example.footballapi.model.model_retrofit.player.Player;
-import com.example.footballapi.model.model_retrofit.restService.RestUser;
-import com.example.footballapi.view.activities.PlayerActivity;
+import com.example.footballapi.model.model_retrofit.retrofit.football_data.RestFootballData;
+import com.example.footballapi.view.fragments.PlayerFragment;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
 
@@ -18,18 +19,18 @@ import retrofit2.Response;
 
 public class PlayerController {
 
-    private PlayerActivity activity;
+    private PlayerFragment fragment;
 
-    public PlayerController(PlayerActivity activity) {
-        this.activity = activity;
+    public PlayerController(PlayerFragment fragment) {
+        this.fragment = fragment;
     }
 
     /**
      * Affiche les détails d'un joueur
-     * @param token
+     * @param token token de connexion
      */
     public void onCreate(String token) {
-        Call<Player> call = RestUser.get().players(token, activity.idPlayer);
+        Call<Player> call = RestFootballData.get().players(token, fragment.idPlayer);
         call.enqueue(new Callback<Player>() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -39,15 +40,15 @@ public class PlayerController {
                     assert player != null;
 
                     // On change le title de l'actionBar par le nom du joueur
-                    Objects.requireNonNull(activity).setTitle(player.getName());
+                    Objects.requireNonNull(fragment.getActivity()).setTitle(player.getName());
 
-                    if (!activity.crestURLPlayer.equals("") && activity.loadingPicsPlayer)
+                    if (!fragment.crestURLPlayer.equals("") && fragment.loadingPicsPlayer)
                         SvgLoader.pluck()
-                                .with(activity)
+                                .with(fragment.getActivity())
                                 .setPlaceHolder(R.drawable.ic_logo_foreground, R.drawable.ic_logo_foreground)
-                                .load(activity.crestURLPlayer, activity.logo_club_player)
+                                .load(fragment.crestURLPlayer, fragment.logo_club_player)
                                 .close();
-                    else activity.logo_club_player.setImageResource(R.drawable.ic_logo_foreground);
+                    else fragment.logo_club_player.setImageResource(R.drawable.ic_logo_foreground);
 
                     String[] dateBirthDay = player.getDateOfBirth().split("-");
                     String day = dateBirthDay[2];
@@ -55,37 +56,40 @@ public class PlayerController {
                     String year = dateBirthDay[0];
 
                     String birthday = day + "/" + month + "/" + year;
-                    activity.tvBirthday.setText(birthday);
+                    fragment.tvBirthday.setText(birthday);
 
-                    activity.tvClubPlayer.setText(activity.nomClub);
-                    activity.tvNationality.setText(player.getNationality());
-                    activity.tvPlayerName.setText(player.getName());
+                    fragment.tvClubPlayer.setText(fragment.nomClub);
+                    fragment.tvNationality.setText(player.getNationality());
+                    fragment.tvPlayerName.setText(player.getName());
 
-                    if (player.getShirtNumber() != -1)
-                        activity.tvShirtNumberPlayer.setText(String.valueOf(player.getShirtNumber()));
-
-                    switch (player.getPosition()) {
-                        case "Goalkeeper":
-                            activity.tvPostePlayer.setText("Gardien");
-                            break;
-                        case "Defender":
-                            activity.tvPostePlayer.setText("Défenseur");
-                            break;
-                        case "Midfielder":
-                            activity.tvPostePlayer.setText("Milieu");
-                            break;
-                        case "Attacker":
-                            activity.tvPostePlayer.setText("Attaquant");
-                            break;
+                    if (player.getPosition() != null) {
+                        switch (player.getPosition()) {
+                            case "Goalkeeper":
+                                fragment.tvPostePlayer.setText("Gardien");
+                                break;
+                            case "Defender":
+                                fragment.tvPostePlayer.setText("Défenseur");
+                                break;
+                            case "Midfielder":
+                                fragment.tvPostePlayer.setText("Milieu");
+                                break;
+                            case "Attacker":
+                                fragment.tvPostePlayer.setText("Attaquant");
+                                break;
+                        }
                     }
+                    else {
+                        fragment.tvPostePlayer.setText("Entraineur");
+                    }
+
                 } else {
-                    Toast.makeText(activity, "Le nombre d'appels a été dépassé", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(fragment.contextView, "Le nombre d'appels a été dépassé", Snackbar.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<Player> call, @NonNull Throwable t) {
-                Toast.makeText(activity, "Vérifiez votre connexion_activity Internet", Toast.LENGTH_SHORT).show();
+                Snackbar.make(fragment.contextView, "Vérifiez votre connexion Internet", Snackbar.LENGTH_SHORT).show();
             }
         });
     }

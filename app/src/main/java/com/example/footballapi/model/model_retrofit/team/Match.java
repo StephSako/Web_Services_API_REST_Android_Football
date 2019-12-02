@@ -27,12 +27,40 @@ public class Match {
 
         }
 
+        public class HalfTime {
+
+            @SerializedName("homeTeam")
+            @Expose
+            private int ScorehomeTeam = -1;
+
+            @SerializedName("awayTeam")
+            @Expose
+            private int ScoreawayTeam = -1;
+
+            public int getHomeTeam() {
+                return ScorehomeTeam;
+            }
+
+            public int getAwayTeam() {
+                return ScoreawayTeam;
+            }
+
+        }
+
+        @SerializedName("halfTime")
+        @Expose
+        private HalfTime halfTime = new HalfTime();
+
         @SerializedName("fullTime")
         @Expose
         private FullTime fullTime = new FullTime();
 
         public FullTime getFullTime() {
             return fullTime;
+        }
+
+        public HalfTime getHalfTime() {
+            return halfTime;
         }
 
         @SerializedName("winner")
@@ -102,6 +130,14 @@ public class Match {
     @Expose
     private String utcDate = "";
 
+    public String getVenue() {
+        return venue;
+    }
+
+    @SerializedName("venue")
+    @Expose
+    private String venue = "";
+
     public String getUtcDate() { return utcDate; }
 
     public String getStatus() { return status; }
@@ -123,4 +159,6 @@ public class Match {
     }
 
     public int getId() { return id; }
+
+
 }

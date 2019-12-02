@@ -1,6 +1,5 @@
 package com.example.footballapi.model.model_retrofit.team;
 
-import com.example.footballapi.model.model_retrofit.competition.Classement;
 import com.example.footballapi.model.model_retrofit.player.Player;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -14,10 +13,6 @@ public class Team {
     @Expose
     private int id = -1;
 
-    @SerializedName("activeCompetitions")
-    @Expose
-    private List<Classement.Competition> activeCompetitions = Collections.emptyList();
-
     @SerializedName("name")
     @Expose
     private String name = "";
@@ -26,6 +21,10 @@ public class Team {
     @Expose
     private String crestUrl = "";
 
+    @SerializedName("address")
+    @Expose
+    private String address = "";
+
     @SerializedName("website")
     @Expose
     private String website = "";
@@ -33,6 +32,10 @@ public class Team {
     @SerializedName("venue")
     @Expose
     private String venue = "";
+
+    @SerializedName("clubColors")
+    @Expose
+    private String clubColors = "";
 
     @SerializedName("squad")
     @Expose
@@ -50,10 +53,6 @@ public class Team {
 
     public int getId() {
         return id;
-    }
-
-    public List<Classement.Competition> getActiveCompetitions() {
-        return activeCompetitions;
     }
 
     public String getName() {return name; }
@@ -74,4 +73,11 @@ public class Team {
         return matches;
     }
 
+    public String getClubColors() {
+        return clubColors;
+    }
+
+    public String getAddress() {
+        return address;
+    }
 }

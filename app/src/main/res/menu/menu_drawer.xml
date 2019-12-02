@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/itemSearch"
+        android:title="@string/tvSearch" />
+    <item android:title="@string/tvGroupChampionnats">
+        <menu>
+            <item
+                android:id="@+id/itemBundesliga"
+                android:title="@string/tvBundesligaTitle" />
+            <item
+                android:id="@+id/itemPremierLeague"
+                android:title="@string/tvPremierLeagueTitle" />
+            <item
+                android:id="@+id/itemLigue1"
+                android:title="@string/tvLigue1Title" />
+            <item
+                android:id="@+id/itemLigaEspagne"
+                android:title="@string/tvPrimeraDivisionTitle" />
+            <item
+                android:id="@+id/itemSerieA"
+                android:title="@string/tvSerieATitle" />
+            <item
+                android:id="@+id/itemLigaNOS"
+                android:title="@string/tvLiguaNOSTitle" />
+            <item
+                android:id="@+id/itemLigaBresil"
+                android:title="@string/tvSerieABrazilTitle" />
+            <item
+                android:id="@+id/itemEredivisie"
+                android:title="@string/tvNetherlandsTitle" />
+        </menu>
+    </item>
+
+    <item android:title="@string/tvGroupSettings">
+        <menu>
+            <item
+                android:id="@+id/edit"
+                android:title="Compte"
+                android:icon="@drawable/ic_account"/>
+            <item
+                android:id="@+id/pref"
+                android:title="@string/tvPreferences"
+                android:icon="@drawable/ic_preferences"/>
+            <item
+                android:id="@+id/logout"
+                android:title="@string/tvDeconnexion"
+                android:icon="@drawable/ic_logout"/>
+            <item
+                android:id="@+id/credits"
+                android:title="@string/tvAPropos"
+                android:icon="@drawable/ic_about"/>
+        </menu>
+    </item>
+
+</menu>
