@@ -2,9 +2,9 @@ package com.example.footballapi.view.activities;
 
 import android.app.SearchManager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
 import android.widget.SearchView;
 
@@ -18,9 +18,6 @@ import java.util.List;
 public class SearchTeamActivity extends AppCompatActivity {
 
     private RecyclerView rvSearch;
-
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +36,9 @@ public class SearchTeamActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_search, menu);
         SearchView searchView = (SearchView) menu.findItem(R.id.searchView).getActionView();
         SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        if (searchManager != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        }
         searchView.setSubmitButtonEnabled(true);
         searchView.setIconifiedByDefault(true);
         searchView.setFocusable(true);
@@ -64,11 +63,9 @@ public class SearchTeamActivity extends AppCompatActivity {
     public void showList(String keyword){
         DataBase database = new DataBase(this);
         List<TeamDAO> searchList = database.findTeamByName(keyword);
-
-        // Define an adapter
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         rvSearch.setLayoutManager(layoutManager);
-        mAdapter = new AdapterRV_Search(searchList);
+        RecyclerView.Adapter mAdapter = new AdapterRV_Search(searchList);
         rvSearch.setAdapter(mAdapter);
     }
 

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/inscription_activity"
+    android:orientation="vertical"
+    tools:context="com.example.footballapi.view.activities.InscriptionActivity"
+    android:background="@drawable/degradesplashscreen"
+    tools:ignore="ExtraText">
+
+    <ImageView
+        android:id="@+id/ivSplashscreen"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/ivLogoSplashScreen"
+        android:src="@drawable/ic_logo_splashscreen_foreground" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:padding="10dp"
+        android:background="@drawable/llshape">
+        <EditText
+            android:id="@+id/etPseudo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/etPseudo"
+            android:inputType="textEmailAddress"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_account"/>
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/etPassword"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_password"/>
+        <EditText
+            android:id="@+id/etPasswordVerif"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Retapper le mot de passe"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_password"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/black"
+            android:text="@string/tvFavoriteTeam"
+            android:layout_marginTop="20dp"
+            />
+        <Spinner
+            android:id="@+id/favoriteTeam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnInscription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/background_light"
+        android:text="S'inscrire"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:targetApi="lollipop" />
+
+    <Button
+        android:id="@+id/btnConnexion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Se connecter"
+        android:textColor="#FFFFFF"
+        android:background="@android:color/transparent"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
